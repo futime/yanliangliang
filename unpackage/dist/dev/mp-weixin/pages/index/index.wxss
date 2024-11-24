@@ -1,0 +1,123 @@
+@charset "UTF-8";
+/**
+ * 下方引入的为uView UI的集成样式文件，为scss预处理器，其中包含了一些"u-"开头的自定义变量
+ * uView自定义的css类名和scss变量，均以"u-"开头，不会造成冲突，请放心使用 
+ */
+page {
+  background-color: #f4f6f8;
+}
+
+@charset "UTF-8";
+/**
+ * 下方引入的为uView UI的集成样式文件，为scss预处理器，其中包含了一些"u-"开头的自定义变量
+ * uView自定义的css类名和scss变量，均以"u-"开头，不会造成冲突，请放心使用 
+ */
+.indicator-dots.data-v-57280228 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.indicator-dots-item.data-v-57280228 {
+  background-color: #909399;
+  height: 6px;
+  width: 6px;
+  border-radius: 10px;
+  margin: 0 3px;
+}
+.indicator-dots-active.data-v-57280228 {
+  background-color: #2979ff;
+}
+.notice.data-v-57280228 {
+  margin-bottom: 30rpx;
+}
+.index-content.data-v-57280228 {
+  margin-top: 30rpx;
+  background-color: #ffffff;
+}
+.index-content .title.data-v-57280228 {
+  position: relative;
+  padding: 30rpx 50rpx;
+  border-bottom: 1px solid #f4f6f8;
+}
+.index-content .title .stroke.data-v-57280228::before {
+  content: '';
+  width: 8rpx;
+  height: 30rpx;
+  background-color: #374486;
+  position: absolute;
+  top: 36%;
+  left: 30rpx;
+  border-radius: 20rpx;
+}
+.goods-list.data-v-57280228 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 30rpx;
+  padding: 0 30rpx;
+}
+.goods-list .item.data-v-57280228 {
+  width: calc((100vw - 90rpx) / 2);
+  background-color: #ffffff;
+  box-shadow: 0px 0px 5px #e9ebf3;
+  margin-bottom: 30rpx;
+  border-radius: 10rpx;
+  overflow: hidden;
+  border: 1px solid #e9ebf3;
+}
+.goods-list .item .name.data-v-57280228 {
+  min-height: 110rpx;
+}
+.goods-list .item .foot.data-v-57280228 {
+  padding: 0 15rpx;
+}
+.goods-list .item .images.data-v-57280228 {
+  width: 100%;
+  height: 350rpx;
+}
+.goods-list .item .images image.data-v-57280228 {
+  width: 100%;
+  height: 100%;
+}
+.goods-list .item .market_price.data-v-57280228 {
+  text-decoration: line-through;
+  margin-left: 10rpx;
+}
+.hots-list.data-v-57280228 {
+  margin-top: 30rpx;
+  padding: 0 30rpx 30rpx;
+}
+.hots-list .item.data-v-57280228 {
+  width: 100%;
+  background-color: #ffffff;
+  box-shadow: 0px 0px 5px #e9ebf3;
+  margin-bottom: 30rpx;
+  border-radius: 10rpx;
+  overflow: hidden;
+  border: 1px solid #e9ebf3;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.hots-list .item .images.data-v-57280228 {
+  width: 250rpx;
+  height: 220rpx;
+}
+.hots-list .item .images image.data-v-57280228 {
+  width: 100%;
+  height: 100%;
+}
+.hots-list .item .content.data-v-57280228 {
+  flex: 1;
+}
+.hots-list .item .content .name.data-v-57280228 {
+  min-height: 110rpx;
+}
+.hots-list .item .content .foot.data-v-57280228 {
+  padding: 0 15rpx;
+}
+.hots-list .item .content .market_price.data-v-57280228 {
+  text-decoration: line-through;
+  margin-left: 10rpx;
+}
+

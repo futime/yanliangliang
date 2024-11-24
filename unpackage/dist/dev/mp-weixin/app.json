@@ -1,0 +1,60 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/my/my",
+    "pages/my/profile",
+    "uview-ui/components/u-avatar-cropper/u-avatar-cropper",
+    "pages/login/auth",
+    "pages/login/openid",
+    "pages/login/login",
+    "pages/login/register",
+    "pages/login/forgetpwd",
+    "pages/login/mobilelogin",
+    "pages/signin/signin",
+    "pages/signin/logs",
+    "pages/signin/ranking",
+    "pages/webview/webview",
+    "pages/order/payment",
+    "pages/remark/remark",
+    "pages/remark/lists",
+    "pages/remark/comment",
+    "pages/my/collect",
+    "pages/goods/goods",
+    "pages/category/index",
+    "pages/goods/detail",
+    "pages/cart/cart",
+    "pages/goods/order",
+    "pages/order/list",
+    "pages/order/detail",
+    "pages/order/apply",
+    "pages/order/aftersale",
+    "pages/order/logistics",
+    "pages/address/address",
+    "pages/address/addedit",
+    "pages/score/score",
+    "pages/score/logs",
+    "pages/score/exchange",
+    "pages/score/order",
+    "pages/coupon/coupon",
+    "pages/coupon/user",
+    "pages/coupon/detail",
+    "pages/page/page",
+    "pages/search/search",
+    "pages/help/index"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "简单商城",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8",
+    "pageOrientation": "portrait"
+  },
+  "preloadRule": {},
+  "permission": {
+    "scope.userLocation": {
+      "desc": "快速添加收货地址"
+    }
+  },
+  "usingComponents": {}
+}
