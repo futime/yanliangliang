@@ -18,10 +18,27 @@
     }
   },
   "compileType": "miniprogram",
-  "libVersion": "3.6.5",
-  "appid": "wxb9b6f65e539429b3",
+  "libVersion": "",
+  "appid": "wxbd9a7851f4810a65",
   "projectname": "商城",
-  "condition": {},
+  "condition": {
+    "search": {
+      "current": -1,
+      "list": []
+    },
+    "conversation": {
+      "current": -1,
+      "list": []
+    },
+    "game": {
+      "current": -1,
+      "list": []
+    },
+    "miniprogram": {
+      "current": -1,
+      "list": []
+    }
+  },
   "editorSetting": {
     "tabIndent": "insertSpaces",
     "tabSize": 2

@@ -2,18 +2,20 @@
 	<view v-if="navbar.isshow">
 		<u-navbar
 			:is-back="isBack"
-			:back-icon-color="navbar.backIconColor"
+			:back-icon-color="titleColor"
 			back-text="返回"
 			:back-text-style="navbar.backTextStyle"
 			:title="isShow ? title : ''"
-			:title-color="navbar.titleColor"
+			:title-color="titleColor"
 			:title-size="navbar.titleSize"
-			:background="navbar.bgColor"
+			:background="background"
 			:border-bottom="borderBottom"
 			:custom-back="goBack"
 			:title-width="400"
 			z-index="10907"
-		></u-navbar>
+			:styleBack="styleBack"
+		>
+		</u-navbar>
 	</view>
 </template>
 
@@ -21,6 +23,16 @@
 export default {
 	name: 'fa-navbar',
 	props: {
+		background: {
+			type: Object,
+			default: {
+				background: "#ffffff"
+			}
+		},
+		titleColor: { 
+			type: String,
+			default: '#333'
+		},
 		title: {
 			type: String,
 			default: '标题'
@@ -32,6 +44,10 @@ export default {
 		backIndex:{
 			type:Number,
 			default:1
+		},
+		styleBack: {
+			type: Boolean,
+			default: false
 		}
 	},
 	computed: {
@@ -92,7 +108,7 @@ export default {
 		};
 	},
 	methods: {
-		goBack() {			
+		goBack() {
 			let status = false;
 			let tabbar = this.vuex_config.tabbar;
 			tabbar.list.forEach(item => {
@@ -105,6 +121,7 @@ export default {
 			if (this.pageNum == 1) {
 				//只有当前页面了
 				uni.$u.route({
+					type: 'switchTab',
 					url: '/pages/index/index'
 				});
 			} else {

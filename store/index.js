@@ -22,7 +22,8 @@ let saveStateKeys = [
 	'vuex_lasturl',
 	'vuex_theme',
 	'vuex_invite_id',
-	'vuex_history_keyword'
+	'vuex_history_keyword',
+	'vuex_vipinfo'
 ];
 
 // 保存变量到本地存储中
@@ -58,6 +59,7 @@ const store = new Vuex.Store({
 		vuex_current: 0,
 		vuex_signin: {},
 		vuex_webs: {},
+		vuex_vipinfo: null,
 		vuex_parse_style: {
 			// 字符串的形式
 			h1: 'padding:20rpx 0;',

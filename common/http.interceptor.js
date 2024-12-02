@@ -104,7 +104,7 @@ const install = (Vue, vm) => {
 			case 401:
 				//需要登录的接口，当token 过期时，到登录页面
 				vm.$u.vuex('vuex_token', '');
-				vm.$u.route('/pages/login/mobilelogin');
+				vm.$u.route('/pages/login/login');
 				return result;
 				break;
 			case 403: //没有权限访问

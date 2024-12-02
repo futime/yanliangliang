@@ -3,15 +3,6 @@
   "navigationStyle": "custom",
   "navigationBarTextStyle": "white",
   "usingComponents": {
-    "fa-navbar": "/components/fa-navbar/fa-navbar",
-    "fa-search": "/components/fa-search/fa-search",
-    "u-swiper": "/uview-ui/components/u-swiper/u-swiper",
-    "u-notice-bar": "/uview-ui/components/u-notice-bar/u-notice-bar",
-    "u-grid": "/uview-ui/components/u-grid/u-grid",
-    "u-grid-item": "/uview-ui/components/u-grid-item/u-grid-item",
-    "u-icon": "/uview-ui/components/u-icon/u-icon",
-    "u-loadmore": "/uview-ui/components/u-loadmore/u-loadmore",
-    "u-back-top": "/uview-ui/components/u-back-top/u-back-top",
-    "fa-tabbar": "/components/fa-tabbar/fa-tabbar"
+    "fa-tabbar-vue": "/components/fa-tabbar/index"
   }
 }

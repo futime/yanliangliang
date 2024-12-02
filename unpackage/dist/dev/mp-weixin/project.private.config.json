@@ -3,5 +3,75 @@
   "projectname": "商城",
   "setting": {
     "compileHotReLoad": true
-  }
+  },
+  "condition": {
+    "miniprogram": {
+      "list": [
+        {
+          "name": "pages/vip/activate",
+          "pathName": "pages/vip/activate",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/my/my",
+          "pathName": "pages/my/my",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/login/mobilelogin",
+          "pathName": "pages/login/mobilelogin",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "能量选择",
+          "pathName": "pages/space/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "人脸扫描",
+          "pathName": "pages/space/face-detect",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "人脸识别确认",
+          "pathName": "pages/space/face",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "能量空间开始",
+          "pathName": "pages/space/start",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/my/profile-add",
+          "pathName": "pages/my/profile-add",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/login/login",
+          "pathName": "pages/login/login2",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        }
+      ]
+    }
+  },
+  "libVersion": "3.6.6"
 }

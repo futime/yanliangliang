@@ -6,6 +6,33 @@ export const tools = {
 
 	},
 	methods: {
+		/**
+		 * 检查VIP是否过期
+		 */
+		checkVipExpiry() {
+			// 获取当前时间（毫秒）
+			let currentTime = new Date().getTime();
+
+			// 从本地存储中获取 VIP 到期时间（假设是毫秒时间戳）
+			let time = this.vuex_vipinfo.expiredate
+			
+			let expiryTime = new Date(time.replace(' ', 'T')).getTime(); // 转换为 ISO 8601 格式
+			
+			// 判断是否有有效的到期时间
+			if (!expiryTime) {
+				console.log('没有找到VIP到期时间，无法判断');
+				return false;
+			}
+
+			// 判断当前时间是否超过 VIP 到期时间
+			if (currentTime > expiryTime) {
+				console.log('VIP 已过期');
+				return false
+			} else {
+				console.log('VIP 仍然有效');
+				return time; // 返回 true，表示有效
+			}
+		},
 		//富文本的回调
 		navigate(e) {
 			if (e.href && e.href.indexOf('http') == -1) { //不完整的链接					
@@ -56,10 +83,36 @@ export const tools = {
 				}
 			})
 		},
+		//复制url
+		copyText(text = '') {
+			this.$util.uniCopy({
+				content: text,
+				success: () => {
+					this.$u.toast('订单号复制成功');
+				},
+				error: () => {
+					console.log('复制失败！')
+				}
+			})
+		},
 		//cdnurl
 		cdnurl(url) {
 			if (!/^((?:[a-z]+:)?\/\/|data:image\/)(.*)/.test(url)) {
 				return this.vuex_config.upload.cdnurl + url;
+			}
+			return url;
+		},
+		// staticurl
+		staticurl(url) {
+			if (!/^((?:[a-z]+:)?\/\/|data:image\/)(.*)/.test(url)) {
+				return (this.vuex_config?.upload?.cdnurl || 'https://yanliangliang.com') + '/static/images/' + url;
+			}
+			return url;
+		},
+		// stlticurl
+		audiourl(url) {
+			if (!/^((?:[a-z]+:)?\/\/|data:image\/)(.*)/.test(url)) {
+				return (this.vuex_config?.upload?.cdnurl || 'https://yanliangliang.com') + '/static/mp3/' + url;
 			}
 			return url;
 		},
@@ -100,11 +153,14 @@ export const tools = {
 					}
 				});
 			} else {
-				this.goPage(`/pages/order/logistics?nu=${res.expressno}&coname=${res.expressname}&order_sn=${res.order_sn}`);
+				this.goPage(
+					`/pages/order/logistics?nu=${res.expressno}&coname=${res.expressname}&order_sn=${res.order_sn}`
+					);
 			}
 			// #endif
 			// #ifndef MP-WEIXIN
-			this.goPage(`/pages/order/logistics?nu=${res.expressno}&coname=${res.expressname}&order_sn=${res.order_sn}`);
+			this.goPage(
+				`/pages/order/logistics?nu=${res.expressno}&coname=${res.expressname}&order_sn=${res.order_sn}`);
 			// #endif
 		}
 	}
@@ -154,8 +210,13 @@ export const avatar = {
 // 登录方法
 export const loginfunc = {
 	methods: {
+		// 获取vip信息
+		async getVipInfo() {
+			const res = await this.$api.getVipInfo()
+			this.$u.vuex('vuex_vipinfo', res.data.vipInfo);
+		},
 		// 登录成功
-		async success(delta) {
+		async success(delta, isNew) {
 			//重置用户信息
 			let apptype = '';
 			let platform = '';
@@ -167,7 +228,11 @@ export const loginfunc = {
 			logincode = await this.getMpCode();
 			// #endif
 
-			this.$api.getUserIndex({ apptype, platform, logincode }).then(res => {
+			this.$api.getUserIndex({
+				apptype,
+				platform,
+				logincode
+			}).then(async res => {
 
 				if (res.code) {
 					this.$u.vuex('vuex_user', res.data.userInfo);
@@ -175,6 +240,14 @@ export const loginfunc = {
 						this.$u.vuex('vuex_openid', res.data.openid);
 					}
 				}
+
+				if (isNew == 1) {
+					uni.reLaunch({
+						url: '/pages/my/profile-add'
+					})
+					return
+				}
+				await this.getVipInfo()
 
 				console.log(delta);
 				var pages = getCurrentPages();
@@ -274,7 +347,7 @@ export const loginfunc = {
 				if (res.code == 1) {
 					this.$u.vuex('vuex_token', res.data.token);
 					this.$u.vuex('vuex_openid', res.data.openid);
-					this.success();
+					this.success(null, res.data.is_new);
 				} else {
 					this.$u.toast(res.msg);
 				}
@@ -322,12 +395,14 @@ export const loginfunc = {
 						//找到上一个不是登录页面
 						for (let i = len - 1; i >= 0; i--) {
 							if (pages[i].route.indexOf('/login/') == -1) {
-								this.$u.vuex('vuex_lasturl', '/' + pages[i].route + this.$u.queryParams(pages[i].options));
+								this.$u.vuex('vuex_lasturl', '/' + pages[i].route + this.$u.queryParams(pages[i]
+									.options));
 								break;
 							}
 						}
 					} else {
-						this.$u.vuex('vuex_lasturl', '/' + url + this.$u.queryParams(pages[pages.length - 1].options))
+						this.$u.vuex('vuex_lasturl', '/' + url + this.$u.queryParams(pages[pages.length - 1]
+							.options))
 					}
 				}
 				window.location.href = res.data;
@@ -355,7 +430,9 @@ export const loginfunc = {
 		},
 		// 微信授权登录
 		async goMpLogin() {
-			uni.showLoading({ title: '登录中...' });
+			uni.showLoading({
+				title: '登录中...'
+			});
 			let that = this;
 			try {
 				let code = await that.getMpCode();

@@ -3,11 +3,16 @@
 		<view class="u-navbar" :style="[navbarStyle]" :class="{ 'u-navbar-fixed': isFixed, 'u-border-bottom': borderBottom }">
 			<view class="u-status-bar" :style="{ height: statusBarHeight + 'px' }"></view>
 			<view class="u-navbar-inner" :style="[navbarInnerStyle]">
-				<view class="u-back-wrap" v-if="isBack" @tap="goBack">
+				<view class="u-back-wrap" v-if="!styleBack && isBack" @tap="goBack">
 					<view class="u-icon-wrap">
 						<u-icon :name="backIconName" :color="backIconColor" :size="backIconSize"></u-icon>
 					</view>
-					<view class="u-icon-wrap u-back-text u-line-1" v-if="backText" :style="[backTextStyle]">{{ backText }}</view>
+					<!-- <view class="u-icon-wrap u-back-text u-line-1" v-if="backText" :style="[backTextStyle]">{{ backText }}</view> -->
+				</view>
+				<view class="styleback" v-if="styleBack" @tap="goBack">
+					<view class="icon">
+						<image :src="staticurl('backtopage.svg')" mode=""></image>
+					</view>
 				</view>
 				<view class="u-navbar-content-title" v-if="title" :style="[titleStyle]">
 					<view
@@ -162,6 +167,10 @@
 			customBack: {
 				type: Function,
 				default: null
+			},
+			styleBack: {
+				type: Boolean,
+				default: false
 			}
 		},
 		data() {
@@ -316,5 +325,19 @@
 		flex: 1;
 		@include vue-flex;
 		align-items: center;
+	}
+	
+	.styleback {
+		width: 180rpx;
+		height: 64rpx;
+		padding-left: 21rpx;
+		.icon {
+			width: 180rpx;
+			height: 64rpx; 
+			image {
+				width: 100%;
+				height: 100%;
+			}
+		}
 	}
 </style>

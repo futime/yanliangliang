@@ -1,6 +1,6 @@
 {
     "name" : "商城",
-    "appid" : "__UNI__85A0594",
+    "appid" : "__UNI__A6481B5",
     "description" : "商城",
     "versionName" : "1.2.0",
     "versionCode" : 3,
@@ -107,7 +107,7 @@
     "quickapp" : {},
     /* 小程序特有相关 */
     "mp-weixin" : {
-        "appid" : "wxb9b6f65e539429b3",
+        "appid" : "wxbd9a7851f4810a65",
         "setting" : {
             "urlCheck" : false
         },

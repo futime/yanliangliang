@@ -77,7 +77,24 @@ const install = (Vue, vm) => {
 	vm.$api.getUserProfile 	  	= async (params = {}) => await vm.$u.post('/addons/shop/api.user/profile', params);	
 	vm.$api.goUserLogout 	  	= async (params = {}) => await vm.$u.get('/addons/shop/api.user/logout', params);
 	vm.$api.goUserAvatar 	  	= async (params = {}) => await vm.$u.post('/addons/shop/api.user/avatar', params);
-	vm.$api.getSigned 	  	  	= async (params = {}) => await vm.$u.post('/addons/shop/api.user/getSigned',params);		
+	vm.$api.getSigned 	  	  	= async (params = {}) => await vm.$u.post('/addons/shop/api.user/getSigned',params);
+	// 获取会员信息
+	vm.$api.getVipInfo  	  	= async (params = {}) => await vm.$u.get('/addons/vip/api.index/getvipinfo',params);
+	// 上传会员面部信息
+	vm.$api.uploadFaceImage  	= async (params = {}) => await vm.$u.post('/addons/shop/api.user/faceimage',params);
+	
+	// 获取开通vip的列表
+	vm.$api.getVipBuyList  	  	= async (params = {}) => await vm.$u.get('/addons/vip/api.index/index',params);
+	// 提交订单
+	vm.$api.submitOrder  	  	= async (params = {}) => await vm.$u.post('/addons/vip/api.order/submit',params);
+	// 取消支付
+	vm.$api.cancelOrder  	  	= async (params = {}) => await vm.$u.post('/addons/vip/api.order/cancel',params);
+	// 订单列表
+	vm.$api.vipOrderList  	  	= async (params = {}) => await vm.$u.post('/addons/vip/api.order/getorderlist',params);
+	// 删除订单
+	vm.$api.delVipOrder  	  	= async (params = {}) => await vm.$u.post('/addons/vip/api.order/delete',params);
+	
+	
 	// 登录	
 	vm.$api.getEmsSend 		  	= async (params = {}) => await vm.$u.post('/addons/shop/api.ems/send', params);
 	vm.$api.getSmsSend 		  	= async (params = {}) => await vm.$u.post('/addons/shop/api.sms/send', params);

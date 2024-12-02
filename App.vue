@@ -2,6 +2,7 @@
 import md5Libs from "uview-ui/libs/function/md5";
 export default {
 	onLaunch: async function() {
+		uni.hideTabBar()
 		console.log('uview 版本', this.$u.config.v);
 		// #ifdef H5
 		if(window.location.hash != ''){
@@ -64,6 +65,7 @@ export default {
 	},
 	onShow: function() {
 		console.log('App Show');
+		uni.hideTabBar()
 	},
 	onHide: function() {
 		console.log('App Hide');

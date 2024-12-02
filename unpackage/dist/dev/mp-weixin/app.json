@@ -10,6 +10,7 @@
     "pages/login/register",
     "pages/login/forgetpwd",
     "pages/login/mobilelogin",
+    "pages/my/profile-add",
     "pages/signin/signin",
     "pages/signin/logs",
     "pages/signin/ranking",
@@ -42,13 +43,41 @@
     "pages/search/search",
     "pages/help/index"
   ],
-  "subPackages": [],
+  "subPackages": [
+    {
+      "root": "pages/space",
+      "pages": [
+        "start",
+        "face",
+        "face-detect",
+        "index"
+      ]
+    },
+    {
+      "root": "pages/vip",
+      "pages": [
+        "activate",
+        "orderlist"
+      ]
+    }
+  ],
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "简单商城",
     "navigationBarBackgroundColor": "#F8F8F8",
     "backgroundColor": "#F8F8F8",
     "pageOrientation": "portrait"
+  },
+  "tabBar": {
+    "height": "0",
+    "list": [
+      {
+        "pagePath": "pages/index/index"
+      },
+      {
+        "pagePath": "pages/my/my"
+      }
+    ]
   },
   "preloadRule": {},
   "permission": {

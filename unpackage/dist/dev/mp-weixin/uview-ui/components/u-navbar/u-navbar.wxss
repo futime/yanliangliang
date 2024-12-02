@@ -69,4 +69,17 @@
   flex-direction: row;
   align-items: center;
 }
+.styleback.data-v-1194bf80 {
+  width: 180rpx;
+  height: 64rpx;
+  padding-left: 21rpx;
+}
+.styleback .icon.data-v-1194bf80 {
+  width: 180rpx;
+  height: 64rpx;
+}
+.styleback .icon image.data-v-1194bf80 {
+  width: 100%;
+  height: 100%;
+}
 

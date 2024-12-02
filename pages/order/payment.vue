@@ -192,6 +192,7 @@
 						})
 					},
 					fail: err => {
+						
 						this.$u.toast('fail:' + JSON.stringify(err));
 					}
 				});

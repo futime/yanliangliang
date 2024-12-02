@@ -1,47 +1,33 @@
 <template>
-	<view class="">
+	<view class="page">
+		<view class="bg">
+			<image :src="staticurl('loginbg.jpeg')" mode=""></image>
+		</view>
+		<fa-navbar title=" " :background="{ color: 'transparent' }" :borderBottom="false"></fa-navbar>
 		<!-- 顶部导航 -->
-		<fa-navbar title="登录"></fa-navbar>
-		<view class="login">
-			<view v-if="checkLogintype('account')">
-				<view class="u-m-t-50">
-					<u-form :model="form" :rules="rules" ref="uForm" :errorType="errorType">
-						<u-form-item :label-position="labelPosition" label="账号:" prop="account" left-icon="account" label-width="120">
-							<u-input :border="border" placeholder="邮箱/手机/用户名" v-model="form.account" />
-						</u-form-item>
-						<u-form-item :label-position="labelPosition" label="密码:" prop="password" left-icon="lock" label-width="120" v-if="!border">
-							<u-input :password-icon="true" :border="border" type="password" v-model="form.password" placeholder="请输入密码"></u-input>
-						</u-form-item>
-					</u-form>
-				</view>
-			</view>
-
-			<view class="u-m-t-80">
-				<u-button type="primary" hover-class="none" :custom-style="{ backgroundColor: theme.bgColor, color: theme.color }" shape="circle" @click="goLogin">
-					登录
-				</u-button>
-			</view>
-
-			<view class="u-m-t-40" v-if="checkLogintype('mobile') || checkLogintype('wechatmobile')">
-				<u-button type="success" shape="circle" @click="goPage('/pages/login/mobilelogin')">
-					使用手机验证码登录
-				</u-button>
-			</view>
-
-			<view class="u-flex u-row-between u-tips-color u-m-t-10 u-p-20" v-if="checkLogintype('account')">
-				<view @click="goPage('/pages/login/forgetpwd')">忘记密码</view>
-				<view @click="goPage('/pages/login/register')">注册账号</view>
-			</view>
-
-			<view class="u-text-center other" v-if="isThreeLogin && checkLogintype('wechat')">
+			<!-- <view class="u-text-center other" v-if="isThreeLogin && checkLogintype('wechat')">
 				<u-grid :col="1" :border="false">
 					<u-grid-item @click="goThreeLogin">
 						<u-icon name="weixin-fill" color="#53c240" :size="50"></u-icon>
 						<view class="grid-text">微信登录</view>
 					</u-grid-item>
-				</u-grid>
+				</u-grid> 
+			</view> -->
+			<view class="logo">
+				<image class="" :src="staticurl('logo_yanliangliang.png')" mode=""></image>
 			</view>
-
+			<view class="loginBtn">
+				<!-- #ifdef MP-WEIXIN -->
+				<view class="u-text-center" style="width: 100%; height: 100%;" v-if="checkLogintype('wechatmobile')">
+					<u-button hover-class="none" open-type="getPhoneNumber" type="primary" :custom-style="{ backgroundColor: 'rgb(243, 148, 30)', width: '100%', height: '100%', color: '#fff'}" shape="circle" @getphonenumber="getPhoneNumber">
+						立即登录
+					</u-button>
+				</view>
+				<!-- #endif -->
+				<!-- <view class="icon">
+					<image class="" :src="staticurl('logo_yanliangliang.png')" mode=""></image>
+				</view> -->
+			</view>
 		</view>
 	</view>
 </template>
@@ -63,32 +49,12 @@
 		},
 		// 必须要在onReady生命周期，因为onLoad生命周期组件可能尚未创建完毕
 		onReady() {
-			if (this.checkLogintype('account')) {
-				this.$refs.uForm.setRules(this.rules);
-			}
 		},
 		data() {
 			return {
 				labelPosition: 'top',
 				border: false,
 				errorType: ['message'],
-				form: {
-					account: '',
-					password: ''
-				},
-				rules: {
-					account: [{
-						required: true,
-						message: '请输入账号',
-						// 可以单个或者同时写两个触发验证方式
-						trigger: ['change', 'blur']
-					}],
-					password: [{
-						required: true,
-						message: '请输入密码',
-						trigger: 'change'
-					}]
-				},
 				isThreeLogin: false
 			};
 		},
@@ -128,11 +94,59 @@
 	};
 </script>
 
-<style>
+<style lang="scss">
 	page {
-		background-color: #ffffff;
+		background-color: transparent;
 	}
-
+	.page {
+		position: relative;
+		width: 100vw;
+		height: 100vh;
+		overflow: hidden;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		
+		.logo {
+			width: 518rpx;
+			height: 545rpx;
+			image {
+				width: 100%;
+				height: 100%;
+			}
+		}
+		
+		.loginBtn {
+			width: 648rpx;
+			height: 130rpx;
+			border-radius: 300px;
+			background: rgb(243, 148, 30);
+			color: rgb(255, 255, 255);
+			font-family: 思源黑体 CN;
+			font-size: 40rpx;
+			font-weight: 400;
+			line-height: 50rpx;
+			letter-spacing: 0px;
+			text-align: center;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin-top: 173rpx;
+		}
+		
+		.bg {
+			position: absolute;
+			width: 100vw;
+			height: 100vh;
+			z-index: -1;
+			image {
+				width: 100%;
+				height: 100%;
+			}
+			
+		}
+	}
 	.login {
 		padding: 80rpx 100rpx 0 100rpx;
 	}

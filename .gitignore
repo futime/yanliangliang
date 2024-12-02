@@ -1,0 +1,28 @@
+# 忽略 dist 目录下的所有文件
+dist/
+ 
+# 忽略所有 .log 文件
+*.log
+ 
+# 忽略 HBuilderX 项目文件
+.idea/
+unpackage/
+
+# 忽略日志文件夹
+logs/
+ 
+# 忽略所有的 yarn-lock.json 文件
+yarn-lock.json
+ 
+# 忽略所有的 .editorconfig 文件
+.editorconfig
+ 
+# 忽略所有的 .eslintrc.js 文件
+.eslintrc.js
+ 
+# 忽略所有的 .prettierrc 文件
+.prettierrc
+ 
+# 忽略所有的 .babelrc 文件
+.babelrc
+ 

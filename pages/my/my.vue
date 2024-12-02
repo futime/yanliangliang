@@ -1,267 +1,403 @@
 <template>
-	<view>
-		<!-- 顶部导航 -->
-		<fa-navbar title="个人中心" :border-bottom="false"></fa-navbar>
-		<!-- 会员中心 -->
-		<view class="u-p-t-30 u-p-b-50 home" :style="[{ backgroundColor: theme.bgColor || '#374486' }]">
-			<view class="userinfo">
-				<block v-if="vuex_token">
-					<u-avatar
-						size="120"
-						:show-sex="true"
-						:sex-icon="vuex_user.gender == 1 ? 'man' : 'woman'"
-						:src="url || vuex_user.avatar"
-						@click="goPage('/pages/my/profile', true)"
-					></u-avatar>
-					<view class="u-skeleton-fillet u-m-t-10 u-p-l-80 u-p-r-80 u-line-1" @click="goPage('/pages/my/profile', true)">{{ vuex_user.nickname || '' }}</view>
-					<view class="u-skeleton-fillet u-m-t-10 u-p-l-80 u-p-r-80 u-line-2" @click="goPage('/pages/my/profile', true)">{{ vuex_user.bio || '这家伙很懒，什么也没写！' }}</view>
-				</block>
-				<block v-else>
-					<u-avatar size="120" src="0"></u-avatar>
-					<view class="u-m-t-30"><u-button hover-class="none" size="mini" @click="goPage('/pages/login/mobilelogin')">立即登录</u-button></view>
-				</block>
+	<view class="page">
+		<fa-navbar title="我的" :background="{ color: 'transparent' }"></fa-navbar>
+		<view class="bg">
+			<image :src="staticurl('userbg.png')" mode=""></image>
+		</view>
+		<view class="userInfo">
+			<view class="avatar">
+				<image :src="staticurl('shuoming_icon.png')" mode=""></image>
 			</view>
-			<view class="corrugated">
-				<view class="wave-top wave-item" :style="[{ backgroundImage: 'url(' + wavetop + ')' }]"></view>
-				<view class="wave-middle wave-item" :style="[{ backgroundImage: 'url(' + wavemiddle + ')' }]"></view>
-				<view class="wave-bottom wave-item" :style="[{ backgroundImage: 'url(' + wavebottom + ')' }]"></view>
+			<view class="right">
+				<view class="nickname" @click="gotoProfile">{{ vuex_user.nickname || '点击登录' }}</view>
+				<view class="vipstatus" v-if="vuex_token || vuex_vipinfo">{{ vuex_vipinfo.name || ''}}：{{ checkVipExpiry() || '已过期'}}</view>
 			</view>
 		</view>
-		<!-- 统计 -->
-		<view class="u-flex u-text-center u-p-l-30 u-p-r-30 u-p-t-50 u-p-b-50 bg-white">
-			<view class="u-flex-4" @click="goPage('/pages/order/list?status=1', true)">
-				<view class="u-text-weight u-font-28"><text v-text="(vuex_user.order && vuex_user.order.created) || 0"></text></view>
-				<view class="u-m-t-20">待付款</view>
-			</view>
-			<view class="u-flex-4 u-border-left u-border-right" @click="goPage('/pages/order/list?status=2', true)">
-				<view class="u-text-weight u-font-28"><text v-text="(vuex_user.order && vuex_user.order.paid) || 0"></text></view>
-				<view class="u-m-t-20">待发货</view>
-			</view>
-			<view class="u-flex-4" @click="goPage('/pages/order/list?status=4', true)">
-				<view class="u-text-weight u-font-28"><text v-text="(vuex_user.order && vuex_user.order.evaluate) || 0"></text></view>
-				<view class="u-m-t-20">待评论</view>
-			</view>
-		</view>
-		<!-- 导航 -->
-		<view class="u-m-t-30 u-m-b-15">
-			<u-cell-group>
-				<u-cell-item icon="list" title="我的订单" @click="goPage('/pages/order/list', true)"></u-cell-item>
-				<u-cell-item icon="pushpin-fill" title="每日一签" @click="toSignin"></u-cell-item>
-				<u-cell-item icon="heart-fill" title="我的收藏" @click="goPage('/pages/my/collect', true)"></u-cell-item>
-				<u-cell-item icon="map-fill" title="我的地址" @click="goPage('/pages/address/address', true)"></u-cell-item>
-				<u-cell-item icon="coupon-fill" title="我的优惠券" @click="goPage('/pages/coupon/user',true)"></u-cell-item>
-				<u-cell-item icon="integral-fill" title="我的积分兑换" @click="goPage('/pages/score/order',true)"></u-cell-item>
-				<view class="u-border-bottom u-p-30">
-					<!-- #ifdef MP-WEIXIN -->
-						<button class="share-btn u-flex u-row-between" open-type="contact">
-							<view class="fa-cell">
-								<u-icon size="34" name="server-man"></u-icon>
-								<text class="u-m-l-10">联系客服</text>
-							</view>
-							<view class="">
-								<u-icon name="arrow-right" color="#969799"></u-icon>
-							</view>
-						</button>		
-					<!-- #endif -->
-					<!-- #ifndef MP-WEIXIN -->
-						<button class="share-btn u-flex u-row-between" @click="callphone">
-							<view class="fa-cell">
-								<u-icon size="34" name="server-man"></u-icon>
-								<text class="u-m-l-10">联系客服</text>
-							</view>
-							<view class="">
-								<u-icon name="arrow-right" color="#969799"></u-icon>
-							</view>
-						</button>		
-					<!-- #endif -->
+		<view class="contentcard">
+			<view class="topcard" @click="handleClickBuyVip">
+				<view class="left">
+					<view class="text1">
+						<view class="">购买套餐</view>
+						<view class="icon">
+							<image :src="staticurl('vip_icon.png')" mode=""></image>
+						</view>
+					</view>
+					<view class="text2">
+						购买套餐享更多优惠
+					</view>
 				</view>
-				<u-cell-item icon="account-fill" title="个人资料" @click="goPage('/pages/my/profile', true)"></u-cell-item>
-				<u-cell-item icon="question-circle" title="帮助中心" @click="goPage('/pages/help/index')"></u-cell-item>
-				<u-cell-item icon="info-circle-fill" title="关于我们" @click="goPage('/pages/page/page?diyname=aboutus')"></u-cell-item>
-				<u-cell-item icon="backspace" v-if="vuex_token" title="退出登录" @click="goPage('out')"></u-cell-item>
-			</u-cell-group>
+				<view class="right">
+					购买
+				</view>
+			</view>
+			<view class="listitem" v-for="item in list" :key="item.id" @click="handleClickItem(item)">
+				<view class="icon">
+					<image :src="item.img" mode=""></image>
+				</view>
+				<view class="text">
+					{{ item.label }}
+				</view>
+				<view class="rightIcon">
+					<image :src="staticurl('shuoming_btn_arrow.png')" mode=""></image>
+				</view>
+			</view>
+			
+			<view class="logout" v-if="vuex_token">
+				<view class="logoutbtn">
+					退出登录
+				</view>
+			</view>
 		</view>
-		<u-top-tips ref="uTips" :navbar-height="statusBarHeight + navbarHeight"></u-top-tips>
-		<!-- 底部导航 -->
-		<fa-tabbar></fa-tabbar>
+		<faTabbarVue :active="'my'"></faTabbarVue>
 	</view>
 </template>
 
 <script>
-import { avatar } from '@/common/fa.mixin.js';
-export default {
-	mixins: [avatar],
-	computed: {
-		wavetop() {
-			return this.$u.http.config.baseUrl + '/assets/addons/shop/img/wave-top.png';
-		},
-		wavemiddle() {
-			return this.$u.http.config.baseUrl + '/assets/addons/shop/img/wave-mid.png';
-		},
-		wavebottom() {
-			return this.$u.http.config.baseUrl + '/assets/addons/shop/img/wave-bot.png';
-		},
-		isBind() {
-			return false;
-		}
-	},
-	onShow() {
-		if (this.vuex_token) {
-			this.getUserIndex();
-		} else {
-			this.$u.vuex('vuex_user', {});
-		}
-		//移除事件监听
-		uni.$off('uAvatarCropper', this.upload);
-	},
-	data() {
-		return {
-			// 状态栏高度，H5中，此值为0，因为H5不可操作状态栏
-			statusBarHeight: uni.getSystemInfoSync().statusBarHeight,
-			// 导航栏内容区域高度，不包括状态栏高度在内
-			navbarHeight: 44,
-			url: '',
-			form: {
-				avatar: ''
-			}
-		};
-	},
-	methods: {
-		getUserIndex: async function() {
-			let res = await this.$api.getUserIndex();
-			uni.stopPullDownRefresh();
-			if (res.code == 1) {
-				this.$u.vuex('vuex_user', res.data.userInfo || {});
-				if (res.data.showProfilePrompt && !this.vuex_setting.prompted) {
-					// 弹窗每次登录状态只提示一次
-					this.$u.vuex('vuex_setting.prompted', true);
-					uni.showModal({
-						title: '温馨提示',
-						confirmText: '去设置',
-						cancelText: '取消',
-						showCancel: true,
-						content: '当前未设置昵称，请设置昵称后再继续操作',
-						success: (res) => {
-				
-							if (res.confirm) {
-								this.$u.route("/pages/my/profile");
-							} else if (res.cancel) {
-				
-							}
-						}
-					});
-				}
-			} else {
-				this.$u.toast(res.msg);
-				return;
-			}
-		},
-		toSignin() {
-			if (!this.vuex_user.is_install_signin) {
-				this.$refs.uTips.show({
-					title: '请先安装会员签到插件插件或启用该插件',
-					type: 'error',
-					duration: '3000'
-				});
+	import faTabbarVue from '@/components/fa-tabbar/index.vue'
 
-				return;
+	export default {
+		components: {
+			faTabbarVue
+		},
+		data() {
+			return {
+				list: [
+					{
+						img: this.staticurl('vip_icon.png'),
+						label: '订单查询',
+						id: 1
+					},
+					{
+						img: this.staticurl('vip_icon.png'),
+						label: '联系客服',
+						id: 2
+					},
+					{
+						img: this.staticurl('vip_icon.png'),
+						label: '我的邀请',
+						id: 3
+					},
+					{
+						img: this.staticurl('vip_icon.png'),
+						label: '隐私条例政策',
+						id: 4
+					},
+					{
+						img: this.staticurl('vip_icon.png'),
+						label: '积分商城 (待开放）',
+						id: 5
+					},
+					{
+						img: this.staticurl('vip_icon.png'),
+						label: '清除本机缓存',
+						id: 6
+					}
+				]
 			}
-			this.goPage('/pages/signin/signin', true);
 		},
-		editAvatar: async function() {
-			let res = await this.$api.goUserAvatar({
-				avatar: this.form.avatar
-			});
+		onShow() {
+			if (this.vuex_token) {
+				this.getUserIndex();
+			} else {
+				this.$u.vuex('vuex_user', {});
+			}
 		},
-		// #ifndef MP-WEIXIN
-		callphone(){
-			uni.makePhoneCall({
-			    phoneNumber: this.vuex_config.phone //仅为示例
-			});
+		methods: {
+			handleClickItem(item) {
+				switch(item.id) {
+					case 1:
+						if(!this.vuex_token) {
+							uni.navigateTo({
+								url: '/pages/login/login'
+							})
+							return
+						}
+						uni.navigateTo({
+							url: '/pages/vip/orderlist'
+						})
+						break
+				}
+			},
+			handleClickBuyVip() {
+				if(!this.vuex_token) {
+					uni.navigateTo({
+						url: '/pages/login/login'
+					})
+					return
+				}
+				uni.navigateTo({
+					url: '/pages/vip/activate'
+				})
+			},
+			getUserIndex: async function() {
+				let res = await this.$api.getUserIndex();
+				uni.stopPullDownRefresh();
+				if (res.code == 1) {
+					const res2 = await this.$api.getVipInfo()
+					this.$u.vuex('vuex_vipinfo', res2.data.vipInfo);
+					this.$u.vuex('vuex_user', res.data.userInfo || {});
+					if (res.data.showProfilePrompt && !this.vuex_setting.prompted) {
+						// 弹窗每次登录状态只提示一次
+						this.$u.vuex('vuex_setting.prompted', true);
+						uni.showModal({
+							title: '温馨提示',
+							confirmText: '去设置',
+							cancelText: '取消',
+							showCancel: true,
+							content: '当前未设置昵称，请设置昵称后再继续操作',
+							success: (res) => {
+					
+								if (res.confirm) {
+									this.$u.route("/pages/my/profile");
+								} else if (res.cancel) {
+					
+								}
+							}
+						});
+					}
+				} else {
+					this.$u.toast(res.msg);
+					return;
+				}
+			},
+			gotoProfile(){
+				console.log(this.vuex_token)
+				if(this.vuex_token){
+					uni.navigateTo({
+						url: '/pages/my/profile-add'
+					})
+				}else{
+					uni.navigateTo({
+						url: '/pages/login/login'
+					})
+				}
+			}
 		}
-		// #endif
-	},
-	//下拉刷新
-	onPullDownRefresh() {
-		if (this.vuex_token) {
-			this.getUserIndex();
-		} else {
-			uni.stopPullDownRefresh();
-			this.$u.toast('请先登录');
-			this.$u.vuex('vuex_user', {});
-		}
+		
 	}
-};
 </script>
 
-<style lang="scss">
-page {
-	background-color: #f4f6f8;
-}
-.fa-cell{
-	color: #606266;
-}
-.home {
-	position: relative;
-	.userinfo {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		padding: 30rpx 0;
-		z-index: 100;
-		height: 310rpx;
-		.u-skeleton-fillet {
-			color: #ffffff;
-			z-index: 101;
-		}
-	}
-	.corrugated {
-		bottom: -2rpx;
-		left: 0;
-		position: absolute;
-		width: 100%;
-		height: 50%;
-		overflow: hidden;
-		z-index: 0;
-		.wave-item {
-			position: absolute;
-			width: 200%;
-			left: 0;
-			height: 200rpx;
-			background-repeat: repeat no-repeat;
-			background-position: 0 bottom;
-			transform-origin: center bottom;
-		}
-		.wave-top {
-			opacity: 0.5;
-			animation: wave-animation 3s;
-			animation-delay: 1s;
-			background-size: 50% 60rpx;
-			z-index: 15;
-		}
-		.wave-middle {
-			opacity: 0.75;
-			animation: wavemove 10s linear infinite;
-			background-size: 50% 80rpx;
-			z-index: 10;
-		}
-		.wave-bottom {
-			animation: wavemove 15s linear infinite;
-			background-size: 50% 45rpx;
-			z-index: 5;
-		}
-	}
-}
+<style lang="scss" scoped>
+	.page {
+		position: relative;
+		padding: 0 40rpx;
+		min-height: 100vh;
+		padding-bottom: 220rpx;
 
-@keyframes wavemove {
-	0% {
-		transform: translateX(0) translateZ(0) scaleY(1);
+		&:before {
+			content: '';
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			background: linear-gradient(180.00deg, rgb(192, 239, 255) 0%, rgba(192, 239, 255, 0) 21.453%), rgb(228, 237, 240);
+			z-index: -2;
+		}
+
+		.userInfo {
+			padding: 50rpx 0;
+			display: flex;
+
+			.avatar {
+				width: 160rpx;
+				height: 160rpx;
+				border-radius: 100%;
+				overflow: hidden;
+				border: 4rpx solid rgb(255, 255, 255);
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				box-sizing: border-box;
+				border-radius: 300rpx;
+				box-shadow: 0px 10rpx 30rpx 0px rgba(0, 0, 0, 0.1);
+				background: rgb(192, 239, 255);
+
+				image {
+					width: 100rpx;
+					height: 100rpx;
+				}
+			}
+
+			.right {
+				height: 160rpx;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				margin-left: 37rpx;
+
+				.nickname {
+					color: rgb(0, 0, 0);
+					font-family: Dream Han Sans CN;
+					font-size: 48rpx;
+					font-weight: 400;
+					line-height: 50rpx;
+					letter-spacing: 0px;
+					text-align: left;
+					margin-bottom: 22rpx;
+				}
+
+				.vipstatus {
+					color: rgb(0, 0, 0);
+					font-family: Dream Han Sans CN;
+					font-size: 30rpx;
+					font-weight: 400;
+					line-height: 50rpx;
+					letter-spacing: 0px;
+					text-align: left;
+				}
+			}
+		}
+
+		.bg {
+			position: absolute;
+			width: 100vw;
+			height: 100vh;
+			z-index: -1;
+			left: 0;
+			top: 0;
+			bottom: 0;
+
+			image {
+				width: 100%;
+				height: 100%;
+			}
+		}
 	}
-	50% {
-		transform: translateX(-25%) translateZ(0) scaleY(0.55);
+
+	.contentcard {
+		width: 100%;
+		background-color: #fff;
+		border-radius: 24rpx;
+		position: relative;
+		top: -20rpx;
+
+		.topcard {
+			padding: 61rpx 38rpx;
+			border-radius: 24rpx 24rpx 0px 0px;
+			background: linear-gradient(180.00deg, rgb(243, 148, 30), rgba(243, 148, 30, 0) 100%), rgb(252, 179, 88);
+			display: flex;
+			.left {
+				flex: 1;
+				height: 120rpx;
+				flex-direction: column;
+				display: flex;
+				justify-content: center;
+				.text1 {
+					color: rgb(255, 255, 255);
+					font-family: Dream Han Sans CN;
+					font-size: 48rpx;
+					font-weight: 400;
+					line-height: 50rpx;
+					letter-spacing: 0px;
+					text-align: left;
+					display: flex;
+					align-items: center;
+					margin-bottom: 22rpx;
+					.icon {
+						width: 61rpx;
+						height: 62rpx;
+						margin-left: 26rpx;
+						image {
+							width: 100%;
+							height: 100%;
+						}
+					}
+				}
+				.text2 {
+					color: rgb(255, 255, 255);
+					font-family: Dream Han Sans CN;
+					font-size: 40rpx;
+					font-weight: 400;
+					line-height: 50rpx;
+					letter-spacing: 0px;
+					text-align: left;
+				}
+			}
+			.right  {
+				width: 240rpx;
+				height: 120rpx;
+				box-sizing: border-box;
+				border: 4rpx solid rgb(255, 255, 255);
+				border-radius: 300px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				
+				color: rgb(255, 255, 255);
+				font-family: Dream Han Sans CN;
+				font-size: 48rpx;
+				font-weight: 400;
+				line-height: 50rpx;
+				letter-spacing: 0px;
+				text-align: left;
+			}
+		}
 	}
-	100% {
-		transform: translateX(-50%) translateZ(0) scaleY(1);
+	
+	.listitem {
+		padding: 30rpx 60rpx;
+		display: flex;
+		align-items: center;
+		border-bottom: 2rpx solid #DDDDDD;
+		&:last-child {
+			border-bottom: none;
+		}
+		.icon {
+			width: 60rpx;
+			height: 60rpx;
+			flex-shrink: 0;
+			margin-right: 20rpx;
+			image {
+				width: 100%;
+				height: 100%;
+			}
+		}
+		
+		.text {
+			flex: 1;
+			color: rgb(17, 17, 17);
+			font-family: Dream Han Sans CN;
+			font-size: 48rpx;
+			font-weight: 400;
+			line-height: 50rpx;
+			letter-spacing: 0px;
+			text-align: left;
+		}
+		
+		.rightIcon {
+			flex-shrink: 0;
+			width: 20rpx;
+			height: 40rpx;
+			image {
+				width: 100%;
+				height: 100%;
+			}
+		}
 	}
-}
+	
+	.logout {
+		padding: 91rpx;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		
+		.logoutbtn {
+			width: 480rpx;
+			height: 120rpx;
+			border-radius: 300px;
+			background: rgb(243, 148, 30);
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			
+			color: rgb(255, 255, 255);
+			font-family: 思源黑体 CN;
+			font-size: 40rpx;
+			font-weight: 400;
+			line-height: 50rpx;
+			letter-spacing: 0px;
+			text-align: center;
+		}
+	}
 </style>
