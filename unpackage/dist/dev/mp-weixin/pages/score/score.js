@@ -101,25 +101,25 @@ var components
 try {
   components = {
     faNavbar: function () {
-      return __webpack_require__.e(/*! import() | components/fa-navbar/fa-navbar */ "components/fa-navbar/fa-navbar").then(__webpack_require__.bind(null, /*! @/components/fa-navbar/fa-navbar.vue */ 481))
+      return __webpack_require__.e(/*! import() | components/fa-navbar/fa-navbar */ "components/fa-navbar/fa-navbar").then(__webpack_require__.bind(null, /*! @/components/fa-navbar/fa-navbar.vue */ 489))
     },
     uAvatar: function () {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-avatar/u-avatar */ "uview-ui/components/u-avatar/u-avatar").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-avatar/u-avatar.vue */ 539))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-avatar/u-avatar */ "uview-ui/components/u-avatar/u-avatar").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-avatar/u-avatar.vue */ 547))
     },
     uButton: function () {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-button/u-button */ "uview-ui/components/u-button/u-button").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-button/u-button.vue */ 511))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-button/u-button */ "uview-ui/components/u-button/u-button").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-button/u-button.vue */ 519))
     },
     uIcon: function () {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-icon/u-icon */ "uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-icon/u-icon.vue */ 595))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-icon/u-icon */ "uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-icon/u-icon.vue */ 603))
     },
     uCellGroup: function () {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-cell-group/u-cell-group */ "uview-ui/components/u-cell-group/u-cell-group").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-cell-group/u-cell-group.vue */ 675))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-cell-group/u-cell-group */ "uview-ui/components/u-cell-group/u-cell-group").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-cell-group/u-cell-group.vue */ 683))
     },
     uCellItem: function () {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-cell-item/u-cell-item */ "uview-ui/components/u-cell-item/u-cell-item").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-cell-item/u-cell-item.vue */ 682))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-cell-item/u-cell-item */ "uview-ui/components/u-cell-item/u-cell-item").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-cell-item/u-cell-item.vue */ 690))
     },
     faTabbar: function () {
-      return Promise.all(/*! import() | components/fa-tabbar/fa-tabbar */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/fa-tabbar/fa-tabbar")]).then(__webpack_require__.bind(null, /*! @/components/fa-tabbar/fa-tabbar.vue */ 518))
+      return Promise.all(/*! import() | components/fa-tabbar/fa-tabbar */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/fa-tabbar/fa-tabbar")]).then(__webpack_require__.bind(null, /*! @/components/fa-tabbar/fa-tabbar.vue */ 526))
     },
   }
 } catch (e) {

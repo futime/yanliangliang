@@ -1,6 +1,6 @@
 <template>
 	<view class="page">
-		<fa-navbar title="我的" :background="{ color: 'transparent' }"></fa-navbar>
+		<fa-navbar title="我的" :background="{ background: scrollTop > 40 ? '#fff' : 'transparent' }" :borderBottom="false"></fa-navbar>
 		<view class="bg">
 			<image :src="staticurl('userbg.png')" mode=""></image>
 		</view>
@@ -40,10 +40,11 @@
 				<view class="rightIcon">
 					<image :src="staticurl('shuoming_btn_arrow.png')" mode=""></image>
 				</view>
+				 <button v-if="item.id == 2" open-type="contact" class="contactButton"></button>
 			</view>
 			
 			<view class="logout" v-if="vuex_token">
-				<view class="logoutbtn">
+				<view class="logoutbtn" @click="goPage('out')">
 					退出登录
 				</view>
 			</view>
@@ -84,7 +85,7 @@
 					},
 					{
 						img: this.staticurl('vip_icon.png'),
-						label: '积分商城 (待开放）',
+						label: '积分商城',
 						id: 5
 					},
 					{
@@ -92,8 +93,12 @@
 						label: '清除本机缓存',
 						id: 6
 					}
-				]
+				],
+				scrollTop: 0
 			}
+		},
+		onPageScroll(e) {
+			this.scrollTop = e.scrollTop
 		},
 		onShow() {
 			if (this.vuex_token) {
@@ -116,6 +121,28 @@
 							url: '/pages/vip/orderlist'
 						})
 						break
+					case 3: 
+						uni.showToast({
+							title: '功能待开放',
+							icon: 'none'
+						})
+						break
+					case 4: 
+						uni.navigateTo({
+							url: '/pages/page/page?diyname=privacypolicy'
+						})
+						break;
+					case 5:
+						uni.navigateTo({
+							url: '/pages/score/exchange'
+						})
+						break;
+					case 6:
+						uni.showToast({
+							title: '清除缓存成功！',
+							icon: 'none'
+						})
+						break;
 				}
 			},
 			handleClickBuyVip() {
@@ -164,7 +191,7 @@
 				console.log(this.vuex_token)
 				if(this.vuex_token){
 					uni.navigateTo({
-						url: '/pages/my/profile'
+						url: '/pages/my/profile-add'
 					})
 				}else{
 					uni.navigateTo({
@@ -338,6 +365,15 @@
 		display: flex;
 		align-items: center;
 		border-bottom: 2rpx solid #DDDDDD;
+		position: relative;
+		.contactButton {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background-color: transparent;
+		}
 		&:last-child {
 			border-bottom: none;
 		}

@@ -101,25 +101,25 @@ var components
 try {
   components = {
     faNavbar: function () {
-      return __webpack_require__.e(/*! import() | components/fa-navbar/fa-navbar */ "components/fa-navbar/fa-navbar").then(__webpack_require__.bind(null, /*! @/components/fa-navbar/fa-navbar.vue */ 481))
+      return __webpack_require__.e(/*! import() | components/fa-navbar/fa-navbar */ "components/fa-navbar/fa-navbar").then(__webpack_require__.bind(null, /*! @/components/fa-navbar/fa-navbar.vue */ 489))
     },
     uSwipeAction: function () {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-swipe-action/u-swipe-action */ "uview-ui/components/u-swipe-action/u-swipe-action").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-swipe-action/u-swipe-action.vue */ 717))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-swipe-action/u-swipe-action */ "uview-ui/components/u-swipe-action/u-swipe-action").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-swipe-action/u-swipe-action.vue */ 725))
     },
     uTag: function () {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-tag/u-tag */ "uview-ui/components/u-tag/u-tag").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-tag/u-tag.vue */ 830))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-tag/u-tag */ "uview-ui/components/u-tag/u-tag").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-tag/u-tag.vue */ 838))
     },
     uLoading: function () {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-loading/u-loading */ "uview-ui/components/u-loading/u-loading").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-loading/u-loading.vue */ 532))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-loading/u-loading */ "uview-ui/components/u-loading/u-loading").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-loading/u-loading.vue */ 540))
     },
     uGap: function () {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-gap/u-gap */ "uview-ui/components/u-gap/u-gap").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-gap/u-gap.vue */ 661))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-gap/u-gap */ "uview-ui/components/u-gap/u-gap").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-gap/u-gap.vue */ 669))
     },
     uButton: function () {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-button/u-button */ "uview-ui/components/u-button/u-button").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-button/u-button.vue */ 511))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-button/u-button */ "uview-ui/components/u-button/u-button").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-button/u-button.vue */ 519))
     },
     faTabbar: function () {
-      return Promise.all(/*! import() | components/fa-tabbar/fa-tabbar */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/fa-tabbar/fa-tabbar")]).then(__webpack_require__.bind(null, /*! @/components/fa-tabbar/fa-tabbar.vue */ 518))
+      return Promise.all(/*! import() | components/fa-tabbar/fa-tabbar */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/fa-tabbar/fa-tabbar")]).then(__webpack_require__.bind(null, /*! @/components/fa-tabbar/fa-tabbar.vue */ 526))
     },
   }
 } catch (e) {

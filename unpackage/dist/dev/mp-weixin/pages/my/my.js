@@ -101,7 +101,7 @@ var components
 try {
   components = {
     faNavbar: function () {
-      return __webpack_require__.e(/*! import() | components/fa-navbar/fa-navbar */ "components/fa-navbar/fa-navbar").then(__webpack_require__.bind(null, /*! @/components/fa-navbar/fa-navbar.vue */ 481))
+      return __webpack_require__.e(/*! import() | components/fa-navbar/fa-navbar */ "components/fa-navbar/fa-navbar").then(__webpack_require__.bind(null, /*! @/components/fa-navbar/fa-navbar.vue */ 489))
     },
   }
 } catch (e) {
@@ -125,6 +125,9 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  var a0 = {
+    background: _vm.scrollTop > 40 ? "#fff" : "transparent",
+  }
   var m0 = _vm.staticurl("userbg.png")
   var m1 = _vm.staticurl("shuoming_icon.png")
   var m2 =
@@ -135,6 +138,7 @@ var render = function () {
     {},
     {
       $root: {
+        a0: a0,
         m0: m0,
         m1: m1,
         m2: m2,
@@ -187,7 +191,7 @@ var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime
 var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 32));
 var faTabbarVue = function faTabbarVue() {
   __webpack_require__.e(/*! require.ensure | components/fa-tabbar/index */ "components/fa-tabbar/index").then((function () {
-    return resolve(__webpack_require__(/*! @/components/fa-tabbar/index.vue */ 474));
+    return resolve(__webpack_require__(/*! @/components/fa-tabbar/index.vue */ 482));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var _default = {
@@ -206,7 +210,7 @@ var _default = {
         id: 2
       }, {
         img: this.staticurl('vip_icon.png'),
-        label: '我的邀请',
+        label: '邀请分享',
         id: 3
       }, {
         img: this.staticurl('vip_icon.png'),
@@ -214,14 +218,18 @@ var _default = {
         id: 4
       }, {
         img: this.staticurl('vip_icon.png'),
-        label: '积分商城 (待开放）',
+        label: '积分商城',
         id: 5
       }, {
         img: this.staticurl('vip_icon.png'),
         label: '清除本机缓存',
         id: 6
-      }]
+      }],
+      scrollTop: 0
     };
+  },
+  onPageScroll: function onPageScroll(e) {
+    this.scrollTop = e.scrollTop;
   },
   onShow: function onShow() {
     if (this.vuex_token) {
@@ -242,6 +250,28 @@ var _default = {
           }
           uni.navigateTo({
             url: '/pages/vip/orderlist'
+          });
+          break;
+        case 3:
+          uni.showToast({
+            title: '功能待开放',
+            icon: 'none'
+          });
+          break;
+        case 4:
+          uni.navigateTo({
+            url: '/pages/page/page?diyname=privacypolicy'
+          });
+          break;
+        case 5:
+          uni.navigateTo({
+            url: '/pages/score/exchange'
+          });
+          break;
+        case 6:
+          uni.showToast({
+            title: '清除缓存成功！',
+            icon: 'none'
           });
           break;
       }

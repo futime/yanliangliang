@@ -21,7 +21,9 @@
 </template>
 
 <script>
+	import { loginfunc } from '@/common/fa.mixin.js';
 	export default {
+		mixins: [loginfunc],
 		data() {
 			return {
 				tipsText: '正在提取中',
@@ -134,7 +136,8 @@
 												if(!uploadres.code) {
 													this.$u.toast(uploadres.msg);
 												}
-												uni.navigateTo({
+												this.getVipInfo()
+												uni.redirectTo({
 													url: '/pages/space/index'
 												})
 											}

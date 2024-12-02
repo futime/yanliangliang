@@ -1,14 +1,16 @@
 <template>
 	<view class="container">
-		<fa-navbar :title="'剩余时间24小时'" :background="{ color: 'transparent' }" title-color="#fff" :borderBottom="false"
+		<fa-navbar :title="title" :background="{ color: 'transparent' }" title-color="#fff" :borderBottom="false"
 			:styleBack="true"></fa-navbar>
 		<view class="bg">
-			<image :src="staticurl('startpage_bg.jpeg')" mode=""></image>
+			<!-- <image :src="staticurl('startpage_bg.jpeg')" mode=""></image> -->
+			<video :src="showBgVideo" :controls="false" loop muted autoplay></video>
 		</view>
 		<!-- Canvas用于绘制图片 -->
 		<view class="renwu">
 			<!-- <image class="" :src="yourImageSrc" mode="heightFix"></image> -->
-			<canvas id="renwu" :class="zhuruStatus ? 'zhuru' : ''" canvas-id="renwu" @touchstart="handleTouch"></canvas>
+			<canvas type="2d" id="renwu" :class="zhuruStatus ? 'zhuru' : ''" canvas-id="renwu"
+				@touchstart="handleTouch"></canvas>
 			<template v-if="!zhuruStatus && showIcon">
 				<view class="yuan" :style="{ left: item.x + '%', top: item.y + '%'}" :class="item.type ? 'big' : ''"
 					:key="index" v-for="(item, index) in showPoints">
@@ -27,7 +29,7 @@
 					<image :src="staticurl('energy_numbg.svg')" mode=""></image>
 				</view>
 				<view class="text">
-					{{ percentage }}%
+					{{ percentage }}
 				</view>
 			</view>
 		</view>
@@ -74,6 +76,11 @@
 					this.audiourl('music_bgm1.mp3'),
 					this.audiourl('music_bgm2.mp3'),
 					this.audiourl('music_bgm3.mp3'),
+				],
+				backgroundVideoTracks: [
+					this.videourl('energy_pagebg1.mp4'),
+					this.videourl('energy_pagebg2.mp4'),
+					this.videourl('energy_pagebg3.mp4'),
 				],
 				imgWidth: 0,
 				imgHeight: 0,
@@ -184,24 +191,55 @@
 				showIcon: true,
 				percentage: 50.2665, // 初始值，确保它有小数部分
 				interval: null,
-				increment: 0.0001 // 每次增加的幅度
+				increment: 0.0001, // 每次增加的幅度
+				title: ''
 			};
 		},
 		computed: {
 			showPoints() {
 				return this.bodys[this.active][this.positive].points
+			},
+			showBgVideo() {
+				const randomIndex = Math.floor(Math.random() * this.backgroundVideoTracks.length);
+				const selectedTrack = this.backgroundVideoTracks[randomIndex];
+				return selectedTrack
 			}
 		},
 		onLoad() {
 
 		},
 		onReady() {
+			this.initCanvasNew()
 			this.initClickSound()
 			this.initBackgroundAudioSound()
-			this.initCanvas()
 			this.startSlowIncrease();
+			this.title = this.getRemainingTime(this.vuex_vipinfo.expiredate, this.vuex_vipinfo.level)
 		},
 		methods: {
+			getRemainingTime(targetTime, level) {
+				console.log(targetTime)
+
+				// 将目标时间转换为 Date 对象，假设传入的时间格式是 "yyyy-MM-dd HH:mm:ss"
+				const targetDate = new Date(targetTime.replace(/-/g, "/")); // 替换日期中的 "-" 以兼容 Date 解析
+
+				// 获取当前时间
+				const currentTime = new Date();
+
+				// 计算时间差（单位：毫秒）
+				const timeDifference = targetDate - currentTime;
+
+				// 如果目标时间已过，返回 "已过期"
+				if (timeDifference < 0) {
+					return '已过期';
+				}
+
+				// 计算剩余的小时
+				const hoursRemaining = Math.floor(timeDifference / (1000 * 60 * 60)); // 转换为小时
+				console.log(hoursRemaining)
+				// 返回剩余的小时，如果为 0 则不显示
+				return (level == 0 ? '免费体验剩余' : '剩余') + (hoursRemaining > 0 ? `${hoursRemaining}小时` : '0小时');
+
+			},
 			startSlowIncrease() {
 				let currentValue = this.percentage;
 
@@ -292,17 +330,81 @@
 				} else {
 					this.positive = 'front'
 				}
-				this.initCanvas()
+				this.initCanvasNew()
 			},
 			handleClickSex(sex) {
 				this.active = sex
 				this.positive = 'front'
-				this.initCanvas()
+				this.initCanvasNew()
+			},
+			initCanvasNew() {
+				const imgUrl = this.bodys[this.active][this.positive].img
+				if (this.ctx) {
+					this.ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight); // 清空 canvas
+					const image = this.canvas.createImage()
+					image.onload = () => {
+						this.ctx.drawImage(
+							image,
+							0,
+							0,
+							this.canvasWidth, this.canvasHeight
+						)
+					}
+					image.src = imgUrl
+					return
+				}
+				// 旧版 canvas 不能修改宽高
+				wx.createSelectorQuery()
+					.select('#renwu') // 在 WXML 中填入的 id
+					.fields({
+						node: true,
+						size: true,
+						rect: true
+					})
+					.exec((res) => {
+						// Canvas 对象
+						const canvas = res[0].node
+						this.canvas = canvas
+						// Canvas 画布的实际绘制宽高
+						const renderWidth = res[0].width
+						const renderHeight = res[0].height
+						// Canvas 绘制上下文
+						const ctx = canvas.getContext('2d')
+						this.ctx = ctx
+						// 初始化画布大小
+						// const dpr = wx.getWindowInfo().pixelRatio
+						canvas.width = renderWidth
+						canvas.height = renderHeight
+						// ctx.scale(dpr, dpr)
+
+						this.canvasWidth = res[0].width
+						this.canvasHeight = res[0].height
+						console.log(res)
+						this.canvasRect = {
+							left: res[0].left,
+							top: res[0].top,
+							width: res[0].width,
+							height: res[0].height
+						};
+
+						this.ctx.clearRect(0, 0, res.width, res.height); // 清空 canvas
+						const image = canvas.createImage()
+						image.onload = () => {
+							this.ctx.drawImage(
+								image,
+								0,
+								0,
+								this.canvasWidth,
+								this.canvasHeight
+							)
+						}
+						image.src = imgUrl
+					})
 			},
 			initCanvas() {
 				const imgUrl = this.bodys[this.active][this.positive].img
-
 				this.canvas = uni.createSelectorQuery().select('#renwu');
+
 				this.ctx = uni.createCanvasContext('renwu', this);
 				// 获取图片信息并绘制到 canvas 上
 				// 获取 canvas 宽高
@@ -335,30 +437,48 @@
 
 			},
 			handleTouch(e) {
+				console.log(e)
 				const touchX = e.touches[0].clientX;
 				const touchY = e.touches[0].clientY;
 				const offsetX = touchX - this.canvasRect.left;
 				const offsetY = touchY - this.canvasRect.top;
+
+				console.log(offsetX)
+				console.log(offsetY)
 				this.checkPixel(offsetX, offsetY)
 			},
 			checkPixel(x, y) {
 				const _this = this
-				uni.canvasGetImageData({
-					canvasId: 'renwu',
-					x: x,
-					y: y,
-					width: 1,
-					height: 1,
-					success(res) {
-						const pixel = res.data;
-						if (pixel[3] === 0) {
-							console.log('点击的是透明区域');
-						} else {
-							console.log('点击的是不透明区域');
-							_this.drawCircle(x, y)
-						}
-					}
-				})
+				const imageData = this.ctx.getImageData(x, y, 1, 1);
+				const pixel = imageData.data;
+				console.log(pixel)
+				// 判断透明度 (pixel[3] 是 alpha 值)
+				if (pixel[3] === 0) {
+					console.log('点击的地方是透明的');
+				} else {
+					console.log('点击的地方不是透明的');
+					_this.drawCircle(x, y)
+				}
+				// uni.canvasGetImageData({
+				// 	canvasId: 'renwu',
+				// 	x: x,
+				// 	y: y,
+				// 	width: 1,
+				// 	height: 1,
+				// 	success(res) {
+				// 		console.log(res)
+				// 		const pixel = res.data;
+				// 		if (pixel[3] === 0) {
+				// 			console.log('点击的是透明区域');
+				// 		} else {
+				// 			console.log('点击的是不透明区域');
+				// 			_this.drawCircle(x, y)
+				// 		}
+				// 	},
+				// 	fail(err) {
+				// 		console.log(err)
+				// 	}
+				// })
 			},
 			drawCircle(x, y) {
 				const {
@@ -418,9 +538,12 @@
 			left: 0;
 			z-index: -1;
 
-			image {
+			video {
 				width: 100%;
 				height: 100%;
+				object-fit: fill;
+				mix-blend-mode: screen;
+				display: block;
 			}
 		}
 	}
@@ -508,6 +631,8 @@
 		canvas {
 			width: 100%;
 			height: 100%;
+			position: relative;
+			z-index: 1;
 		}
 	}
 
@@ -515,6 +640,7 @@
 		position: absolute;
 		top: 12%;
 		left: 29rpx;
+		z-index: 9999;
 
 		.btnitem {
 			width: 193rpx;
@@ -532,6 +658,7 @@
 		position: absolute;
 		top: 12%;
 		right: 29rpx;
+		z-index: 9999;
 
 		.btnitem {
 			width: 193rpx;
@@ -553,6 +680,7 @@
 		pointer-events: none;
 		animation: rotate 2s linear infinite;
 		transform-origin: top left;
+		z-index: 999;
 
 		&.big {
 			width: 200rpx;

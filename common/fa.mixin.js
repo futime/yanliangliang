@@ -14,7 +14,11 @@ export const tools = {
 			let currentTime = new Date().getTime();
 
 			// 从本地存储中获取 VIP 到期时间（假设是毫秒时间戳）
-			let time = this.vuex_vipinfo.expiredate
+			let time = this.vuex_vipinfo?.expiredate || ''
+			
+			if(!time) {
+				return ''
+			}
 			
 			let expiryTime = new Date(time.replace(' ', 'T')).getTime(); // 转换为 ISO 8601 格式
 			
@@ -116,12 +120,20 @@ export const tools = {
 			}
 			return url;
 		},
+		// stlticurl
+		videourl(url) {
+			if (!/^((?:[a-z]+:)?\/\/|data:image\/)(.*)/.test(url)) {
+				return (this.vuex_config?.upload?.cdnurl || 'https://yanliangliang.com') + '/static/video/' + url;
+			}
+			return url;
+		},
 		//页面跳转
 		goPage(path, auth) {
 			if (path == 'out') {
 				this.$u.vuex('vuex_token', '');
 				this.$u.vuex('vuex_user', {});
 				this.$u.vuex('vuex_openid', '');
+				this.$u.vuex('vuex_vipinfo', null);
 				return;
 			}
 			if (auth && !this.vuex_token) {
@@ -243,7 +255,7 @@ export const loginfunc = {
 
 				if (isNew == 1) {
 					uni.reLaunch({
-						url: '/pages/my/profile-add'
+						url: '/pages/my/profile-add?isnew=true'
 					})
 					return
 				}

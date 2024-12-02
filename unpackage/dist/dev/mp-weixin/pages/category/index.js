@@ -99,10 +99,10 @@ var components
 try {
   components = {
     faNavbar: function () {
-      return __webpack_require__.e(/*! import() | components/fa-navbar/fa-navbar */ "components/fa-navbar/fa-navbar").then(__webpack_require__.bind(null, /*! @/components/fa-navbar/fa-navbar.vue */ 481))
+      return __webpack_require__.e(/*! import() | components/fa-navbar/fa-navbar */ "components/fa-navbar/fa-navbar").then(__webpack_require__.bind(null, /*! @/components/fa-navbar/fa-navbar.vue */ 489))
     },
     faTabbar: function () {
-      return Promise.all(/*! import() | components/fa-tabbar/fa-tabbar */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/fa-tabbar/fa-tabbar")]).then(__webpack_require__.bind(null, /*! @/components/fa-tabbar/fa-tabbar.vue */ 518))
+      return Promise.all(/*! import() | components/fa-tabbar/fa-tabbar */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/fa-tabbar/fa-tabbar")]).then(__webpack_require__.bind(null, /*! @/components/fa-tabbar/fa-tabbar.vue */ 526))
     },
   }
 } catch (e) {
@@ -184,17 +184,17 @@ exports.default = void 0;
 var systemInfo = uni.getSystemInfoSync();
 var FaCategories = function FaCategories() {
   Promise.all(/*! require.ensure | pages/category/fa-categories */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/category/fa-categories")]).then((function () {
-    return resolve(__webpack_require__(/*! ./fa-categories.vue */ 731));
+    return resolve(__webpack_require__(/*! ./fa-categories.vue */ 739));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var FaCategory = function FaCategory() {
   Promise.all(/*! require.ensure | pages/category/fa-category */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/category/fa-category")]).then((function () {
-    return resolve(__webpack_require__(/*! ./fa-category.vue */ 738));
+    return resolve(__webpack_require__(/*! ./fa-category.vue */ 746));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var FaCategoryThree = function FaCategoryThree() {
   Promise.all(/*! require.ensure | pages/category/fa-category-three */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/category/fa-category-three")]).then((function () {
-    return resolve(__webpack_require__(/*! ./fa-category-three.vue */ 745));
+    return resolve(__webpack_require__(/*! ./fa-category-three.vue */ 753));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var _default = {

@@ -164,7 +164,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var faTabbarVue = function faTabbarVue() {
   __webpack_require__.e(/*! require.ensure | components/fa-tabbar/index */ "components/fa-tabbar/index").then((function () {
-    return resolve(__webpack_require__(/*! @/components/fa-tabbar/index.vue */ 474));
+    return resolve(__webpack_require__(/*! @/components/fa-tabbar/index.vue */ 482));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var _default = {

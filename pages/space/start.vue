@@ -2,7 +2,8 @@
 	<view class="page">
 		<fa-navbar :title="' '" :background="{ color: 'transparent' }" :borderBottom="false" :styleBack="true"></fa-navbar>
 		<view class="bg">
-			<image :src="staticurl('startpage_bg.jpeg')" mode=""></image>
+			<!-- <image :src="staticurl('startpage_bg.jpeg')" mode=""></image> -->
+			<video :src="videourl('startpage_bg.mp4')" :poster="staticurl('startpage_bg.jpeg')" autoplay :controls="false" loop muted=""></video>
 		</view>
 		<view class="title">
 			欢迎登录<br>
@@ -27,8 +28,14 @@
 		},
 		methods: {
 			handleClickStart() {
-				uni.navigateTo({
-					url: '/pages/space/face'
+				if(!this.vuex_user.face_image) {
+					uni.navigateTo({
+						url: '/pages/space/face'
+					})
+					return
+				}
+				uni.redirectTo({
+					url: '/pages/space/index'
 				})
 			}
 		}
@@ -84,6 +91,11 @@
 			image {
 				width: 100%;
 				height: 100%;
+			}
+			
+			video {
+				height: 100%;
+				width: 100%;
 			}
 		}
 	}

@@ -10,7 +10,7 @@
 			</view>
 			<view class="form-item">
 				<view class="form-item-label">年龄</view>
-				<view class="form-item-content" @click="showPickerYear = !showPickerYear">
+				<view class="form-item-content" @click="handleClickShowPicker">
 					<input class="input" v-model="form.age" disabled placeholder="请选择年份" type="text">
 				</view>
 			</view>
@@ -44,12 +44,22 @@
 					</view>
 				</view>
 			</view>
+			
+			<view class="form-item" v-if="vuex_user.face_image">
+				<view class="form-item-label">人脸信息</view>
+				<view class="form-item-content face">
+					<view class="faceimage">
+						<image :src="cdnurl(vuex_user.face_image)" mode="widthFix"></image>
+					</view>
+				</view>
+			</view>
 
 			<view class="loginBtn" @click="handleClickSubmit">
 				<view class="label">下一步</view>
 			</view>
 		</view>
-		<u-picker v-model="showPickerYear" :params="params" mode="time" @confirm="selectYear"></u-picker>
+		<u-picker ref="picker" default-time="1970-07-02 13:01:00" v-model="showPickerYear" :params="params" mode="time"
+			@confirm="selectYear"></u-picker>
 	</view>
 </template>
 
@@ -74,47 +84,61 @@
 				}
 			}
 		},
+		onLoad(opt) {
+			if (!opt.isnew) {
+				this.initUserData()
+			}
+		},
 		methods: {
-			async handleClickSubmit(){
-					if(!this.form.nickname){
-						uni.showToast({
-							title: '请输入姓名',
-							icon: 'none'
-						})
-						return
-					}
-					
-					if(!this.form.age){
-						uni.showToast({
-							title: '请选择年龄',
-							icon: 'none'
-						})
-						return
-					}
-					if(!this.form.body_weight){
-						uni.showToast({
-							title: '请输入体重',
-							icon: 'none'
-						})
-						return
-					}
-					if(!this.form.gender){
-						uni.showToast({
-							title: '请选择性别',
-							icon: 'none'
-						})
-						return
-					}
-					let res = await this.$api.getUserProfile(this.form);
-					this.$u.toast(res.msg);
-					if (res.code) {
-						setTimeout(() => {
-							this.$u.route({
-								type: 'switchTab',
-								url: '/pages/my/my'
-							});
-						}, 800)
-					}
+			handleClickShowPicker() {
+				this.showPickerYear = true
+			},
+			initUserData() {
+				this.form.nickname = this.vuex_user.nickname
+				this.form.gender = this.vuex_user.gender
+				this.form.age = this.vuex_user.age
+				this.form.body_weight = this.vuex_user.body_weight
+			},
+			async handleClickSubmit() {
+				if (!this.form.nickname) {
+					uni.showToast({
+						title: '请输入姓名',
+						icon: 'none'
+					})
+					return
+				}
+
+				if (!this.form.age) {
+					uni.showToast({
+						title: '请选择年龄',
+						icon: 'none'
+					})
+					return
+				}
+				if (!this.form.body_weight) {
+					uni.showToast({
+						title: '请输入体重',
+						icon: 'none'
+					})
+					return
+				}
+				if (!this.form.gender.toString()) {
+					uni.showToast({
+						title: '请选择性别',
+						icon: 'none'
+					})
+					return
+				}
+				let res = await this.$api.getUserProfile(this.form);
+				this.$u.toast(res.msg);
+				if (res.code) {
+					setTimeout(() => {
+						this.$u.route({
+							type: 'switchTab',
+							url: '/pages/my/my'
+						});
+					}, 800)
+				}
 			},
 			selectYear(e) {
 				if (e) {
@@ -165,7 +189,17 @@
 				border: 2rpx solid rgb(221, 221, 221);
 				border-radius: 12rpx;
 				padding: 0 33rpx;
-
+				&.face {
+					height: auto;
+					border: 2rpx solid transparent;
+					padding: 0;
+					.faceimage {
+						width: 100%;
+						image {
+							width: 100%;
+						}
+					}
+				}
 				.input {
 					width: 100%;
 					height: 100%;

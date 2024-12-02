@@ -3202,4 +3202,7 @@ u-dropdown {
 .share-btn::after {
   border: none;
 }
+.uni-toast__content {
+  font-size: 50rpx;
+}
 

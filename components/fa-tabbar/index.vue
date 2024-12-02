@@ -10,14 +10,14 @@
 					首页
 				</view>
 			</view>
-			<view class="tabbar-item middle">
+			<!-- <view class="tabbar-item middle">
 				<view class="icon">
 					<image class="icon-center" :src="staticurl('logo.png')" mode=""></image>
 				</view>
 				<view class="label">
 					<image :src="staticurl('logo_txt.png')" mode=""></image>
 				</view>
-			</view>
+			</view> -->
 			<view class="tabbar-item" :class="active == 'my' ? 'active' : ''" @click="handleClickTabItem('/pages/my/my')">
 				<view class="icon">
 					<image v-if="active == 'my'" :src="staticurl('navbar_menu_user_on.png')" mode=""></image>
@@ -67,7 +67,7 @@
 		
 		.tabbar-content {
 			display: grid;
-			grid-template-columns: repeat(3, 1fr);
+			grid-template-columns: repeat(2, 1fr);
 			height: 100%;
 			
 			.tabbar-item {

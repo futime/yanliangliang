@@ -52,14 +52,15 @@ const store = new Vuex.Store({
 		vuex_setting: lifeData.vuex_setting ? lifeData.vuex_setting : {},
 		vuex_theme: lifeData.vuex_theme ? lifeData.vuex_theme : {},
 		vuex_lasturl: lifeData.vuex_lasturl ? lifeData.vuex_lasturl : '/pages/index/index',
+		vuex_vipinfo: lifeData.vuex_vipinfo ? lifeData.vuex_vipinfo : null,
+		
 		vuex_address: {},
 		vuex__token__: '',
 		vuex_third: {},
-		vuex_cart: [],//暂存购物车选择的
+		vuex_cart: [], //暂存购物车选择的
 		vuex_current: 0,
 		vuex_signin: {},
 		vuex_webs: {},
-		vuex_vipinfo: null,
 		vuex_parse_style: {
 			// 字符串的形式
 			h1: 'padding:20rpx 0;',
@@ -73,11 +74,11 @@ const store = new Vuex.Store({
 			code: 'background-color: #f6f6f6;margin: 0 5rpx;padding: 6rpx 8rpx;border-radius: 6rpx;text-align:center;',
 			pre: 'white-space: pre;overflow: auto;background: #f6f6f6;border-radius: 8rpx;border: none;color: #1a1a1a;margin-bottom: 20rpx;padding:20rpx;',
 			'pre code': 'margin:0;padding:0;',
-			blockquote: 'padding: 15rpx;margin:0 0 20rpx 0;border-radius: 6rpx;',		
+			blockquote: 'padding: 15rpx;margin:0 0 20rpx 0;border-radius: 6rpx;',
 			table: 'width:100%;margin-bottom:20rpx;border-collapse: collapse;',
 			th: 'background-color: whitesmoke;border: 1px solid #e6e6e6;padding:10rpx;',
 			td: 'border: 1px solid #e6e6e6;padding:10rpx;',
-			img:'vertical-align: middle;'
+			img: 'vertical-align: middle;'
 		},
 		//备胎导航
 		vuex_tabbar: {

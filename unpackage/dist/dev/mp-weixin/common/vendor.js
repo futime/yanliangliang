@@ -12922,7 +12922,74 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 498:
+/***/ 5:
+/*!**************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/slicedToArray.js ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayWithHoles = __webpack_require__(/*! ./arrayWithHoles.js */ 6);
+var iterableToArrayLimit = __webpack_require__(/*! ./iterableToArrayLimit.js */ 7);
+var unsupportedIterableToArray = __webpack_require__(/*! ./unsupportedIterableToArray.js */ 8);
+var nonIterableRest = __webpack_require__(/*! ./nonIterableRest.js */ 10);
+function _slicedToArray(arr, i) {
+  return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || unsupportedIterableToArray(arr, i) || nonIterableRest();
+}
+module.exports = _slicedToArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ 50:
+/*!********************************************************************!*\
+  !*** /Users/liuting/yanliangliang/uview-ui/libs/function/color.js ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+// 为了让用户能够自定义主题，会逐步弃用此文件，各颜色通过css提供
+// 为了给某些特殊场景使用和向后兼容，无需删除此文件(2020-06-20)
+var color = {
+  primary: "#2979ff",
+  primaryDark: "#2b85e4",
+  primaryDisabled: "#a0cfff",
+  primaryLight: "#ecf5ff",
+  bgColor: "#f3f4f6",
+  info: "#909399",
+  infoDark: "#82848a",
+  infoDisabled: "#c8c9cc",
+  infoLight: "#f4f4f5",
+  warning: "#ff9900",
+  warningDark: "#f29100",
+  warningDisabled: "#fcbd71",
+  warningLight: "#fdf6ec",
+  error: "#fa3534",
+  errorDark: "#dd6161",
+  errorDisabled: "#fab6b6",
+  errorLight: "#fef0f0",
+  success: "#19be6b",
+  successDark: "#18b566",
+  successDisabled: "#71d5a1",
+  successLight: "#dbf1e1",
+  mainColor: "#303133",
+  contentColor: "#606266",
+  tipsColor: "#909399",
+  lightColor: "#c0c4cc",
+  borderColor: "#e4e7ed"
+};
+var _default = color;
+exports.default = _default;
+
+/***/ }),
+
+/***/ 506:
 /*!******************************************************************!*\
   !*** /Users/liuting/yanliangliang/uview-ui/libs/util/emitter.js ***!
   \******************************************************************/
@@ -12991,7 +13058,7 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 499:
+/***/ 507:
 /*!**************************************************************************!*\
   !*** /Users/liuting/yanliangliang/uview-ui/libs/util/async-validator.js ***!
   \**************************************************************************/
@@ -14169,78 +14236,11 @@ Schema.warning = warning;
 Schema.messages = messages;
 var _default = Schema;
 exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../../Applications/HBuilderX.app/Contents/HBuilderX/plugins/uniapp-cli/node_modules/node-libs-browser/mock/process.js */ 500)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../../Applications/HBuilderX.app/Contents/HBuilderX/plugins/uniapp-cli/node_modules/node-libs-browser/mock/process.js */ 508)))
 
 /***/ }),
 
-/***/ 5:
-/*!**************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/slicedToArray.js ***!
-  \**************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var arrayWithHoles = __webpack_require__(/*! ./arrayWithHoles.js */ 6);
-var iterableToArrayLimit = __webpack_require__(/*! ./iterableToArrayLimit.js */ 7);
-var unsupportedIterableToArray = __webpack_require__(/*! ./unsupportedIterableToArray.js */ 8);
-var nonIterableRest = __webpack_require__(/*! ./nonIterableRest.js */ 10);
-function _slicedToArray(arr, i) {
-  return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || unsupportedIterableToArray(arr, i) || nonIterableRest();
-}
-module.exports = _slicedToArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
-/***/ 50:
-/*!********************************************************************!*\
-  !*** /Users/liuting/yanliangliang/uview-ui/libs/function/color.js ***!
-  \********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-// 为了让用户能够自定义主题，会逐步弃用此文件，各颜色通过css提供
-// 为了给某些特殊场景使用和向后兼容，无需删除此文件(2020-06-20)
-var color = {
-  primary: "#2979ff",
-  primaryDark: "#2b85e4",
-  primaryDisabled: "#a0cfff",
-  primaryLight: "#ecf5ff",
-  bgColor: "#f3f4f6",
-  info: "#909399",
-  infoDark: "#82848a",
-  infoDisabled: "#c8c9cc",
-  infoLight: "#f4f4f5",
-  warning: "#ff9900",
-  warningDark: "#f29100",
-  warningDisabled: "#fcbd71",
-  warningLight: "#fdf6ec",
-  error: "#fa3534",
-  errorDark: "#dd6161",
-  errorDisabled: "#fab6b6",
-  errorLight: "#fef0f0",
-  success: "#19be6b",
-  successDark: "#18b566",
-  successDisabled: "#71d5a1",
-  successLight: "#dbf1e1",
-  mainColor: "#303133",
-  contentColor: "#606266",
-  tipsColor: "#909399",
-  lightColor: "#c0c4cc",
-  borderColor: "#e4e7ed"
-};
-var _default = color;
-exports.default = _default;
-
-/***/ }),
-
-/***/ 500:
+/***/ 508:
 /*!********************************************************!*\
   !*** ./node_modules/node-libs-browser/mock/process.js ***!
   \********************************************************/
@@ -14271,7 +14271,7 @@ exports.binding = function (name) {
     var path;
     exports.cwd = function () { return cwd };
     exports.chdir = function (dir) {
-        if (!path) path = __webpack_require__(/*! path */ 501);
+        if (!path) path = __webpack_require__(/*! path */ 509);
         cwd = path.resolve(dir, cwd);
     };
 })();
@@ -14285,7 +14285,7 @@ exports.features = {};
 
 /***/ }),
 
-/***/ 501:
+/***/ 509:
 /*!***********************************************!*\
   !*** ./node_modules/path-browserify/index.js ***!
   \***********************************************/
@@ -14595,7 +14595,7 @@ var substr = 'ab'.substr(-1) === 'b'
     }
 ;
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node-libs-browser/mock/process.js */ 500)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node-libs-browser/mock/process.js */ 508)))
 
 /***/ }),
 
@@ -14989,7 +14989,59 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 607:
+/***/ 61:
+/*!***********************************************************************!*\
+  !*** /Users/liuting/yanliangliang/uview-ui/libs/function/throttle.js ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var timer, flag;
+/**
+ * 节流原理：在一定时间内，只能触发一次
+ * 
+ * @param {Function} func 要执行的回调函数 
+ * @param {Number} wait 延时的时间
+ * @param {Boolean} immediate 是否立即执行
+ * @return null
+ */
+function throttle(func) {
+  var wait = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 500;
+  var immediate = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+  if (immediate) {
+    if (!flag) {
+      flag = true;
+      // 如果是立即执行，则在wait毫秒内开始时执行
+      typeof func === 'function' && func();
+      timer = setTimeout(function () {
+        flag = false;
+      }, wait);
+    }
+  } else {
+    if (!flag) {
+      flag = true;
+      // 如果是非立即执行，则在wait毫秒内的结束处执行
+      timer = setTimeout(function () {
+        flag = false;
+        typeof func === 'function' && func();
+      }, wait);
+    }
+  }
+}
+;
+var _default = throttle;
+exports.default = _default;
+
+/***/ }),
+
+/***/ 615:
 /*!*******************************************************************!*\
   !*** /Users/liuting/yanliangliang/uview-ui/libs/util/province.js ***!
   \*******************************************************************/
@@ -15111,7 +15163,7 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 608:
+/***/ 616:
 /*!***************************************************************!*\
   !*** /Users/liuting/yanliangliang/uview-ui/libs/util/city.js ***!
   \***************************************************************/
@@ -16232,7 +16284,7 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 609:
+/***/ 617:
 /*!***************************************************************!*\
   !*** /Users/liuting/yanliangliang/uview-ui/libs/util/area.js ***!
   \***************************************************************/
@@ -25351,58 +25403,6 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 61:
-/*!***********************************************************************!*\
-  !*** /Users/liuting/yanliangliang/uview-ui/libs/function/throttle.js ***!
-  \***********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var timer, flag;
-/**
- * 节流原理：在一定时间内，只能触发一次
- * 
- * @param {Function} func 要执行的回调函数 
- * @param {Number} wait 延时的时间
- * @param {Boolean} immediate 是否立即执行
- * @return null
- */
-function throttle(func) {
-  var wait = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 500;
-  var immediate = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
-  if (immediate) {
-    if (!flag) {
-      flag = true;
-      // 如果是立即执行，则在wait毫秒内开始时执行
-      typeof func === 'function' && func();
-      timer = setTimeout(function () {
-        flag = false;
-      }, wait);
-    }
-  } else {
-    if (!flag) {
-      flag = true;
-      // 如果是非立即执行，则在wait毫秒内的结束处执行
-      timer = setTimeout(function () {
-        flag = false;
-        typeof func === 'function' && func();
-      }, wait);
-    }
-  }
-}
-;
-var _default = throttle;
-exports.default = _default;
-
-/***/ }),
-
 /***/ 62:
 /*!*******************************************************************!*\
   !*** /Users/liuting/yanliangliang/uview-ui/libs/config/config.js ***!
@@ -25491,11 +25491,15 @@ var tools = {
      * 检查VIP是否过期
      */
     checkVipExpiry: function checkVipExpiry() {
+      var _this$vuex_vipinfo;
       // 获取当前时间（毫秒）
       var currentTime = new Date().getTime();
 
       // 从本地存储中获取 VIP 到期时间（假设是毫秒时间戳）
-      var time = this.vuex_vipinfo.expiredate;
+      var time = ((_this$vuex_vipinfo = this.vuex_vipinfo) === null || _this$vuex_vipinfo === void 0 ? void 0 : _this$vuex_vipinfo.expiredate) || '';
+      if (!time) {
+        return '';
+      }
       var expiryTime = new Date(time.replace(' ', 'T')).getTime(); // 转换为 ISO 8601 格式
 
       // 判断是否有有效的到期时间
@@ -25600,12 +25604,21 @@ var tools = {
       }
       return url;
     },
+    // stlticurl
+    videourl: function videourl(url) {
+      if (!/^((?:[a-z]+:)?\/\/|data:image\/)(.*)/.test(url)) {
+        var _this$vuex_config3, _this$vuex_config3$up;
+        return (((_this$vuex_config3 = this.vuex_config) === null || _this$vuex_config3 === void 0 ? void 0 : (_this$vuex_config3$up = _this$vuex_config3.upload) === null || _this$vuex_config3$up === void 0 ? void 0 : _this$vuex_config3$up.cdnurl) || 'https://yanliangliang.com') + '/static/video/' + url;
+      }
+      return url;
+    },
     //页面跳转
     goPage: function goPage(path, auth) {
       if (path == 'out') {
         this.$u.vuex('vuex_token', '');
         this.$u.vuex('vuex_user', {});
         this.$u.vuex('vuex_openid', '');
+        this.$u.vuex('vuex_vipinfo', null);
         return;
       }
       if (auth && !this.vuex_token) {
@@ -25775,7 +25788,7 @@ var loginfunc = {
                               break;
                             }
                             uni.reLaunch({
-                              url: '/pages/my/profile-add'
+                              url: '/pages/my/profile-add?isnew=true'
                             });
                             return _context3.abrupt("return");
                           case 4:
@@ -26123,6 +26136,7 @@ var store = new _vuex.default.Store({
     vuex_setting: lifeData.vuex_setting ? lifeData.vuex_setting : {},
     vuex_theme: lifeData.vuex_theme ? lifeData.vuex_theme : {},
     vuex_lasturl: lifeData.vuex_lasturl ? lifeData.vuex_lasturl : '/pages/index/index',
+    vuex_vipinfo: lifeData.vuex_vipinfo ? lifeData.vuex_vipinfo : null,
     vuex_address: {},
     vuex__token__: '',
     vuex_third: {},
@@ -26131,7 +26145,6 @@ var store = new _vuex.default.Store({
     vuex_current: 0,
     vuex_signin: {},
     vuex_webs: {},
-    vuex_vipinfo: null,
     vuex_parse_style: {
       // 字符串的形式
       h1: 'padding:20rpx 0;',
@@ -27833,8 +27846,8 @@ var install = function install(Vue, vm) {
       }
     }, _callee10);
   }));
-  // 获取开通vip的列表
-  vm.$api.getVipBuyList = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee11() {
+  // 上传会员面部信息
+  vm.$api.uploadFaceImage = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee11() {
     var params,
       _args11 = arguments;
     return _regenerator.default.wrap(function _callee11$(_context11) {
@@ -27843,7 +27856,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args11.length > 0 && _args11[0] !== undefined ? _args11[0] : {};
             _context11.next = 3;
-            return vm.$u.get('/addons/vip/api.index/index', params);
+            return vm.$u.post('/addons/shop/api.user/faceimage', params);
           case 3:
             return _context11.abrupt("return", _context11.sent);
           case 4:
@@ -27853,8 +27866,9 @@ var install = function install(Vue, vm) {
       }
     }, _callee11);
   }));
-  // 提交订单
-  vm.$api.submitOrder = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee12() {
+
+  // 获取开通vip的列表
+  vm.$api.getVipBuyList = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee12() {
     var params,
       _args12 = arguments;
     return _regenerator.default.wrap(function _callee12$(_context12) {
@@ -27863,7 +27877,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args12.length > 0 && _args12[0] !== undefined ? _args12[0] : {};
             _context12.next = 3;
-            return vm.$u.post('/addons/vip/api.order/submit', params);
+            return vm.$u.get('/addons/vip/api.index/index', params);
           case 3:
             return _context12.abrupt("return", _context12.sent);
           case 4:
@@ -27873,8 +27887,8 @@ var install = function install(Vue, vm) {
       }
     }, _callee12);
   }));
-  // 取消支付
-  vm.$api.cancelOrder = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee13() {
+  // 提交订单
+  vm.$api.submitOrder = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee13() {
     var params,
       _args13 = arguments;
     return _regenerator.default.wrap(function _callee13$(_context13) {
@@ -27883,7 +27897,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args13.length > 0 && _args13[0] !== undefined ? _args13[0] : {};
             _context13.next = 3;
-            return vm.$u.post('/addons/vip/api.order/cancel', params);
+            return vm.$u.post('/addons/vip/api.order/submit', params);
           case 3:
             return _context13.abrupt("return", _context13.sent);
           case 4:
@@ -27893,8 +27907,8 @@ var install = function install(Vue, vm) {
       }
     }, _callee13);
   }));
-  // 订单列表
-  vm.$api.vipOrderList = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee14() {
+  // 取消支付
+  vm.$api.cancelOrder = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee14() {
     var params,
       _args14 = arguments;
     return _regenerator.default.wrap(function _callee14$(_context14) {
@@ -27903,7 +27917,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args14.length > 0 && _args14[0] !== undefined ? _args14[0] : {};
             _context14.next = 3;
-            return vm.$u.post('/addons/vip/api.order/getorderlist', params);
+            return vm.$u.post('/addons/vip/api.order/cancel', params);
           case 3:
             return _context14.abrupt("return", _context14.sent);
           case 4:
@@ -27913,8 +27927,8 @@ var install = function install(Vue, vm) {
       }
     }, _callee14);
   }));
-  // 删除订单
-  vm.$api.delVipOrder = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee15() {
+  // 订单列表
+  vm.$api.vipOrderList = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee15() {
     var params,
       _args15 = arguments;
     return _regenerator.default.wrap(function _callee15$(_context15) {
@@ -27923,7 +27937,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args15.length > 0 && _args15[0] !== undefined ? _args15[0] : {};
             _context15.next = 3;
-            return vm.$u.post('/addons/vip/api.order/delete', params);
+            return vm.$u.post('/addons/vip/api.order/getorderlist', params);
           case 3:
             return _context15.abrupt("return", _context15.sent);
           case 4:
@@ -27933,9 +27947,8 @@ var install = function install(Vue, vm) {
       }
     }, _callee15);
   }));
-
-  // 登录	
-  vm.$api.getEmsSend = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee16() {
+  // 删除订单
+  vm.$api.delVipOrder = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee16() {
     var params,
       _args16 = arguments;
     return _regenerator.default.wrap(function _callee16$(_context16) {
@@ -27944,7 +27957,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args16.length > 0 && _args16[0] !== undefined ? _args16[0] : {};
             _context16.next = 3;
-            return vm.$u.post('/addons/shop/api.ems/send', params);
+            return vm.$u.post('/addons/vip/api.order/delete', params);
           case 3:
             return _context16.abrupt("return", _context16.sent);
           case 4:
@@ -27954,7 +27967,9 @@ var install = function install(Vue, vm) {
       }
     }, _callee16);
   }));
-  vm.$api.getSmsSend = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee17() {
+
+  // 登录	
+  vm.$api.getEmsSend = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee17() {
     var params,
       _args17 = arguments;
     return _regenerator.default.wrap(function _callee17$(_context17) {
@@ -27963,7 +27978,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args17.length > 0 && _args17[0] !== undefined ? _args17[0] : {};
             _context17.next = 3;
-            return vm.$u.post('/addons/shop/api.sms/send', params);
+            return vm.$u.post('/addons/shop/api.ems/send', params);
           case 3:
             return _context17.abrupt("return", _context17.sent);
           case 4:
@@ -27973,7 +27988,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee17);
   }));
-  vm.$api.goLogin = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee18() {
+  vm.$api.getSmsSend = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee18() {
     var params,
       _args18 = arguments;
     return _regenerator.default.wrap(function _callee18$(_context18) {
@@ -27982,7 +27997,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args18.length > 0 && _args18[0] !== undefined ? _args18[0] : {};
             _context18.next = 3;
-            return vm.$u.post('/addons/shop/api.login/login', params);
+            return vm.$u.post('/addons/shop/api.sms/send', params);
           case 3:
             return _context18.abrupt("return", _context18.sent);
           case 4:
@@ -27992,7 +28007,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee18);
   }));
-  vm.$api.mobilelogin = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee19() {
+  vm.$api.goLogin = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee19() {
     var params,
       _args19 = arguments;
     return _regenerator.default.wrap(function _callee19$(_context19) {
@@ -28001,7 +28016,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args19.length > 0 && _args19[0] !== undefined ? _args19[0] : {};
             _context19.next = 3;
-            return vm.$u.post('/addons/shop/api.login/mobilelogin', params);
+            return vm.$u.post('/addons/shop/api.login/login', params);
           case 3:
             return _context19.abrupt("return", _context19.sent);
           case 4:
@@ -28011,7 +28026,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee19);
   }));
-  vm.$api.goRegister = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee20() {
+  vm.$api.mobilelogin = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee20() {
     var params,
       _args20 = arguments;
     return _regenerator.default.wrap(function _callee20$(_context20) {
@@ -28020,7 +28035,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args20.length > 0 && _args20[0] !== undefined ? _args20[0] : {};
             _context20.next = 3;
-            return vm.$u.post('/addons/shop/api.login/register', params);
+            return vm.$u.post('/addons/shop/api.login/mobilelogin', params);
           case 3:
             return _context20.abrupt("return", _context20.sent);
           case 4:
@@ -28030,7 +28045,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee20);
   }));
-  vm.$api.goResetpwd = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee21() {
+  vm.$api.goRegister = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee21() {
     var params,
       _args21 = arguments;
     return _regenerator.default.wrap(function _callee21$(_context21) {
@@ -28039,7 +28054,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args21.length > 0 && _args21[0] !== undefined ? _args21[0] : {};
             _context21.next = 3;
-            return vm.$u.post('/addons/shop/api.login/resetpwd', params);
+            return vm.$u.post('/addons/shop/api.login/register', params);
           case 3:
             return _context21.abrupt("return", _context21.sent);
           case 4:
@@ -28049,7 +28064,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee21);
   }));
-  vm.$api.gowxLogin = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee22() {
+  vm.$api.goResetpwd = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee22() {
     var params,
       _args22 = arguments;
     return _regenerator.default.wrap(function _callee22$(_context22) {
@@ -28058,7 +28073,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args22.length > 0 && _args22[0] !== undefined ? _args22[0] : {};
             _context22.next = 3;
-            return vm.$u.post('/addons/shop/api.login/wxLogin', params);
+            return vm.$u.post('/addons/shop/api.login/resetpwd', params);
           case 3:
             return _context22.abrupt("return", _context22.sent);
           case 4:
@@ -28068,7 +28083,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee22);
   }));
-  vm.$api.goWechatMobileLogin = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee23() {
+  vm.$api.gowxLogin = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee23() {
     var params,
       _args23 = arguments;
     return _regenerator.default.wrap(function _callee23$(_context23) {
@@ -28077,7 +28092,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args23.length > 0 && _args23[0] !== undefined ? _args23[0] : {};
             _context23.next = 3;
-            return vm.$u.post('/addons/shop/api.login/wechatMobileLogin', params);
+            return vm.$u.post('/addons/shop/api.login/wxLogin', params);
           case 3:
             return _context23.abrupt("return", _context23.sent);
           case 4:
@@ -28087,7 +28102,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee23);
   }));
-  vm.$api.goAppLogin = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee24() {
+  vm.$api.goWechatMobileLogin = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee24() {
     var params,
       _args24 = arguments;
     return _regenerator.default.wrap(function _callee24$(_context24) {
@@ -28096,7 +28111,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args24.length > 0 && _args24[0] !== undefined ? _args24[0] : {};
             _context24.next = 3;
-            return vm.$u.post('/addons/shop/api.login/appLogin', params);
+            return vm.$u.post('/addons/shop/api.login/wechatMobileLogin', params);
           case 3:
             return _context24.abrupt("return", _context24.sent);
           case 4:
@@ -28106,7 +28121,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee24);
   }));
-  vm.$api.getWechatOpenid = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee25() {
+  vm.$api.goAppLogin = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee25() {
     var params,
       _args25 = arguments;
     return _regenerator.default.wrap(function _callee25$(_context25) {
@@ -28115,7 +28130,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args25.length > 0 && _args25[0] !== undefined ? _args25[0] : {};
             _context25.next = 3;
-            return vm.$u.post('/addons/shop/api.login/getWechatOpenid', params);
+            return vm.$u.post('/addons/shop/api.login/appLogin', params);
           case 3:
             return _context25.abrupt("return", _context25.sent);
           case 4:
@@ -28125,7 +28140,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee25);
   }));
-  vm.$api.getWechatMobile = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee26() {
+  vm.$api.getWechatOpenid = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee26() {
     var params,
       _args26 = arguments;
     return _regenerator.default.wrap(function _callee26$(_context26) {
@@ -28134,7 +28149,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args26.length > 0 && _args26[0] !== undefined ? _args26[0] : {};
             _context26.next = 3;
-            return vm.$u.post('/addons/shop/api.login/getWechatMobile', params);
+            return vm.$u.post('/addons/shop/api.login/getWechatOpenid', params);
           case 3:
             return _context26.abrupt("return", _context26.sent);
           case 4:
@@ -28144,8 +28159,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee26);
   }));
-  //第三方
-  vm.$api.getAuthUrl = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee27() {
+  vm.$api.getWechatMobile = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee27() {
     var params,
       _args27 = arguments;
     return _regenerator.default.wrap(function _callee27$(_context27) {
@@ -28154,7 +28168,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args27.length > 0 && _args27[0] !== undefined ? _args27[0] : {};
             _context27.next = 3;
-            return vm.$u.get('/addons/third/api/getAuthUrl', params);
+            return vm.$u.post('/addons/shop/api.login/getWechatMobile', params);
           case 3:
             return _context27.abrupt("return", _context27.sent);
           case 4:
@@ -28164,7 +28178,8 @@ var install = function install(Vue, vm) {
       }
     }, _callee27);
   }));
-  vm.$api.goAuthCallback = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee28() {
+  //第三方
+  vm.$api.getAuthUrl = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee28() {
     var params,
       _args28 = arguments;
     return _regenerator.default.wrap(function _callee28$(_context28) {
@@ -28173,7 +28188,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args28.length > 0 && _args28[0] !== undefined ? _args28[0] : {};
             _context28.next = 3;
-            return vm.$u.post('/addons/third/api/callback', params);
+            return vm.$u.get('/addons/third/api/getAuthUrl', params);
           case 3:
             return _context28.abrupt("return", _context28.sent);
           case 4:
@@ -28183,7 +28198,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee28);
   }));
-  vm.$api.goOpenidCallback = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee29() {
+  vm.$api.goAuthCallback = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee29() {
     var params,
       _args29 = arguments;
     return _regenerator.default.wrap(function _callee29$(_context29) {
@@ -28192,7 +28207,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args29.length > 0 && _args29[0] !== undefined ? _args29[0] : {};
             _context29.next = 3;
-            return vm.$u.post('/addons/third/api/getOpenidCallback', params);
+            return vm.$u.post('/addons/third/api/callback', params);
           case 3:
             return _context29.abrupt("return", _context29.sent);
           case 4:
@@ -28202,7 +28217,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee29);
   }));
-  vm.$api.goThirdAccount = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee30() {
+  vm.$api.goOpenidCallback = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee30() {
     var params,
       _args30 = arguments;
     return _regenerator.default.wrap(function _callee30$(_context30) {
@@ -28211,7 +28226,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args30.length > 0 && _args30[0] !== undefined ? _args30[0] : {};
             _context30.next = 3;
-            return vm.$u.post('/addons/third/api/account', params);
+            return vm.$u.post('/addons/third/api/getOpenidCallback', params);
           case 3:
             return _context30.abrupt("return", _context30.sent);
           case 4:
@@ -28221,8 +28236,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee30);
   }));
-  // 签到	
-  vm.$api.signinConfig = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee31() {
+  vm.$api.goThirdAccount = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee31() {
     var params,
       _args31 = arguments;
     return _regenerator.default.wrap(function _callee31$(_context31) {
@@ -28231,7 +28245,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args31.length > 0 && _args31[0] !== undefined ? _args31[0] : {};
             _context31.next = 3;
-            return vm.$u.get('/addons/signin/api.index/index', params);
+            return vm.$u.post('/addons/third/api/account', params);
           case 3:
             return _context31.abrupt("return", _context31.sent);
           case 4:
@@ -28241,7 +28255,8 @@ var install = function install(Vue, vm) {
       }
     }, _callee31);
   }));
-  vm.$api.monthSign = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee32() {
+  // 签到	
+  vm.$api.signinConfig = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee32() {
     var params,
       _args32 = arguments;
     return _regenerator.default.wrap(function _callee32$(_context32) {
@@ -28250,7 +28265,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args32.length > 0 && _args32[0] !== undefined ? _args32[0] : {};
             _context32.next = 3;
-            return vm.$u.get('/addons/signin/api.index/monthSign', params);
+            return vm.$u.get('/addons/signin/api.index/index', params);
           case 3:
             return _context32.abrupt("return", _context32.sent);
           case 4:
@@ -28260,7 +28275,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee32);
   }));
-  vm.$api.dosign = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee33() {
+  vm.$api.monthSign = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee33() {
     var params,
       _args33 = arguments;
     return _regenerator.default.wrap(function _callee33$(_context33) {
@@ -28269,7 +28284,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args33.length > 0 && _args33[0] !== undefined ? _args33[0] : {};
             _context33.next = 3;
-            return vm.$u.post('/addons/signin/api.index/dosign', params);
+            return vm.$u.get('/addons/signin/api.index/monthSign', params);
           case 3:
             return _context33.abrupt("return", _context33.sent);
           case 4:
@@ -28279,7 +28294,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee33);
   }));
-  vm.$api.fillup = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee34() {
+  vm.$api.dosign = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee34() {
     var params,
       _args34 = arguments;
     return _regenerator.default.wrap(function _callee34$(_context34) {
@@ -28288,7 +28303,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args34.length > 0 && _args34[0] !== undefined ? _args34[0] : {};
             _context34.next = 3;
-            return vm.$u.get('/addons/signin/api.index/fillup', params);
+            return vm.$u.post('/addons/signin/api.index/dosign', params);
           case 3:
             return _context34.abrupt("return", _context34.sent);
           case 4:
@@ -28298,7 +28313,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee34);
   }));
-  vm.$api.signRank = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee35() {
+  vm.$api.fillup = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee35() {
     var params,
       _args35 = arguments;
     return _regenerator.default.wrap(function _callee35$(_context35) {
@@ -28307,7 +28322,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args35.length > 0 && _args35[0] !== undefined ? _args35[0] : {};
             _context35.next = 3;
-            return vm.$u.get('/addons/signin/api.index/rank', params);
+            return vm.$u.get('/addons/signin/api.index/fillup', params);
           case 3:
             return _context35.abrupt("return", _context35.sent);
           case 4:
@@ -28317,7 +28332,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee35);
   }));
-  vm.$api.signLog = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee36() {
+  vm.$api.signRank = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee36() {
     var params,
       _args36 = arguments;
     return _regenerator.default.wrap(function _callee36$(_context36) {
@@ -28326,7 +28341,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args36.length > 0 && _args36[0] !== undefined ? _args36[0] : {};
             _context36.next = 3;
-            return vm.$u.get('/addons/signin/api.index/signLog', params);
+            return vm.$u.get('/addons/signin/api.index/rank', params);
           case 3:
             return _context36.abrupt("return", _context36.sent);
           case 4:
@@ -28336,8 +28351,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee36);
   }));
-  //shop	
-  vm.$api.getGoodsIndex = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee37() {
+  vm.$api.signLog = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee37() {
     var params,
       _args37 = arguments;
     return _regenerator.default.wrap(function _callee37$(_context37) {
@@ -28346,7 +28360,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args37.length > 0 && _args37[0] !== undefined ? _args37[0] : {};
             _context37.next = 3;
-            return vm.$u.get('/addons/shop/api.goods/index', params);
+            return vm.$u.get('/addons/signin/api.index/signLog', params);
           case 3:
             return _context37.abrupt("return", _context37.sent);
           case 4:
@@ -28356,7 +28370,8 @@ var install = function install(Vue, vm) {
       }
     }, _callee37);
   }));
-  vm.$api.getGoodsInfo = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee38() {
+  //shop	
+  vm.$api.getGoodsIndex = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee38() {
     var params,
       _args38 = arguments;
     return _regenerator.default.wrap(function _callee38$(_context38) {
@@ -28365,7 +28380,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args38.length > 0 && _args38[0] !== undefined ? _args38[0] : {};
             _context38.next = 3;
-            return vm.$u.get('/addons/shop/api.goods/detail', params);
+            return vm.$u.get('/addons/shop/api.goods/index', params);
           case 3:
             return _context38.abrupt("return", _context38.sent);
           case 4:
@@ -28375,7 +28390,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee38);
   }));
-  vm.$api.getGoodsList = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee39() {
+  vm.$api.getGoodsInfo = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee39() {
     var params,
       _args39 = arguments;
     return _regenerator.default.wrap(function _callee39$(_context39) {
@@ -28384,7 +28399,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args39.length > 0 && _args39[0] !== undefined ? _args39[0] : {};
             _context39.next = 3;
-            return vm.$u.post('/addons/shop/api.goods/lists', params);
+            return vm.$u.get('/addons/shop/api.goods/detail', params);
           case 3:
             return _context39.abrupt("return", _context39.sent);
           case 4:
@@ -28394,7 +28409,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee39);
   }));
-  vm.$api.getWxCode = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee40() {
+  vm.$api.getGoodsList = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee40() {
     var params,
       _args40 = arguments;
     return _regenerator.default.wrap(function _callee40$(_context40) {
@@ -28403,7 +28418,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args40.length > 0 && _args40[0] !== undefined ? _args40[0] : {};
             _context40.next = 3;
-            return vm.$u.post('/addons/shop/api.goods/getWxCode', params);
+            return vm.$u.post('/addons/shop/api.goods/lists', params);
           case 3:
             return _context40.abrupt("return", _context40.sent);
           case 4:
@@ -28413,7 +28428,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee40);
   }));
-  vm.$api.getCategory = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee41() {
+  vm.$api.getWxCode = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee41() {
     var params,
       _args41 = arguments;
     return _regenerator.default.wrap(function _callee41$(_context41) {
@@ -28422,7 +28437,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args41.length > 0 && _args41[0] !== undefined ? _args41[0] : {};
             _context41.next = 3;
-            return vm.$u.get('/addons/shop/api.category/index', params);
+            return vm.$u.post('/addons/shop/api.goods/getWxCode', params);
           case 3:
             return _context41.abrupt("return", _context41.sent);
           case 4:
@@ -28432,7 +28447,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee41);
   }));
-  vm.$api.allCategory = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee42() {
+  vm.$api.getCategory = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee42() {
     var params,
       _args42 = arguments;
     return _regenerator.default.wrap(function _callee42$(_context42) {
@@ -28441,7 +28456,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args42.length > 0 && _args42[0] !== undefined ? _args42[0] : {};
             _context42.next = 3;
-            return vm.$u.get('/addons/shop/api.category/alls', params);
+            return vm.$u.get('/addons/shop/api.category/index', params);
           case 3:
             return _context42.abrupt("return", _context42.sent);
           case 4:
@@ -28451,7 +28466,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee42);
   }));
-  vm.$api.addCart = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee43() {
+  vm.$api.allCategory = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee43() {
     var params,
       _args43 = arguments;
     return _regenerator.default.wrap(function _callee43$(_context43) {
@@ -28460,7 +28475,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args43.length > 0 && _args43[0] !== undefined ? _args43[0] : {};
             _context43.next = 3;
-            return vm.$u.post('/addons/shop/api.cart/add', params);
+            return vm.$u.get('/addons/shop/api.category/alls', params);
           case 3:
             return _context43.abrupt("return", _context43.sent);
           case 4:
@@ -28470,7 +28485,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee43);
   }));
-  vm.$api.getCartIndex = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee44() {
+  vm.$api.addCart = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee44() {
     var params,
       _args44 = arguments;
     return _regenerator.default.wrap(function _callee44$(_context44) {
@@ -28479,7 +28494,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args44.length > 0 && _args44[0] !== undefined ? _args44[0] : {};
             _context44.next = 3;
-            return vm.$u.get('/addons/shop/api.cart/index', params);
+            return vm.$u.post('/addons/shop/api.cart/add', params);
           case 3:
             return _context44.abrupt("return", _context44.sent);
           case 4:
@@ -28489,7 +28504,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee44);
   }));
-  vm.$api.setCartNums = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee45() {
+  vm.$api.getCartIndex = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee45() {
     var params,
       _args45 = arguments;
     return _regenerator.default.wrap(function _callee45$(_context45) {
@@ -28498,7 +28513,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args45.length > 0 && _args45[0] !== undefined ? _args45[0] : {};
             _context45.next = 3;
-            return vm.$u.post('/addons/shop/api.cart/set_nums', params);
+            return vm.$u.get('/addons/shop/api.cart/index', params);
           case 3:
             return _context45.abrupt("return", _context45.sent);
           case 4:
@@ -28508,7 +28523,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee45);
   }));
-  vm.$api.delCart = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee46() {
+  vm.$api.setCartNums = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee46() {
     var params,
       _args46 = arguments;
     return _regenerator.default.wrap(function _callee46$(_context46) {
@@ -28517,7 +28532,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args46.length > 0 && _args46[0] !== undefined ? _args46[0] : {};
             _context46.next = 3;
-            return vm.$u.post('/addons/shop/api.cart/del', params);
+            return vm.$u.post('/addons/shop/api.cart/set_nums', params);
           case 3:
             return _context46.abrupt("return", _context46.sent);
           case 4:
@@ -28527,7 +28542,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee46);
   }));
-  vm.$api.cart_nums = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee47() {
+  vm.$api.delCart = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee47() {
     var params,
       _args47 = arguments;
     return _regenerator.default.wrap(function _callee47$(_context47) {
@@ -28536,7 +28551,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args47.length > 0 && _args47[0] !== undefined ? _args47[0] : {};
             _context47.next = 3;
-            return vm.$u.get('/addons/shop/api.cart/cart_nums', params);
+            return vm.$u.post('/addons/shop/api.cart/del', params);
           case 3:
             return _context47.abrupt("return", _context47.sent);
           case 4:
@@ -28546,7 +28561,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee47);
   }));
-  vm.$api.orderList = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee48() {
+  vm.$api.cart_nums = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee48() {
     var params,
       _args48 = arguments;
     return _regenerator.default.wrap(function _callee48$(_context48) {
@@ -28555,7 +28570,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args48.length > 0 && _args48[0] !== undefined ? _args48[0] : {};
             _context48.next = 3;
-            return vm.$u.get('/addons/shop/api.order/index', params);
+            return vm.$u.get('/addons/shop/api.cart/cart_nums', params);
           case 3:
             return _context48.abrupt("return", _context48.sent);
           case 4:
@@ -28565,7 +28580,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee48);
   }));
-  vm.$api.orderAdd = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee49() {
+  vm.$api.orderList = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee49() {
     var params,
       _args49 = arguments;
     return _regenerator.default.wrap(function _callee49$(_context49) {
@@ -28574,7 +28589,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args49.length > 0 && _args49[0] !== undefined ? _args49[0] : {};
             _context49.next = 3;
-            return vm.$u.post('/addons/shop/api.order/add', params);
+            return vm.$u.get('/addons/shop/api.order/index', params);
           case 3:
             return _context49.abrupt("return", _context49.sent);
           case 4:
@@ -28584,7 +28599,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee49);
   }));
-  vm.$api.orderDetail = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee50() {
+  vm.$api.orderAdd = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee50() {
     var params,
       _args50 = arguments;
     return _regenerator.default.wrap(function _callee50$(_context50) {
@@ -28593,7 +28608,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args50.length > 0 && _args50[0] !== undefined ? _args50[0] : {};
             _context50.next = 3;
-            return vm.$u.get('/addons/shop/api.order/detail', params);
+            return vm.$u.post('/addons/shop/api.order/add', params);
           case 3:
             return _context50.abrupt("return", _context50.sent);
           case 4:
@@ -28603,7 +28618,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee50);
   }));
-  vm.$api.orderCancel = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee51() {
+  vm.$api.orderDetail = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee51() {
     var params,
       _args51 = arguments;
     return _regenerator.default.wrap(function _callee51$(_context51) {
@@ -28612,7 +28627,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args51.length > 0 && _args51[0] !== undefined ? _args51[0] : {};
             _context51.next = 3;
-            return vm.$u.post('/addons/shop/api.order/cancel', params);
+            return vm.$u.get('/addons/shop/api.order/detail', params);
           case 3:
             return _context51.abrupt("return", _context51.sent);
           case 4:
@@ -28622,7 +28637,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee51);
   }));
-  vm.$api.orderCarts = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee52() {
+  vm.$api.orderCancel = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee52() {
     var params,
       _args52 = arguments;
     return _regenerator.default.wrap(function _callee52$(_context52) {
@@ -28631,7 +28646,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args52.length > 0 && _args52[0] !== undefined ? _args52[0] : {};
             _context52.next = 3;
-            return vm.$u.post('/addons/shop/api.order/carts', params);
+            return vm.$u.post('/addons/shop/api.order/cancel', params);
           case 3:
             return _context52.abrupt("return", _context52.sent);
           case 4:
@@ -28641,7 +28656,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee52);
   }));
-  vm.$api.payment = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee53() {
+  vm.$api.orderCarts = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee53() {
     var params,
       _args53 = arguments;
     return _regenerator.default.wrap(function _callee53$(_context53) {
@@ -28650,7 +28665,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args53.length > 0 && _args53[0] !== undefined ? _args53[0] : {};
             _context53.next = 3;
-            return vm.$u.post('/addons/shop/api.order/pay', params);
+            return vm.$u.post('/addons/shop/api.order/carts', params);
           case 3:
             return _context53.abrupt("return", _context53.sent);
           case 4:
@@ -28660,7 +28675,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee53);
   }));
-  vm.$api.takedelivery = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee54() {
+  vm.$api.payment = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee54() {
     var params,
       _args54 = arguments;
     return _regenerator.default.wrap(function _callee54$(_context54) {
@@ -28669,7 +28684,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args54.length > 0 && _args54[0] !== undefined ? _args54[0] : {};
             _context54.next = 3;
-            return vm.$u.post('/addons/shop/api.order/takedelivery', params);
+            return vm.$u.post('/addons/shop/api.order/pay', params);
           case 3:
             return _context54.abrupt("return", _context54.sent);
           case 4:
@@ -28679,7 +28694,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee54);
   }));
-  vm.$api.logistics = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee55() {
+  vm.$api.takedelivery = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee55() {
     var params,
       _args55 = arguments;
     return _regenerator.default.wrap(function _callee55$(_context55) {
@@ -28688,7 +28703,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args55.length > 0 && _args55[0] !== undefined ? _args55[0] : {};
             _context55.next = 3;
-            return vm.$u.get('/addons/shop/api.order/logistics', params);
+            return vm.$u.post('/addons/shop/api.order/takedelivery', params);
           case 3:
             return _context55.abrupt("return", _context55.sent);
           case 4:
@@ -28698,7 +28713,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee55);
   }));
-  vm.$api.orderGoodsDetail = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee56() {
+  vm.$api.logistics = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee56() {
     var params,
       _args56 = arguments;
     return _regenerator.default.wrap(function _callee56$(_context56) {
@@ -28707,7 +28722,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args56.length > 0 && _args56[0] !== undefined ? _args56[0] : {};
             _context56.next = 3;
-            return vm.$u.get('/addons/shop/api.order_goods/detail', params);
+            return vm.$u.get('/addons/shop/api.order/logistics', params);
           case 3:
             return _context56.abrupt("return", _context56.sent);
           case 4:
@@ -28717,7 +28732,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee56);
   }));
-  vm.$api.ordeAfterSaleApply = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee57() {
+  vm.$api.orderGoodsDetail = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee57() {
     var params,
       _args57 = arguments;
     return _regenerator.default.wrap(function _callee57$(_context57) {
@@ -28726,7 +28741,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args57.length > 0 && _args57[0] !== undefined ? _args57[0] : {};
             _context57.next = 3;
-            return vm.$u.post('/addons/shop/api.order_goods/apply', params);
+            return vm.$u.get('/addons/shop/api.order_goods/detail', params);
           case 3:
             return _context57.abrupt("return", _context57.sent);
           case 4:
@@ -28736,7 +28751,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee57);
   }));
-  vm.$api.ordeAfterSale = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee58() {
+  vm.$api.ordeAfterSaleApply = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee58() {
     var params,
       _args58 = arguments;
     return _regenerator.default.wrap(function _callee58$(_context58) {
@@ -28745,7 +28760,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args58.length > 0 && _args58[0] !== undefined ? _args58[0] : {};
             _context58.next = 3;
-            return vm.$u.get('/addons/shop/api.order_goods/aftersale', params);
+            return vm.$u.post('/addons/shop/api.order_goods/apply', params);
           case 3:
             return _context58.abrupt("return", _context58.sent);
           case 4:
@@ -28755,7 +28770,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee58);
   }));
-  vm.$api.saveExpressInfo = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee59() {
+  vm.$api.ordeAfterSale = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee59() {
     var params,
       _args59 = arguments;
     return _regenerator.default.wrap(function _callee59$(_context59) {
@@ -28764,7 +28779,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args59.length > 0 && _args59[0] !== undefined ? _args59[0] : {};
             _context59.next = 3;
-            return vm.$u.post('/addons/shop/api.order_goods/saveExpressInfo', params);
+            return vm.$u.get('/addons/shop/api.order_goods/aftersale', params);
           case 3:
             return _context59.abrupt("return", _context59.sent);
           case 4:
@@ -28774,7 +28789,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee59);
   }));
-  vm.$api.addressList = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee60() {
+  vm.$api.saveExpressInfo = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee60() {
     var params,
       _args60 = arguments;
     return _regenerator.default.wrap(function _callee60$(_context60) {
@@ -28783,7 +28798,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args60.length > 0 && _args60[0] !== undefined ? _args60[0] : {};
             _context60.next = 3;
-            return vm.$u.get('/addons/shop/api.address/index', params);
+            return vm.$u.post('/addons/shop/api.order_goods/saveExpressInfo', params);
           case 3:
             return _context60.abrupt("return", _context60.sent);
           case 4:
@@ -28793,7 +28808,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee60);
   }));
-  vm.$api.addressAdd = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee61() {
+  vm.$api.addressList = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee61() {
     var params,
       _args61 = arguments;
     return _regenerator.default.wrap(function _callee61$(_context61) {
@@ -28802,7 +28817,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args61.length > 0 && _args61[0] !== undefined ? _args61[0] : {};
             _context61.next = 3;
-            return vm.$u.post('/addons/shop/api.address/addedit', params);
+            return vm.$u.get('/addons/shop/api.address/index', params);
           case 3:
             return _context61.abrupt("return", _context61.sent);
           case 4:
@@ -28812,7 +28827,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee61);
   }));
-  vm.$api.addressInfo = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee62() {
+  vm.$api.addressAdd = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee62() {
     var params,
       _args62 = arguments;
     return _regenerator.default.wrap(function _callee62$(_context62) {
@@ -28821,7 +28836,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args62.length > 0 && _args62[0] !== undefined ? _args62[0] : {};
             _context62.next = 3;
-            return vm.$u.get('/addons/shop/api.address/detail', params);
+            return vm.$u.post('/addons/shop/api.address/addedit', params);
           case 3:
             return _context62.abrupt("return", _context62.sent);
           case 4:
@@ -28831,7 +28846,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee62);
   }));
-  vm.$api.defAddress = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee63() {
+  vm.$api.addressInfo = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee63() {
     var params,
       _args63 = arguments;
     return _regenerator.default.wrap(function _callee63$(_context63) {
@@ -28840,7 +28855,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args63.length > 0 && _args63[0] !== undefined ? _args63[0] : {};
             _context63.next = 3;
-            return vm.$u.get('/addons/shop/api.address/def_address', params);
+            return vm.$u.get('/addons/shop/api.address/detail', params);
           case 3:
             return _context63.abrupt("return", _context63.sent);
           case 4:
@@ -28850,7 +28865,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee63);
   }));
-  vm.$api.delAddress = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee64() {
+  vm.$api.defAddress = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee64() {
     var params,
       _args64 = arguments;
     return _regenerator.default.wrap(function _callee64$(_context64) {
@@ -28859,7 +28874,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args64.length > 0 && _args64[0] !== undefined ? _args64[0] : {};
             _context64.next = 3;
-            return vm.$u.post('/addons/shop/api.address/del', params);
+            return vm.$u.get('/addons/shop/api.address/def_address', params);
           case 3:
             return _context64.abrupt("return", _context64.sent);
           case 4:
@@ -28869,7 +28884,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee64);
   }));
-  vm.$api.optionCollect = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee65() {
+  vm.$api.delAddress = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee65() {
     var params,
       _args65 = arguments;
     return _regenerator.default.wrap(function _callee65$(_context65) {
@@ -28878,7 +28893,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args65.length > 0 && _args65[0] !== undefined ? _args65[0] : {};
             _context65.next = 3;
-            return vm.$u.post('/addons/shop/api.collect/optionCollect', params);
+            return vm.$u.post('/addons/shop/api.address/del', params);
           case 3:
             return _context65.abrupt("return", _context65.sent);
           case 4:
@@ -28888,7 +28903,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee65);
   }));
-  vm.$api.collectList = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee66() {
+  vm.$api.optionCollect = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee66() {
     var params,
       _args66 = arguments;
     return _regenerator.default.wrap(function _callee66$(_context66) {
@@ -28897,7 +28912,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args66.length > 0 && _args66[0] !== undefined ? _args66[0] : {};
             _context66.next = 3;
-            return vm.$u.get('/addons/shop/api.collect/collectList', params);
+            return vm.$u.post('/addons/shop/api.collect/optionCollect', params);
           case 3:
             return _context66.abrupt("return", _context66.sent);
           case 4:
@@ -28907,7 +28922,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee66);
   }));
-  vm.$api.commentList = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee67() {
+  vm.$api.collectList = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee67() {
     var params,
       _args67 = arguments;
     return _regenerator.default.wrap(function _callee67$(_context67) {
@@ -28916,7 +28931,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args67.length > 0 && _args67[0] !== undefined ? _args67[0] : {};
             _context67.next = 3;
-            return vm.$u.get('/addons/shop/api.comment/index', params);
+            return vm.$u.get('/addons/shop/api.collect/collectList', params);
           case 3:
             return _context67.abrupt("return", _context67.sent);
           case 4:
@@ -28926,7 +28941,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee67);
   }));
-  vm.$api.commentAdd = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee68() {
+  vm.$api.commentList = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee68() {
     var params,
       _args68 = arguments;
     return _regenerator.default.wrap(function _callee68$(_context68) {
@@ -28935,7 +28950,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args68.length > 0 && _args68[0] !== undefined ? _args68[0] : {};
             _context68.next = 3;
-            return vm.$u.post('/addons/shop/api.comment/add', params);
+            return vm.$u.get('/addons/shop/api.comment/index', params);
           case 3:
             return _context68.abrupt("return", _context68.sent);
           case 4:
@@ -28945,7 +28960,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee68);
   }));
-  vm.$api.commentReply = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee69() {
+  vm.$api.commentAdd = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee69() {
     var params,
       _args69 = arguments;
     return _regenerator.default.wrap(function _callee69$(_context69) {
@@ -28954,7 +28969,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args69.length > 0 && _args69[0] !== undefined ? _args69[0] : {};
             _context69.next = 3;
-            return vm.$u.post('/addons/shop/api.comment/reply', params);
+            return vm.$u.post('/addons/shop/api.comment/add', params);
           case 3:
             return _context69.abrupt("return", _context69.sent);
           case 4:
@@ -28964,7 +28979,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee69);
   }));
-  vm.$api.scoreLogs = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee70() {
+  vm.$api.commentReply = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee70() {
     var params,
       _args70 = arguments;
     return _regenerator.default.wrap(function _callee70$(_context70) {
@@ -28973,7 +28988,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args70.length > 0 && _args70[0] !== undefined ? _args70[0] : {};
             _context70.next = 3;
-            return vm.$u.get('/addons/shop/api.score/logs', params);
+            return vm.$u.post('/addons/shop/api.comment/reply', params);
           case 3:
             return _context70.abrupt("return", _context70.sent);
           case 4:
@@ -28983,7 +28998,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee70);
   }));
-  vm.$api.exchangeList = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee71() {
+  vm.$api.scoreLogs = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee71() {
     var params,
       _args71 = arguments;
     return _regenerator.default.wrap(function _callee71$(_context71) {
@@ -28992,7 +29007,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args71.length > 0 && _args71[0] !== undefined ? _args71[0] : {};
             _context71.next = 3;
-            return vm.$u.get('/addons/shop/api.score/exchangeList', params);
+            return vm.$u.get('/addons/shop/api.score/logs', params);
           case 3:
             return _context71.abrupt("return", _context71.sent);
           case 4:
@@ -29002,7 +29017,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee71);
   }));
-  vm.$api.exchange = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee72() {
+  vm.$api.exchangeList = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee72() {
     var params,
       _args72 = arguments;
     return _regenerator.default.wrap(function _callee72$(_context72) {
@@ -29011,7 +29026,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args72.length > 0 && _args72[0] !== undefined ? _args72[0] : {};
             _context72.next = 3;
-            return vm.$u.post('/addons/shop/api.score/exchange', params);
+            return vm.$u.get('/addons/shop/api.score/exchangeList', params);
           case 3:
             return _context72.abrupt("return", _context72.sent);
           case 4:
@@ -29021,7 +29036,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee72);
   }));
-  vm.$api.myExchange = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee73() {
+  vm.$api.exchange = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee73() {
     var params,
       _args73 = arguments;
     return _regenerator.default.wrap(function _callee73$(_context73) {
@@ -29030,7 +29045,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args73.length > 0 && _args73[0] !== undefined ? _args73[0] : {};
             _context73.next = 3;
-            return vm.$u.get('/addons/shop/api.score/myExchange', params);
+            return vm.$u.post('/addons/shop/api.score/exchange', params);
           case 3:
             return _context73.abrupt("return", _context73.sent);
           case 4:
@@ -29040,7 +29055,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee73);
   }));
-  vm.$api.couponList = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee74() {
+  vm.$api.myExchange = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee74() {
     var params,
       _args74 = arguments;
     return _regenerator.default.wrap(function _callee74$(_context74) {
@@ -29049,7 +29064,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args74.length > 0 && _args74[0] !== undefined ? _args74[0] : {};
             _context74.next = 3;
-            return vm.$u.get('/addons/shop/api.coupon/couponList', params);
+            return vm.$u.get('/addons/shop/api.score/myExchange', params);
           case 3:
             return _context74.abrupt("return", _context74.sent);
           case 4:
@@ -29059,7 +29074,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee74);
   }));
-  vm.$api.couponDetail = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee75() {
+  vm.$api.couponList = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee75() {
     var params,
       _args75 = arguments;
     return _regenerator.default.wrap(function _callee75$(_context75) {
@@ -29068,7 +29083,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args75.length > 0 && _args75[0] !== undefined ? _args75[0] : {};
             _context75.next = 3;
-            return vm.$u.get('/addons/shop/api.coupon/couponDetail', params);
+            return vm.$u.get('/addons/shop/api.coupon/couponList', params);
           case 3:
             return _context75.abrupt("return", _context75.sent);
           case 4:
@@ -29078,7 +29093,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee75);
   }));
-  vm.$api.drawCoupon = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee76() {
+  vm.$api.couponDetail = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee76() {
     var params,
       _args76 = arguments;
     return _regenerator.default.wrap(function _callee76$(_context76) {
@@ -29087,7 +29102,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args76.length > 0 && _args76[0] !== undefined ? _args76[0] : {};
             _context76.next = 3;
-            return vm.$u.post('/addons/shop/api.coupon/drawCoupon', params);
+            return vm.$u.get('/addons/shop/api.coupon/couponDetail', params);
           case 3:
             return _context76.abrupt("return", _context76.sent);
           case 4:
@@ -29097,7 +29112,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee76);
   }));
-  vm.$api.myCouponList = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee77() {
+  vm.$api.drawCoupon = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee77() {
     var params,
       _args77 = arguments;
     return _regenerator.default.wrap(function _callee77$(_context77) {
@@ -29106,7 +29121,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args77.length > 0 && _args77[0] !== undefined ? _args77[0] : {};
             _context77.next = 3;
-            return vm.$u.get('/addons/shop/api.coupon/myCouponList', params);
+            return vm.$u.post('/addons/shop/api.coupon/drawCoupon', params);
           case 3:
             return _context77.abrupt("return", _context77.sent);
           case 4:
@@ -29116,7 +29131,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee77);
   }));
-  vm.$api.commentMyList = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee78() {
+  vm.$api.myCouponList = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee78() {
     var params,
       _args78 = arguments;
     return _regenerator.default.wrap(function _callee78$(_context78) {
@@ -29125,7 +29140,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args78.length > 0 && _args78[0] !== undefined ? _args78[0] : {};
             _context78.next = 3;
-            return vm.$u.get('/addons/shop/api.comment/myList', params);
+            return vm.$u.get('/addons/shop/api.coupon/myCouponList', params);
           case 3:
             return _context78.abrupt("return", _context78.sent);
           case 4:
@@ -29135,7 +29150,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee78);
   }));
-  vm.$api.pageIndex = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee79() {
+  vm.$api.commentMyList = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee79() {
     var params,
       _args79 = arguments;
     return _regenerator.default.wrap(function _callee79$(_context79) {
@@ -29144,7 +29159,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args79.length > 0 && _args79[0] !== undefined ? _args79[0] : {};
             _context79.next = 3;
-            return vm.$u.get('/addons/shop/api.page/index', params);
+            return vm.$u.get('/addons/shop/api.comment/myList', params);
           case 3:
             return _context79.abrupt("return", _context79.sent);
           case 4:
@@ -29154,7 +29169,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee79);
   }));
-  vm.$api.pageList = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee80() {
+  vm.$api.pageIndex = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee80() {
     var params,
       _args80 = arguments;
     return _regenerator.default.wrap(function _callee80$(_context80) {
@@ -29163,7 +29178,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args80.length > 0 && _args80[0] !== undefined ? _args80[0] : {};
             _context80.next = 3;
-            return vm.$u.get('/addons/shop/api.page/lists', params);
+            return vm.$u.get('/addons/shop/api.page/index', params);
           case 3:
             return _context80.abrupt("return", _context80.sent);
           case 4:
@@ -29173,7 +29188,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee80);
   }));
-  vm.$api.subscribe = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee81() {
+  vm.$api.pageList = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee81() {
     var params,
       _args81 = arguments;
     return _regenerator.default.wrap(function _callee81$(_context81) {
@@ -29182,7 +29197,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args81.length > 0 && _args81[0] !== undefined ? _args81[0] : {};
             _context81.next = 3;
-            return vm.$u.post('/addons/shop/api.subscribe/index', params);
+            return vm.$u.get('/addons/shop/api.page/lists', params);
           case 3:
             return _context81.abrupt("return", _context81.sent);
           case 4:
@@ -29192,7 +29207,7 @@ var install = function install(Vue, vm) {
       }
     }, _callee81);
   }));
-  vm.$api.attribute = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee82() {
+  vm.$api.subscribe = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee82() {
     var params,
       _args82 = arguments;
     return _regenerator.default.wrap(function _callee82$(_context82) {
@@ -29201,7 +29216,7 @@ var install = function install(Vue, vm) {
           case 0:
             params = _args82.length > 0 && _args82[0] !== undefined ? _args82[0] : {};
             _context82.next = 3;
-            return vm.$u.get('/addons/shop/api.attribute/index', params);
+            return vm.$u.post('/addons/shop/api.subscribe/index', params);
           case 3:
             return _context82.abrupt("return", _context82.sent);
           case 4:
@@ -29210,6 +29225,25 @@ var install = function install(Vue, vm) {
         }
       }
     }, _callee82);
+  }));
+  vm.$api.attribute = /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee83() {
+    var params,
+      _args83 = arguments;
+    return _regenerator.default.wrap(function _callee83$(_context83) {
+      while (1) {
+        switch (_context83.prev = _context83.next) {
+          case 0:
+            params = _args83.length > 0 && _args83[0] !== undefined ? _args83[0] : {};
+            _context83.next = 3;
+            return vm.$u.get('/addons/shop/api.attribute/index', params);
+          case 3:
+            return _context83.abrupt("return", _context83.sent);
+          case 4:
+          case "end":
+            return _context83.stop();
+        }
+      }
+    }, _callee83);
   }));
 };
 var _default = {
@@ -29407,7 +29441,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 764:
+/***/ 772:
 /*!*************************************************************************************!*\
   !*** /Users/liuting/yanliangliang/uview-ui/components/u-parse/libs/MpHtmlParser.js ***!
   \*************************************************************************************/
@@ -29421,9 +29455,9 @@ module.exports = {
  * @author JinYufeng
  * @listens MIT
  */
-var cfg = __webpack_require__(/*! ./config.js */ 765),
+var cfg = __webpack_require__(/*! ./config.js */ 773),
   blankChar = cfg.blankChar,
-  CssHandler = __webpack_require__(/*! ./CssHandler.js */ 766),
+  CssHandler = __webpack_require__(/*! ./CssHandler.js */ 774),
   windowWidth = uni.getSystemInfoSync().windowWidth;
 var emoji;
 function MpHtmlParser(data) {
@@ -29987,7 +30021,7 @@ module.exports = MpHtmlParser;
 
 /***/ }),
 
-/***/ 765:
+/***/ 773:
 /*!*******************************************************************************!*\
   !*** /Users/liuting/yanliangliang/uview-ui/components/u-parse/libs/config.js ***!
   \*******************************************************************************/
@@ -30069,14 +30103,14 @@ module.exports = cfg;
 
 /***/ }),
 
-/***/ 766:
+/***/ 774:
 /*!***********************************************************************************!*\
   !*** /Users/liuting/yanliangliang/uview-ui/components/u-parse/libs/CssHandler.js ***!
   \***********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var cfg = __webpack_require__(/*! ./config.js */ 765),
+var cfg = __webpack_require__(/*! ./config.js */ 773),
   isLetter = function isLetter(c) {
     return c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z';
   };
