@@ -19,14 +19,20 @@
 			<view class="loginBtn">
 				<!-- #ifdef MP-WEIXIN -->
 				<view class="u-text-center" style="width: 100%; height: 100%;" v-if="checkLogintype('wechatmobile')">
-					<u-button hover-class="none" open-type="getPhoneNumber" type="primary" :custom-style="{ backgroundColor: 'rgb(243, 148, 30)', width: '100%', height: '100%', color: '#fff'}" shape="circle" @getphonenumber="getPhoneNumber">
+					<u-button hover-class="none" open-type="getPhoneNumber" text="立即登录" type="primary" :custom-style="{ backgroundColor: 'rgb(243, 148, 30)', width: '100%', height: '100%', color: '#fff'}" shape="circle" @getphonenumber="getPhoneNumber">
 						立即登录
 					</u-button>
 				</view>
 				<!-- #endif -->
-				<!-- <view class="icon">
-					<image class="" :src="staticurl('logo_yanliangliang.png')" mode=""></image>
-				</view> -->
+				<!-- #ifdef H5 -->
+				<view v-if="checkLogintype('mobile') || checkLogintype('wechatmobile')">
+					<u-button hover-class="none" open-type="getPhoneNumber" text="立即登录" type="primary" 
+					:custom-style="{ backgroundColor: 'rgb(243, 148, 30)', width: '100%', height: '100%', color: '#fff'}" shape="circle" 
+					@click="goPage('/pages/login/mobilelogin')">
+						手机号验证登录
+					</u-button>
+				</view>
+				<!-- #endif -->
 			</view>
 		</view>
 	</view>

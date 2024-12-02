@@ -78,7 +78,7 @@
 			async handleClickSubmit(){
 					if(!this.form.nickname){
 						uni.showToast({
-							title: '请输入名称',
+							title: '请输入姓名',
 							icon: 'none'
 						})
 						return

@@ -31,7 +31,7 @@
 					<view class="label">开通会员</view>
 				</view>
 			</view> 
-			<view class="helpbox">
+			<view class="helpbox" @click="goPage('/pages/page/page?diyname=aboutus')">
 				<view class="icon">
 					<image :src="staticurl('shuoming_icon.png')" mode=""></image>
 				</view>

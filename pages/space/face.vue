@@ -15,8 +15,8 @@
 			<view class="check">
 				<checkbox :checked="check" />
 			</view>
-			<view class="text" >
-				已阅读并同意 <text>《人脸信息采集用户隐私条款》</text>
+			<view class="text">
+				已阅读并同意 <text @click="goPage('/pages/page/page?diyname=facialprivacy')">《人脸信息采集用户隐私条款》</text>
 			</view>
 		</view>
 	</view>

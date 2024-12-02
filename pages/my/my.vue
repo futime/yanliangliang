@@ -4,12 +4,12 @@
 		<view class="bg">
 			<image :src="staticurl('userbg.png')" mode=""></image>
 		</view>
-		<view class="userInfo">
+		<view class="userInfo" @click="gotoProfile">
 			<view class="avatar">
 				<image :src="staticurl('shuoming_icon.png')" mode=""></image>
 			</view>
 			<view class="right">
-				<view class="nickname" @click="gotoProfile">{{ vuex_user.nickname || '点击登录' }}</view>
+				<view class="nickname">{{ vuex_user.nickname || '点击登录' }}</view>
 				<view class="vipstatus" v-if="vuex_token || vuex_vipinfo">{{ vuex_vipinfo.name || ''}}：{{ checkVipExpiry() || '已过期'}}</view>
 			</view>
 		</view>
@@ -17,7 +17,7 @@
 			<view class="topcard" @click="handleClickBuyVip">
 				<view class="left">
 					<view class="text1">
-						<view class="">购买套餐</view>
+						<view class="">VIP套餐</view>
 						<view class="icon">
 							<image :src="staticurl('vip_icon.png')" mode=""></image>
 						</view>
@@ -74,7 +74,7 @@
 					},
 					{
 						img: this.staticurl('vip_icon.png'),
-						label: '我的邀请',
+						label: '邀请分享',
 						id: 3
 					},
 					{
@@ -164,7 +164,7 @@
 				console.log(this.vuex_token)
 				if(this.vuex_token){
 					uni.navigateTo({
-						url: '/pages/my/profile-add'
+						url: '/pages/my/profile'
 					})
 				}else{
 					uni.navigateTo({
@@ -271,9 +271,8 @@
 		border-radius: 24rpx;
 		position: relative;
 		top: -20rpx;
-
 		.topcard {
-			padding: 61rpx 38rpx;
+			padding: 40rpx 38rpx;
 			border-radius: 24rpx 24rpx 0px 0px;
 			background: linear-gradient(180.00deg, rgb(243, 148, 30), rgba(243, 148, 30, 0) 100%), rgb(252, 179, 88);
 			display: flex;
@@ -286,18 +285,18 @@
 				.text1 {
 					color: rgb(255, 255, 255);
 					font-family: Dream Han Sans CN;
-					font-size: 48rpx;
+					font-size: 42rpx;
 					font-weight: 400;
 					line-height: 50rpx;
 					letter-spacing: 0px;
 					text-align: left;
 					display: flex;
 					align-items: center;
-					margin-bottom: 22rpx;
+					margin-bottom: 12rpx;
 					.icon {
-						width: 61rpx;
-						height: 62rpx;
-						margin-left: 26rpx;
+						width: 42rpx;
+						height: 42rpx;
+						margin-left:16rpx;
 						image {
 							width: 100%;
 							height: 100%;
@@ -307,7 +306,7 @@
 				.text2 {
 					color: rgb(255, 255, 255);
 					font-family: Dream Han Sans CN;
-					font-size: 40rpx;
+					font-size: 36rpx;
 					font-weight: 400;
 					line-height: 50rpx;
 					letter-spacing: 0px;
@@ -315,20 +314,19 @@
 				}
 			}
 			.right  {
-				width: 240rpx;
-				height: 120rpx;
+				width: 210rpx;
+				height: 100rpx;
 				box-sizing: border-box;
 				border: 4rpx solid rgb(255, 255, 255);
 				border-radius: 300px;
 				display: flex;
 				justify-content: center;
 				align-items: center;
-				
 				color: rgb(255, 255, 255);
 				font-family: Dream Han Sans CN;
-				font-size: 48rpx;
+				font-size: 42rpx;
 				font-weight: 400;
-				line-height: 50rpx;
+				line-height: 42rpx;
 				letter-spacing: 0px;
 				text-align: left;
 			}
@@ -358,8 +356,8 @@
 			flex: 1;
 			color: rgb(17, 17, 17);
 			font-family: Dream Han Sans CN;
-			font-size: 48rpx;
-			font-weight: 400;
+			font-size: 40rpx;
+			font-weight: 500;
 			line-height: 50rpx;
 			letter-spacing: 0px;
 			text-align: left;
