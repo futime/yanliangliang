@@ -1,7 +1,7 @@
 {
-    "name" : "商城",
-    "appid" : "__UNI__A6481B5",
-    "description" : "商城",
+    "name" : "眼靓亮",
+    "appid" : "__UNI__85A0594",
+    "description" : "眼靓亮",
     "versionName" : "1.2.0",
     "versionCode" : 3,
     "transformPx" : false,
@@ -133,7 +133,7 @@
             "mode" : "hash",
             "base" : "./"
         },
-        "title" : "简单商城",
+        "title" : "眼靓亮",
         "devServer" : {
             "https" : false
         },

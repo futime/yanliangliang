@@ -107,7 +107,7 @@
 									// 每隔几秒钟增加进度条的百分之10
 									if (!this.progressInterval) {
 										let progressStep = 10; // 每次增加10%
-										let interval = 4000; // 每隔5秒更新一次
+										let interval = 500; // 每隔5秒更新一次
 
 										this.progressInterval = setInterval( async () => {
 											if (this.progress < 100) {

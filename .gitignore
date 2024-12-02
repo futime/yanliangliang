@@ -7,9 +7,11 @@ dist/
 # 忽略 HBuilderX 项目文件
 .idea/
 unpackage/
+unpackage/dist/
 
 # 忽略日志文件夹
 logs/
+
  
 # 忽略所有的 yarn-lock.json 文件
 yarn-lock.json
