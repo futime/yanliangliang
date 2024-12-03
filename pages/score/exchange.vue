@@ -3,32 +3,32 @@
 		<!-- 顶部导航 -->
 		<fa-navbar title="积分兑换"></fa-navbar>
 		<!-- 搜索 -->
-		<view class="u-p-20 u-bg-white"><fa-search :mode="2" @search="search"></fa-search></view>
+		<!-- <view class="u-p-20 u-bg-white"><fa-search :mode="2" @search="search"></fa-search></view> -->
 		<view class="">
 			<u-dropdown :active-color="theme.bgColor">
-				<u-dropdown-item v-model="type" title="筛选" :options="options1" @change="change1"></u-dropdown-item>
-				<u-dropdown-item v-model="value2" title="排序" :options="options2" @change="change2"></u-dropdown-item>
+				<u-dropdown-item v-model="type" title="物品分类" :options="options1" @change="change1"></u-dropdown-item>
+				<u-dropdown-item v-model="value2" title="列表排序" :options="options2" @change="change2"></u-dropdown-item>
 			</u-dropdown>
 		</view>
 
 		<view class="fa-list-item u-border-top" v-for="(item, index) in list" :key="index">
 			<view class="fa-item-image"><image :src="item.image" mode="aspectFill"></image></view>
 			<view class="">
-				<view class="u-font-30 text-weight">
+				<view class="u-font-36 text-weight">
 					<text class="u-line-2">{{ item.title }}</text>
 				</view>
 				<view class="u-line-3 u-m-t-10 u-tips-color">{{ item.description }}</view>
-				<view class="u-flex u-col-center u-row-between u-m-t-20">
+				<view class="u-flex u-col-center u-row-between u-m-t-10">
 					<view>
-						积分:
-						<text class="text-weight price u-font-30">{{ item.score }}</text>
+						兑换所需积分:
+						<text class="text-weight price u-font-30 u-m-l-10">{{ item.score }}</text>
 					</view>
 					<view class="">
 						<u-button
 							size="mini"
 							type="primary"
 							hover-class="none"
-							:custom-style="{ backgroundColor: theme.bgColor, color: theme.color, width: '20vw' }"
+							:custom-style="{ backgroundColor: theme.bgColor, color: theme.color, width: '28vw' }"
 							shape="circle"
 							@click="toExchange(item)"
 						>
@@ -44,12 +44,12 @@
 				<view class="" style="width: 90%;">
 					<u-form :model="form" ref="uForm">
 						<block v-if="form.type != 'virtual'">
-							<u-form-item label="地址:" :required="true">
-								<u-input @click="showSelectAddress" v-model="form.address" placeholder="请选择地址" />
+							<u-form-item label="收货地址:" :required="true">
+								<u-input @click="showSelectAddress" v-model="form.address" placeholder="点击选择收货地址" />
 							</u-form-item>
 						</block>
 						<u-form-item label="备注:"><u-input type="textarea" v-model="form.memo" placeholder="请填写备注" /></u-form-item>
-						<u-form-item label="数量:">
+						<u-form-item label="兑换数量:">
 							<view class=""><u-number-box v-model="form.nums"></u-number-box></view>
 						</u-form-item>
 					</u-form>
@@ -61,14 +61,14 @@
 				</view>
 			</view>
 		</u-popup>
-		<fa-add-my :custom-style="{ backgroundColor: theme.lightColor }">
-			<view class="u-text-center u-font-22" :style="[{ color: theme.bgColor }]">
+		<fa-add-my >
+			<view class="u-text-center u-font-30 myOrderbtn" >
 				<view class="">我的</view>
 				<view class="">兑换</view>
 			</view>
 		</fa-add-my>
 		<!-- 加载更多 -->
-		<view class="u-p-t-30 u-p-b-30 u-border-top" v-if="list.length"><u-loadmore bg-color="#ffffff" :status="has_more ? status : 'nomore'" /></view>
+		<view class="u-m-t-60 u-p-t-30 u-p-b-30" v-if="list.length"><u-loadmore bg-color="#ffffff" :status="has_more ? status : 'nomore'" /></view>
 		<!-- 空数据 -->
 		<view class="u-flex u-row-center fa-empty top-15" v-if="is_empty">
 			<image src="../../static/image/data.png" mode=""></image>
@@ -115,21 +115,21 @@ export default {
 					value: 'weigh_desc'
 				},
 				{
-					label: '积分升序',
+					label: '积分从低到高',
 					value: 'score_asc'
 				},
 				{
-					label: '积分降序',
+					label: '积分从高到低',
 					value: 'score_desc'
 				},
-				{
-					label: '销量升序',
-					value: 'sales_asc'
-				},
-				{
-					label: '销量降序',
-					value: 'sales_desc'
-				}
+				// {
+				// 	label: '销量升序',
+				// 	value: 'sales_asc'
+				// },
+				// {
+				// 	label: '销量降序',
+				// 	value: 'sales_desc'
+				// }
 			],
 			show: false,
 			form: {
@@ -171,14 +171,20 @@ export default {
 			this.getExchangeList();
 		},
 		toExchange(item) {
-			if (!this.addressList.length) {
-				this.getAddressList();
+			if(this.vuex_token){
+				if (!this.addressList.length) {
+					this.getAddressList();
+				}
+				if(!this.vuex_token) return;
+				this.show = true;
+				this.form.exchange_id = item.id;
+				this.form.type = item.type;
+				this.form.memo = '';
+			}else{
+				uni.navigateTo({
+					url: '/pages/login/login'
+				})
 			}
-			if(!this.vuex_token) return;
-			this.show = true;
-			this.form.exchange_id = item.id;
-			this.form.type = item.type;
-			this.form.memo = '';
 		},
 		showSelectAddress() {
 			if (!this.addressList.length) {
@@ -262,16 +268,26 @@ page {
 	color: #333;
 	padding: 30rpx;
 	.fa-item-image {
+		margin-bottom:20rpx;
 		image {
 			width: 100%;
 			flex: 0 0 120rpx;
-			height: 350rpx;
+			height: 480rpx;
 			border-radius: 10rpx;
 		}
 	}
 }
+.u-btn--primary{
+	font-size:28rpx!important;
+	background: #F3941E!important;
+	height:76rpx!important;
+}
 .u-flex-column {
 	flex-direction: column;
 	height: 100%;
+}
+:deep(.fa-add-my){
+	color:#fff;
+	background: #F3941E!important;
 }
 </style>

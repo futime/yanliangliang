@@ -10,7 +10,7 @@
 			</view>
 			<view class="right">
 				<view class="nickname">{{ vuex_user.nickname || '点击登录' }}</view>
-				<view class="vipstatus" v-if="vuex_token || vuex_vipinfo">{{ vuex_vipinfo.name || ''}}：{{ checkVipExpiry() || '已过期'}}</view>
+				<view class="vipstatus" v-if="vuex_token || vuex_vipinfo">{{ vuex_vipinfo.name || 'VIP截止'}}：{{ checkVipExpiry() || '已过期'}}</view>
 			</view>
 		</view>
 		<view class="contentcard">
@@ -70,7 +70,7 @@
 					},
 					{
 						img: this.staticurl('onlineservice _icon.png'),
-						label: '联系客服',
+						label: '在线客服',
 						id: 2
 					},
 					{
@@ -79,20 +79,30 @@
 						id: 3
 					},
 					{
-						img: this.staticurl('privacypolicy_icon.png'),
-						label: '隐私条例政策',
+						img: this.staticurl('pointsmall_icon.png'),
+						label: '积分商城',
 						id: 4
 					},
 					{
-						img: this.staticurl('pointsmall_icon.png'),
-						label: '积分商城',
+						img: this.staticurl('mypoints_icon.png'),
+						label: '我的积分',
 						id: 5
 					},
 					{
-						img: this.staticurl('setup_icon.png'),
-						label: '清除本机缓存',
+						img: this.staticurl('address_icon.png'),
+						label: '收货地址',
 						id: 6
-					}
+					},
+					{
+						img: this.staticurl('privacypolicy_icon.png'),
+						label: '隐私条例政策',
+						id: 7
+					},
+					// {
+					// 	img: this.staticurl('setup_icon.png'),
+					// 	label: '清除本机缓存',
+					// 	id: 8
+					// }
 				],
 				scrollTop: 0
 			}
@@ -129,15 +139,37 @@
 						break
 					case 4: 
 						uni.navigateTo({
-							url: '/pages/page/page?diyname=privacypolicy'
-						})
-						break;
-					case 5:
-						uni.navigateTo({
 							url: '/pages/score/exchange'
 						})
 						break;
+					case 5:
+						if(!this.vuex_token) {
+							uni.navigateTo({
+								url: '/pages/login/login'
+							})
+							return
+						}
+						uni.navigateTo({
+							url: '/pages/score/score'
+						})
+						break;
 					case 6:
+						if(!this.vuex_token) {
+							uni.navigateTo({
+								url: '/pages/login/login'
+							})
+							return
+						}
+						uni.navigateTo({
+							url: '/pages/address/address'
+						})
+						break;
+					case 7:
+						uni.navigateTo({
+							url: '/pages/page/page?diyname=privacypolicy'
+						})
+						break;
+					case 8:
 						uni.showToast({
 							title: '清除缓存成功！',
 							icon: 'none'
@@ -225,7 +257,6 @@
 		.userInfo {
 			padding: 50rpx 0;
 			display: flex;
-
 			.avatar {
 				width: 160rpx;
 				height: 160rpx;
@@ -297,7 +328,7 @@
 		background-color: #fff;
 		border-radius: 24rpx;
 		position: relative;
-		top: -20rpx;
+		top: 10rpx;
 		.topcard {
 			padding: 40rpx 38rpx;
 			border-radius: 24rpx 24rpx 0px 0px;
@@ -429,7 +460,6 @@
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			
 			color: rgb(255, 255, 255);
 			font-family: 思源黑体 CN;
 			font-size: 40rpx;

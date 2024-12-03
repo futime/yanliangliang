@@ -141,7 +141,7 @@ export const tools = {
 				// 页面栈中的最后一个即为项为当前页面，route属性为页面路径
 				let lastPageUrl = pages[pages.length - 1].$page.fullPath;
 				this.$u.vuex('vuex_lasturl', lastPageUrl);
-				this.$u.route('/pages/login/mobilelogin');
+				this.$u.route('/pages/login/login');
 				return;
 			}
 			uni.$u.route({

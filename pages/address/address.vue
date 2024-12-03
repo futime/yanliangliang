@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<!-- 顶部导航 -->
-		<fa-navbar title="地址管理" :border-bottom="false"></fa-navbar>
+		<fa-navbar title="收货地址管理" :border-bottom="false"></fa-navbar>
 		<u-swipe-action :show="item.show" :index="index" v-for="(item, index) in list" :key="item.id" @click="click"
 			@open="open" :options="options">
 			<view class="item u-border-bottom u-p-30" @click="select(item)">
@@ -22,14 +22,14 @@
 			</view>
 			<view class="" v-else>
 				<image src="../../static/image/data.png" mode=""></image>
-				<view class="u-tips-color">请先添加地址吧~</view>
+				<view class="u-tips-color">请先添加收货地址~</view>
 			</view>
 		</view>
 		<u-gap height="120" bg-color="#ffffff"></u-gap>
 		<view class="footer-bar u-flex u-col-center u-row-center u-border-top">
 			<u-button :custom-style="{ width: '80vw', backgroundColor: theme.bgColor, color: theme.color }"
 				shape="circle" type="primary" hover-class="none" @click="goPage('/pages/address/addedit')">
-				添加地址
+				添加收货地址
 			</u-button>
 		</view>
 		<!-- 底部导航 -->

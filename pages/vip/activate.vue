@@ -26,12 +26,12 @@
 			<view class="btn btn1" @click="handleClickWxPay">
 				微信支付
 			</view>
-			<view class="btn btn2">
+			<!-- <view class="btn btn2">
 				积分兑换
 			</view>
 			<view class="tip">
 				积分不足？使用或分享小程序获取
-			</view>
+			</view> -->
 		</view>
 	</view>
 </template>
@@ -261,8 +261,8 @@
 
 				&_right {
 					.label {
-						color: rgb(102, 102, 102);
-						font-size: 40rpx;
+						color: #333;
+						font-size: 38rpx;
 						font-weight: 400;
 						line-height: 50rpx;
 						letter-spacing: 0px;
@@ -271,11 +271,11 @@
 					}
 
 					.price {
-						color: rgb(153, 153, 153);
-						font-size: 36rpx;
-						font-weight: 400;
+						font-size: 34rpx;
+						font-weight: 600;
 						letter-spacing: 0px;
 						text-align: left;
+						color:#F3941E;
 					}
 				}
 			}

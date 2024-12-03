@@ -69,7 +69,7 @@ const install = (Vue, vm) => {
 		let url = config.url.split('?').shift();		
 		console.log(noLoginUrl.includes(url),url)
 		if (!noLoginUrl.includes(url) && !vm.vuex_token) {
-			vm.$u.route('/pages/login/mobilelogin');
+			vm.$u.route('/pages/login/login');
 			return false;
 		}
 		config.header.token = vm.vuex_token;

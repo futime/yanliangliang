@@ -10,9 +10,9 @@
 						<view class="u-flex u-m-t-10">
 							<view class="nickname">{{ vuex_user.nickname }}</view>
 						</view>
-						<view class="u-font-30 u-m-t-10">
+						<view class="u-font-36 u-m-t-10">
 							{{ vuex_user.score }}
-							<text class="u-font-20 u-m-l-5">积分</text>
+							<text class="u-font-32 u-m-l-5">积分</text>
 						</view>
 					</view>
 				</view>
@@ -45,8 +45,8 @@
 		<view class="u-flex u-row-between u-p-30 bg-title">
 			<view class="">获得积分渠道说明</view>
 			<view class="">
-				<u-icon name="info-circle"></u-icon>
-				<text class="u-m-l-10 u-tips-color">积分</text>
+				<!-- <u-icon name="info-circle"></u-icon> -->
+				<!-- <text class="u-m-l-10 u-tips-color">积分</text> -->
 			</view>
 		</view>
 		<view class="">
@@ -54,19 +54,19 @@
 				<u-cell-item
 					v-if="vuex_config.money_score > 0"
 					icon="order"
-					title="完成订单赠送积分"
-					value="去购买"
-					:label="`完成订单,1元可兑换${vuex_config.money_score}积分`"
-					@click="goPage('/pages/goods/goods')"
+					title="充值VIP赠送积分"
+					value="去充值"
+					:label="`开通VIP,消费1元可兑换${vuex_config.money_score}积分`"
+					@click="goPage('/pages/vip/activate')"
 				></u-cell-item>
-				<u-cell-item
+				<!-- <u-cell-item
 					v-if="vuex_config.comment_score > 0"
 					icon="edit-pen"
 					title="评价订单赠送积分"
 					value="去评价"
 					:label="`好评最多可得${vuex_config.comment_score}积分`"
 					@click="goPage('/pages/order/list?status=4')"
-				></u-cell-item>
+				></u-cell-item> -->
 				<u-cell-item
 					icon="pushpin-fill"
 					title="每日一签赠送积分"
@@ -74,7 +74,13 @@
 					label="每天签到最高可得7积分"
 					@click="goPage('/pages/signin/signin')"
 				></u-cell-item>
-				<!-- <u-cell-item icon="share-fill" title="邀请好友赠送积分" value="去邀请" label="每邀请一位好友赠送500积分" @click="invite"></u-cell-item> -->
+				<u-cell-item 
+					icon="share-fill" 
+					title="邀请好友赠送积分" 
+					value="去邀请" 
+					label="每邀请一位好友赠送10积分" 
+					@click="invite">
+				</u-cell-item>
 			</u-cell-group>
 		</view>
 		<!-- 底部导航 -->
@@ -124,5 +130,11 @@ export default {
 }
 .bg-title {
 	background-color: #f3f4f6;
+}
+.u-size-mini{
+	font-size:32rpx!important;
+}
+:deep(.u-size-mini){
+	font-size:32rpx!important;
 }
 </style>

@@ -20,7 +20,7 @@
 				<!-- #ifdef MP-WEIXIN -->
 				<view class="u-text-center" style="width: 100%; height: 100%;" v-if="checkLogintype('wechatmobile')">
 					<u-button hover-class="none" open-type="getPhoneNumber" text="立即登录" type="primary" :custom-style="{ backgroundColor: 'rgb(243, 148, 30)', width: '100%', height: '100%', color: '#fff'}" shape="circle" @getphonenumber="getPhoneNumber">
-						立即登录
+						账号一键登录
 					</u-button>
 				</view>
 				<!-- #endif -->

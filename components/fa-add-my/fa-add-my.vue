@@ -96,15 +96,15 @@ export default {
 
 <style lang="scss" scoped>
 .fa-add-my {
-	width: 80rpx;
-	height: 80rpx;
+	width: 100rpx;
+	height: 100rpx;
 	position: fixed;
 	z-index: 9;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	background-color: #e1e1e1;
-	color: $u-content-color;
+	background-color: #F3941E;
+	color: #fff;
 	align-items: center;
 	transition: opacity 0.4s;
 

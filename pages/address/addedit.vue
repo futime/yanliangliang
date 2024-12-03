@@ -12,7 +12,7 @@
 				<u-form-item label="详细地址" prop="address">
 					<u-input type="textarea" v-model="form.address" />
 					<u-button slot="right" type="primary" :custom-style="{ backgroundColor: theme.bgColor, color: theme.color }" size="mini" @click="chooseAddress">
-						选择地址
+						选择地理位置
 					</u-button>
 				</u-form-item>
 				<u-form-item label="设为默认地址" :border-bottom="false">
@@ -24,7 +24,7 @@
 		<view class="" v-if="is_render"><fa-citys v-model="cityShow" :areaCode="areaCode" @city-change="cityResult"></fa-citys></view>
 		<view class="footer-bar u-flex u-col-center u-row-center u-border-top">
 			<u-button type="primary" :custom-style="{ width: '80vw', backgroundColor: theme.bgColor, color: theme.color }" shape="circle" hover-class="none" @click="sumbit">
-				提交
+				提交保存
 			</u-button>
 		</view>
 	</view>
