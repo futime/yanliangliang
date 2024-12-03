@@ -113,10 +113,9 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		
 		.logo {
 			width: 518rpx;
-			height: 545rpx;
+			height: 653rpx;
 			image {
 				width: 100%;
 				height: 100%;

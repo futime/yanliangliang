@@ -51,12 +51,12 @@
 		<view class="leftbtns">
 			<view class="btnitem" @click="handleClickZhuru">
 				<image :src="staticurl('energy_icon_inject.png')" v-if="!zhuruStatus" mode=""></image>
-				<image :src="staticurl('energy_icon_choose.svg')" v-else mode=""></image>
+				<image :src="staticurl('energy_icon_choose.png')" v-else mode=""></image>
 			</view>
 			<view class="btnitem" @click="handleClickMute" v-if="zhuruStatus">
 				<image :src="staticurl('energy_icon_mute.png')" mode="" v-if="!muteFlag"></image>
 				<image :src="staticurl('energy_icon_mute_on.png')" mode="" v-else></image>
-			</view>
+			</view> 
 			<view class="btnitem" @click="handleClickClear" v-if="!zhuruStatus">
 				<image :src="staticurl('energy_icon_remove.png')" mode=""></image>
 			</view>
