@@ -1,8 +1,0 @@
-{
-  "navigationBarTitleText": "首页",
-  "navigationStyle": "custom",
-  "navigationBarTextStyle": "white",
-  "usingComponents": {
-    "fa-tabbar-vue": "/components/fa-tabbar/index"
-  }
-}

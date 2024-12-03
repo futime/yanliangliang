@@ -1,9 +1,0 @@
-{
-  "navigationBarTitleText": "个人中心",
-  "navigationStyle": "custom",
-  "navigationBarTextStyle": "white",
-  "usingComponents": {
-    "fa-navbar": "/components/fa-navbar/fa-navbar",
-    "fa-tabbar-vue": "/components/fa-tabbar/index"
-  }
-}
