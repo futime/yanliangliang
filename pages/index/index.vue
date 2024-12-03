@@ -5,7 +5,9 @@
 				<image :src="staticurl('homebanner_bg.jpeg')" mode=""></image>
 			</view>
 			<view class="person">
-				<image :src="staticurl('homebanner_men.png')" mode=""></image>
+				<image :src="staticurl('homebanner_men.png')" mode="" v-if="vuex_user.gender == 1" ></image>
+				<image :src="staticurl('homebanner_madam.png')" mode="" v-else-if="vuex_user.gender == 0" ></image>
+				<image :src="staticurl('homebanner_men.png')" mode="" v-else ></image>
 			</view>
 		</view>
 		<view class="content">

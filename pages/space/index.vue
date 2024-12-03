@@ -12,7 +12,7 @@
 			<!-- <image class="" :src="yourImageSrc" mode="heightFix"></image> -->
 			<canvas type="2d" id="renwu" :class="zhuruStatus ? 'zhuru' : ''" canvas-id="renwu"
 				@touchstart="handleTouch"></canvas>
-				
+
 			<template v-if="!zhuruStatus && showIcon">
 				<view class="yuan" :style="{ left: item.x + '%', top: item.y + '%'}" :class="item.type ? 'big' : ''"
 					:key="index" v-for="(item, index) in showPoints">
@@ -39,9 +39,9 @@
 		<view class="leftbtns">
 			<view class="btnitem" @click="handleClickZhuru">
 				<image :src="staticurl('energy_icon_inject.png')" v-if="!zhuruStatus" mode=""></image>
-				<image :src="staticurl('energy_icon_choose.svg')" v-else  mode=""></image>
+				<image :src="staticurl('energy_icon_choose.svg')" v-else mode=""></image>
 			</view>
-			<view class="btnitem" @click="handleClickMute">
+			<view class="btnitem" @click="handleClickMute" v-if="zhuruStatus">
 				<image :src="staticurl('energy_icon_mute.png')" mode=""></image>
 			</view>
 			<view class="btnitem" @click="handleClickClear" v-if="!zhuruStatus">
@@ -213,7 +213,13 @@
 			}
 		},
 		onLoad() {
-
+			if(this.vuex_user?.gender == 1){
+				this.active = 'man'
+			}else if(this.vuex_user?.gender == 0) {
+				this.active = 'madem'
+			}else{
+				this.active = 'man'
+			}
 		},
 		onUnload() {
 			this.backgroundMusic && this.backgroundMusic.destroy()
@@ -269,14 +275,14 @@
 				this.zhuruStatus = !this.zhuruStatus
 				if (this.showIcon) {
 					this.showIcon = false
-					this.backgroundMusic.stop()
+					// const randomIndex = Math.floor(Math.random() * this.backgroundTracks.length);
+					// const selectedTrack = this.backgroundTracks[randomIndex];
+					// this.backgroundMusic.src = selectedTrack
+					this.backgroundMusic.play()
 				} else {
 					setTimeout(() => {
-						// 随机选择一个背景音乐文件
-						const randomIndex = Math.floor(Math.random() * this.backgroundTracks.length);
-						const selectedTrack = this.backgroundTracks[randomIndex];
-						if(!this.muteFlag) {
-							this.backgroundMusic.play()
+						if (!this.muteFlag) {
+							this.backgroundMusic.stop()
 						}
 						this.showIcon = true
 					}, 500)
@@ -307,10 +313,10 @@
 
 			},
 			handleClickMute() {
-				if(this.muteFlag) {
+				if (this.muteFlag) {
 					this.muteFlag = false
 					this.backgroundMusic.play()
-				}else{
+				} else {
 					this.muteFlag = true
 					this.backgroundMusic.stop()
 				}
@@ -339,7 +345,8 @@
 			},
 			// 触发震动
 			triggerVibration() {
-				uni.vibrateShort({
+				wx.vibrateShort({
+					type: 'heavy',
 					success() {
 						console.log('震动成功');
 					},

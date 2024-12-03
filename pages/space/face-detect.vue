@@ -2,7 +2,7 @@
 	<view class="page">
 		<fa-navbar title="扫描面部信息" :background="{ background: '#fff' }"></fa-navbar>
 		<view class="faceBox">
-			<camera :device-position="'back'" class="camera" flash="off" resolution='high' />
+			<camera :device-position="'front'" class="camera" flash="off" resolution='high' />
 			<view class="mask">
 				<image :src="staticurl('facescan_mask.png')" mode=""></image>
 			</view>

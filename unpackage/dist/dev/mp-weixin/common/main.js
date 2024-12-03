@@ -189,7 +189,13 @@ var _default = {
                 });
               }
               this.$u.vuex('vuex_config', res.data);
-            case 10:
+              this.$u.mpShare = {
+                title: '眼靓亮 - 能量空间',
+                path: '/pages/index/index',
+                imageUrl: 'https://yanliangliang.com/static/images/mpshare.jpg'
+              };
+              console.log(this.$u.mpShare);
+            case 12:
             case "end":
               return _context.stop();
           }

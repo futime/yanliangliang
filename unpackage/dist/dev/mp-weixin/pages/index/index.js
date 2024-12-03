@@ -103,12 +103,21 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   var m0 = _vm.staticurl("homebanner_bg.jpeg")
-  var m1 = _vm.staticurl("homebanner_men.png")
-  var m2 = _vm.staticurl("homekvbottom_logo.svg")
-  var m3 = _vm.staticurl("energy_logo.png")
-  var m4 = _vm.staticurl("energy_logo.png")
-  var m5 = _vm.staticurl("shuoming_icon.png")
-  var m6 = _vm.staticurl("shuoming_btn_arrow.png")
+  var m1 =
+    _vm.vuex_user.gender == 1 ? _vm.staticurl("homebanner_men.png") : null
+  var m2 =
+    !(_vm.vuex_user.gender == 1) && _vm.vuex_user.gender == 0
+      ? _vm.staticurl("homebanner_madam.png")
+      : null
+  var m3 =
+    !(_vm.vuex_user.gender == 1) && !(_vm.vuex_user.gender == 0)
+      ? _vm.staticurl("homebanner_men.png")
+      : null
+  var m4 = _vm.staticurl("homekvbottom_logo.svg")
+  var m5 = _vm.staticurl("energy_logo.png")
+  var m6 = _vm.staticurl("energy_logo.png")
+  var m7 = _vm.staticurl("shuoming_icon.png")
+  var m8 = _vm.staticurl("shuoming_btn_arrow.png")
   _vm.$mp.data = Object.assign(
     {},
     {
@@ -120,6 +129,8 @@ var render = function () {
         m4: m4,
         m5: m5,
         m6: m6,
+        m7: m7,
+        m8: m8,
       },
     }
   )

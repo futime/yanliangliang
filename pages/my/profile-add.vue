@@ -1,6 +1,6 @@
 <template>
 	<view class="page">
-		<fa-navbar title="资料补充" :background="{ color: '#fff' }"></fa-navbar>
+		<fa-navbar :title="isnew ? '资料补充': '用户资料'" :background="{ color: '#fff' }"></fa-navbar>
 		<view class="form">
 			<view class="form-item">
 				<view class="form-item-label">姓名</view>
@@ -44,7 +44,7 @@
 					</view>
 				</view>
 			</view>
-			
+
 			<view class="form-item" v-if="vuex_user.face_image">
 				<view class="form-item-label">人脸信息</view>
 				<view class="form-item-content face">
@@ -55,7 +55,7 @@
 			</view>
 
 			<view class="loginBtn" @click="handleClickSubmit">
-				<view class="label">下一步</view>
+				<view class="label">{{ isnew ? '下一步' : '修改资料'}}</view>
 			</view>
 		</view>
 		<u-picker ref="picker" default-time="1970-07-02 13:01:00" v-model="showPickerYear" :params="params" mode="time"
@@ -81,12 +81,15 @@
 					nickname: '',
 					age: '',
 					body_weight: ''
-				}
+				},
+				isnew: false
 			}
 		},
 		onLoad(opt) {
 			if (!opt.isnew) {
 				this.initUserData()
+			} else {
+				this.isnew = true
 			}
 		},
 		methods: {
@@ -131,16 +134,28 @@
 				}
 				let res = await this.$api.getUserProfile({
 					...this.form,
-					gender: this.form.sex
+					gender: this.form.gender
 				});
 				this.$u.toast(res.msg);
 				if (res.code) {
+					this.getUserIndex()
 					setTimeout(() => {
 						this.$u.route({
 							type: 'switchTab',
-							url: '/pages/my/my'
+							url: '/pages/index/index'
 						});
 					}, 800)
+				}
+			},
+			getUserIndex: async function() {
+				let res = await this.$api.getUserIndex();
+				if (res.code == 1) {
+					const res2 = await this.$api.getVipInfo()
+					this.$u.vuex('vuex_vipinfo', res2.data.vipInfo);
+					this.$u.vuex('vuex_user', res.data.userInfo || {});
+				} else {
+					this.$u.toast(res.msg);
+					return;
 				}
 			},
 			selectYear(e) {
@@ -192,17 +207,21 @@
 				border: 2rpx solid rgb(221, 221, 221);
 				border-radius: 12rpx;
 				padding: 0 33rpx;
+
 				&.face {
 					height: auto;
 					border: 2rpx solid transparent;
 					padding: 0;
+
 					.faceimage {
 						width: 100%;
+
 						image {
 							width: 100%;
 						}
 					}
 				}
+
 				.input {
 					width: 100%;
 					height: 100%;

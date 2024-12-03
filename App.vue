@@ -67,6 +67,14 @@
 				this.$util.setTabbar(this.vuex_tabbar);
 			}
 			// #endif
+
+
+			this.$u.mpShare = {
+				title: '眼靓亮 - 能量空间',
+				path: '/pages/index/index',
+				imageUrl: 'https://yanliangliang.com/static/images/mpshare.jpg'
+			}
+			console.log(this.$u.mpShare)
 		},
 		onShow: function() {
 			console.log('App Show');
@@ -158,7 +166,7 @@
 
 	// #endif
 
-	.uni-toast__content{
-	 font-size: 50rpx;
+	.uni-toast__content {
+		font-size: 50rpx;
 	}
 </style>

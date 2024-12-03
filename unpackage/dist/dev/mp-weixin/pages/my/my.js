@@ -289,7 +289,6 @@ var _default = {
     },
     getUserIndex: function () {
       var _getUserIndex = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
-        var _this = this;
         var res, res2;
         return _regenerator.default.wrap(function _callee$(_context) {
           while (1) {
@@ -313,18 +312,21 @@ var _default = {
                 if (res.data.showProfilePrompt && !this.vuex_setting.prompted) {
                   // 弹窗每次登录状态只提示一次
                   this.$u.vuex('vuex_setting.prompted', true);
-                  uni.showModal({
-                    title: '温馨提示',
-                    confirmText: '去设置',
-                    cancelText: '取消',
-                    showCancel: true,
-                    content: '当前未设置昵称，请设置昵称后再继续操作',
-                    success: function success(res) {
-                      if (res.confirm) {
-                        _this.$u.route("/pages/my/profile");
-                      } else if (res.cancel) {}
-                    }
-                  });
+                  // 	uni.showModal({
+                  // 		title: '温馨提示',
+                  // 		confirmText: '去设置',
+                  // 		cancelText: '取消',
+                  // 		showCancel: true,
+                  // 		content: '当前未设置昵称，请设置昵称后再继续操作',
+                  // 		success: (res) => {
+
+                  // 			if (res.confirm) {
+                  // 				this.$u.route("/pages/my/profile");
+                  // 			} else if (res.cancel) {
+
+                  // 			}
+                  // 		}
+                  // 	});
                 }
                 _context.next = 15;
                 break;
