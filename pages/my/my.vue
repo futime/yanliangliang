@@ -27,7 +27,7 @@
 					</view>
 				</view>
 				<view class="right">
-					购买
+					开通
 				</view>
 			</view>
 			<view class="listitem" v-for="item in list" :key="item.id" @click="handleClickItem(item)">
@@ -64,32 +64,32 @@
 			return {
 				list: [
 					{
-						img: this.staticurl('vip_icon.png'),
+						img: this.staticurl('orderinquiry_icon.png'),
 						label: '订单查询',
 						id: 1
 					},
 					{
-						img: this.staticurl('vip_icon.png'),
+						img: this.staticurl('onlineservice _icon.png'),
 						label: '联系客服',
 						id: 2
 					},
 					{
-						img: this.staticurl('vip_icon.png'),
-						label: '邀请分享',
+						img: this.staticurl('inviteshare_icon.png'),
+						label: '邀请分享（待开放）',
 						id: 3
 					},
 					{
-						img: this.staticurl('vip_icon.png'),
+						img: this.staticurl('privacypolicy_icon.png'),
 						label: '隐私条例政策',
 						id: 4
 					},
 					{
-						img: this.staticurl('vip_icon.png'),
+						img: this.staticurl('pointsmall_icon.png'),
 						label: '积分商城',
 						id: 5
 					},
 					{
-						img: this.staticurl('vip_icon.png'),
+						img: this.staticurl('setup_icon.png'),
 						label: '清除本机缓存',
 						id: 6
 					}
@@ -361,10 +361,10 @@
 	}
 	
 	.listitem {
-		padding: 30rpx 60rpx;
+		padding: 30rpx 36rpx;
 		display: flex;
 		align-items: center;
-		border-bottom: 2rpx solid #DDDDDD;
+		border-bottom: 2rpx solid #e5e5e5;
 		position: relative;
 		.contactButton {
 			position: absolute;
@@ -373,13 +373,17 @@
 			right: 0;
 			bottom: 0;
 			background-color: transparent;
+			border:none;
+			&:after{
+				display: none;
+			}
 		}
 		&:last-child {
 			border-bottom: none;
 		}
 		.icon {
-			width: 60rpx;
-			height: 60rpx;
+			width: 54rpx;
+			height: 54rpx;
 			flex-shrink: 0;
 			margin-right: 20rpx;
 			image {
@@ -392,7 +396,7 @@
 			flex: 1;
 			color: rgb(17, 17, 17);
 			font-family: Dream Han Sans CN;
-			font-size: 40rpx;
+			font-size: 38rpx;
 			font-weight: 500;
 			line-height: 50rpx;
 			letter-spacing: 0px;
@@ -403,6 +407,7 @@
 			flex-shrink: 0;
 			width: 20rpx;
 			height: 40rpx;
+			opacity: .6;
 			image {
 				width: 100%;
 				height: 100%;

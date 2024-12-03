@@ -62,9 +62,9 @@
 			}
 		}
 		.sanjiao  {
-			width: 600rpx;
-			height: 572rpx;
-			margin-top: 233rpx;
+			width: 545rpx;
+			height: 460rpx;
+			margin-top: 120rpx;
 			image {
 				width: 100%;
 				height: 100%;
@@ -78,6 +78,8 @@
 			line-height: 80rpx;
 			letter-spacing: 4rpx;
 			text-align: center;
+			top: -120rpx;
+			position: relative;
 		}
 
 		.bg {

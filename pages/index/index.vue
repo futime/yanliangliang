@@ -28,7 +28,7 @@
 				</view>
 				<view class="menus-item" @click="handleClickVip">
 					<view class="icon">
-						<image :src="staticurl('energy_logo.png')" mode=""></image>
+						<image :src="staticurl('vip_icon.png')" mode=""></image>
 					</view>
 					<view class="label">开通会员</view>
 				</view>

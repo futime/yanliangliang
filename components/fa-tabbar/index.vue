@@ -58,7 +58,7 @@
 
 <style lang="scss" scoped>
 	.tabbar {
-		height: 210rpx;
+		height: 180rpx;
 		background: rgb(247, 247, 247);
 		width: 100%;
 		position: fixed;

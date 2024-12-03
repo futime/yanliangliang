@@ -8,7 +8,7 @@
 		</view>
 		<!-- Canvas用于绘制图片 -->
 		<view class="renwu">
-			{{ showIcon }}
+			<!--{{ showIcon }}-->
 			<!-- <image class="" :src="yourImageSrc" mode="heightFix"></image> -->
 			<canvas type="2d" id="renwu" :class="zhuruStatus ? 'zhuru' : ''" canvas-id="renwu"
 				@touchstart="handleTouch"></canvas>
@@ -39,7 +39,7 @@
 		<view class="leftbtns">
 			<view class="btnitem" @click="handleClickZhuru">
 				<image :src="staticurl('energy_icon_inject.png')" v-if="!zhuruStatus" mode=""></image>
-				<image :src="staticurl('energy_icon_choose.svg')" v-else mode=""></image>
+				<image :src="staticurl('energy_icon_choose.png')" v-else mode=""></image>
 			</view>
 			<view class="btnitem" @click="handleClickMute" v-if="zhuruStatus">
 				<image :src="staticurl('energy_icon_mute.png')" mode=""></image>
