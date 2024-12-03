@@ -1,9 +1,0 @@
-{
-  "navigationBarTitleText": "登录",
-  "navigationStyle": "custom",
-  "navigationBarTextStyle": "white",
-  "usingComponents": {
-    "fa-navbar": "/components/fa-navbar/fa-navbar",
-    "u-button": "/uview-ui/components/u-button/u-button"
-  }
-}
