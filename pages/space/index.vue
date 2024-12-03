@@ -8,7 +8,6 @@
 		</view>
 		<!-- Canvas用于绘制图片 -->
 		<view class="renwu">
-			{{ showIcon }}
 			<!-- <image class="" :src="yourImageSrc" mode="heightFix"></image> -->
 			<canvas type="2d" id="renwu" :class="zhuruStatus ? 'zhuru' : ''" canvas-id="renwu"
 				@touchstart="handleTouch"></canvas>
@@ -19,13 +18,26 @@
 					<image :src="staticurl('energy_halo.png')" mode=""></image>
 				</view>
 			</template>
-			<view class="guanghuan">
-				<image :src="staticurl('energy_aperturebg.png')" mode=""></image>
-			</view>
-			<view class="sanjiao">
-				<image :src="staticurl('energy_triangle.png')" mode=""></image>
-			</view>
 
+			<view class="guanghuanBox">
+				<uni-transition ref="guanghuan" :show="showGuanghuan" custom-class="guanghuan" :duration="2000"
+					mode-class="slide-bottom">
+					<image :src="staticurl('energy_aperturebg.png')" mode=""></image>
+				</uni-transition>
+			</view>
+			<!-- <view class="guanghuan">
+				<image :src="staticurl('energy_aperturebg.png')" mode=""></image>
+			</view> -->
+
+			<view class="sanjiaoBox">
+				<uni-transition ref="sanjiao" :show="showSanjiao" custom-class="sanjiao" :duration="3000"
+					mode-class="zoom-in">
+					<image :src="staticurl('energy_triangle.png')" mode=""></image>
+				</uni-transition>
+			</view>
+			<!-- 
+			<view class="sanjiao">
+			</view> -->
 			<view class="progress" v-if="zhuruStatus">
 				<view class="bg">
 					<image :src="staticurl('energy_numbg.svg')" mode=""></image>
@@ -42,7 +54,8 @@
 				<image :src="staticurl('energy_icon_choose.svg')" v-else mode=""></image>
 			</view>
 			<view class="btnitem" @click="handleClickMute" v-if="zhuruStatus">
-				<image :src="staticurl('energy_icon_mute.png')" mode=""></image>
+				<image :src="staticurl('energy_icon_mute.png')" mode="" v-if="!muteFlag"></image>
+				<image :src="staticurl('energy_icon_mute_on.png')" mode="" v-else></image>
 			</view>
 			<view class="btnitem" @click="handleClickClear" v-if="!zhuruStatus">
 				<image :src="staticurl('energy_icon_remove.png')" mode=""></image>
@@ -199,7 +212,9 @@
 				interval: null,
 				increment: 0.0001, // 每次增加的幅度
 				title: '',
-				muteFlag: false
+				muteFlag: false,
+				showSanjiao: false,
+				showGuanghuan: false
 			};
 		},
 		computed: {
@@ -213,11 +228,11 @@
 			}
 		},
 		onLoad() {
-			if(this.vuex_user?.gender == 1){
+			if (this.vuex_user?.gender == 1) {
 				this.active = 'man'
-			}else if(this.vuex_user?.gender == 0) {
+			} else if (this.vuex_user?.gender == 0) {
 				this.active = 'madem'
-			}else{
+			} else {
 				this.active = 'man'
 			}
 		},
@@ -233,7 +248,6 @@
 		},
 		methods: {
 			getRemainingTime(targetTime, level) {
-				console.log(targetTime)
 
 				// 将目标时间转换为 Date 对象，假设传入的时间格式是 "yyyy-MM-dd HH:mm:ss"
 				const targetDate = new Date(targetTime.replace(/-/g, "/")); // 替换日期中的 "-" 以兼容 Date 解析
@@ -380,6 +394,8 @@
 							0,
 							this.canvasWidth, this.canvasHeight
 						)
+						this.showSanjiao = true
+						this.showGuanghuan = true
 					}
 					image.src = imgUrl
 					return
@@ -428,6 +444,8 @@
 								this.canvasWidth,
 								this.canvasHeight
 							)
+							this.showSanjiao = true
+							this.showGuanghuan = true
 						}
 						image.src = imgUrl
 					})
@@ -585,7 +603,7 @@
 		// overflow: hidden;
 		position: relative;
 
-		.sanjiao {
+		.sanjiaoBox {
 			width: 600rpx;
 			height: 572rpx;
 			position: absolute;
@@ -593,14 +611,22 @@
 			left: 50%;
 			transform: translate(-50%, -50%);
 			z-index: -1;
+			display: flex;
+			justify-content: center;
+			align-items: center;
 
-			image {
-				width: 100%;
-				height: 100%;
+			/deep/ .sanjiao {
+				width: 600rpx;
+				height: 572rpx;
+
+				image {
+					width: 100%;
+					height: 100%;
+				}
 			}
 		}
 
-		.guanghuan {
+		.guanghuanBox {
 			width: 788rpx;
 			height: 439rpx;
 			position: absolute;
@@ -608,12 +634,22 @@
 			left: 50%;
 			transform: translateX(-50%);
 			z-index: -1;
+			display: flex;
+			justify-content: center;
+			align-items: center;
 
-			image {
-				width: 100%;
-				height: 100%;
+			/deep/ .guanghuan {
+				width: 788rpx;
+				height: 439rpx;
+				image {
+					width: 100%;
+					height: 100%;
+				}
 			}
 		}
+
+
+
 
 		.progress {
 			width: 500rpx;

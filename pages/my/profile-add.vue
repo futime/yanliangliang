@@ -140,10 +140,17 @@
 				if (res.code) {
 					this.getUserIndex()
 					setTimeout(() => {
-						this.$u.route({
-							type: 'switchTab',
-							url: '/pages/index/index'
-						});
+						if(this.isnew) {
+							this.$u.route({
+								type: 'switchTab',
+								url: '/pages/my/my'
+							});
+						}else{
+							this.$u.route({
+								type: 'switchTab',
+								url: '/pages/index/index'
+							});
+						}
 					}, 800)
 				}
 			},
