@@ -129,7 +129,10 @@
 					})
 					return
 				}
-				let res = await this.$api.getUserProfile(this.form);
+				let res = await this.$api.getUserProfile({
+					...this.form,
+					gender: this.form.sex
+				});
 				this.$u.toast(res.msg);
 				if (res.code) {
 					setTimeout(() => {

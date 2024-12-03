@@ -8,9 +8,11 @@
 		</view>
 		<!-- Canvas用于绘制图片 -->
 		<view class="renwu">
+			{{ showIcon }}
 			<!-- <image class="" :src="yourImageSrc" mode="heightFix"></image> -->
 			<canvas type="2d" id="renwu" :class="zhuruStatus ? 'zhuru' : ''" canvas-id="renwu"
 				@touchstart="handleTouch"></canvas>
+				
 			<template v-if="!zhuruStatus && showIcon">
 				<view class="yuan" :style="{ left: item.x + '%', top: item.y + '%'}" :class="item.type ? 'big' : ''"
 					:key="index" v-for="(item, index) in showPoints">
@@ -36,9 +38,13 @@
 
 		<view class="leftbtns">
 			<view class="btnitem" @click="handleClickZhuru">
-				<image :src="staticurl('energy_icon_inject.png')" mode=""></image>
+				<image :src="staticurl('energy_icon_inject.png')" v-if="!zhuruStatus" mode=""></image>
+				<image :src="staticurl('energy_icon_choose.svg')" v-else  mode=""></image>
 			</view>
-			<view class="btnitem" @click="handleClickClear">
+			<view class="btnitem" @click="handleClickMute">
+				<image :src="staticurl('energy_icon_mute.png')" mode=""></image>
+			</view>
+			<view class="btnitem" @click="handleClickClear" v-if="!zhuruStatus">
 				<image :src="staticurl('energy_icon_remove.png')" mode=""></image>
 			</view>
 			<!-- <view class="btnitem" @click="handleClickSex('man')">
@@ -48,7 +54,7 @@
 				<image :src="staticurl('energy_icon_remove.png')" mode=""></image>
 			</view> -->
 		</view>
-		<view class="rightbtns">
+		<view class="rightbtns" v-if="!zhuruStatus">
 			<view class="btnitem" @click="handleClickShowIcons('headCoord')">
 				<image :src="staticurl('energy_icon_head.png')" mode=""></image>
 			</view>
@@ -192,7 +198,8 @@
 				percentage: 50.2665, // 初始值，确保它有小数部分
 				interval: null,
 				increment: 0.0001, // 每次增加的幅度
-				title: ''
+				title: '',
+				muteFlag: false
 			};
 		},
 		computed: {
@@ -207,6 +214,9 @@
 		},
 		onLoad() {
 
+		},
+		onUnload() {
+			this.backgroundMusic && this.backgroundMusic.destroy()
 		},
 		onReady() {
 			this.initCanvasNew()
@@ -257,12 +267,19 @@
 			handleClickZhuru() {
 				if (!this.zhuruStatus && !this.showIcon) return
 				this.zhuruStatus = !this.zhuruStatus
-				if (!this.zhuruStatus) {
+				if (this.showIcon) {
 					this.showIcon = false
+					this.backgroundMusic.stop()
 				} else {
 					setTimeout(() => {
+						// 随机选择一个背景音乐文件
+						const randomIndex = Math.floor(Math.random() * this.backgroundTracks.length);
+						const selectedTrack = this.backgroundTracks[randomIndex];
+						if(!this.muteFlag) {
+							this.backgroundMusic.play()
+						}
 						this.showIcon = true
-					}, 2000)
+					}, 500)
 				}
 			},
 			// 清除
@@ -273,8 +290,6 @@
 			handleClickShowIcons(type) {
 				let points = this.bodys[this.active][this.positive][type]
 				const findIndex = this.bodys[this.active][this.positive].points.findIndex(item => item.type == type)
-
-
 				if (findIndex == -1) {
 					points.forEach(item => {
 						console.log(item)
@@ -291,6 +306,15 @@
 
 
 			},
+			handleClickMute() {
+				if(this.muteFlag) {
+					this.muteFlag = false
+					this.backgroundMusic.play()
+				}else{
+					this.muteFlag = true
+					this.backgroundMusic.stop()
+				}
+			},
 			initBackgroundAudioSound() {
 				// 随机选择一个背景音乐文件
 				const randomIndex = Math.floor(Math.random() * this.backgroundTracks.length);
@@ -298,7 +322,7 @@
 				// 创建背景音乐音频对象
 				this.backgroundMusic = uni.createInnerAudioContext();
 				this.backgroundMusic.src = selectedTrack; // 替换为背景音乐文件路径
-				this.backgroundMusic.autoplay = true; // 自动播放
+				this.backgroundMusic.autoplay = false; // 自动播放
 				this.backgroundMusic.loop = true; // 循环播放
 				this.backgroundMusic.volume = 1;
 			},

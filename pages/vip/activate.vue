@@ -95,7 +95,7 @@
 										console.log(res)
 									})
 								}
-								this.$u.route('/pages/order/list');
+								this.$u.route('/pages/vip/orderlist');
 							}
 						})
 					},
