@@ -65,7 +65,7 @@
 				list: [
 					{
 						img: this.staticurl('orderinquiry_icon.png'),
-						label: '订单查询',
+						label: '我的订单',
 						id: 1
 					},
 					{
@@ -75,7 +75,7 @@
 					},
 					{
 						img: this.staticurl('inviteshare_icon.png'),
-						label: '邀请分享（待开放）',
+						label: '邀请有奖（待开放）',
 						id: 3
 					},
 					{

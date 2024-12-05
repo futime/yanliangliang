@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<!-- 顶部导航 -->
-		<fa-navbar title="积分兑换"></fa-navbar>
+		<fa-navbar title="积分商城"></fa-navbar>
 		<!-- 搜索 -->
 		<!-- <view class="u-p-20 u-bg-white"><fa-search :mode="2" @search="search"></fa-search></view> -->
 		<view class="">

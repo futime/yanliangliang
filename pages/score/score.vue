@@ -25,7 +25,7 @@
 							:custom-style="{ background: theme.bgColor, color: '#ffffff' }"
 							@click="goPage('/pages/score/logs')"
 						>
-							积分日志
+							积分明细
 						</u-button>
 					</view>
 					<view class="">

@@ -296,7 +296,7 @@
 				} else {
 					setTimeout(() => {
 						if (!this.muteFlag) {
-							this.backgroundMusic.stop()
+							// this.backgroundMusic.stop()
 						}
 						this.showIcon = true
 					}, 500)
@@ -344,7 +344,7 @@
 				this.backgroundMusic.src = selectedTrack; // 替换为背景音乐文件路径
 				this.backgroundMusic.autoplay = false; // 自动播放
 				this.backgroundMusic.loop = true; // 循环播放
-				this.backgroundMusic.volume = 1;
+				this.backgroundMusic.volume = 0.8;
 			},
 			initClickSound() {
 				this.clickSound = uni.createInnerAudioContext();
