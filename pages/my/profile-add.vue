@@ -16,9 +16,12 @@
 			</view>
 			<view class="form-item">
 				<view class="form-item-label">体重 kg</view>
-				<view class="form-item-content">
-					<input class="input" v-model="form.body_weight" type="number" inputmode="numeric" @input="onInput"
-						placeholder="请输入体重(KG)">
+				<view class="form-item-content" @click="handleClickShowKgPicker">
+					<input class="input" v-model="form.body_weight" disabled type="number" inputmode="numeric"
+						@input="onInput" placeholder="请输入体重(KG)">
+					<view class="rightIcon">
+						KG
+					</view>
 				</view>
 			</view>
 			<view class="form-item">
@@ -58,20 +61,33 @@
 				<view class="label">{{ isnew ? '下一步' : '修改资料'}}</view>
 			</view>
 		</view>
-		<u-picker ref="picker" default-time="1970-07-02 13:01:00" v-model="showPickerYear" :params="params" mode="time"
+		<u-picker ref="picker" default-time="1970-01-01 00:00:00" v-model="showPickerYear" :params="params" mode="time"
 			@confirm="selectYear"></u-picker>
+		<u-picker ref="picker2" :range="weights" :default-selector="[50]" mode="selector" v-model="showPickerKg"
+			@confirm="selectKg"></u-picker>
 	</view>
 </template>
 
 <script>
+	// 生成体重数组的函数
+	function generateWeights(min, max) {
+		const weights = [];
+		for (let i = min; i <= max; i++) {
+			weights.push(i);
+		}
+		return weights;
+	}
 	export default {
+
 		data() {
 			return {
 				showPickerYear: false,
+				showPickerKg: false,
+				weights: [],
 				params: {
 					year: true,
-					month: false,
-					day: false,
+					month: true,
+					day: true,
 					hour: false,
 					minute: false,
 					second: false
@@ -86,6 +102,7 @@
 			}
 		},
 		onLoad(opt) {
+			this.weights = generateWeights(1, 400);
 			if (!opt.isnew) {
 				this.initUserData()
 			} else {
@@ -93,8 +110,16 @@
 			}
 		},
 		methods: {
+			selectKg(e) {
+				if (e) {
+					this.form.body_weight = e[0].toString()
+				}
+			},
 			handleClickShowPicker() {
 				this.showPickerYear = true
+			},
+			handleClickShowKgPicker() {
+				this.showPickerKg = true
 			},
 			initUserData() {
 				this.form.nickname = this.vuex_user.nickname
@@ -140,12 +165,12 @@
 				if (res.code) {
 					this.getUserIndex()
 					setTimeout(() => {
-						if(this.isnew) {
+						if (this.isnew) {
 							this.$u.route({
 								type: 'switchTab',
 								url: '/pages/my/my'
 							});
-						}else{
+						} else {
 							this.$u.route({
 								type: 'switchTab',
 								url: '/pages/index/index'
@@ -167,7 +192,7 @@
 			},
 			selectYear(e) {
 				if (e) {
-					this.form.age = e.year
+					this.form.age = `${e.year}-${e.month}-${e.day}`
 				}
 			},
 			onInput(event) {
@@ -214,6 +239,14 @@
 				border: 2rpx solid rgb(221, 221, 221);
 				border-radius: 12rpx;
 				padding: 0 33rpx;
+				position: relative;
+				
+				.rightIcon {
+					position: absolute;
+					right: 20rpx;
+					top: 50%;
+					transform: translateY(-50%);
+				}
 
 				&.face {
 					height: auto;
@@ -241,7 +274,7 @@
 				flex-wrap: nowrap;
 
 				.sexbox {
-					height: 447rpx;
+					height: 360rpx;
 					box-sizing: border-box;
 					// border: 3rpx solid rgb(255, 141, 0);
 					border: 3rpx solid rgb(221, 221, 221);

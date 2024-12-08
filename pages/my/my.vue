@@ -65,6 +65,11 @@
 				list: [
 					{
 						img: this.staticurl('orderinquiry_icon.png'),
+						label: '体验者列表',
+						id: 0
+					},
+					{
+						img: this.staticurl('orderinquiry_icon.png'),
 						label: '我的订单',
 						id: 1
 					},
@@ -120,6 +125,17 @@
 		methods: {
 			handleClickItem(item) {
 				switch(item.id) {
+					case 0:
+						if(!this.vuex_token) {
+							uni.navigateTo({
+								url: '/pages/login/login'
+							})
+							return
+						}
+						uni.navigateTo({
+							url: '/pages/experiencer/list'
+						})
+						break
 					case 1:
 						if(!this.vuex_token) {
 							uni.navigateTo({

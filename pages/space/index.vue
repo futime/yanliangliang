@@ -56,7 +56,7 @@
 			<view class="btnitem" @click="handleClickMute" v-if="zhuruStatus">
 				<image :src="staticurl('energy_icon_mute.png')" mode="" v-if="!muteFlag"></image>
 				<image :src="staticurl('energy_icon_mute_on.png')" mode="" v-else></image>
-			</view> 
+			</view>
 			<view class="btnitem" @click="handleClickClear" v-if="!zhuruStatus">
 				<image :src="staticurl('energy_icon_remove.png')" mode=""></image>
 			</view>
@@ -214,12 +214,37 @@
 				title: '',
 				muteFlag: false,
 				showSanjiao: false,
-				showGuanghuan: false
+				showGuanghuan: false,
+				selectBodyPoints: {
+					front: {
+						trunkCoord: [],
+						headCoord: [],
+						limbCoord: [],
+						other: []
+					},
+					back: {
+						trunkCoord: [],
+						headCoord: [],
+						limbCoord: [],
+						other: []
+					}
+				}
 			};
 		},
 		computed: {
 			showPoints() {
-				return this.bodys[this.active][this.positive].points
+				let arr = []
+				Object.keys(this.selectBodyPoints[this.positive]).forEach(item => {
+					let newArr = this.selectBodyPoints[this.positive][item].map( item => {
+						return {
+							x: item[0],
+							y: item[1],
+							type: item == 'other' ? '' : item
+						}
+					})
+					arr = arr.concat(newArr)
+				})
+				return arr
 			},
 			showBgVideo() {
 				const randomIndex = Math.floor(Math.random() * this.backgroundVideoTracks.length);
@@ -293,6 +318,9 @@
 					// const selectedTrack = this.backgroundTracks[randomIndex];
 					// this.backgroundMusic.src = selectedTrack
 					this.backgroundMusic.play()
+					this.$api.clickrecord({
+						map: this.selectBodyPoints
+					})
 				} else {
 					setTimeout(() => {
 						if (!this.muteFlag) {
@@ -309,20 +337,35 @@
 			// 点击躯干 头部这些
 			handleClickShowIcons(type) {
 				let points = this.bodys[this.active][this.positive][type]
-				const findIndex = this.bodys[this.active][this.positive].points.findIndex(item => item.type == type)
-				if (findIndex == -1) {
+				let selectPonits = this.selectBodyPoints[this.positive][type]
+				
+				if (!selectPonits.length) {
 					points.forEach(item => {
-						console.log(item)
-						this.bodys[this.active][this.positive].points.push({
-							x: item[0],
-							y: item[1],
-							type
-						})
+						//  this.selectBodyPoints[this.positive][type].push({
+						// 	x: item[0],
+						// 	y: item[1],
+						// 	type
+						// })
+						this.selectBodyPoints[this.positive][type].push([item[0], item[1]])
 					})
-				} else {
-					this.bodys[this.active][this.positive].points = this.bodys[this.active][this.positive].points.filter(
-						item => item.type != type)
+				}else{
+					this.selectBodyPoints[this.positive][type] = []
 				}
+				// let points = this.bodys[this.active][this.positive][type]
+				// const findIndex = this.bodys[this.active][this.positive].points.findIndex(item => item.type == type)
+				// if (findIndex == -1) {
+				// 	points.forEach(item => {
+				// 		console.log(item)
+				// 		this.bodys[this.active][this.positive].points.push({
+				// 			x: item[0],
+				// 			y: item[1],
+				// 			type
+				// 		})
+				// 	})
+				// } else {
+				// 	this.bodys[this.active][this.positive].points = this.bodys[this.active][this.positive].points.filter(
+				// 		item => item.type != type)
+				// }
 
 
 			},
@@ -556,10 +599,12 @@
 				// 触发震动
 				this.triggerVibration();
 
-				this.bodys[this.active][this.positive].points.push({
-					x: percentX,
-					y: percentY
-				})
+				// this.selectBodyPoints[this.positive]['other'].push({
+				// 	x: percentX,
+				// 	y: percentY
+				// })
+				
+				this.selectBodyPoints[this.positive]['other'].push([percentX, percentY])
 			}
 		}
 	};
@@ -601,7 +646,7 @@
 		width: 593rpx;
 		height: 1303rpx;
 		// overflow: hidden;
-		position: relative;
+		position: fixed;
 
 		.sanjiaoBox {
 			width: 600rpx;
@@ -630,7 +675,7 @@
 			width: 788rpx;
 			height: 439rpx;
 			position: absolute;
-			bottom: 0;
+			bottom: -10%;
 			left: 50%;
 			transform: translateX(-50%);
 			z-index: -1;
@@ -641,6 +686,7 @@
 			/deep/ .guanghuan {
 				width: 788rpx;
 				height: 439rpx;
+
 				image {
 					width: 100%;
 					height: 100%;

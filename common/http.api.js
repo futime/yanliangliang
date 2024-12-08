@@ -94,6 +94,13 @@ const install = (Vue, vm) => {
 	// 删除订单
 	vm.$api.delVipOrder  	  	= async (params = {}) => await vm.$u.post('/addons/vip/api.order/delete',params);
 	
+	// 注入
+	vm.$api.clickrecord  	  	= async (params = {}) => await vm.$u.post('/addons/shop/api.user/clickrecord',params);
+	// 体验者列表
+	vm.$api.listpatient  	  	= async (params = {}) => await vm.$u.get('/addons/shop/api.user/listpatient',params);
+	// 添加体验者
+	vm.$api.addpatient  	  	= async (params = {}) => await vm.$u.post('/addons/shop/api.user/addpatient',params);
+	
 	
 	// 登录	
 	vm.$api.getEmsSend 		  	= async (params = {}) => await vm.$u.post('/addons/shop/api.ems/send', params);

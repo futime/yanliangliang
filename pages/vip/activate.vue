@@ -23,22 +23,24 @@
 		</view>
 
 		<view class="btns">
-			<view class="btn btn1" @click="handleClickWxPay">
+			<view class="btn btn1" @click="handleClickWxPay('wechat')">
 				微信支付
 			</view>
-			<!-- <view class="btn btn2">
+			<view class="btn btn2" @click="handleClickWxPay('score')">
 				积分兑换
 			</view>
 			<view class="tip">
 				积分不足？使用或分享小程序获取
-			</view> -->
+			</view>
 		</view>
 	</view>
 </template>
 
 <script>
-	import { loginfunc } from '@/common/fa.mixin.js';
-	
+	import {
+		loginfunc
+	} from '@/common/fa.mixin.js';
+
 	export default {
 		mixins: [loginfunc],
 		data() {
@@ -52,7 +54,7 @@
 			this.queryVips()
 		},
 		methods: {
-			async handleClickWxPay() {
+			async handleClickWxPay(paytype) {
 				if (!this.selectVip) {
 					uni.showToast({
 						title: '请选择会员类型',
@@ -63,48 +65,59 @@
 				uni.showLoading({
 					title: '加载中...'
 				})
-				
+
 				const res = await this.$api.submitOrder({
 					level: this.selectVipObj.level,
 					days: this.selectVipObj.pricedata[0].days,
-					paytype: 'wechat',
+					paytype: paytype,
 					method: 'miniapp',
 					openid: this.vuex_openid || "",
 					logincode: await this.getMpCode(),
-					
+
 				})
 				if (!res.code) {
 					this.$u.toast(res.msg);
 					return;
 				}
-				uni.requestPayment({
-					provider: 'wxpay',
-					timeStamp: res.data.timeStamp,
-					nonceStr: res.data.nonceStr,
-					package: res.data.package,
-					signType: res.data.signType,
-					paySign: res.data.paySign,
-					success: rest => {
-						this.$u.toast('支付成功！');
-						wx.requestSubscribeMessage({
-							tmplIds: this.vuex_config.tpl_ids,
-							complete: (res) => {
-								console.log(res)
-								if (res.errMsg == 'requestSubscribeMessage:ok') {
-									this.$api.subscribe({ tpl_ids: res, order_sn: this.order.order_sn, openid: this.vuex_openid }).then(res => {
-										console.log(res)
-									})
+
+				if (paytype == 'wechat') {
+					uni.requestPayment({
+						provider: 'wxpay',
+						timeStamp: res.data.timeStamp,
+						nonceStr: res.data.nonceStr,
+						package: res.data.package,
+						signType: res.data.signType,
+						paySign: res.data.paySign,
+						success: rest => {
+							this.$u.toast('支付成功！');
+							wx.requestSubscribeMessage({
+								tmplIds: this.vuex_config.tpl_ids,
+								complete: (res) => {
+									if (res.errMsg == 'requestSubscribeMessage:ok') {
+										this.$api.subscribe({
+											tpl_ids: res,
+											order_sn: this.order.order_sn,
+											openid: this.vuex_openid
+										}).then(res => {
+											console.log(res)
+										})
+									}
+									this.$u.route('/pages/vip/orderlist');
 								}
-								this.$u.route('/pages/vip/orderlist');
-							}
-						})
-					},
-					fail: err => {
-						this.$u.toast('取消支付！');
-						// this.$api.cancelOrder({orderid: })
-						// this.$u.toast('fail:' + JSON.stringify(err));
-					}
-				});
+							})
+						},
+						fail: err => {
+							this.$u.toast('取消支付！');
+							// this.$api.cancelOrder({orderid: })
+							// this.$u.toast('fail:' + JSON.stringify(err));
+						}
+					});
+				} else {
+					this.$u.toast('兑换成功！')
+					this.$u.route('/pages/vip/orderlist');
+				}
+
+
 			},
 			handleClickSelectVip(item) {
 				this.selectVip = item.points
@@ -275,7 +288,7 @@
 						font-weight: 600;
 						letter-spacing: 0px;
 						text-align: left;
-						color:#F3941E;
+						color: #F3941E;
 					}
 				}
 			}

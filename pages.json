@@ -427,6 +427,29 @@
 				}
 			}
 		]
+	},
+	{
+		"root": "pages/experiencer",
+		"pages": [
+			{
+				"path": "list",
+				"style": {
+					"navigationBarTitleText": "体验者列表",
+					"navigationStyle": "custom",
+					"navigationBarTextStyle": "white",
+					"enablePullDownRefresh": false
+				}
+			},
+			{
+				"path": "add",
+				"style": {
+					"navigationBarTitleText": "编辑体验者信息",
+					"navigationStyle": "custom",
+					"navigationBarTextStyle": "white",
+					"enablePullDownRefresh": false
+				}
+			}
+		]
 	}
 	],
 	"preloadRule": {
