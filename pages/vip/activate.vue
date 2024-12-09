@@ -13,7 +13,7 @@
 					</view>
 				</view>
 				<view class="select_vip_box_item_right">
-					<view class="label">{{ item.name }}</view>
+					<view class="label">{{ item.pricedata[0].days }}天{{ item.name }}</view>
 					<view class="price">{{ item.pricedata[0].price }}元</view>
 				</view>
 			</view>
@@ -215,14 +215,14 @@
 				border: 4rpx solid rgb(221, 221, 221);
 				border-radius: 12rpx;
 				padding: 37rpx 0;
-				padding-left: 50rpx;
+				padding-left: 20rpx;
 				display: flex;
 				position: relative;
 
 
 				.check {
-					width: 50rpx;
-					height: 50rpx;
+					width: 40rpx;
+					height: 40rpx;
 					border-radius: 8rpx;
 					background-color: rgb(255, 141, 0);
 					position: absolute;
@@ -262,15 +262,17 @@
 
 					.label {
 						color: #F3941E;
+						font-weight: bold;
 					}
 
 					.price {
-						color: #F3941E;
+						color: #999;
+						font-weight: 500;
 					}
 				}
 
 				&_left {
-					margin-right: 24rpx;
+					margin-right: 16rpx;
 
 					.radio {
 						width: 50rpx;
@@ -282,9 +284,9 @@
 
 				&_right {
 					.label {
-						color: #333;
-						font-size: 38rpx;
-						font-weight: 500;
+						color: #000;
+						font-size: 36rpx;
+						font-weight: 00;
 						line-height: 50rpx;
 						letter-spacing: 0px;
 						text-align: left;

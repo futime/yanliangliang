@@ -108,7 +108,8 @@
 		}
 	}
 	.listBox{ 
-		padding: 39rpx 50rpx;
+		width:100%;
+		padding:40rpx 40rpx;
 		
 		.listItem {
 			padding: 20rpx;
