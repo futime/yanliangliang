@@ -326,7 +326,8 @@
 						map: this.selectBodyPoints,
 						isInject: '',
 						bodyStatus: '',
-						p_id: this.userid
+						p_id: this.userid,
+						body_image: this.positive == 'front' ? 1 : 2
 					})
 				} else {
 					setTimeout(() => {

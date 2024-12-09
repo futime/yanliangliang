@@ -9,6 +9,12 @@
 				添加完资料后，点击选择按钮进入能量空间
 			</view>
 		</view>
+		<view class="empty" v-if="!load && !list.length">
+			<image :src="staticurl('nodata_icon.png')" mode=""></image>
+			<view style="font-size: 38rpx; color: #666;">
+				暂无数据
+			</view>
+		</view>
 		<view class="listBox">
 			<view class="listItem" v-for="(item, index) in list" :key="index">
 				<view class="listItem-content">
@@ -62,7 +68,8 @@
 				selectColor: {
 					color: 'rgb(243, 148, 30)'
 				},
-				list: []
+				list: [],
+				load: true
 			}
 		},
 		onLoad() {
@@ -78,17 +85,33 @@
 				})
 			},
 			handleClickDel(id) {
-				this.$api.deletepatient({ id }).then( res => {
-					if(!res.code) {
-						this.$u.toast(res.msg);
+
+				uni.showModal({
+					title: '提示',
+					// content: '确认删除该体验者？',
+					success: async (res) => {
+						if (res.confirm) {
+							this.$api.deletepatient({
+								id
+							}).then(res => {
+								if (!res.code) {
+									this.$u.toast(res.msg);
+								}
+								this.$u.toast('操作成功');
+								this.getList()
+							})
+						} else if (res.cancel) {
+							console.log('用户点击取消');
+						}
 					}
-					this.$u.toast('操作成功');
-					this.getList()
-				})
+				});
+				
 			},
 			async getList() {
+				this.load = true
 				const res = await this.$api.listpatient()
 				this.list = res.data
+				this.load = false
 			},
 			handleClickAdd(item) {
 				if (item) {
@@ -135,10 +158,24 @@
 			margin-right: 10rpx;
 		}
 	}
+	
+	.empty {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items:  center;
+		image {
+			width: 300rpx;
+			height: 300rpx;
+			margin-bottom: 40rpx;
+		}
+	}
 
 	.listBox {
 		width: 100%;
 		padding: 40rpx 40rpx;
+		
+		
 
 		.listItem {
 			padding: 20rpx;
