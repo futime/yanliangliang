@@ -131,12 +131,24 @@
 					second: false
 				},
 				weights: [],
-				showWeight: false
+				showWeight: false,
+				userid: null
 			}
 		},
 		computed: {},
-		onLoad() {
+		onLoad(opt) {
 			this.weights = generateWeights(1, 400);
+			
+			if(opt.id) {
+				this.title = '编辑体验者信息'
+				this.form.name = opt.name
+				this.form.phone = opt.phone
+				this.form.sex = opt.sex
+				this.form.age = opt.age
+				this.form.body_weight = opt.body_weight
+				this.form.image = opt.image
+				this.userid = opt.id
+			}
 		},
 		// 必须要在onReady生命周期，因为onLoad生命周期组件可能尚未创建完毕
 		onReady() {
@@ -146,17 +158,14 @@
 			submit() {
 				this.$refs.uForm.validate( async valid => {
 					if (valid) {
-						console.log('验证通过');
 						const res = await this.$api.addpatient({
-							...this.form
+							...this.form,
+							id: this.userid
 						})
-						
 						if(!res.code) {
 							this.$u.toast(res.msg);
 						}
-						
-						this.$u.toast('添加成功');
-						
+						this.$u.toast(this.userid ? '编辑成功' : '添加成功');
 						setTimeout(() => {
 							uni.navigateBack()
 						}, 1500)
@@ -177,7 +186,6 @@
 				this.showWeight = true
 			},
 			selectKg(e) {
-				console.log(e)
 				if (e) {
 					this.form.body_weight = e[0].toString()
 				}

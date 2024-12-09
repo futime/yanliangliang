@@ -99,7 +99,16 @@ const install = (Vue, vm) => {
 	// 体验者列表
 	vm.$api.listpatient  	  	= async (params = {}) => await vm.$u.get('/addons/shop/api.user/listpatient',params);
 	// 添加体验者
-	vm.$api.addpatient  	  	= async (params = {}) => await vm.$u.post('/addons/shop/api.user/addpatient',params);
+	vm.$api.addpatient  	  	= async (params = {}) => {
+		if(params.id) {
+			return await vm.$u.post('/addons/shop/api.user/editpatient',params)
+		}else{
+			return await vm.$u.post('/addons/shop/api.user/addpatient',params)
+		}
+	};
+	// 删除信息
+	vm.$api.deletepatient  	  	= async (params = {}) => await vm.$u.post('/addons/shop/api.user/deletepatient',params);
+	
 	
 	
 	// 登录	

@@ -228,7 +228,8 @@
 						limbCoord: [],
 						other: []
 					}
-				}
+				},
+				userid: null
 			};
 		},
 		computed: {
@@ -252,7 +253,10 @@
 				return selectedTrack
 			}
 		},
-		onLoad() {
+		onLoad(opt) {
+			if(opt.userid){
+				this.userid = opt.userid
+			}
 			if (this.vuex_user?.gender == 1) {
 				this.active = 'man'
 			} else if (this.vuex_user?.gender == 0) {
@@ -319,7 +323,10 @@
 					// this.backgroundMusic.src = selectedTrack
 					this.backgroundMusic.play()
 					this.$api.clickrecord({
-						map: this.selectBodyPoints
+						map: this.selectBodyPoints,
+						isInject: '',
+						bodyStatus: '',
+						p_id: this.userid
 					})
 				} else {
 					setTimeout(() => {
@@ -341,11 +348,6 @@
 				
 				if (!selectPonits.length) {
 					points.forEach(item => {
-						//  this.selectBodyPoints[this.positive][type].push({
-						// 	x: item[0],
-						// 	y: item[1],
-						// 	type
-						// })
 						this.selectBodyPoints[this.positive][type].push([item[0], item[1]])
 					})
 				}else{

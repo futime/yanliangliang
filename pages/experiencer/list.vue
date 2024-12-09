@@ -10,22 +10,27 @@
 			</view>
 		</view>
 		<view class="listBox">
-			<view class="listItem">
+			<view class="listItem" v-for="(item, index) in list" :key="index">
 				<view class="listItem-content">
 					<view class="userinfo">
-						<view class="name">Marks</view>
-						<view class="phone">18888888888</view>
+						<view class="name">{{ item.name }}</view>
+						<view class="phone">{{ item.phone }}</view>
 					</view>
 					<view class="icon">
 						<u-icon name="arrow-right" color="#999999" size="40"></u-icon>
 					</view>
 				</view>
 				<view class="listItem-action">
-					<view class="buttonitem select">选择</view>
-					<view class="buttonitem edit">编辑</view>
+					<view class="left">
+						<view class="buttonitem select" @click="handleClickSelect(item.id)">选择</view>
+					</view>
+					<view class="right">
+						<view class="buttonitem del" @click="handleClickDel(item.id)">删除</view>
+						<view class="buttonitem edit" @click="handleClickAdd(item)">编辑</view>
+					</view>
 				</view>
 			</view>
-			
+
 			<view class="tishi">
 				<view class="tishititle">
 					温馨提示:
@@ -36,7 +41,7 @@
 				</view>
 			</view>
 		</view>
-		
+
 		<view class="btnGroup">
 			<view class="addbottom" @click="handleClickAdd">
 				<view class="icon">
@@ -55,7 +60,7 @@
 		data() {
 			return {
 				selectColor: {
-					color: rgb(243, 148, 30)
+					color: 'rgb(243, 148, 30)'
 				},
 				list: []
 			}
@@ -63,12 +68,35 @@
 		onLoad() {
 			this.getList()
 		},
+		onShow() {
+			this.getList()
+		},
 		methods: {
+			handleClickSelect(id) {
+				uni.redirectTo({
+					url: '/pages/space/index?userid=' + id
+				})
+			},
+			handleClickDel(id) {
+				this.$api.deletepatient({ id }).then( res => {
+					if(!res.code) {
+						this.$u.toast(res.msg);
+					}
+					this.$u.toast('操作成功');
+					this.getList()
+				})
+			},
 			async getList() {
 				const res = await this.$api.listpatient()
-				console.log(res)
+				this.list = res.data
 			},
-			handleClickAdd() {
+			handleClickAdd(item) {
+				if (item) {
+					this.$u.route('/pages/experiencer/add', {
+						...item
+					});
+					return
+				}
 				uni.navigateTo({
 					url: '/pages/experiencer/add'
 				})
@@ -83,14 +111,13 @@
 	}
 </style>
 <style lang="scss" scoped>
-	
 	.page {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		padding-bottom:180rpx;
+		padding-bottom: 180rpx;
 	}
-	
+
 	.tipBox {
 		display: flex;
 		align-items: center;
@@ -103,28 +130,31 @@
 		text-align: left;
 		background: rgb(253, 241, 225);
 		padding: 26rpx 50rpx;
+
 		.icon {
 			margin-right: 10rpx;
 		}
 	}
-	.listBox{ 
-		width:100%;
-		padding:40rpx 40rpx;
-		
+
+	.listBox {
+		width: 100%;
+		padding: 40rpx 40rpx;
+
 		.listItem {
 			padding: 20rpx;
 			border-radius: 20rpx;
 			box-shadow: 0px 4rpx 4rpx 2rpx rgba(0, 0, 0, 0.08);
 			background: rgb(255, 255, 255);
-			margin-bottom:40rpx;
+			margin-bottom: 40rpx;
+
 			.listItem-content {
 				display: flex;
 				justify-content: space-between;
 				align-items: center;
-				
+
 				border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 				padding-bottom: 30rpx;
-				
+
 				.userinfo {
 					color: rgb(0, 0, 0);
 					font-family: Arial;
@@ -138,16 +168,30 @@
 					.name {
 						margin-bottom: 20rpx;
 					}
-					.phone{
-						font-size:32rpx;
+
+					.phone {
+						font-size: 32rpx;
 					}
 				}
 			}
+
 			.listItem-action {
 				padding-top: 20rpx;
 				display: flex;
-				justify-content: flex-end;
-				
+				justify-content: space-between;
+
+				.left {
+					display: flex;
+					align-items: center;
+					justify-content: flex-start;
+				}
+
+				.right {
+					display: flex;
+					align-items: center;
+					justify-content: flex-end;
+				}
+
 				.buttonitem {
 					margin-right: 30rpx;
 					// width: 122rpx;
@@ -158,12 +202,19 @@
 					align-items: center;
 					box-sizing: border-box;
 					border: 1px solid rgba(0, 0, 0, 0.2);
-					color: rgb(102, 102, 102); 
+					color: rgb(102, 102, 102);
 					border-radius: 8rpx;
+
 					&.select {
 						border: 2px solid rgb(243, 148, 30);
-						color:  rgb(243, 148, 30);
+						color: rgb(243, 148, 30);
 					}
+
+					&.del {
+						color: #ddd;
+						border: 2px solid #ddd;
+					}
+
 					&:last-child {
 						margin-right: 0;
 					}
@@ -171,9 +222,10 @@
 			}
 		}
 	}
-	
+
 	.tishi {
 		margin-top: 80rpx;
+
 		.tishititle {
 			color: #666;
 			font-size: 36rpx;
@@ -183,6 +235,7 @@
 			text-align: left;
 			margin-bottom: 20rpx;
 		}
+
 		.desc {
 			color: #666;
 			font-size: 32rpx;
@@ -190,43 +243,47 @@
 			line-height: 1.8;
 			letter-spacing: 0px;
 			text-align: left;
-			text{
+
+			text {
 				display: block;
-				margin-bottom:12rpx;
+				margin-bottom: 12rpx;
 			}
 		}
 	}
-	
-	.btnGroup{
-		width:100%;
+
+	.btnGroup {
+		width: 100%;
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		position: fixed;
-		bottom:0vh;
-		left:0px;
-		height:160rpx;
+		bottom: 0vh;
+		left: 0px;
+		height: 160rpx;
 		background: #fff;
 	}
-	
+
 	.addbottom {
-		width:80%;
+		width: 80%;
 		height: 123rpx;
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		background:#F3941E;
+		background: #F3941E;
 		border-radius: 100rpx;
 		margin: 0 50rpx;
+
 		.icon {
 			width: 45rpx;
-			height:48rpx;
+			height: 48rpx;
 			margin-right: 30rpx;
+
 			image {
 				width: 100%;
 				height: 100%;
 			}
 		}
+
 		.text {
 			color: rgb(255, 255, 255);
 			font-family: 思源黑体 CN;
