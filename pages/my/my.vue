@@ -67,25 +67,21 @@
 		data() {
 			return {
 				list: [
-					{
-						img: this.staticurl('orderinquiry_icon.png'),
-						label: '体验者列表',
-						id: 0
-					},
+					
 					{
 						img: this.staticurl('orderinquiry_icon.png'),
 						label: '我的订单',
 						id: 1
 					},
 					{
+						img: this.staticurl('orderinquiry_icon.png'),
+						label: '体验者资料',
+						id: 0
+					},
+					{
 						img: this.staticurl('mypoints_icon.png'),
 						label: '我的积分',
 						id: 5
-					},
-					{
-						img: this.staticurl('onlineservice _icon.png'),
-						label: '在线客服',
-						id: 2
 					},
 					{
 						img: this.staticurl('inviteshare_icon.png'),
@@ -102,6 +98,11 @@
 						img: this.staticurl('address_icon.png'),
 						label: '收货地址',
 						id: 6
+					},
+					{
+						img: this.staticurl('onlineservice _icon.png'),
+						label: '在线客服',
+						id: 2
 					},
 					{
 						img: this.staticurl('privacypolicy_icon.png'),

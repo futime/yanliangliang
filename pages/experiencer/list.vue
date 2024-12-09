@@ -25,22 +25,26 @@
 					<view class="buttonitem edit">编辑</view>
 				</view>
 			</view>
+			
 			<view class="tishi">
 				<view class="tishititle">
-					温馨提示
+					温馨提示:
 				</view>
 				<view class="desc">
-					1. 体验者信息仅用于平台能量空间体验服务，<br>   不会外传，请您填写真实体验者资料
-					2. 为确保数据准确性，建议上传体验者照片，<br>  添加体验者时，请确认信息无误后再提交
+					<text>1. 体验者信息仅用于平台能量空间体验服务，<br>不会外传，请您填写真实个人资料。<br> </text>
+					<text>2. 为确保数据准确性，建议上传体验者照片，<br>添加体验者时，请确认信息无误后再提交。 </text>
 				</view>
 			</view>
 		</view>
-		<view class="addbottom" @click="handleClickAdd">
-			<view class="icon">
-				<image :src="staticurl('adduser_icon.png')" mode=""></image>
-			</view>
-			<view class="text">
-				新增体验者资料
+		
+		<view class="btnGroup">
+			<view class="addbottom" @click="handleClickAdd">
+				<view class="icon">
+					<image :src="staticurl('adduser_icon.png')" mode=""></image>
+				</view>
+				<view class="text">
+					新增体验者资料
+				</view>
 			</view>
 		</view>
 	</view>
@@ -84,6 +88,7 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		padding-bottom:180rpx;
 	}
 	
 	.tipBox {
@@ -110,7 +115,7 @@
 			border-radius: 20rpx;
 			box-shadow: 0px 4rpx 4rpx 2rpx rgba(0, 0, 0, 0.08);
 			background: rgb(255, 255, 255);
-			
+			margin-bottom:40rpx;
 			.listItem-content {
 				display: flex;
 				justify-content: space-between;
@@ -132,6 +137,9 @@
 					.name {
 						margin-bottom: 20rpx;
 					}
+					.phone{
+						font-size:32rpx;
+					}
 				}
 			}
 			.listItem-action {
@@ -152,7 +160,6 @@
 					color: rgb(102, 102, 102); 
 					border-radius: 8rpx;
 					&.select {
-						
 						border: 2px solid rgb(243, 148, 30);
 						color:  rgb(243, 148, 30);
 					}
@@ -165,30 +172,44 @@
 	}
 	
 	.tishi {
-		margin-top: 50rpx;
+		margin-top: 80rpx;
 		.tishititle {
-			color: rgb(0, 0, 0);
-			font-family: Dream Han Sans CN;
+			color: #666;
 			font-size: 36rpx;
 			font-weight: 400;
 			line-height: 50rpx;
 			letter-spacing: 0px;
 			text-align: left;
-			margin-bottom: 40rpx;
+			margin-bottom: 20rpx;
 		}
 		.desc {
-			color: rgb(153, 153, 153);
-			font-family: Dream Han Sans CN;
+			color: #666;
 			font-size: 32rpx;
 			font-weight: 400;
-			line-height: 50rpx;
+			line-height: 1.8;
 			letter-spacing: 0px;
 			text-align: left;
+			text{
+				display: block;
+				margin-bottom:12rpx;
+			}
 		}
 	}
 	
+	.btnGroup{
+		width:100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		position: fixed;
+		bottom:0vh;
+		left:0px;
+		height:160rpx;
+		background: #fff;
+	}
+	
 	.addbottom {
-		width: 598rpx;
+		width:80%;
 		height: 123rpx;
 		display: flex;
 		justify-content: center;
