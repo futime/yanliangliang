@@ -5,20 +5,20 @@
 			<view class="form-item">
 				<view class="form-item-label">姓名</view>
 				<view class="form-item-content">
-					<input class="input" v-model="form.nickname" placeholder="请输入姓名" type="text">
+					<input class="input" v-model="form.nickname" placeholder="请输入您的姓名" type="text">
 				</view>
 			</view>
 			<view class="form-item">
-				<view class="form-item-label">年龄</view>
+				<view class="form-item-label">出生日期</view>
 				<view class="form-item-content" @click="handleClickShowPicker">
-					<input class="input" v-model="form.age" disabled placeholder="请选择年份" type="text">
+					<input class="input" v-model="form.age" disabled placeholder="点击选择出生日期" type="text">
 				</view>
 			</view>
 			<view class="form-item">
 				<view class="form-item-label">体重 kg</view>
 				<view class="form-item-content" @click="handleClickShowKgPicker">
 					<input class="input" v-model="form.body_weight" disabled type="number" inputmode="numeric"
-						@input="onInput" placeholder="请输入体重(KG)">
+						@input="onInput" placeholder="点击选择体重(KG)">
 					<view class="rightIcon">
 						KG
 					</view>
@@ -56,9 +56,10 @@
 					</view>
 				</view>
 			</view>
-
-			<view class="loginBtn" @click="handleClickSubmit">
-				<view class="label">{{ isnew ? '下一步' : '修改资料'}}</view>
+			<view class="btnGroup">
+				<view class="loginBtn" @click="handleClickSubmit">
+					<view class="label">{{ isnew ? '下一步' : '保存编辑'}}</view>
+				</view>
 			</view>
 		</view>
 		<u-picker ref="picker" default-time="1970-01-01 00:00:00" v-model="showPickerYear" :params="params" mode="time"
@@ -211,7 +212,7 @@
 
 <style lang="scss" scoped>
 	.page {
-		padding-top: 94rpx;
+		padding-top: 54rpx;
 		padding-left: 70rpx;
 		padding-right: 70rpx;
 		padding-bottom: 100rpx;
@@ -219,17 +220,16 @@
 
 	.form {
 		&-item {
-			margin-bottom: 66rpx;
+			margin-bottom: 36rpx;
 
 			&-label {
 				color: rgb(17, 17, 17);
-				font-family: Dream Han Sans CN;
-				font-size: 48rpx;
-				font-weight: 400;
-				line-height: 50rpx;
+				font-size: 38rpx;
+				font-weight: 500;
+				line-height: 1.2;
 				letter-spacing: 0px;
 				text-align: left;
-				margin-bottom: 42rpx;
+				margin-bottom: 24rpx;
 			}
 
 			&-content {
@@ -343,10 +343,21 @@
 			}
 		}
 	}
-
+	
+	.btnGroup{
+		width:100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		position: fixed;
+		bottom:0vh;
+		left:0px;
+		height:160rpx;
+		background: #fff;
+	}
 	.loginBtn {
-		width: 648rpx;
-		height: 130rpx;
+		width:80%;
+		height: 110rpx;
 		border-radius: 300px;
 		background: rgb(243, 148, 30);
 		color: rgb(255, 255, 255);
@@ -359,6 +370,5 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		margin-top: 105rpx;
 	}
 </style>

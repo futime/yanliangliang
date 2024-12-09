@@ -19,7 +19,10 @@
 			</view>
 		</view>
 		<view class="tips">
-			特别提示：<br> 1、如遇到问题，点击在线客服沟通；<br> 2、本商品为线上付费线下体验商品，<br> 非虚拟商品。
+			特别提示：
+			<br> 1、如遇到问题，点击右下角在线客服沟通。
+			<br> 2、VIP为线上付费线下体验服务，非虚拟商品。
+			<br> 3、10积分可抵扣1元。
 		</view>
 
 		<view class="btns">
@@ -29,11 +32,16 @@
 			<view class="btn btn2" @click="handleClickWxPay('score')">
 				积分兑换
 			</view>
-			<view class="tip">
-				积分不足？使用或分享小程序获取
+			<view class="tiptxt">
+				<view>您的当前积分：{{ vuex_user.score }}</view>
+				<view></view>
 			</view>
 		</view>
+		
+		<!-- 小程序在线客服 -->
+		<button class="wechatKfLink" @click="showModal = true"></button>
 	</view>
+	
 </template>
 
 <script>
@@ -145,18 +153,17 @@
 			display: flex;
 			flex-direction: column;
 			align-items: center;
-			margin-top: 100rpx;
+			margin-top: 80rpx;
 
 			.btn {
 				width: 648rpx;
-				height: 122.73rpx;
+				height: 110rpx;
 				border-radius: 300px;
 				margin-bottom: 32rpx;
 				display: flex;
 				justify-content: center;
 				align-items: center;
-
-				font-size: 48rpx;
+				font-size: 45rpx;
 				font-weight: 400;
 				line-height: 50rpx;
 				letter-spacing: 0px;
@@ -173,22 +180,23 @@
 				}
 			}
 
-			.tip {
-				color: rgb(153, 153, 153);
-				font-family: Dream Han Sans CN;
-				font-size: 36rpx;
-				font-weight: 400;
+			.tiptxt {
+				color: #333;
+				// font-family: Dream Han Sans CN;
+				font-size: 38rpx;
+				font-weight: 54200;
 				line-height: 50rpx;
 				letter-spacing: 0px;
 				text-align: center;
+				margin-top:12rpx;
 			}
 		}
 
 		.tips {
-			margin-top: 200rpx;
-			color: rgb(153, 153, 153);
-			font-size: 36rpx;
-			font-weight: 300;
+			margin-top: 120rpx;
+			color: #666;
+			font-size: 32rpx;
+			font-weight: 500;
 			line-height: 60rpx;
 			letter-spacing: 0px;
 			text-align: left;
@@ -276,7 +284,7 @@
 					.label {
 						color: #333;
 						font-size: 38rpx;
-						font-weight: 400;
+						font-weight: 500;
 						line-height: 50rpx;
 						letter-spacing: 0px;
 						text-align: left;
@@ -293,5 +301,23 @@
 				}
 			}
 		}
+	}
+	
+	
+	.wechatKfLink{
+		  border:none;
+		  outline:none;
+		  box-shadow:none;
+		  position: fixed;
+		  bottom:6vh;
+		  right:30rpx;
+		  width:120rpx;
+		  height:120rpx;
+		  background: url(https://yanliangliang.com/static/images/wechatkf_icon.svg) center center no-repeat;
+		  background-size: cover;
+		  z-index:5000;
+		  &:after{
+			  display:none;
+		  }
 	}
 </style>

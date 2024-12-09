@@ -83,6 +83,8 @@
 				</u-cell-item>
 			</u-cell-group>
 		</view>
+		
+		
 		<!-- 底部导航 -->
 		<fa-tabbar></fa-tabbar>
 	</view>
@@ -137,4 +139,5 @@ export default {
 :deep(.u-size-mini){
 	font-size:32rpx!important;
 }
+
 </style>

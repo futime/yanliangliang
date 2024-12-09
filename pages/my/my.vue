@@ -41,6 +41,7 @@
 					<image :src="staticurl('shuoming_btn_arrow.png')" mode=""></image>
 				</view>
 				 <button v-if="item.id == 2" open-type="contact" class="contactButton"></button>
+				 <button v-if="item.id == 3" open-type="share" class="shareButton"></button>
 			</view>
 			
 			<view class="logout" v-if="vuex_token">
@@ -74,13 +75,18 @@
 						id: 1
 					},
 					{
+						img: this.staticurl('mypoints_icon.png'),
+						label: '我的积分',
+						id: 5
+					},
+					{
 						img: this.staticurl('onlineservice _icon.png'),
 						label: '在线客服',
 						id: 2
 					},
 					{
 						img: this.staticurl('inviteshare_icon.png'),
-						label: '邀请有奖（待开放）',
+						label: '邀请有奖',
 						id: 3
 					},
 					{
@@ -88,11 +94,7 @@
 						label: '积分商城',
 						id: 4
 					},
-					{
-						img: this.staticurl('mypoints_icon.png'),
-						label: '我的积分',
-						id: 5
-					},
+					
 					{
 						img: this.staticurl('address_icon.png'),
 						label: '收货地址',
@@ -147,12 +149,12 @@
 							url: '/pages/vip/orderlist'
 						})
 						break
-					case 3: 
-						uni.showToast({
-							title: '功能待开放',
-							icon: 'none'
-						})
-						break
+					// case 3: 
+					// 	uni.showToast({
+					// 		title: '功能待开放',
+					// 		icon: 'none'
+					// 	})
+					// 	break
 					case 4: 
 						uni.navigateTo({
 							url: '/pages/score/exchange'
@@ -302,7 +304,6 @@
 
 				.nickname {
 					color: rgb(0, 0, 0);
-					font-family: Dream Han Sans CN;
 					font-size: 48rpx;
 					font-weight: 400;
 					line-height: 50rpx;
@@ -313,9 +314,8 @@
 
 				.vipstatus {
 					color: rgb(0, 0, 0);
-					font-family: Dream Han Sans CN;
 					font-size: 30rpx;
-					font-weight: 400;
+					font-weight: 500;
 					line-height: 50rpx;
 					letter-spacing: 0px;
 					text-align: left;
@@ -413,7 +413,7 @@
 		align-items: center;
 		border-bottom: 2rpx solid #e5e5e5;
 		position: relative;
-		.contactButton {
+		.contactButton,.shareButton {
 			position: absolute;
 			top: 0;
 			left: 0;

@@ -53,18 +53,18 @@
 		justify-content: center;
 		align-items: center;
 		.startbtn {
-			width: 573rpx;
-			height: 135rpx;
-			margin-top: 137rpx;
+			width: 480rpx;
+			height: 113rpx;
+			margin-top: 100rpx;
 			image {
 				width: 100%;
 				height: 100%;
 			}
 		}
 		.sanjiao  {
-			width: 545rpx;
-			height: 460rpx;
-			margin-top: 120rpx;
+			width: 500rpx;
+			height: 422rpx;
+			margin-top: 80rpx;
 			image {
 				width: 100%;
 				height: 100%;
