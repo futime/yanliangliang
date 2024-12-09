@@ -85,8 +85,12 @@
 		</view>
 		
 		
+		<!-- 小程序在线客服 -->
+		<button class="wechatKfLink" @click="showModal = true"></button>
+		
 		<!-- 底部导航 -->
 		<fa-tabbar></fa-tabbar>
+		
 	</view>
 </template>
 
@@ -138,6 +142,23 @@ export default {
 }
 :deep(.u-size-mini){
 	font-size:32rpx!important;
+}
+
+.wechatKfLink{
+	  border:none;
+	  outline:none;
+	  box-shadow:none;
+	  position: fixed;
+	  bottom:6vh;
+	  right:30rpx;
+	  width:110rpx;
+	  height:110rpx;
+	  background: url(https://yanliangliang.com/static/images/wechatkf_icon_s2.svg) center center no-repeat;
+	  background-size: cover;
+	  z-index:5000;
+	  &:after{
+		  display:none;
+	  }
 }
 
 </style>

@@ -67,6 +67,13 @@
 				<view class="">兑换</view>
 			</view>
 		</fa-add-my>
+		
+		<view class="addressLink" @click="gotoAddress">
+			<view>收货</view>
+			<view>地址</view>
+		</view>
+		
+		
 		<!-- 加载更多 -->
 		<view class="u-m-t-60 u-p-t-30 u-p-b-30" v-if="list.length"><u-loadmore bg-color="#ffffff" :status="has_more ? status : 'nomore'" /></view>
 		<!-- 空数据 -->
@@ -226,6 +233,18 @@ export default {
 					this.is_empty = !this.list.length;
 				});
 		},
+		gotoAddress(){
+			console.log(this.vuex_token)
+			if(this.vuex_token){
+				uni.navigateTo({
+					url: '/pages/address/address'
+				})
+			}else{
+				uni.navigateTo({
+					url: '/pages/login/login'
+				})
+			}
+		},
 		submit() {
 			if (this.form.type == 'reality') {
 				if (!this.form.address) {
@@ -289,5 +308,32 @@ page {
 :deep(.fa-add-my){
 	color:#fff;
 	background: #F3941E!important;
+	right:30rpx!important;
+}
+
+.addressLink{
+	  border:none;
+	  outline:none;
+	  box-shadow:none;
+	  position: fixed;
+	  bottom:10vh;
+	  right:30rpx;
+	  width:100rpx;
+	  height:100rpx;
+	  border:1px solid #F3941E;
+	  z-index:5000;
+	  color:#F3941E;
+	  border-radius: 50%;
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	  flex-direction: column;
+	  font-weight: 600;
+	  font-size:30rpx;
+	  line-height: 1.2;
+	  text-align: center;
+	  &:after{
+		  display:none;
+	  }
 }
 </style>

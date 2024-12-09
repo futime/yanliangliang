@@ -50,6 +50,9 @@
 				</view>
 			</view>
 		</view>
+		
+		<!-- 小程序在线客服 -->
+		<button class="wechatKfLink" @click="showModal = true"></button>
 		<faTabbarVue :active="'my'"></faTabbarVue>
 	</view>
 </template>
@@ -484,5 +487,23 @@
 			letter-spacing: 0px;
 			text-align: center;
 		}
+	}
+	
+	
+	.wechatKfLink{
+		  border:none;
+		  outline:none;
+		  box-shadow:none;
+		  position: fixed;
+		  bottom:15vh;
+		  right:30rpx;
+		  width:110rpx;
+		  height:110rpx;
+		  background: url(https://yanliangliang.com/static/images/wechatkf_icon_s2.svg) center center no-repeat;
+		  background-size: cover;
+		  z-index:5000;
+		  &:after{
+			  display:none;
+		  }
 	}
 </style>

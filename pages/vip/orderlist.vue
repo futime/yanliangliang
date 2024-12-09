@@ -216,8 +216,8 @@
 		  position: fixed;
 		  bottom:6vh;
 		  right:30rpx;
-		  width:120rpx;
-		  height:120rpx;
+		  width:110rpx;
+		  height:110rpx;
 		  background: url(https://yanliangliang.com/static/images/wechatkf_icon_s2.svg) center center no-repeat;
 		  background-size: cover;
 		  z-index:5000;
