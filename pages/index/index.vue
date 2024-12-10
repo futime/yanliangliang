@@ -1,6 +1,6 @@
 <template>
 	<view class="page">
-		<view class="topView">
+		<view class="topView" @click="handleClickNengliang">
 			<view class="bg">
 				<image :src="staticurl('homebanner_bg.jpeg')" mode=""></image>
 			</view>

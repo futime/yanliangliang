@@ -86,7 +86,7 @@
 		
 		
 		<!-- 小程序在线客服 -->
-		<button class="wechatKfLink" @click="showModal = true"></button>
+		<button class="wechatKfLink" open-type="contact"></button>
 		
 		<!-- 底部导航 -->
 		<fa-tabbar></fa-tabbar>

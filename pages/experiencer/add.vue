@@ -16,8 +16,8 @@
 				</u-form-item>
 				<u-form-item label="出生日期"  prop="age" required><u-input v-model="form.age" type="select" placeholder="选择出生年月日"
 						@click="handleClickShowAge" /></u-form-item>
-				<u-form-item label="体重"  prop="body_weight" required><u-input v-model="form.body_weight" type="select"
-						placeholder="请选择体重（单位kg）" @click="handleClickShowWeight" /></u-form-item>
+				<!-- <u-form-item label="体重"  prop="body_weight" required><u-input v-model="form.body_weight" type="select"
+						placeholder="请选择体重（单位kg）" @click="handleClickShowWeight" /></u-form-item> -->
 				<u-form-item label="点击上传体验者照片"  prop="image"  label-position="top" required>
 					<view class="uploadBox">
 						<view class="uploadImage" v-if="form.image">
@@ -81,12 +81,12 @@
 						// 可以单个或者同时写两个触发验证方式 
 						trigger: ['change', 'blur'],
 					}],
-					body_weight: [{
-						required: true,
-						message: '请选择体重',
-						// 可以单个或者同时写两个触发验证方式 
-						trigger: ['change', 'blur'],
-					}],
+					// body_weight: [{
+					// 	required: true,
+					// 	message: '请选择体重',
+					// 	// 可以单个或者同时写两个触发验证方式 
+					// 	trigger: ['change', 'blur'],
+					// }],
 					image: [{
 						required: true,
 						message: '请上传照片',

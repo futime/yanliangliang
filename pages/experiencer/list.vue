@@ -1,14 +1,26 @@
 <template>
 	<view class="page">
 		<fa-navbar title="体验者列表" :borderBottom="true"></fa-navbar>
-		<view class="tipBox">
+		
+		
+		<view class="tipBox notipBox" v-if="!load && !list.length">
 			<view class="icon">
-				<u-icon name="info-circle" color="#F3941E" size="55"></u-icon>
+				<u-icon name="edit-pen" color="#F3941E" size="45"></u-icon>
+			</view>
+			<view class="text">
+				请先点击添加按钮，完成后进入能量空间
+			</view>
+		</view>
+		
+		<view class="tipBox" v-else>
+			<view class="icon">
+				<u-icon name="bookmark" color="#F3941E" size="55"></u-icon>
 			</view>
 			<view class="text">
 				添加完资料后，点击选择按钮进入能量空间
 			</view>
 		</view>
+		
 		<view class="empty" v-if="!load && !list.length">
 			<image :src="staticurl('nodata_icon.png')" mode=""></image>
 			<view style="font-size: 38rpx; color: #666;">
@@ -17,7 +29,7 @@
 		</view>
 		<view class="listBox">
 			<view class="listItem" v-for="(item, index) in list" :key="index">
-				<view class="listItem-content">
+				<view class="listItem-content" @click="handleClickSelect(item.id)">
 					<view class="userinfo">
 						<view class="name">{{ item.name }}</view>
 						<view class="phone">{{ item.phone }}</view>
@@ -57,6 +69,7 @@
 					新增体验者资料
 				</view>
 			</view>
+			<view class="addbtnTips"><text></text></view>
 		</view>
 	</view>
 </template>
@@ -88,7 +101,7 @@
 
 				uni.showModal({
 					title: '提示',
-					// content: '确认删除该体验者？',
+					content: '确认删除吗？',
 					success: async (res) => {
 						if (res.confirm) {
 							this.$api.deletepatient({
@@ -142,6 +155,7 @@
 	}
 
 	.tipBox {
+		width:100%;
 		display: flex;
 		align-items: center;
 		color: #F3941E;
@@ -157,6 +171,10 @@
 		.icon {
 			margin-right: 10rpx;
 		}
+	}
+	
+	.notipBox{
+	
 	}
 	
 	.empty {
@@ -245,11 +263,14 @@
 					&.select {
 						border: 2px solid rgb(243, 148, 30);
 						color: rgb(243, 148, 30);
+						padding:0rpx 36rpx;
+						font-size:30rpx;
+						line-height: 70rpx;
 					}
 
 					&.del {
-						color: #ddd;
-						border: 2px solid #ddd;
+						color: #d8d8d8;
+						border: 1px solid #d8d8d8;
 					}
 
 					&:last-child {
@@ -296,8 +317,13 @@
 		position: fixed;
 		bottom: 0vh;
 		left: 0px;
-		height: 160rpx;
+		height: 180rpx;
 		background: #fff;
+		flex-direction: column;
+	}
+	
+	.addbtnTips{
+		
 	}
 
 	.addbottom {

@@ -678,7 +678,7 @@
 			width: 788rpx;
 			height: 439rpx;
 			position: absolute;
-			bottom: -10%;
+			bottom: -6%;
 			left: 50%;
 			transform: translateX(-50%);
 			z-index: -1;

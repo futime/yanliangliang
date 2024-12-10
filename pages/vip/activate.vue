@@ -1,6 +1,16 @@
 <template>
 	<view class="page">
 		<fa-navbar title="开通VIP" :background="{ color: '#fff' }"></fa-navbar>
+		
+		<view class="tipBox" v-if="vuex_token && vuex_vipinfo" >
+			<view class="icon">
+				<u-icon name="edit-pen" color="#F3941E" size="45"></u-icon>
+			</view>
+			<view class="text">
+				您当前VIP有效期至：{{ checkVipExpiry() || '已过期'}} 
+			</view>
+		</view>
+		
 		<view class="select_vip_box">
 			<view class="select_vip_box_item" :class="selectVip == item.points ? 'active' : ''"
 				v-for="(item, index) in vipList" :key="item.points" @click="handleClickSelectVip(item)">
@@ -18,7 +28,7 @@
 				</view>
 			</view>
 		</view>
-		<view class="tips">
+		<view class="tipsTxt">
 			特别提示：
 			<br> 1、如遇到问题，点击右下角在线客服沟通。
 			<br> 2、VIP为线上付费线下体验服务，非虚拟商品。
@@ -39,7 +49,7 @@
 		</view>
 		
 		<!-- 小程序在线客服 -->
-		<button class="wechatKfLink" @click="showModal = true"></button>
+		<button class="wechatKfLink" open-type="contact"></button>
 	</view>
 	
 </template>
@@ -146,24 +156,24 @@
 </style>
 <style lang="scss" scoped>
 	.page {
-		padding: 50rpx 34rpx;
+		padding: 0rpx 0rpx;
 
 		.btns {
 			width: 100%;
 			display: flex;
 			flex-direction: column;
 			align-items: center;
-			margin-top: 80rpx;
+			margin-top: 60rpx;
 
 			.btn {
-				width: 648rpx;
-				height: 110rpx;
+				width: 620rpx;
+				height: 100rpx;
 				border-radius: 300px;
 				margin-bottom: 32rpx;
 				display: flex;
 				justify-content: center;
 				align-items: center;
-				font-size: 45rpx;
+				font-size: 42rpx;
 				font-weight: 400;
 				line-height: 50rpx;
 				letter-spacing: 0px;
@@ -191,15 +201,36 @@
 				margin-top:12rpx;
 			}
 		}
+		
+		.tipBox {
+			width:100%;
+			display: flex;
+			align-items: center;
+			color: #F3941E;
+			font-family: 思源黑体;
+			font-size: 28rpx;
+			font-weight: 400;
+			line-height: 43rpx;
+			letter-spacing: 0px;
+			text-align: left;
+			background: rgb(253, 241, 225);
+			padding: 26rpx 50rpx;
+			
+			.icon {
+				margin-right: 10rpx;
+			}
+		}
+		
 
-		.tips {
-			margin-top: 120rpx;
+		.tipsTxt {
+			margin-top: 60rpx;
 			color: #666;
-			font-size: 32rpx;
-			font-weight: 500;
+			font-size: 30rpx;
+			font-weight: 400;
 			line-height: 60rpx;
 			letter-spacing: 0px;
 			text-align: left;
+			padding: 26rpx 50rpx;
 		}
 
 		.select_vip_box {
@@ -207,7 +238,7 @@
 			grid-template-columns: repeat(2, 1fr);
 			grid-column-gap: 32rpx;
 			grid-row-gap: 32rpx;
-
+			margin:50rpx 32rpx;
 			&_item {
 				width: 100%;
 				height: 100%;

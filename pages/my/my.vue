@@ -4,13 +4,13 @@
 		<view class="bg">
 			<image :src="staticurl('userbg.png')" mode=""></image>
 		</view>
-		<view class="userInfo" @click="gotoProfile">
-			<view class="avatar">
+		<view class="userInfo">
+			<view class="avatar" @click="gotoProfile">
 				<image :src="staticurl('shuoming_icon.png')" mode=""></image>
 			</view>
 			<view class="right">
-				<view class="nickname">{{ vuex_user.nickname || '点击登录' }}</view>
-				<view class="vipstatus" v-if="vuex_token || vuex_vipinfo">{{ vuex_vipinfo.name || 'VIP截止'}}：{{ checkVipExpiry() || '已过期'}}</view>
+				<view class="nickname" @click="gotoProfile">{{ vuex_user.nickname || '点击登录' }}</view>
+				<view class="vipstatus" v-if="vuex_token && vuex_vipinfo" @click="handleClickBuyVip">{{ 'VIP有效期至' || 'VIP截止'}}：{{ checkVipExpiry() || '已过期'}}</view>
 			</view>
 		</view>
 		<view class="contentcard">
@@ -52,7 +52,7 @@
 		</view>
 		
 		<!-- 小程序在线客服 -->
-		<button class="wechatKfLink" @click="showModal = true"></button>
+		<button class="wechatKfLink" open-type="contact"></button>
 		<faTabbarVue :active="'my'"></faTabbarVue>
 	</view>
 </template>
@@ -280,8 +280,8 @@
 			padding: 50rpx 0;
 			display: flex;
 			.avatar {
-				width: 160rpx;
-				height: 160rpx;
+				width: 150rpx;
+				height: 150rpx;
 				border-radius: 100%;
 				overflow: hidden;
 				border: 4rpx solid rgb(255, 255, 255);
@@ -304,7 +304,7 @@
 				display: flex;
 				flex-direction: column;
 				justify-content: center;
-				margin-left: 37rpx;
+				margin-left: 30rpx;
 
 				.nickname {
 					color: rgb(0, 0, 0);

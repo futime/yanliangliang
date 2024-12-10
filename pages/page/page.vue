@@ -4,7 +4,7 @@
 		<fa-navbar :title="info.title || '单页'" :border-bottom="false"></fa-navbar>
 		<image class="page-imgae" v-if="info.image" :src="info.image" mode="aspectFill"></image>
 
-		<view class="text-weight u-font-30 u-border-bottom u-p-30"><text v-text="info.title"></text></view>
+		<!-- <view class="text-weight u-font-30 u-border-bottom u-p-30"><text v-text="info.title"></text></view> -->
 		<!-- <view class="">
 				<text v-text="info.views"></text>
 			</view> -->

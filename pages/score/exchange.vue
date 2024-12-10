@@ -305,7 +305,7 @@ page {
 	flex-direction: column;
 	height: 100%;
 }
-:deep(.fa-add-my){
+/deep/ .fa-add-my{
 	color:#fff;
 	background: #F3941E!important;
 	right:30rpx!important;

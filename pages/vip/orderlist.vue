@@ -55,7 +55,7 @@
 		
 		
 		<!-- 小程序在线客服 -->
-		<button class="wechatKfLink" @click="showModal = true"></button>
+		<button class="wechatKfLink" open-type="contact"></button>
 		<u-modal v-model="showDel" content="确认取消订单吗？不可恢复哦" @confirm="cancel" :show-cancel-button="true"></u-modal>
 	</view>
 </template>

@@ -14,7 +14,7 @@
 					<input class="input" v-model="form.age" disabled placeholder="点击选择出生日期" type="text">
 				</view>
 			</view>
-			<view class="form-item">
+		<!-- 	<view class="form-item">
 				<view class="form-item-label">体重 kg</view>
 				<view class="form-item-content" @click="handleClickShowKgPicker">
 					<input class="input" v-model="form.body_weight" disabled type="number" inputmode="numeric"
@@ -23,7 +23,7 @@
 						KG
 					</view>
 				</view>
-			</view>
+			</view> -->
 			<view class="form-item">
 				<view class="form-item-label">性别</view>
 				<view class="form-item-sex-box">
@@ -144,13 +144,13 @@
 					})
 					return
 				}
-				if (!this.form.body_weight) {
-					uni.showToast({
-						title: '请输入体重',
-						icon: 'none'
-					})
-					return
-				}
+				// if (!this.form.body_weight) {
+				// 	uni.showToast({
+				// 		title: '请输入体重',
+				// 		icon: 'none'
+				// 	})
+				// 	return
+				// }
 				if (!this.form.gender.toString()) {
 					uni.showToast({
 						title: '请选择性别',
