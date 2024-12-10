@@ -19,6 +19,23 @@
 				已阅读并同意 <text @click="goPage('/pages/page/page?diyname=facialprivacy')">《人脸信息采集用户隐私条款》</text>
 			</view>
 		</view>
+
+		<u-popup v-model="showModal" :safe-area-inset-bottom="true" mode="bottom" border-radius="24">
+			<view class="modal">
+				<view class="modal-title">
+					请阅读并同意以下条款
+				</view>
+				<view class="modal-content">
+					<text @click="goPage('/pages/page/page?diyname=facialprivacy')">《人脸信息采集用户隐私条款》</text>
+				</view>
+				<view class="action">
+					<view class="confirmBtn" @click="confirmBtn">
+						同意并继续
+					</view>
+				</view>
+			</view>
+		</u-popup>
+
 	</view>
 </template>
 
@@ -26,17 +43,21 @@
 	export default {
 		data() {
 			return {
-				check: false
+				check: false,
+				showModal: false
 			}
 		},
 		methods: {
-			nextFun(){ 
-				if(!this.check) {
-					uni.showToast({
-						title: '请勾选同意隐私协议',
-						icon: 'none'
-					})
-					return 
+			confirmBtn() {
+				this.check = true
+				uni.redirectTo({
+					url: '/pages/space/face-detect'
+				})
+			},
+			nextFun() {
+				if (!this.check) {
+					this.showModal = true
+					return
 				}
 				uni.redirectTo({
 					url: '/pages/space/face-detect'
@@ -54,14 +75,17 @@
 		justify-content: center;
 		align-items: center;
 		flex-direction: column;
+
 		.icon {
 			width: 478rpx;
 			height: 467rpx;
+
 			image {
 				width: 100%;
 				height: 100%;
 			}
 		}
+
 		.title {
 			color: rgb(17, 17, 17);
 			font-family: Dream Han Sans CN;
@@ -73,6 +97,7 @@
 			margin-top: 120rpx;
 		}
 	}
+
 	.nextBtn {
 		width: 648rpx;
 		height: 130rpx;
@@ -90,10 +115,11 @@
 		align-items: center;
 		margin-top: 75rpx;
 	}
-	
+
 	.xieyi {
 		display: flex;
 		margin-top: 80rpx;
+
 		.text {
 			font-family: Dream Han Sans CN;
 			font-size: 30rpx;
@@ -101,9 +127,42 @@
 			line-height: 50rpx;
 			letter-spacing: 0px;
 			text-align: left;
+
 			text {
 				color: #1B78FB;
 			}
+		}
+	}
+	
+	.modal {
+		.modal-title {
+			padding: 40rpx 0;
+			font-size: 38rpx;
+			color: #333;
+			text-align: center;
+			border-bottom: 2rpx solid #ddd;
+		}
+		.modal-content {
+			padding: 40rpx 0;
+			text-align: center;
+			color: #1B78FB;
+		}
+		.action {
+			padding:  0 40rpx 0 80rpx;
+			text-align: center;
+			display: flex;
+			justify-content: center;
+			.confirmBtn {
+				width: 80%;
+				height: 123rpx;
+				border-radius: 100rpx;
+				background-color: rgb(243, 148, 30);
+				color: #fff;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+			
 		}
 	}
 </style>

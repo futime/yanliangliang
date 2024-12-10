@@ -229,14 +229,14 @@
 						other: []
 					}
 				},
-				userid: null
+				userid: null,
 			};
 		},
 		computed: {
 			showPoints() {
 				let arr = []
 				Object.keys(this.selectBodyPoints[this.positive]).forEach(item => {
-					let newArr = this.selectBodyPoints[this.positive][item].map( item => {
+					let newArr = this.selectBodyPoints[this.positive][item].map(item => {
 						return {
 							x: item[0],
 							y: item[1],
@@ -254,28 +254,81 @@
 			}
 		},
 		onLoad(opt) {
-			if(opt.userid){
+			if (opt.userid) {
 				this.userid = opt.userid
 			}
-			if (this.vuex_user?.gender == 1) {
-				this.active = 'man'
-			} else if (this.vuex_user?.gender == 0) {
-				this.active = 'madem'
-			} else {
-				this.active = 'man'
-			}
+
 		},
 		onUnload() {
 			this.backgroundMusic && this.backgroundMusic.destroy()
 		},
 		onReady() {
-			this.initCanvasNew()
+			this.getinject(this.userid || '')
 			this.initClickSound()
 			this.initBackgroundAudioSound()
 			this.startSlowIncrease();
-			this.title = this.getRemainingTime(this.vuex_vipinfo.expiredate, this.vuex_vipinfo.level)
 		},
 		methods: {
+			async getinject(id) {
+				if (id) {
+					const res1 = await this.$api.getpatient({
+						id
+					})
+
+					if (res1.data.sex == 0) {
+						this.active = 'madem'
+					} else {
+						this.active = 'man'
+					}
+				} else {
+					if (this.vuex_user?.gender == 1) {
+						this.active = 'man'
+					} else if (this.vuex_user?.gender == 0) {
+						this.active = 'madem'
+					} else {
+						this.active = 'man'
+					}
+				}
+				const res = await this.$api.getinject({
+					id
+				})
+				if (res.data) {
+					this.zhuruStatus = true
+					this.showIcon = false
+					if (res.data.body_image == 1) {
+						this.positive = 'front'
+					} else {
+						this.positive = 'back'
+					}
+					let mapData = JSON.parse(res.data.click_info)
+					// console.log(mapData)
+					this.selectBodyPoints = mapData
+					this.title = this.getRemainingTime2(res.data.createtime, this.vuex_vipinfo.level)
+					this.initCanvasNew()
+				} else {
+					this.initCanvasNew()
+				}
+			},
+			getRemainingTime2(createTime, level) {
+				const currentTime = new Date(); // 获取当前时间
+				const createDate = new Date(createTime * 1000); // 将Unix时间戳转换为Date对象（单位为毫秒）
+
+				// 计算createtime 24小时后的时间
+				const countdownTime = new Date(createDate.getTime() + 24 * 60 * 60 * 1000);
+
+				// 计算当前时间和目标时间的差值，单位为毫秒
+				const timeDiff = countdownTime - currentTime;
+
+				// 如果时间差小于或等于0，表示倒计时已经结束
+				if (timeDiff <= 0) {
+					return '已过期';
+				}
+
+				// 转换为小时数并取整
+				const countdownHours = Math.floor(timeDiff / (1000 * 60 * 60));
+
+				return (level == 0 ? '免费体验剩余' : '剩余') + (countdownHours > 0 ? `${countdownHours}小时` : '0小时');
+			},
 			getRemainingTime(targetTime, level) {
 
 				// 将目标时间转换为 Date 对象，假设传入的时间格式是 "yyyy-MM-dd HH:mm:ss"
@@ -297,7 +350,6 @@
 				console.log(hoursRemaining)
 				// 返回剩余的小时，如果为 0 则不显示
 				return (level == 0 ? '免费体验剩余' : '剩余') + (hoursRemaining > 0 ? `${hoursRemaining}小时` : '0小时');
-
 			},
 			startSlowIncrease() {
 				let currentValue = this.percentage;
@@ -322,13 +374,14 @@
 					// const selectedTrack = this.backgroundTracks[randomIndex];
 					// this.backgroundMusic.src = selectedTrack
 					this.backgroundMusic.play()
-					this.$api.clickrecord({
+					let form = {
 						map: this.selectBodyPoints,
-						isInject: '',
-						bodyStatus: '',
-						p_id: this.userid,
 						body_image: this.positive == 'front' ? 1 : 2
-					})
+					}
+					if (this.userid) {
+						form.p_id = this.userid
+					}
+					this.$api.clickrecord(form)
 				} else {
 					setTimeout(() => {
 						if (!this.muteFlag) {
@@ -346,12 +399,12 @@
 			handleClickShowIcons(type) {
 				let points = this.bodys[this.active][this.positive][type]
 				let selectPonits = this.selectBodyPoints[this.positive][type]
-				
+
 				if (!selectPonits.length) {
 					points.forEach(item => {
 						this.selectBodyPoints[this.positive][type].push([item[0], item[1]])
 					})
-				}else{
+				} else {
 					this.selectBodyPoints[this.positive][type] = []
 				}
 				// let points = this.bodys[this.active][this.positive][type]
@@ -388,7 +441,7 @@
 				// 创建背景音乐音频对象
 				this.backgroundMusic = uni.createInnerAudioContext();
 				this.backgroundMusic.src = selectedTrack; // 替换为背景音乐文件路径
-				this.backgroundMusic.autoplay = false; // 自动播放
+				this.backgroundMusic.autoplay = true; // 自动播放
 				this.backgroundMusic.loop = true; // 循环播放
 				this.backgroundMusic.volume = 0.8;
 			},
@@ -606,7 +659,7 @@
 				// 	x: percentX,
 				// 	y: percentY
 				// })
-				
+
 				this.selectBodyPoints[this.positive]['other'].push([percentX, percentY])
 			}
 		}
@@ -646,8 +699,8 @@
 	}
 
 	.renwu {
-		width: 593rpx;
-		height: 1303rpx;
+		width: 533.7rpx;
+		height: 1172.7rpx;
 		// overflow: hidden;
 		position: fixed;
 
@@ -789,8 +842,8 @@
 	}
 
 	.yuan {
-		width: 135rpx;
-		height: 135rpx;
+		width: 67.5rpx;
+		height: 67.5rpx;
 		position: absolute;
 		transform: translate(-50%, -50%);
 		pointer-events: none;
@@ -799,18 +852,18 @@
 		z-index: 999;
 
 		&.big {
-			width: 200rpx;
-			height: 200rpx;
+			width: 160rpx;
+			height: 160rpx;
 
 			image {
-				width: 200rpx;
-				height: 200rpx;
+				width: 160rpx;
+				height: 160rpx;
 			}
 		}
 
 		image {
-			width: 135rpx;
-			height: 135rpx;
+			width: 67.5rpx;
+			height: 67.5rpx;
 		}
 	}
 

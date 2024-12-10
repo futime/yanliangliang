@@ -61,6 +61,26 @@
 			}
 		},
 		methods: {
+			getRemainingTime(targetTime, level) {
+				// 将目标时间转换为 Date 对象，假设传入的时间格式是 "yyyy-MM-dd HH:mm:ss"
+				const targetDate = new Date(targetTime.replace(/-/g, "/")); // 替换日期中的 "-" 以兼容 Date 解析
+				// 获取当前时间
+				const currentTime = new Date();
+				// 计算时间差（单位：毫秒）
+				const timeDifference = targetDate - currentTime;
+				// 如果目标时间已过，返回 "已过期"
+				if (timeDifference < 0) {
+					return false;
+				}
+				// 计算剩余的小时
+				const hoursRemaining = Math.floor(timeDifference / (1000 * 60 * 60)); // 转换为小时
+				// 返回剩余的小时，如果为 0 则不显示
+				if(hoursRemaining > 0){
+					return true
+				}else{
+					return false
+				} 
+			},
 			handleClickNengliang() {
 				if(!this.vuex_token){
 					uni.navigateTo({
@@ -69,9 +89,15 @@
 					return
 				}
 				
-				uni.navigateTo({
-					url: '/pages/space/start'
-				})
+				const flag = this.getRemainingTime(this.vuex_vipinfo.expiredate, this.vuex_vipinfo.level)
+				
+				if(flag) {
+					uni.navigateTo({
+						url: '/pages/space/start'
+					})
+				}else{
+					this.$u.toast('会员已过期')
+				}
 			},
 			handleClickVip() {
 				if(!this.vuex_token){

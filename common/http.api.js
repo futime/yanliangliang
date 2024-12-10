@@ -108,6 +108,10 @@ const install = (Vue, vm) => {
 	};
 	// 删除信息
 	vm.$api.deletepatient  	  	= async (params = {}) => await vm.$u.post('/addons/shop/api.user/deletepatient',params);
+	// 获取注入信息
+	vm.$api.getinject  	  	= async (params = {}) => await vm.$u.get('/addons/shop/api.user/getinject',params);
+	// 获取体验者信息
+	vm.$api.getpatient  	  	= async (params = {}) => await vm.$u.get('/addons/shop/api.user/getpatient',params);
 	
 	
 	

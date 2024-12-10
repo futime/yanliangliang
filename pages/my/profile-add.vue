@@ -162,22 +162,23 @@
 					...this.form,
 					gender: this.form.gender
 				});
-				this.$u.toast(res.msg);
 				if (res.code) {
-					this.getUserIndex()
-					setTimeout(() => {
-						if (this.isnew) {
+					await this.getUserIndex()
+					if (this.isnew) {
+						this.$u.toast(`恭喜您获得${this.vuex_config.vipday}天VIP体验时间`)
+						setTimeout(() => {
 							this.$u.route({
 								type: 'switchTab',
 								url: '/pages/my/my'
 							});
-						} else {
-							this.$u.route({
-								type: 'switchTab',
-								url: '/pages/index/index'
-							});
-						}
-					}, 800)
+						}, 1500)
+					} else {
+						this.$u.toast(res.msg);
+						this.$u.route({
+							type: 'switchTab',
+							url: '/pages/index/index'
+						});
+					}
 				}
 			},
 			getUserIndex: async function() {
