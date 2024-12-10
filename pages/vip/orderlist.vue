@@ -7,7 +7,10 @@
 					<view class="orderid"> {{ item.days }}天{{ item.name }}</view>
 					
 					<view  v-if="item.status_text == '已支付'">
-						<view class="status status_pay">
+						<view class="status score_pay" v-if="item.paytype == 'score'">
+							积分兑换
+						</view>
+						<view class="status status_pay" v-else>
 							{{ item.status_text}}
 						</view>
 					</view>
@@ -17,22 +20,33 @@
 						</view>
 					</view>
 					
-					
 				</view>
 				<view class="desc">
 					<view class="desc-item">
 						<view class="label">创建时间：</view>
 						<view class="content">{{ item.createtime }}</view>
 					</view>
+					
 					<view class="desc-item">
 						<view class="label">VIP体验天数：</view>
 						<view class="content">{{ item.days }}</view>
 					</view>
 					
-					<view class="desc-item">
-						<view class="label">支付金额：</view>
-						<view class="content">{{ item.amount }}元  <text class="freetips" v-if="item.amount == '0.00'">平台赠送</text></view>
+					<view class="desc-item"  v-if="item.status_text == '已支付' && item.paytype == 'score'">
+						<view class="label">兑换金额：</view>
+						<view class="content">{{ item.amount }} 积分</view>
 					</view>
+					
+					<view class="desc-item"  v-else>
+						<view class="label">支付金额：</view>
+						<view class="content">{{ item.amount }}元  
+							<text class="freetips" v-if="item.amount == '0.00' && item.paytype == 'system'">平台赠送</text>
+						</view>
+					</view>
+					
+					
+					
+					
 					<view class="desc-item">
 						<view class="label">订单号：</view>
 						<view class="content order" @click="copyText(item.orderid)">
@@ -149,10 +163,16 @@
 				color:#F3941E;
 				font-size:32rpx;
 				font-weight: 600;
+				border-radius: 8rpx;
 			}
 			.status_pay{
 				background:#20A53A;
 				border:1px solid #20A53A;
+				color:#fff;
+			}
+			.score_pay{
+				background:#F28701;
+				border:1px solid #F28701;
 				color:#fff;
 			}
 		}
