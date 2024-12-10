@@ -28,9 +28,10 @@
 						<view class="label">VIP体验天数：</view>
 						<view class="content">{{ item.days }}</view>
 					</view>
+					
 					<view class="desc-item">
-						<view class="label">订单金额：</view>
-						<view class="content">{{ item.amount }}元</view>
+						<view class="label">支付金额：</view>
+						<view class="content">{{ item.amount }}元  <text class="freetips" v-if="item.amount == '0.00'">平台赠送</text></view>
 					</view>
 					<view class="desc-item">
 						<view class="label">订单号：</view>
@@ -175,6 +176,12 @@
 				.content{
 					font-size:30rpx;
 					color:#000;
+				}
+				
+				.freetips{
+					color:#F28701;
+					margin-left:16rpx;
+					font-weight: bold;
 				}
 			}
 		}
