@@ -270,7 +270,10 @@
 		},
 		methods: {
 			async getinject(id) {
+				let reqForm = {}
+				
 				if (id) {
+					reqForm.id = id
 					const res1 = await this.$api.getpatient({
 						id
 					})
@@ -289,9 +292,8 @@
 						this.active = 'man'
 					}
 				}
-				const res = await this.$api.getinject({
-					id
-				})
+				
+				const res = await this.$api.getinject(reqForm)
 				if (res.data) {
 					this.zhuruStatus = true
 					this.showIcon = false
