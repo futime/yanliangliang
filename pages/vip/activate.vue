@@ -30,9 +30,9 @@
 		</view>
 		<view class="tipsTxt">
 			特别提示：
-			<br> 1、如遇到问题，点击右下角在线客服沟通。
-			<br> 2、VIP为线上付费线下体验服务，非虚拟商品。
-			<br> 3、10积分可抵扣1元。
+			<br>1、如遇到问题，点击右下角在线客服沟通。
+			<br>2、VIP为线上付费线下体验服务，非虚拟商品。
+			<br>3、10积分可抵扣1元。
 		</view>
 
 		<view class="btns">
@@ -254,14 +254,14 @@
 
 
 		.tipsTxt {
-			margin-top: 60rpx;
+			margin-top: 30rpx;
 			color: #666;
-			font-size: 30rpx;
+			font-size: 28rpx;
 			font-weight: 400;
 			line-height: 60rpx;
 			letter-spacing: 0px;
 			text-align: left;
-			padding: 26rpx 50rpx;
+			padding: 16rpx 50rpx;
 		}
 
 		.select_vip_box {

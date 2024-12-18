@@ -306,7 +306,7 @@
 				display: flex;
 				flex-direction: column;
 				justify-content: center;
-				margin-left: 30rpx;
+				margin-left: 20rpx;
 
 				.nickname {
 					color: rgb(0, 0, 0);

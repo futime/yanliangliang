@@ -369,7 +369,7 @@
 				const hoursRemaining = Math.floor(timeDifference / (1000 * 60 * 60)); // 转换为小时
 				console.log(hoursRemaining)
 				// 返回剩余的小时，如果为 0 则不显示
-				return (level == 0 ? '免费体验剩余' : '剩余') + (hoursRemaining > 0 ? `${hoursRemaining}小时` : '0小时');
+				return (level == 0 ? '剩余' : '剩余') + (hoursRemaining > 0 ? `${hoursRemaining}小时` : '0小时');
 			},
 			startSlowIncrease() {
 				let currentValue = this.percentage;
