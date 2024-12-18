@@ -116,6 +116,9 @@
 </script>
 
 <style lang="scss" scoped>
+	.page {
+		padding-bottom: 220rpx;
+	}
 	.topView {
 		width: 100%;
 		height: 887rpx;

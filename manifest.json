@@ -1,6 +1,6 @@
 {
     "name" : "眼靓亮",
-    "appid" : "__UNI__85A0594",
+    "appid" : "__UNI__A6481B5",
     "description" : "眼靓亮",
     "versionName" : "1.2.0",
     "versionCode" : 3,
@@ -24,7 +24,11 @@
         /* 模块配置 */
         "modules" : {
             "Maps" : {},
-            "Geolocation" : {}
+            "Geolocation" : {},
+            "Camera" : {},
+            "Bluetooth" : {},
+            "Barcode" : {},
+            "LivePusher" : {}
         },
         /* 应用发布信息 */
         "distribute" : {

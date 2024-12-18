@@ -24,7 +24,7 @@
 					</u-button>
 				</view>
 				<!-- #endif -->
-				<!-- #ifdef H5 -->
+				<!-- #ifdef H5 || APP-PLUS -->
 				<view v-if="checkLogintype('mobile') || checkLogintype('wechatmobile')">
 					<u-button hover-class="none" open-type="getPhoneNumber" text="立即登录" type="primary" 
 					:custom-style="{ backgroundColor: 'rgb(243, 148, 30)', width: '100%', height: '100%', color: '#fff'}" shape="circle" 

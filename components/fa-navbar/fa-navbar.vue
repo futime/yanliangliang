@@ -25,7 +25,7 @@ export default {
 	props: {
 		background: {
 			type: Object,
-			default: {
+			default: () => {
 				background: "#ffffff"
 			}
 		},

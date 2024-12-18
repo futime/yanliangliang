@@ -3,9 +3,13 @@
 		<fa-navbar :title="' '" :background="{ color: 'transparent' }" :borderBottom="false"
 			:styleBack="true"></fa-navbar>
 		<view class="bg">
-			<!-- <image :src="staticurl('startpage_bg.jpeg')" mode=""></image> -->
+			<!-- #ifdef APP -->
+			<image :src="staticurl('startpage_bg.jpeg')" mode=""></image>
+			<!-- #endif -->
+			<!-- #ifdef MP-WEIXIN -->
 			<video :src="videourl('startpage_bg.mp4')" :poster="staticurl('startpage_bg.jpeg')" autoplay
 				:controls="false" loop muted=""></video>
+			<!-- #endif -->
 		</view>
 		<view class="title">
 			欢迎登录<br>
@@ -73,6 +77,7 @@
 		methods: {
 			handleClickNext() {
 				if (this.selectType == 1) {
+					// #ifdef MP-WEIXIN
 					if (!this.vuex_user.face_image) {
 						uni.navigateTo({
 							url: '/pages/space/face'
@@ -82,6 +87,12 @@
 					uni.redirectTo({
 						url: '/pages/space/index'
 					})
+					// #endif
+					// #ifdef APP
+					uni.redirectTo({
+						url: '/pages/space/index'
+					})
+					// #endif
 				} else {
 					uni.$once('SELECT_USER', (e) => {
 						this.selectUserSuccess(e.id);

@@ -7,18 +7,18 @@
 						placeholder="请输入体验者姓名" /></u-form-item>
 				<u-form-item label="手机号" prop="phone" required><u-input v-model="form.phone"
 						placeholder="请输入体验者手机号" /></u-form-item>
-				<u-form-item label="性别"  prop="sex" required>
+				<u-form-item label="性别" prop="sex" required>
 					<u-radio-group v-model="form.sex">
 						<u-radio v-for="(item, index) in radioList" :key="index" :name="item.value">
 							{{ item.name }}
 						</u-radio>
 					</u-radio-group>
 				</u-form-item>
-				<u-form-item label="出生日期"  prop="age" required><u-input v-model="form.age" type="select" placeholder="选择出生年月日"
-						@click="handleClickShowAge" /></u-form-item>
+				<u-form-item label="出生日期" prop="age" required><u-input v-model="form.age" type="select"
+						placeholder="选择出生年月日" @click="handleClickShowAge" /></u-form-item>
 				<!-- <u-form-item label="体重"  prop="body_weight" required><u-input v-model="form.body_weight" type="select"
 						placeholder="请选择体重（单位kg）" @click="handleClickShowWeight" /></u-form-item> -->
-				<u-form-item label="点击上传体验者照片"  prop="image"  label-position="top" required>
+				<u-form-item label="点击上传体验者照片" prop="image" label-position="top" required>
 					<view class="uploadBox">
 						<view class="uploadImage" v-if="form.image">
 							<image :src="cdnurl(form.image)" mode=""></image>
@@ -138,8 +138,8 @@
 		computed: {},
 		onLoad(opt) {
 			this.weights = generateWeights(1, 400);
-			
-			if(opt.id) {
+
+			if (opt.id) {
 				this.title = '编辑体验者信息'
 				this.form.name = opt.name
 				this.form.phone = opt.phone
@@ -156,13 +156,13 @@
 		},
 		methods: {
 			submit() {
-				this.$refs.uForm.validate( async valid => {
+				this.$refs.uForm.validate(async valid => {
 					if (valid) {
 						const res = await this.$api.addpatient({
 							...this.form,
 							id: this.userid
 						})
-						if(!res.code) {
+						if (!res.code) {
 							this.$u.toast(res.msg);
 						}
 						this.$u.toast(this.userid ? '编辑成功' : '添加成功');
@@ -192,6 +192,7 @@
 			},
 			selectImageUpload() {
 				const _this = this
+				// #ifdef MP-WEIXIN
 				uni.chooseMedia({
 					count: 1,
 					mediaType: ['image'],
@@ -209,6 +210,26 @@
 						_this.form.image = res2.data.url
 					}
 				})
+				// #endif
+				// #ifdef APP
+				uni.chooseImage({
+					count: 1, //默认9
+					sizeType: ['original'], //可以指定是原图还是压缩图，默认二者都有
+					sourceType: ['album', 'camera'], //从相册选择
+					async success(res) {
+						console.log(JSON.stringify(res.tempFilePaths));
+						let res2 = await _this.$api.goUpload({
+							filePath: res.tempFilePaths[0]
+						});
+						if (!res2.code) {
+							_this.$u.toast(res2.msg);
+						}
+						
+						_this.form.image = res2.data.url
+					}
+				});
+				// #endif
+
 
 			}
 		}

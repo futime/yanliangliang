@@ -38,35 +38,35 @@
 
 			this.$u.vuex('vuex_config', res.data);
 
-			// #ifdef APP-PLUS
-			let tabbar = this.$u.deepClone(this.vuex_config.tabbar);
-			if (!tabbar) {
-				this.$util.setTabbar(this.vuex_tabbar);
-				return;
-			}
-			let num = 0;
-			for (let i in tabbar.list) {
-				try {
-					let imagepath = await this.$util.getCachedImage(tabbar.list[i].image);
-					let selectedImage = await this.$util.getCachedImage(tabbar.list[i].selectedImage);
-					tabbar.list[i].image = imagepath;
-					tabbar.list[i].selectedImage = selectedImage;
-					num = i;
-				} catch (e) {
-					console.log(e);
-				}
-			}
-			//更新tabbar配置
-			this.$u.vuex('vuex_config.tabbar.list', tabbar.list);
-			return;
+			// // #ifdef APP-PLUS
+			// let tabbar = this.$u.deepClone(this.vuex_config.tabbar);
+			// if (!tabbar) {
+			// 	this.$util.setTabbar(this.vuex_tabbar);
+			// 	return;
+			// }
+			// let num = 0;
+			// for (let i in tabbar.list) {
+			// 	try {
+			// 		let imagepath = await this.$util.getCachedImage(tabbar.list[i].image);
+			// 		let selectedImage = await this.$util.getCachedImage(tabbar.list[i].selectedImage);
+			// 		tabbar.list[i].image = imagepath;
+			// 		tabbar.list[i].selectedImage = selectedImage;
+			// 		num = i;
+			// 	} catch (e) {
+			// 		console.log(e);
+			// 	}
+			// }
+			// //更新tabbar配置
+			// this.$u.vuex('vuex_config.tabbar.list', tabbar.list);
+			// return;
 
-			//全部下载成功使用服务器的导航，否则启用本地备用导航
-			if (parseInt(num) + 1 == tabbar.list.length) {
-				this.$util.setTabbar(tabbar);
-			} else {
-				this.$util.setTabbar(this.vuex_tabbar);
-			}
-			// #endif
+			// //全部下载成功使用服务器的导航，否则启用本地备用导航
+			// if (parseInt(num) + 1 == tabbar.list.length) {
+			// 	this.$util.setTabbar(tabbar);
+			// } else {
+			// 	this.$util.setTabbar(this.vuex_tabbar);
+			// }
+			// // #endif
 
 
 			this.$u.mpShare = {
@@ -74,6 +74,7 @@
 				path: '/pages/index/index',
 				imageUrl: 'https://yanliangliang.com/static/images/mpshare.jpg'
 			}
+			uni.hideTabBar()
 			console.log(this.$u.mpShare)
 		},
 		onShow: function() {

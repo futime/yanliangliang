@@ -15,7 +15,7 @@
 			"style": {
 				"navigationBarTitleText": "个人中心",
 				"navigationStyle": "custom",
-				"enablePullDownRefresh": true,
+				"enablePullDownRefresh": false,
 				"navigationBarTextStyle": "white"
 			}
 		}, {
@@ -55,7 +55,7 @@
 				"navigationBarTextStyle": "white"
 			}
 
-		},{
+		}, {
 			"path": "pages/login/register",
 			"style": {
 				"navigationBarTitleText": "注册",
@@ -87,7 +87,7 @@
 				"navigationStyle": "custom",
 				"navigationBarTextStyle": "white"
 			}
-		
+
 		},
 		{
 			"path": "pages/signin/signin",
@@ -366,103 +366,102 @@
 		}
 	],
 	"subPackages": [{
-		"root": "pages/space",
-		"pages": [
-			{
-				"path": "start",
-				"style": {
-					"navigationBarTitleText": "能量空间开始",
-					"navigationStyle": "custom",
-					"navigationBarTextStyle": "white",
-					"enablePullDownRefresh": false
+			"root": "pages/space",
+			"pages": [{
+					"path": "start",
+					"style": {
+						"navigationBarTitleText": "能量空间开始",
+						"navigationStyle": "custom",
+						"navigationBarTextStyle": "white",
+						"enablePullDownRefresh": false
+					}
+				},
+				{
+					"path": "face",
+					"style": {
+						"navigationBarTitleText": "人脸识别确认",
+						"navigationStyle": "custom",
+						"navigationBarTextStyle": "white",
+						"enablePullDownRefresh": false
+					}
+				},
+				{
+					"path": "face-detect",
+					"style": {
+						"navigationBarTitleText": "人脸识别扫描",
+						"navigationStyle": "custom",
+						"navigationBarTextStyle": "white",
+						"enablePullDownRefresh": false
+					}
+				},
+				{
+					"path": "index",
+					"style": {
+						"navigationBarTitleText": "能量选择",
+						"navigationStyle": "custom",
+						"navigationBarTextStyle": "white",
+						"enablePullDownRefresh": false
+					}
 				}
-			},
-			{
-				"path": "face",
-				"style": {
-					"navigationBarTitleText": "人脸识别确认",
-					"navigationStyle": "custom",
-					"navigationBarTextStyle": "white",
-					"enablePullDownRefresh": false
+			]
+		},
+		{
+			"root": "pages/vip",
+			"pages": [{
+					"path": "activate",
+					"style": {
+						"navigationBarTitleText": "开通vip",
+						"navigationStyle": "custom",
+						"navigationBarTextStyle": "white",
+						"enablePullDownRefresh": false
+					}
+				},
+				{
+					"path": "orderlist",
+					"style": {
+						"navigationBarTitleText": "订单列表",
+						"navigationStyle": "custom",
+						"navigationBarTextStyle": "white",
+						"enablePullDownRefresh": false
+					}
 				}
-			},
-			{
-				"path": "face-detect",
-				"style": {
-					"navigationBarTitleText": "人脸识别扫描",
-					"navigationStyle": "custom",
-					"navigationBarTextStyle": "white",
-					"enablePullDownRefresh": false
+			]
+		},
+		{
+			"root": "pages/experiencer",
+			"pages": [{
+					"path": "list",
+					"style": {
+						"navigationBarTitleText": "体验者列表",
+						"navigationStyle": "custom",
+						"navigationBarTextStyle": "white",
+						"enablePullDownRefresh": false
+					}
+				},
+				{
+					"path": "add",
+					"style": {
+						"navigationBarTitleText": "编辑体验者信息",
+						"navigationStyle": "custom",
+						"navigationBarTextStyle": "white",
+						"enablePullDownRefresh": false
+					}
 				}
-			},
-			{
-				"path": "index",
-				"style": {
-					"navigationBarTitleText": "能量选择",
-					"navigationStyle": "custom",
-					"navigationBarTextStyle": "white",
-					"enablePullDownRefresh": false
-				}
-			}
-		]
-	},
-	{
-		"root": "pages/vip",
-		"pages": [
-			{
-				"path": "activate",
-				"style": {
-					"navigationBarTitleText": "开通vip",
-					"navigationStyle": "custom",
-					"navigationBarTextStyle": "white",
-					"enablePullDownRefresh": false
-				}
-			},
-			{
-				"path": "orderlist",
-				"style": {
-					"navigationBarTitleText": "订单列表",
-					"navigationStyle": "custom",
-					"navigationBarTextStyle": "white",
-					"enablePullDownRefresh": false
-				}
-			}
-		]
-	},
-	{
-		"root": "pages/experiencer",
-		"pages": [
-			{
-				"path": "list",
-				"style": {
-					"navigationBarTitleText": "体验者列表",
-					"navigationStyle": "custom",
-					"navigationBarTextStyle": "white",
-					"enablePullDownRefresh": false
-				}
-			},
-			{
-				"path": "add",
-				"style": {
-					"navigationBarTitleText": "编辑体验者信息",
-					"navigationStyle": "custom",
-					"navigationBarTextStyle": "white",
-					"enablePullDownRefresh": false
-				}
-			}
-		]
-	}
+			]
+		}
 	],
 	"preloadRule": {
-		
+
 	},
 	"tabBar": {
-		"height": "0",
+		"height": "0px",
 		"list": [{
-				"pagePath": "pages/index/index"
+				"pagePath": "pages/index/index",
+				"text": ""
 			},
 			{
-				"pagePath": "pages/my/my"
+				"pagePath": "pages/my/my",
+				"text": ""
 			}
 		]
 	},

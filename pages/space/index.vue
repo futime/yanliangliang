@@ -3,8 +3,24 @@
 		<fa-navbar :title="title" :background="{ color: 'transparent' }" title-color="#fff" :borderBottom="false"
 			:styleBack="true"></fa-navbar>
 		<view class="bg">
-			<!-- <image :src="staticurl('startpage_bg.jpeg')" mode=""></image> -->
+			<!-- #ifdef APP -->
+			<image :src="showBgVideo" mode=""></image>
+			<!-- #endif -->
+			<!-- #ifndef APP -->
 			<video :src="showBgVideo" :controls="false" loop muted autoplay></video>
+			<!-- #endif -->
+		</view>
+		<view class="guanghuanBox">
+			<uni-transition :styles="{ 'width': '788rpx', 'height': '439rpx'}" ref="guanghuan" :show="showGuanghuan" custom-class="guanghuan" :duration="2000"
+				mode-class="slide-bottom">
+				<image :src="staticurl('energy_aperturebg.png')" mode=""></image>
+			</uni-transition>
+		</view>
+		<view class="sanjiaoBox"  :class="zhuruStatus ? 'zhuru' : ''" >
+			<uni-transition :styles="{ 'width': '600rpx', 'height': '572rpx'}"  ref="sanjiao" :show="showSanjiao" custom-class="sanjiao" :duration="3000"
+				mode-class="zoom-in">
+				<image :src="staticurl('energy_triangle.png')" mode=""></image>
+			</uni-transition>
 		</view>
 		<!-- Canvas用于绘制图片 -->
 		<view class="renwu">
@@ -19,22 +35,12 @@
 				</view>
 			</template>
 
-			<view class="guanghuanBox">
-				<uni-transition ref="guanghuan" :show="showGuanghuan" custom-class="guanghuan" :duration="2000"
-					mode-class="slide-bottom">
-					<image :src="staticurl('energy_aperturebg.png')" mode=""></image>
-				</uni-transition>
-			</view>
+			
 			<!-- <view class="guanghuan">
 				<image :src="staticurl('energy_aperturebg.png')" mode=""></image>
 			</view> -->
 
-			<view class="sanjiaoBox">
-				<uni-transition ref="sanjiao" :show="showSanjiao" custom-class="sanjiao" :duration="3000"
-					mode-class="zoom-in">
-					<image :src="staticurl('energy_triangle.png')" mode=""></image>
-				</uni-transition>
-			</view>
+			
 			<!-- 
 			<view class="sanjiao">
 			</view> -->
@@ -100,6 +106,12 @@
 					this.videourl('energy_pagebg1.mp4'),
 					this.videourl('energy_pagebg2.mp4'),
 					this.videourl('energy_pagebg3.mp4'),
+				],
+				backgroundImageTracks: [
+					this.staticurl('energy_pagebg1.jpg'),
+					this.staticurl('energy_pagebg2.jpg'),
+					this.staticurl('energy_pagebg3.jpg'),
+					this.staticurl('energy_pagebg4.jpg'),
 				],
 				imgWidth: 0,
 				imgHeight: 0,
@@ -248,8 +260,14 @@
 				return arr
 			},
 			showBgVideo() {
+				// #ifdef MP-WEIXIN
 				const randomIndex = Math.floor(Math.random() * this.backgroundVideoTracks.length);
 				const selectedTrack = this.backgroundVideoTracks[randomIndex];
+				// #endif
+				// #ifdef APP
+				const randomIndex = Math.floor(Math.random() * this.backgroundImageTracks.length);
+				const selectedTrack = this.backgroundImageTracks[randomIndex];
+				// #endif
 				return selectedTrack
 			}
 		},
@@ -271,7 +289,7 @@
 		methods: {
 			async getinject(id) {
 				let reqForm = {}
-				
+
 				if (id) {
 					reqForm.id = id
 					const res1 = await this.$api.getpatient({
@@ -292,7 +310,7 @@
 						this.active = 'man'
 					}
 				}
-				
+
 				const res = await this.$api.getinject(reqForm)
 				if (res.data) {
 					this.zhuruStatus = true
@@ -460,7 +478,7 @@
 			},
 			// 触发震动
 			triggerVibration() {
-				wx.vibrateShort({
+				uni.vibrateShort({
 					type: 'heavy',
 					success() {
 						console.log('震动成功');
@@ -484,6 +502,7 @@
 				this.initCanvasNew()
 			},
 			initCanvasNew() {
+				// #ifdef MP-WEIXIN
 				const imgUrl = this.bodys[this.active][this.positive].img
 				if (this.ctx) {
 					this.ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight); // 清空 canvas
@@ -502,7 +521,7 @@
 					return
 				}
 				// 旧版 canvas 不能修改宽高
-				wx.createSelectorQuery()
+				uni.createSelectorQuery()
 					.select('#renwu') // 在 WXML 中填入的 id
 					.fields({
 						node: true,
@@ -550,8 +569,9 @@
 						}
 						image.src = imgUrl
 					})
-			},
-			initCanvas() {
+				// #endif
+
+				// #ifdef APP
 				const imgUrl = this.bodys[this.active][this.positive].img
 				this.canvas = uni.createSelectorQuery().select('#renwu');
 
@@ -580,28 +600,39 @@
 							// 图片加载成功后，绘制图片
 							this.ctx.clearRect(0, 0, res.width, res.height); // 清空 canvas
 							this.ctx.drawImage(res.path, 0, 0, canvasWidth, canvasHeight); // 绘制图片
+							
 							this.ctx.draw()
+							this.showSanjiao = true
+							this.showGuanghuan = true
+							
 						}
 					});
 				});
-
+				// #endif
 			},
+			initCanvas() {},
 			handleTouch(e) {
-				console.log(e)
+				// #ifdef MP-WEIXIN
 				const touchX = e.touches[0].clientX;
 				const touchY = e.touches[0].clientY;
 				const offsetX = touchX - this.canvasRect.left;
 				const offsetY = touchY - this.canvasRect.top;
-
-				console.log(offsetX)
-				console.log(offsetY)
 				this.checkPixel(offsetX, offsetY)
+				// #endif
+				// #ifdef APP
+				console.log(e)
+				const touchX = e.touches[0].x;
+				const touchY = e.touches[0].y;
+				const offsetX = touchX;
+				const offsetY = touchY;
+				this.checkPixel(offsetX, offsetY)
+				// #endif
 			},
 			checkPixel(x, y) {
 				const _this = this
+				// #ifdef MP-WEIXIN
 				const imageData = this.ctx.getImageData(x, y, 1, 1);
 				const pixel = imageData.data;
-				console.log(pixel)
 				// 判断透明度 (pixel[3] 是 alpha 值)
 				if (pixel[3] === 0) {
 					console.log('点击的地方是透明的');
@@ -609,26 +640,32 @@
 					console.log('点击的地方不是透明的');
 					_this.drawCircle(x, y)
 				}
-				// uni.canvasGetImageData({
-				// 	canvasId: 'renwu',
-				// 	x: x,
-				// 	y: y,
-				// 	width: 1,
-				// 	height: 1,
-				// 	success(res) {
-				// 		console.log(res)
-				// 		const pixel = res.data;
-				// 		if (pixel[3] === 0) {
-				// 			console.log('点击的是透明区域');
-				// 		} else {
-				// 			console.log('点击的是不透明区域');
-				// 			_this.drawCircle(x, y)
-				// 		}
-				// 	},
-				// 	fail(err) {
-				// 		console.log(err)
-				// 	}
-				// })
+				console.log(pixel)
+				// #endif
+				// #ifdef APP
+				uni.canvasGetImageData({
+					canvasId: 'renwu',
+					x: x,
+					y: y,
+					width: 1,
+					height: 1,
+					success(res) {
+						console.log(res)
+						const pixel = res.data;
+						if (pixel[3] === 0) {
+							console.log('点击的是透明区域');
+						} else {
+							console.log('点击的是不透明区域');
+							_this.drawCircle(x, y)
+						}
+					},
+					fail(err) {
+						console.log(err)
+					}
+				})
+				// #endif
+
+
 			},
 			drawCircle(x, y) {
 				const {
@@ -697,6 +734,61 @@
 				mix-blend-mode: screen;
 				display: block;
 			}
+
+			image {
+				width: 100%;
+				height: 100%;
+			}
+		}
+	}
+	
+	
+	.guanghuanBox {
+		width: 788rpx;
+		height: 439rpx;
+		position: fixed;
+		bottom: 0;
+		right: 0;
+		// transform: translateX(-50%);
+		z-index: -1;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	
+		/deep/ .guanghuan {
+			width: 788rpx;
+			height: 439rpx;
+	
+			image {
+				width: 100%;
+				height: 100%;
+			}
+		}
+	}
+	
+	.sanjiaoBox {
+		width: 600rpx;
+		height: 572rpx;
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		z-index: -1;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		&.zhuru {
+			z-index: 10;
+		}
+	
+		/deep/ .sanjiao {
+			width: 600rpx;
+			height: 572rpx;
+	
+			image {
+				width: 100%;
+				height: 100%;
+			}
 		}
 	}
 
@@ -706,51 +798,8 @@
 		// overflow: hidden;
 		position: fixed;
 
-		.sanjiaoBox {
-			width: 600rpx;
-			height: 572rpx;
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-			z-index: -1;
-			display: flex;
-			justify-content: center;
-			align-items: center;
+		
 
-			/deep/ .sanjiao {
-				width: 600rpx;
-				height: 572rpx;
-
-				image {
-					width: 100%;
-					height: 100%;
-				}
-			}
-		}
-
-		.guanghuanBox {
-			width: 788rpx;
-			height: 439rpx;
-			position: absolute;
-			bottom: -6%;
-			left: 50%;
-			transform: translateX(-50%);
-			z-index: -1;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-
-			/deep/ .guanghuan {
-				width: 788rpx;
-				height: 439rpx;
-
-				image {
-					width: 100%;
-					height: 100%;
-				}
-			}
-		}
 
 
 
@@ -884,7 +933,7 @@
 
 		&.zhuru {
 			transform: scale(0.35);
-			z-index: -1;
+			z-index: -99;
 		}
 	}
 </style>
