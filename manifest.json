@@ -58,10 +58,13 @@
                     "<uses-permission android:name=\"android.permission.WRITE_CONTACTS\"/>",
                     "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\"/>",
                     "<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>"
-                ]
+                ],
+                "abiFilters" : [ "arm64-v8a", "x86" ]
             },
             /* ios打包配置 */
-            "ios" : {},
+            "ios" : {
+                "dSYMs" : false
+            },
             /* SDK配置 */
             "sdkConfigs" : {
                 "maps" : {},
@@ -103,7 +106,13 @@
                 }
             },
             "splashscreen" : {
-                "androidStyle" : "common"
+                "androidStyle" : "default",
+                "android" : {
+                    "hdpi" : "C:/Users/sk/Desktop/眼亮亮APP图标&启动图1217/480x762启动图.png",
+                    "xhdpi" : "C:/Users/sk/Desktop/眼亮亮APP图标&启动图1217/720x1242启动图.png",
+                    "xxhdpi" : "C:/Users/sk/Desktop/眼亮亮APP图标&启动图1217/1080x1882启动图.png"
+                },
+                "useOriginalMsgbox" : true
             }
         }
     },
