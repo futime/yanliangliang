@@ -14,7 +14,7 @@
 					<input class="input" v-model="form.age" disabled placeholder="点击选择出生日期" type="text">
 				</view>
 			</view>
-		<!-- 	<view class="form-item">
+			<!-- 	<view class="form-item">
 				<view class="form-item-label">体重 kg</view>
 				<view class="form-item-content" @click="handleClickShowKgPicker">
 					<input class="input" v-model="form.body_weight" disabled type="number" inputmode="numeric"
@@ -47,15 +47,32 @@
 					</view>
 				</view>
 			</view>
-
-			<view class="form-item" v-if="vuex_user.face_image">
+			<!-- #ifdef APP -->
+			<view class="form-item">
 				<view class="form-item-label">人脸信息</view>
 				<view class="form-item-content face">
-					<view class="faceimage">
-						<image :src="cdnurl(vuex_user.face_image)" mode="widthFix"></image>
+					<view class="faceimage" v-if="form.face_image">
+						<image :src="cdnurl(form.face_image)" mode="widthFix"></image>
+						<view class="mask" @click="selectImageUpload">
+							修改
+						</view>
+					</view>
+					<view class="addImage" v-if="!form.face_image" @click="selectImageUpload">
+						<image :src="staticurl('uploadimg_icon.png')" mode=""></image>
 					</view>
 				</view>
 			</view>
+			<!-- #endif -->
+			<!-- #ifdef MP-WEIXIN -->
+			<view class="form-item" v-if="form.face_image">
+				<view class="form-item-label">人脸信息</view>
+				<view class="form-item-content face">
+					<view class="faceimage" v-if="form.face_image">
+						<image :src="cdnurl(form.face_image)" mode="widthFix"></image>
+					</view>
+				</view>
+			</view>
+			<!-- #endif -->
 			<view class="btnGroup">
 				<view class="loginBtn" @click="handleClickSubmit">
 					<view class="label">{{ isnew ? '下一步' : '保存编辑'}}</view>
@@ -97,7 +114,8 @@
 					gender: 1,
 					nickname: '',
 					age: '',
-					body_weight: ''
+					body_weight: '',
+					face_image: ''
 				},
 				isnew: false
 			}
@@ -111,6 +129,46 @@
 			}
 		},
 		methods: {
+			selectImageUpload() {
+				const _this = this
+				// #ifdef MP-WEIXIN
+				uni.chooseMedia({
+					count: 1,
+					mediaType: ['image'],
+					sourceType: ['album', 'camera'],
+					camera: 'front',
+					async success(res) {
+						console.log(res)
+						let res2 = await _this.$api.goUpload({
+							filePath: res.tempFiles[0].tempFilePath
+						});
+						if (!res2.code) {
+							_this.$u.toast(res2.msg);
+						}
+
+						_this.form.face_image = res2.data.url
+					}
+				})
+				// #endif
+				// #ifdef APP
+				uni.chooseImage({
+					count: 1, //默认9
+					sizeType: ['original'], //可以指定是原图还是压缩图，默认二者都有
+					sourceType: ['album', 'camera'], //从相册选择
+					async success(res) {
+						console.log(JSON.stringify(res.tempFilePaths));
+						let res2 = await _this.$api.goUpload({
+							filePath: res.tempFilePaths[0]
+						});
+						if (!res2.code) {
+							_this.$u.toast(res2.msg);
+						}
+
+						_this.form.face_image = res2.data.url
+					}
+				});
+				// #endif
+			},
 			selectKg(e) {
 				if (e) {
 					this.form.body_weight = e[0].toString()
@@ -127,6 +185,7 @@
 				this.form.gender = this.vuex_user.gender
 				this.form.age = this.vuex_user.age
 				this.form.body_weight = this.vuex_user.body_weight
+				this.form.face_image = this.vuex_user.face_image
 			},
 			async handleClickSubmit() {
 				if (!this.form.nickname) {
@@ -158,6 +217,15 @@
 					})
 					return
 				}
+				// #ifdef APP
+				if (!this.form.face_image.toString()) {
+					uni.showToast({
+						title: '请上传人脸图片',
+						icon: 'none'
+					})
+					return
+				}
+				// #endif
 				let res = await this.$api.getUserProfile({
 					...this.form,
 					gender: this.form.gender
@@ -216,7 +284,7 @@
 		padding-top: 54rpx;
 		padding-left: 70rpx;
 		padding-right: 70rpx;
-		padding-bottom: 100rpx;
+		padding-bottom: 150rpx;
 	}
 
 	.form {
@@ -241,7 +309,7 @@
 				border-radius: 12rpx;
 				padding: 0 33rpx;
 				position: relative;
-				
+
 				.rightIcon {
 					position: absolute;
 					right: 20rpx;
@@ -256,6 +324,22 @@
 
 					.faceimage {
 						width: 100%;
+						position: relative;
+
+						.mask {
+							height: 60rpx;
+							width: 100%;
+							position: absolute;
+							bottom: 0;
+							left: 0;
+							background-color: rgba(0, 0, 0, 0.2);
+							display: flex;
+							justify-content: center;
+							align-items: center;
+							color: #fff;
+							font-size: 32rpx;
+							border-radius: 0 0 16rpx 16rpx;
+						}
 
 						image {
 							width: 100%;
@@ -344,20 +428,21 @@
 			}
 		}
 	}
-	
-	.btnGroup{
-		width:100%;
+
+	.btnGroup {
+		width: 100%;
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		position: fixed;
-		bottom:0vh;
-		left:0px;
-		height:160rpx;
+		bottom: 0vh;
+		left: 0px;
+		height: 160rpx;
 		background: #fff;
 	}
+
 	.loginBtn {
-		width:80%;
+		width: 80%;
 		height: 110rpx;
 		border-radius: 300px;
 		background: rgb(243, 148, 30);
@@ -371,5 +456,15 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+	}
+
+	.addImage {
+		width: 210rpx;
+		height: 210rpx;
+
+		image {
+			width: 100%;
+			height: 100%;
+		}
 	}
 </style>

@@ -22,8 +22,11 @@
 					<view class="uploadBox">
 						<view class="uploadImage" v-if="form.image">
 							<image :src="cdnurl(form.image)" mode=""></image>
+							<view class="mask"  @click="selectImageUpload">
+								修改
+							</view>
 						</view>
-						<view class="addImage" @click="selectImageUpload">
+						<view class="addImage" v-if="!form.image" @click="selectImageUpload">
 							<image :src="staticurl('uploadimg_icon.png')" mode=""></image>
 						</view>
 					</view>
@@ -268,11 +271,27 @@
 			height: 210rpx;
 			margin-right: 50rpx;
 			border-radius: 16rpx;
+			position: relative;
 
 			image {
 				width: 100%;
 				height: 100%;
 				border-radius: 16rpx;
+			}
+			
+			.mask {
+				height: 60rpx;
+				width: 100%;
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				background-color: rgba(0,0,0,0.2);
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				color: #fff;
+				font-size: 32rpx;
+				border-radius: 0 0 16rpx 16rpx;
 			}
 		}
 

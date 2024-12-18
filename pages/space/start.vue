@@ -89,6 +89,12 @@
 					})
 					// #endif
 					// #ifdef APP
+					if (!this.vuex_user.face_image) {
+						uni.navigateTo({
+							url: '/pages/my/profile-add'
+						})
+						return
+					}
 					uni.redirectTo({
 						url: '/pages/space/index'
 					})

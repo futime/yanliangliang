@@ -83,11 +83,13 @@
 						label: '我的积分',
 						id: 5
 					},
+					// #ifdef MP-WEIXIN
 					{
 						img: this.staticurl('inviteshare_icon.png'),
 						label: '邀请有奖',
 						id: 3
 					},
+					// #endif
 					{
 						img: this.staticurl('pointsmall_icon.png'),
 						label: '积分商城',

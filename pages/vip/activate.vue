@@ -1,16 +1,16 @@
 <template>
 	<view class="page">
 		<fa-navbar title="开通VIP" :background="{ color: '#fff' }"></fa-navbar>
-		
-		<view class="tipBox" v-if="vuex_token && vuex_vipinfo" >
+
+		<view class="tipBox" v-if="vuex_token && vuex_vipinfo">
 			<view class="icon">
 				<u-icon name="edit-pen" color="#F3941E" size="45"></u-icon>
 			</view>
 			<view class="text">
-				您当前VIP有效期至：{{ checkVipExpiry() || '已过期'}} 
+				您当前VIP有效期至：{{ checkVipExpiry() || '已过期'}}
 			</view>
 		</view>
-		
+
 		<view class="select_vip_box">
 			<view class="select_vip_box_item" :class="selectVip == item.points ? 'active' : ''"
 				v-for="(item, index) in vipList" :key="item.points" @click="handleClickSelectVip(item)">
@@ -47,11 +47,11 @@
 				<view></view>
 			</view>
 		</view>
-		
+
 		<!-- 小程序在线客服 -->
 		<button class="wechatKfLink" open-type="contact"></button>
 	</view>
-	
+
 </template>
 
 <script>
@@ -72,6 +72,7 @@
 			this.queryVips()
 		},
 		methods: {
+			// #ifdef MP-WEIXIN
 			async handleClickWxPay(paytype) {
 				if (!this.selectVip) {
 					uni.showToast({
@@ -90,7 +91,9 @@
 					paytype: paytype,
 					method: 'miniapp',
 					openid: this.vuex_openid || "",
+					// #ifdef MP-WEIXIN
 					logincode: await this.getMpCode(),
+					// #endif
 
 				})
 				if (!res.code) {
@@ -137,6 +140,34 @@
 
 
 			},
+			// #endif
+			// #ifdef APP
+			async handleClickWxPay() {
+				let appid = plus.runtime.appid;
+				
+				let res = await this.$api.payment({
+					order_sn: this.order_sn,
+					paytype: this.paytype,
+					method: 'app',
+					appid: appid
+				});
+				if (!res.code) {
+					this.$u.toast(res.msg);
+					return;
+				}
+				uni.requestPayment({
+					provider: this.paytype == 'alipay' ? 'alipay' : 'wxpay',
+					orderInfo: res.data, //微信、支付宝订单数据
+					success: function(rest) {
+						this.$u.toast('支付成功！');
+						this.$u.route('/pages/order/list');
+					},
+					fail: function(err) {
+						console.log('fail:' + JSON.stringify(err));
+					}
+				});
+			},
+			// #endif
 			handleClickSelectVip(item) {
 				this.selectVip = item.points
 				this.selectVipObj = item
@@ -198,12 +229,12 @@
 				line-height: 50rpx;
 				letter-spacing: 0px;
 				text-align: center;
-				margin-top:12rpx;
+				margin-top: 12rpx;
 			}
 		}
-		
+
 		.tipBox {
-			width:100%;
+			width: 100%;
 			display: flex;
 			align-items: center;
 			color: #F3941E;
@@ -215,12 +246,12 @@
 			text-align: left;
 			background: rgb(253, 241, 225);
 			padding: 26rpx 50rpx;
-			
+
 			.icon {
 				margin-right: 10rpx;
 			}
 		}
-		
+
 
 		.tipsTxt {
 			margin-top: 60rpx;
@@ -238,7 +269,8 @@
 			grid-template-columns: repeat(2, 1fr);
 			grid-column-gap: 32rpx;
 			grid-row-gap: 32rpx;
-			margin:50rpx 32rpx;
+			margin: 50rpx 32rpx;
+
 			&_item {
 				width: 100%;
 				height: 100%;
@@ -335,22 +367,23 @@
 			}
 		}
 	}
-	
-	
-	.wechatKfLink{
-		  border:none;
-		  outline:none;
-		  box-shadow:none;
-		  position: fixed;
-		  bottom:6vh;
-		  right:30rpx;
-		  width:110rpx;
-		  height:110rpx;
-		  background: url(https://yanliangliang.com/static/images/wechatkf_icon_s2.svg) center center no-repeat;
-		  background-size: cover;
-		  z-index:5000;
-		  &:after{
-			  display:none;
-		  }
+
+
+	.wechatKfLink {
+		border: none;
+		outline: none;
+		box-shadow: none;
+		position: fixed;
+		bottom: 6vh;
+		right: 30rpx;
+		width: 110rpx;
+		height: 110rpx;
+		background: url(https://yanliangliang.com/static/images/wechatkf_icon_s2.svg) center center no-repeat;
+		background-size: cover;
+		z-index: 5000;
+
+		&:after {
+			display: none;
+		}
 	}
 </style>
