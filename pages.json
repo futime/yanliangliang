@@ -90,6 +90,15 @@
 		
 		},
 		{
+			"path": "pages/my/invitation",
+			"style": {
+				"navigationBarTitleText": "邀请好友",
+				"navigationStyle": "custom",
+				"navigationBarTextStyle": "white"
+			}
+		
+		},
+		{
 			"path": "pages/signin/signin",
 			"style": {
 				"navigationBarTitleText": "签到",
