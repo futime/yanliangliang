@@ -60,6 +60,11 @@
 				
 			}
 		},
+		onLoad(opt) {
+			if(opt.recdkey){
+				this.$u.vuex('vuex_recdkey', opt.recdkey);
+			}
+		},
 		methods: {
 			getRemainingTime(targetTime, level) {
 				// 将目标时间转换为 Date 对象，假设传入的时间格式是 "yyyy-MM-dd HH:mm:ss"

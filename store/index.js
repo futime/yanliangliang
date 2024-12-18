@@ -23,7 +23,8 @@ let saveStateKeys = [
 	'vuex_theme',
 	'vuex_invite_id',
 	'vuex_history_keyword',
-	'vuex_vipinfo'
+	'vuex_vipinfo',
+	'vuex_recdkey'
 ];
 
 // 保存变量到本地存储中
@@ -53,6 +54,7 @@ const store = new Vuex.Store({
 		vuex_theme: lifeData.vuex_theme ? lifeData.vuex_theme : {},
 		vuex_lasturl: lifeData.vuex_lasturl ? lifeData.vuex_lasturl : '/pages/index/index',
 		vuex_vipinfo: lifeData.vuex_vipinfo ? lifeData.vuex_vipinfo : null,
+		vuex_recdkey: lifeData.vuex_recdkey ? lifeData.vuex_recdkey : null, 
 		
 		vuex_address: {},
 		vuex__token__: '',

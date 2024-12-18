@@ -363,6 +363,14 @@
 				"navigationBarTextStyle": "white",
 				"enablePullDownRefresh": false
 			}
+		},{
+			"path": "pages/my/invitation",
+			"style": {
+				"navigationBarTitleText": "邀请好友",
+				"navigationStyle": "custom",
+				"navigationBarTextStyle": "white"
+			}
+		
 		}
 	],
 	"subPackages": [{

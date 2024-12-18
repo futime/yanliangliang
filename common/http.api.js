@@ -198,6 +198,11 @@ const install = (Vue, vm) => {
 	vm.$api.subscribe 		  = async (params = {}) => await vm.$u.post('/addons/shop/api.subscribe/index',params);
 	
 	vm.$api.attribute 		  = async (params = {}) => await vm.$u.get('/addons/shop/api.attribute/index',params);
+	
+	// 获取推广列表
+	vm.$api.getrecommend 		  = async (params = {}) => await vm.$u.get('/addons/shop/api.user/getrecommend',params);
+	// 获取积分列表
+	vm.$api.getscore 		  = async (params = {}) => await vm.$u.get('/addons/shop/api.user/getscore',params);
 }
 
 export default {

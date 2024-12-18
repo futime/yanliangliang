@@ -156,6 +156,9 @@
 						if (this.vuex_wx_uid) {
 							this.form.wx_user_id = this.vuex_wx_uid;
 						}
+						if (this.vuex_recdkey) {
+							this.form.vuex_recdkey = this.vuex_recdkey;
+						}
 						let res = await this.$api.mobilelogin(this.form);
 						if (!res.code) {
 							this.$u.toast(res.msg);

@@ -354,7 +354,8 @@ export const loginfunc = {
 			this.$api.goWechatMobileLogin({
 				code: e.detail.code,
 				logincode: logincode,
-				bind: this.is_bind || ''
+				bind: this.is_bind || '',
+				sharekey: this.vuex_recdkey || ''
 			}).then((res) => {
 				if (res.code == 1) {
 					this.$u.vuex('vuex_token', res.data.token);
