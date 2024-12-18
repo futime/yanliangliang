@@ -41,7 +41,7 @@
 					<image :src="staticurl('shuoming_btn_arrow.png')" mode=""></image>
 				</view>
 				 <button v-if="item.id == 2" open-type="contact" class="contactButton"></button>
-				 <button v-if="item.id == 3" open-type="share" class="shareButton"></button>
+				 <!-- <button v-if="item.id == 3" open-type="share" class="shareButton"></button> -->
 			</view>
 			
 			<view class="logout" v-if="vuex_token">
@@ -153,12 +153,17 @@
 							url: '/pages/vip/orderlist'
 						})
 						break
-					// case 3: 
-					// 	uni.showToast({
-					// 		title: '功能待开放',
-					// 		icon: 'none'
-					// 	})
-					// 	break
+					case 3: 
+						if(!this.vuex_token) {
+							uni.navigateTo({
+								url: '/pages/login/login'
+							})
+							return
+						}
+						uni.navigateTo({
+							url: '/pages/my/invitation'
+						})
+						break;
 					case 4: 
 						uni.navigateTo({
 							url: '/pages/score/exchange'

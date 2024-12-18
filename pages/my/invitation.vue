@@ -76,7 +76,7 @@
 
 <style lang="scss">
 page {
-	background-color: #f4f6f8;
+	background-color: #fff;
 }
 </style>
 <style lang="scss" scoped>
