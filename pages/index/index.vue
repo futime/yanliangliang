@@ -89,7 +89,7 @@
 			handleClickNengliang() {
 				if(!this.vuex_token){
 					uni.navigateTo({
-						url: '/pages/login/login'
+						url: '/pages/login/login?redirect=/pages/space/start'
 					})
 					return
 				}

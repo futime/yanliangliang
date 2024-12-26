@@ -42,7 +42,7 @@
 	import { loginfunc } from '@/common/fa.mixin.js';
 	export default {
 		mixins: [loginfunc],
-		onLoad() {
+		onLoad(opt) {
 			// #ifdef MP-WEIXIN || APP-PLUS
 			this.isThreeLogin = true;
 			// #endif
@@ -52,6 +52,9 @@
 				this.isThreeLogin = true;
 			}
 			// #endif
+			if(opt.redirect){
+				this.$u.vuex('vuex_lasturl', opt.redirect);
+			}
 		},
 		// 必须要在onReady生命周期，因为onLoad生命周期组件可能尚未创建完毕
 		onReady() {
@@ -61,7 +64,8 @@
 				labelPosition: 'top',
 				border: false,
 				errorType: ['message'],
-				isThreeLogin: false
+				isThreeLogin: false,
+				redirectUrl: ''
 			};
 		},
 		methods: {

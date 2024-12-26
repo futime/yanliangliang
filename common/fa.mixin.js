@@ -283,7 +283,11 @@ export const loginfunc = {
 
 				//不在H5
 				// #ifndef H5
-				if (typeof pages[delta] !== 'undefined') {
+				if(url == '/pages/space/start') {
+					uni.reLaunch({
+						url: url
+					})
+				} else if (typeof pages[delta] !== 'undefined') {
 					uni.navigateBack({
 						delta: delta
 					});
@@ -314,6 +318,7 @@ export const loginfunc = {
 		// #ifdef MP-WEIXIN
 		// 获取手机号回调
 		async getPhoneNumber(e) {
+			console.log(this)
 			if (e.detail.errMsg === "privacy permission is not authorized") {
 				this.$refs.uToast.show({
 					title: '授权失败，失败原因：未同意隐私协议',
