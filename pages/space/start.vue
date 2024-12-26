@@ -74,7 +74,43 @@
 				selectType: 1
 			}
 		},
+		onShow() {
+			if (this.vuex_token) {
+				this.getUserIndex();
+			}
+		},
 		methods: {
+			getUserIndex: async function() {
+				let res = await this.$api.getUserIndex();
+				uni.stopPullDownRefresh();
+				if (res.code == 1) {
+					const res2 = await this.$api.getVipInfo()
+					this.$u.vuex('vuex_vipinfo', res2.data.vipInfo);
+					this.$u.vuex('vuex_user', res.data.userInfo || {});
+					if (res.data.showProfilePrompt && !this.vuex_setting.prompted) {
+						// 弹窗每次登录状态只提示一次
+						this.$u.vuex('vuex_setting.prompted', true);
+					// 	uni.showModal({
+					// 		title: '温馨提示',
+					// 		confirmText: '去设置',
+					// 		cancelText: '取消',
+					// 		showCancel: true,
+					// 		content: '当前未设置昵称，请设置昵称后再继续操作',
+					// 		success: (res) => {
+					
+					// 			if (res.confirm) {
+					// 				this.$u.route("/pages/my/profile");
+					// 			} else if (res.cancel) {
+					
+					// 			}
+					// 		}
+					// 	});
+					}
+				} else {
+					this.$u.toast(res.msg);
+					return;
+				}
+			},
 			handleClickNext() {
 				if (this.selectType == 1) {
 					// #ifdef MP-WEIXIN
@@ -112,6 +148,7 @@
 				uni.redirectTo({
 					url: '/pages/space/index?userid=' + id
 				})
+				this.show = false
 			},
 			handleClickSelect(type) {
 				this.selectType = type

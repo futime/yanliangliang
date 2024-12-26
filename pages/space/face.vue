@@ -51,7 +51,7 @@
 			confirmBtn() {
 				this.check = true
 				uni.redirectTo({
-					url: '/pages/space/face'
+					url: '/pages/space/face-detect'
 				})
 			},
 			nextFun() {
@@ -60,7 +60,7 @@
 					return
 				}
 				uni.redirectTo({
-					url: '/pages/space/face'
+					url: '/pages/space/face-detect'
 				})
 			}
 		}

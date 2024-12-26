@@ -407,15 +407,15 @@
 						"enablePullDownRefresh": false
 					}
 				},
-				// {
-				// 	"path": "face-detect",
-				// 	"style": {
-				// 		"navigationBarTitleText": "人脸识别扫描",
-				// 		"navigationStyle": "custom",
-				// 		"navigationBarTextStyle": "white",
-				// 		"enablePullDownRefresh": false
-				// 	}
-				// },
+				{
+					"path": "face-detect",
+					"style": {
+						"navigationBarTitleText": "人脸识别扫描",
+						"navigationStyle": "custom",
+						"navigationBarTextStyle": "white",
+						"enablePullDownRefresh": false
+					}
+				},
 				{
 					"path": "index",
 					"style": {
