@@ -66,7 +66,7 @@
 					<image :src="staticurl('adduser_icon.png')" mode=""></image>
 				</view>
 				<view class="text">
-					新增体验者资料
+					添加体验者资料
 				</view>
 			</view>
 			<view class="addbtnTips"><text></text></view>

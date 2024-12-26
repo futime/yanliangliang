@@ -9,9 +9,9 @@
 				</view>
 			</view>
 			<view class="form-item">
-				<view class="form-item-label">出生日期</view>
+				<view class="form-item-label">出生年月日</view>
 				<view class="form-item-content" @click="handleClickShowPicker">
-					<input class="input" v-model="form.age" disabled placeholder="点击选择出生日期" type="text">
+					<input class="input" v-model="form.age" disabled placeholder="点击选择出生年月日" type="text">
 				</view>
 			</view>
 			<!-- 	<view class="form-item">

@@ -194,15 +194,15 @@
 
 		.nextBtn {
 			width: 100%;
-			height: 123rpx;
+			height: 100rpx;
 			border-radius: 300px;
 			background: rgb(243, 148, 30);
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			margin-top: 93rpx;
+			margin-top: 64rpx;
 			color: #fff;
-			font-size: 48rpx;
+			font-size: 38rpx;
 		}
 
 		.cancel {

@@ -2,7 +2,7 @@
 	<view class="page">
 		<fa-navbar :title="title" :borderBottom="true"></fa-navbar>
 		<view class="content">
-			<u-form :model="form" ref="uForm" :label-width="140">
+			<u-form :model="form" ref="uForm" :label-width="160">
 				<u-form-item label="姓名" prop="name" required><u-input v-model="form.name"
 						placeholder="请输入体验者姓名" /></u-form-item>
 				<u-form-item label="手机号" prop="phone" required><u-input v-model="form.phone"
@@ -14,7 +14,7 @@
 						</u-radio>
 					</u-radio-group>
 				</u-form-item>
-				<u-form-item label="出生日期" prop="age" required><u-input v-model="form.age" type="select"
+				<u-form-item label="出生年月日" prop="age" required><u-input v-model="form.age" type="select"
 						placeholder="选择出生年月日" @click="handleClickShowAge" /></u-form-item>
 				<!-- <u-form-item label="体重"  prop="body_weight" required><u-input v-model="form.body_weight" type="select"
 						placeholder="请选择体重（单位kg）" @click="handleClickShowWeight" /></u-form-item> -->

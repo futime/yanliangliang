@@ -34,7 +34,6 @@
 					<image :src="staticurl('energy_halo.png')" mode=""></image>
 				</view>
 			</template>
-
 			
 			<!-- <view class="guanghuan">
 				<image :src="staticurl('energy_aperturebg.png')" mode=""></image>
@@ -865,7 +864,7 @@
 	.leftbtns {
 		position: absolute;
 		top: 12%;
-		left: 29rpx;
+		left: 12rpx;
 		z-index: 9999;
 
 		.btnitem {
@@ -883,11 +882,11 @@
 	.rightbtns {
 		position: absolute;
 		top: 12%;
-		right: 29rpx;
+		right: 12rpx;
 		z-index: 9999;
 
 		.btnitem {
-			width: 193rpx;
+			width: 182rpx;
 			height: 96rpx;
 
 			image {
