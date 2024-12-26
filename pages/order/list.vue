@@ -105,7 +105,7 @@
 						<view class="page-box" v-else>
 							<view v-if="loadStatus[key]!='loadmore'">
 								<view class="centre">
-									<image src="../../static/image/order.png" mode=""></image>
+									<image src="../../static/image/data.png" mode=""></image>
 									<view class="explain">
 										您还没有相关的订单
 										<view class="tips">可以去看看有那些想买的</view>

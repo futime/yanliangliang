@@ -348,7 +348,7 @@
 				// 转换为小时数并取整
 				const countdownHours = Math.floor(timeDiff / (1000 * 60 * 60));
 
-				return (level == 0 ? '免费体验剩余' : '剩余') + (countdownHours > 0 ? `${countdownHours}小时` : '0小时');
+				return (level == 0 ? '体验剩余' : '体验剩余') + (countdownHours > 0 ? `${countdownHours}小时` : '0小时');
 			},
 			getRemainingTime(targetTime, level) {
 
@@ -899,8 +899,8 @@
 	}
 
 	.yuan {
-		width: 50rpx;
-		height: 50rpx;
+		width: 80rpx;
+		height: 80rpx;
 		position: absolute;
 		transform: translate(-50%, -50%);
 		pointer-events: none;
@@ -909,18 +909,18 @@
 		z-index: 999;
 
 		&.big {
-			width: 128rpx;
-			height: 128rpx;
+			width: 140rpx;
+			height: 140rpx;
 
 			image {
-				width: 128rpx;
-				height: 128rpx;
+				width: 140rpx;
+				height: 140rpx;
 			}
 		}
 
 		image {
-			width: 50rpx;
-			height: 50rpx;
+			width: 80rpx;
+			height: 80rpx;
 		}
 	}
 

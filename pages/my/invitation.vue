@@ -36,7 +36,7 @@
 			<view class="u-tips-color">暂无更多数据~</view>
 		</view>
 		<!-- 加载更多 -->
-		<view class="u-p-b-30" v-if="list.length"><u-loadmore bg-color="#f4f6f8" :status="has_more ? status : 'nomore'" /></view>
+		<view class="u-p-b-30" v-if="list.length"><u-loadmore bg-color="#ffffff" :status="has_more ? status : 'nomore'" /></view>
 
 
 		<!-- 小程序在线客服 -->

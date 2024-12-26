@@ -45,7 +45,7 @@
 		<view class="u-p-t-30 u-p-b-30 u-border-top" v-if="list.length"><u-loadmore bg-color="#ffffff" :status="has_more ? status : 'nomore'" /></view>
 		<!-- 空数据 -->
 		<view class="u-flex u-row-center fa-empty top-15" v-if="is_empty">
-			<image src="../../static/image/order.png" mode=""></image>
+			<image src="../../static/image/data.png" mode=""></image>
 			<view class="u-tips-color">您没有兑换记录哦~</view>
 		</view>
 

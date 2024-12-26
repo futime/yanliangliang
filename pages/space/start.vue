@@ -123,6 +123,7 @@
 					uni.redirectTo({
 						url: '/pages/space/index'
 					})
+					this.show = false;
 					// #endif
 					// #ifdef APP
 					if (!this.vuex_user.face_image) {
@@ -134,6 +135,7 @@
 					uni.redirectTo({
 						url: '/pages/space/index'
 					})
+					this.show = false;
 					// #endif
 				} else {
 					uni.$once('SELECT_USER', (e) => {
