@@ -237,7 +237,7 @@
 						setTimeout(() => {
 							this.$u.route({
 								type: 'switchTab',
-								url: '/pages/my/my'
+								url: '/pages/space/start'
 							});
 						}, 1500)
 					} else {

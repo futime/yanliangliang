@@ -248,10 +248,11 @@
 			showPoints() {
 				let arr = []
 				Object.keys(this.selectBodyPoints[this.positive]).forEach(item => {
-					let newArr = this.selectBodyPoints[this.positive][item].map(item => {
+					let newArr = this.selectBodyPoints[this.positive][item].map(item2 => {
+						console.log(item)
 						return {
-							x: item[0],
-							y: item[1],
+							x: item2[0],
+							y: item2[1],
 							type: item == 'other' ? '' : item
 						}
 					})
@@ -413,7 +414,12 @@
 			},
 			// 清除
 			handleClickClear() {
-				this.bodys[this.active][this.positive].points = []
+				console.log(this.selectBodyPoints[this.positive])
+				this.selectBodyPoints[this.positive].headCoord = []
+				this.selectBodyPoints[this.positive].limbCoord = []
+				this.selectBodyPoints[this.positive].trunkCoord = []
+				this.selectBodyPoints[this.positive].other = []
+				this.$forceUpdate()
 			},
 			// 点击躯干 头部这些
 			handleClickShowIcons(type) {
@@ -893,8 +899,8 @@
 	}
 
 	.yuan {
-		width: 67.5rpx;
-		height: 67.5rpx;
+		width: 50rpx;
+		height: 50rpx;
 		position: absolute;
 		transform: translate(-50%, -50%);
 		pointer-events: none;
@@ -903,18 +909,18 @@
 		z-index: 999;
 
 		&.big {
-			width: 160rpx;
-			height: 160rpx;
+			width: 128rpx;
+			height: 128rpx;
 
 			image {
-				width: 160rpx;
-				height: 160rpx;
+				width: 128rpx;
+				height: 128rpx;
 			}
 		}
 
 		image {
-			width: 67.5rpx;
-			height: 67.5rpx;
+			width: 50rpx;
+			height: 50rpx;
 		}
 	}
 

@@ -101,7 +101,19 @@
 						url: '/pages/space/start'
 					})
 				}else{
-					this.$u.toast('会员已过期')
+					uni.showModal({
+						title: '提示',
+						content: `您的VIP已到期，请充值？`,
+						cancelText: '再想想',
+						confirmText: '去充值',
+						success: async function(res) {
+							if (res.confirm) {
+								uni.navigateTo({
+									url: '/pages/vip/activate'
+								})
+							}
+						},
+					});
 				}
 			},
 			handleClickVip() {
