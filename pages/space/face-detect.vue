@@ -136,7 +136,6 @@
 												if(!uploadres.code) {
 													this.$u.toast(uploadres.msg);
 												}
-												this.getUserIndex();
 												this.getVipInfo()
 												uni.redirectTo({
 													url: '/pages/space/index'
