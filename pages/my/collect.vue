@@ -20,7 +20,7 @@
 		</view>
 		<!-- 空数据 -->
 		<view class="u-flex u-row-center fa-empty top-15" v-if="is_empty">
-			<image src="../../static/image/collect.png" mode=""></image>
+			<image src="../../static/image/data.png" mode=""></image>
 			<view class="u-tips-color">没有更多的收藏数据了~</view>
 		</view>
 		<!-- 加载更多 -->

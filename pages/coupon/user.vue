@@ -55,7 +55,7 @@
 		</view>
 		<!-- 空数据 -->		
 		<view class="u-flex u-row-center fa-empty top-15" v-if="!couponList.length">
-			<image src="../../static/image/coupon.png" mode=""></image>
+			<image src="../../static/image/data.png" mode=""></image>
 			<view class="u-tips-color">
 				没有更多的数据了~
 			</view>

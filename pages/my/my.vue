@@ -67,7 +67,6 @@
 		data() {
 			return {
 				list: [
-					
 					{
 						img: this.staticurl('orderinquiry_icon.png'),
 						label: '我的订单',
@@ -95,7 +94,6 @@
 						label: '积分商城',
 						id: 4
 					},
-					
 					{
 						img: this.staticurl('address_icon.png'),
 						label: '收货地址',

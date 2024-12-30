@@ -172,44 +172,44 @@
 				"enablePullDownRefresh": false
 			}
 		}, */
-		// {
-		// 	"path": "pages/goods/goods",
-		// 	"style": {
-		// 		"navigationBarTitleText": "商品列表",
-		// 		"navigationStyle": "custom",
-		// 		"navigationBarTextStyle": "white",
-		// 		"enablePullDownRefresh": false
-		// 	}
+		{
+			"path": "pages/goods/goods",
+			"style": {
+				"navigationBarTitleText": "商品列表",
+				"navigationStyle": "custom",
+				"navigationBarTextStyle": "white",
+				"enablePullDownRefresh": false
+			}
 
-		// }, {
-		// 	"path": "pages/category/index",
-		// 	"style": {
-		// 		"navigationBarTitleText": "商品分类",
-		// 		"navigationStyle": "custom",
-		// 		"navigationBarTextStyle": "white",
-		// 		"enablePullDownRefresh": false
-		// 	}
+		}, {
+			"path": "pages/category/index",
+			"style": {
+				"navigationBarTitleText": "商品分类",
+				"navigationStyle": "custom",
+				"navigationBarTextStyle": "white",
+				"enablePullDownRefresh": false
+			}
 
-		// }, {
-		// 	"path": "pages/goods/detail",
-		// 	"style": {
-		// 		"navigationBarTitleText": "商品详情",
-		// 		"navigationStyle": "custom",
-		// 		"navigationBarTextStyle": "white",
-		// 		"enablePullDownRefresh": false
-		// 	}
+		}, {
+			"path": "pages/goods/detail",
+			"style": {
+				"navigationBarTitleText": "商品详情",
+				"navigationStyle": "custom",
+				"navigationBarTextStyle": "white",
+				"enablePullDownRefresh": false
+			}
 
-		// }, 
-		// {
-		// 	"path": "pages/cart/cart",
-		// 	"style": {
-		// 		"navigationBarTitleText": "购物车",
-		// 		"navigationStyle": "custom",
-		// 		"navigationBarTextStyle": "white",
-		// 		"enablePullDownRefresh": false
-		// 	}
+		}, 
+		{
+			"path": "pages/cart/cart",
+			"style": {
+				"navigationBarTitleText": "购物车",
+				"navigationStyle": "custom",
+				"navigationBarTextStyle": "white",
+				"enablePullDownRefresh": false
+			}
 
-		// }, 
+		}, 
 		{
 			"path": "pages/goods/order",
 			"style": {
@@ -236,7 +236,6 @@
 				"navigationBarTextStyle": "white",
 				"enablePullDownRefresh": true
 			}
-
 		}, {
 			"path": "pages/order/apply",
 			"style": {
@@ -245,7 +244,6 @@
 				"navigationBarTextStyle": "white",
 				"enablePullDownRefresh": false
 			}
-
 		}, {
 			"path": "pages/order/aftersale",
 			"style": {
@@ -268,17 +266,16 @@
 		{
 			"path": "pages/address/address",
 			"style": {
-				"navigationBarTitleText": "地址管理",
+				"navigationBarTitleText": "收货地址管理",
 				"navigationStyle": "custom",
 				"navigationBarTextStyle": "white",
 				"enablePullDownRefresh": false
 			}
-
 		},
 		{
 			"path": "pages/address/addedit",
 			"style": {
-				"navigationBarTitleText": "添加地址",
+				"navigationBarTitleText": "添加收货地址",
 				"navigationStyle": "custom",
 				"navigationBarTextStyle": "white",
 				"enablePullDownRefresh": false
@@ -292,7 +289,6 @@
 				"navigationBarTextStyle": "white",
 				"enablePullDownRefresh": false
 			}
-
 		}, {
 			"path": "pages/score/logs",
 			"style": {
@@ -321,34 +317,34 @@
 			}
 
 		}, 
-		// {
-		// 	"path": "pages/coupon/coupon",
-		// 	"style": {
-		// 		"navigationBarTitleText": "优惠券",
-		// 		"navigationStyle": "custom",
-		// 		"navigationBarTextStyle": "white",
-		// 		"enablePullDownRefresh": false
-		// 	}
+		{
+			"path": "pages/coupon/coupon",
+			"style": {
+				"navigationBarTitleText": "优惠券",
+				"navigationStyle": "custom",
+				"navigationBarTextStyle": "white",
+				"enablePullDownRefresh": false
+			}
 
-		// }, {
-		// 	"path": "pages/coupon/user",
-		// 	"style": {
-		// 		"navigationBarTitleText": "我的优惠券",
-		// 		"navigationStyle": "custom",
-		// 		"navigationBarTextStyle": "white",
-		// 		"enablePullDownRefresh": false
-		// 	}
+		}, {
+			"path": "pages/coupon/user",
+			"style": {
+				"navigationBarTitleText": "我的优惠券",
+				"navigationStyle": "custom",
+				"navigationBarTextStyle": "white",
+				"enablePullDownRefresh": false
+			}
 
-		// }, {
-		// 	"path": "pages/coupon/detail",
-		// 	"style": {
-		// 		"navigationBarTitleText": "优惠券详情",
-		// 		"navigationStyle": "custom",
-		// 		"navigationBarTextStyle": "white",
-		// 		"enablePullDownRefresh": false
-		// 	}
+		}, {
+			"path": "pages/coupon/detail",
+			"style": {
+				"navigationBarTitleText": "优惠券详情",
+				"navigationStyle": "custom",
+				"navigationBarTextStyle": "white",
+				"enablePullDownRefresh": false
+			}
 
-		// }, 
+		}, 
 		{
 			"path": "pages/page/page",
 			"style": {
@@ -358,25 +354,25 @@
 				"enablePullDownRefresh": false
 			}
 		},
-		// {
-		// 	"path": "pages/search/search",
-		// 	"style": {
-		// 		"navigationBarTitleText": "搜索",
-		// 		"navigationStyle": "custom",
-		// 		"navigationBarTextStyle": "white",
-		// 		"enablePullDownRefresh": false
-		// 	}
+		{
+			"path": "pages/search/search",
+			"style": {
+				"navigationBarTitleText": "搜索",
+				"navigationStyle": "custom",
+				"navigationBarTextStyle": "white",
+				"enablePullDownRefresh": false
+			}
 
-		// }, 
-		// {
-		// 	"path": "pages/help/index",
-		// 	"style": {
-		// 		"navigationBarTitleText": "帮助中心",
-		// 		"navigationStyle": "custom",
-		// 		"navigationBarTextStyle": "white",
-		// 		"enablePullDownRefresh": false
-		// 	}
-		// },
+		}, 
+		{
+			"path": "pages/help/index",
+			"style": {
+				"navigationBarTitleText": "帮助中心",
+				"navigationStyle": "custom",
+				"navigationBarTextStyle": "white",
+				"enablePullDownRefresh": false
+			}
+		},
 		{
 			"path": "pages/my/invitation",
 			"style": {
@@ -432,7 +428,7 @@
 			"pages": [{
 					"path": "activate",
 					"style": {
-						"navigationBarTitleText": "开通vip",
+						"navigationBarTitleText": "开通VIP",
 						"navigationStyle": "custom",
 						"navigationBarTextStyle": "white",
 						"enablePullDownRefresh": false

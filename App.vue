@@ -21,6 +21,12 @@
 				}
 			}
 			// #endif
+			
+			// if (process.env.NODE_ENV === 'production') {
+			//   wx.setEnableDebug({
+			// 	enableDebug: false
+			//   });
+			// }
 
 			//加载配置
 			let res = await this.$api.getConfig();

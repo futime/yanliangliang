@@ -52,7 +52,7 @@
 		</view>
 		<!-- 空数据 -->
 		<view class="u-flex u-row-center fa-empty top-15" v-if="!couponList.length">
-			<image src="../../static/image/coupon.png" mode=""></image>
+			<image src="../../static/image/data.png" mode=""></image>
 			<view class="u-tips-color">暂无可领取的优惠券~</view>
 		</view>
 		<!-- 加载更多 -->

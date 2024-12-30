@@ -2,6 +2,14 @@
 	<view>
 		<!-- 顶部导航 -->
 		<fa-navbar title="收货地址管理" :border-bottom="false"></fa-navbar>
+		<view class="tipBox notipBox">
+			<view class="icon">
+				<u-icon name="bookmark" color="#F3941E" size="45"></u-icon>
+			</view>
+			<view class="text">
+				选中对应收货地址左滑编辑或删除
+			</view>
+		</view>
 		<u-swipe-action :show="item.show" :index="index" v-for="(item, index) in list" :key="item.id" @click="click"
 			@open="open" :options="options">
 			<view class="item u-border-bottom u-p-30" @click="select(item)">
@@ -22,7 +30,7 @@
 			</view>
 			<view class="" v-else>
 				<image src="../../static/image/data.png" mode=""></image>
-				<view class="u-tips-color">请先添加收货地址~</view>
+				<view class="u-tips-color">请先添加地址~</view>
 			</view>
 		</view>
 		<u-gap height="120" bg-color="#ffffff"></u-gap>
@@ -135,5 +143,27 @@
 		.loading {
 			padding-top: 10vh;
 		}
+	}
+	.tipBox {
+		width:100%;
+		display: flex;
+		align-items: center;
+		color: #F3941E;
+		font-family: 思源黑体;
+		font-size: 30rpx;
+		font-weight: 400;
+		line-height: 43rpx;
+		letter-spacing: 0px;
+		text-align: left;
+		background: rgb(253, 241, 225);
+		padding: 26rpx 50rpx;
+	
+		.icon {
+			margin-right: 10rpx;
+		}
+	}
+	
+	.notipBox{
+	
 	}
 </style>

@@ -39,13 +39,13 @@
 			</view>
 		</view>
 		<!-- 填写信息 -->
-		<u-popup v-model="show" mode="center" :height="form.type != 'reality' ? '450' : '600'" width="80%" border-radius="10">
+		<u-popup v-model="show" mode="center" :height="form.type != 'reality' ? '500' : '780'" width="88%" border-radius="10">
 			<view class="u-p-30 bg-white u-flex u-flex-column u-row-between">
 				<view class="" style="width: 90%;">
 					<u-form :model="form" ref="uForm">
 						<block v-if="form.type != 'virtual'">
 							<u-form-item label="收货地址:" :required="true">
-								<u-input @click="showSelectAddress" v-model="form.address" placeholder="点击选择收货地址" />
+								<u-input @click="showSelectAddress" v-model="form.address" placeholder="点击添加收货地址" />
 							</u-form-item>
 						</block>
 						<u-form-item label="备注:"><u-input type="textarea" v-model="form.memo" placeholder="请填写备注" /></u-form-item>
@@ -196,6 +196,7 @@ export default {
 		showSelectAddress() {
 			if (!this.addressList.length) {
 				this.modeShow = true;
+				this.show = false;
 				return;
 			}
 			this.addressShow = true;
@@ -248,7 +249,7 @@ export default {
 		submit() {
 			if (this.form.type == 'reality') {
 				if (!this.form.address) {
-					this.$u.toast('请选择地址！');
+					this.$u.toast('请先添加收货地址！');
 					return;
 				}
 			}

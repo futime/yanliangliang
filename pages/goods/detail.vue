@@ -96,7 +96,7 @@
 				<text class="u-tips-color u-font-24 text-normal">好评度:{{ info.favor_rate }}%</text>
 			</view>
 			<view class="u-flex u-row-center fa-empty u-p-b-30" v-if="noComment(info.comment)">
-				<image src="../../static/image/comment.png" mode=""></image>
+				<image src="../../static/image/data.png" mode=""></image>
 				<view class="u-tips-color">暂无更多评论~</view>
 			</view>
 			<view class="comment u-border-bottom" v-for="(res, index) in info.comment" :key="res.id">

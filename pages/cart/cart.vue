@@ -43,7 +43,7 @@
 			<view>
 				<view class="u-flex u-row-center loading" v-if="is_loading"><u-loading mode="flower" size="80"></u-loading></view>
 				<view v-else class="centre">
-					<image src="../../static/image/cart.png" mode=""></image>
+					<image src="../../static/image/data.png" mode=""></image>
 					<view class="explain">
 						您的购物车空空如也~
 						<view class="tips">快去看看有那些想买的</view>

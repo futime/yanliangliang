@@ -35,10 +35,10 @@ export default {
 	onLoad(e) {
 		this.id = e.id || '';
 		if (e.id) {
-			this.title = '编辑地址';
+			this.title = '编辑收货地址';
 			this.getAddressInfo();
 		} else {
-			this.title = '添加地址';
+			this.title = '添加收货地址';
 			this.is_render = true;
 			this.isdefault = this.vuex_address.id ? false : true;
 		}
