@@ -90,7 +90,7 @@
 			</view>
 		</view>
 
-		<view class="bg-white u-m-t-30">
+		<!-- <view class="bg-white u-m-t-30">
 			<view class="u-p-30 text-weight u-flex u-row-between">
 				<text>评价</text>
 				<text class="u-tips-color u-font-24 text-normal">好评度:{{ info.favor_rate }}%</text>
@@ -119,19 +119,19 @@
 						</view>
 					</view>
 					<view class="bottom u-flex u-row-between">
-						<text>{{ res.createtime | timeFrom('yyyy-mm-dd') }}</text>
+						<text>{{ res.createtime | timeFrom('yyyy-mm-dd') }}</text> -->
 						<!-- <view class="" :style="[{ color: theme.bgColor }]" @click="(showReplay = true), (replyId = res.id)">
 							<u-icon name="chat" :color="theme.bgColor"></u-icon>							
 							<text class="u-m-l-10">回复</text>
 						</view> -->
-					</view>
+				<!-- 	</view>
 				</view>
-			</view>
-			<view class="u-text-center u-p-30 u-tips-color" v-if="!noComment(info.comment)" @click="goPage('/pages/remark/lists?goods_id=' + id)">
+			</view> -->
+		<!-- 	<view class="u-text-center u-p-30 u-tips-color" v-if="!noComment(info.comment)" @click="goPage('/pages/remark/lists?goods_id=' + id)">
 				<text class="u-m-r-10">更多评论</text>
 				<u-icon name="arrow-right-double"></u-icon>
-			</view>
-		</view>
+			</view> -->
+		<!-- </view> -->
 
 		<view class="recommends bg-white u-m-t-30">
 			<view class="u-font-30 title">

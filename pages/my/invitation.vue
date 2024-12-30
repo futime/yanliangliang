@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<!-- 顶部导航 -->
-		<fa-navbar title="邀请好友" :border-bottom="false"></fa-navbar>
+		<fa-navbar title="分享好友" :border-bottom="false"></fa-navbar>
 
 		<view class="totalWrap">
 			<view class="icon">
@@ -9,19 +9,19 @@
 			</view>
 			<view class="tipsBox">
 				<view class="textCon">
-					您已邀请<text>{{ totalNum }}</text>位好友，共获得
+					您已分享<text>{{ totalNum }}</text>位好友，共获得
 					<text>{{ totalScore }}</text>积分
 				</view>
 			</view>
 		</view>
 
 		<button class="shareBtn" open-type="share">
-			马上邀请好友
+			马上分享好友
 		</button>
 
 		<view class="shareList">
 			<view class="listTitle">
-				<text>邀请记录</text>
+				<text>分享记录</text>
 			</view>
 			<view class="listWrap">
 				<view class="innerLi" v-for="(item, index) in list" :key="index">

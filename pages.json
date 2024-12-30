@@ -15,15 +15,15 @@
 			"style": {
 				"navigationBarTitleText": "个人中心",
 				"navigationStyle": "custom",
-				"enablePullDownRefresh": false,
-				"navigationBarTextStyle": "white"
+				"enablePullDownRefresh": true,
+				"navigationBarTextStyle": "black"
 			}
 		}, {
 			"path": "pages/my/profile",
 			"style": {
 				"navigationBarTitleText": "个人资料",
 				"navigationStyle": "custom",
-				"navigationBarTextStyle": "white"
+				"navigationBarTextStyle": "black"
 			}
 		}, {
 			"path": "uview-ui/components/u-avatar-cropper/u-avatar-cropper",
@@ -145,26 +145,26 @@
 			}
 
 		}, 
-		// {
-		// 	"path": "pages/remark/lists",
-		// 	"style": {
-		// 		"navigationBarTitleText": "评论列表",
-		// 		"navigationStyle": "custom",
-		// 		"navigationBarTextStyle": "white",
-		// 		"enablePullDownRefresh": false
-		// 	}
+		{
+			"path": "pages/remark/lists",
+			"style": {
+				"navigationBarTitleText": "评论列表",
+				"navigationStyle": "custom",
+				"navigationBarTextStyle": "white",
+				"enablePullDownRefresh": false
+			}
 
-		// }, 
-		// {
-		// 	"path": "pages/remark/comment",
-		// 	"style": {
-		// 		"navigationBarTitleText": "我的评论",
-		// 		"navigationStyle": "custom",
-		// 		"navigationBarTextStyle": "white",
-		// 		"enablePullDownRefresh": false
-		// 	}
+		}, 
+		{
+			"path": "pages/remark/comment",
+			"style": {
+				"navigationBarTitleText": "我的评论",
+				"navigationStyle": "custom",
+				"navigationBarTextStyle": "white",
+				"enablePullDownRefresh": false
+			}
 
-		// }, 
+		}, 
 		{
 			"path": "pages/my/collect",
 			"style": {
@@ -179,7 +179,7 @@
 			"style": {
 				"navigationBarTitleText": "商品列表",
 				"navigationStyle": "custom",
-				"navigationBarTextStyle": "white",
+				"navigationBarTextStyle": "black",
 				"enablePullDownRefresh": false
 			}
 
@@ -188,7 +188,7 @@
 			"style": {
 				"navigationBarTitleText": "商品分类",
 				"navigationStyle": "custom",
-				"navigationBarTextStyle": "white",
+				"navigationBarTextStyle": "black",
 				"enablePullDownRefresh": false
 			}
 
@@ -197,7 +197,7 @@
 			"style": {
 				"navigationBarTitleText": "商品详情",
 				"navigationStyle": "custom",
-				"navigationBarTextStyle": "white",
+				"navigationBarTextStyle": "black",
 				"enablePullDownRefresh": false
 			}
 
@@ -207,7 +207,7 @@
 			"style": {
 				"navigationBarTitleText": "购物车",
 				"navigationStyle": "custom",
-				"navigationBarTextStyle": "white",
+				"navigationBarTextStyle": "black",
 				"enablePullDownRefresh": false
 			}
 
@@ -217,7 +217,7 @@
 			"style": {
 				"navigationBarTitleText": "提交订单",
 				"navigationStyle": "custom",
-				"navigationBarTextStyle": "white",
+				"navigationBarTextStyle": "black",
 				"enablePullDownRefresh": false
 			}
 
@@ -226,7 +226,7 @@
 			"style": {
 				"navigationBarTitleText": "商品订单",
 				"navigationStyle": "custom",
-				"navigationBarTextStyle": "white",
+				"navigationBarTextStyle": "black",
 				"enablePullDownRefresh": false
 			}
 		},
@@ -235,7 +235,7 @@
 			"style": {
 				"navigationBarTitleText": "订单详情",
 				"navigationStyle": "custom",
-				"navigationBarTextStyle": "white",
+				"navigationBarTextStyle": "black",
 				"enablePullDownRefresh": true
 			}
 		}, {
@@ -260,7 +260,7 @@
 			"path": "pages/order/logistics",
 			"style": {
 				"navigationBarTitleText": "查看物流",
-				"navigationBarTextStyle": "white",
+				"navigationBarTextStyle": "black",
 				"enablePullDownRefresh": false
 			}
 
@@ -270,7 +270,7 @@
 			"style": {
 				"navigationBarTitleText": "收货地址管理",
 				"navigationStyle": "custom",
-				"navigationBarTextStyle": "white",
+				"navigationBarTextStyle": "black",
 				"enablePullDownRefresh": false
 			}
 		},
@@ -279,7 +279,7 @@
 			"style": {
 				"navigationBarTitleText": "添加收货地址",
 				"navigationStyle": "custom",
-				"navigationBarTextStyle": "white",
+				"navigationBarTextStyle": "black",
 				"enablePullDownRefresh": false
 			}
 
@@ -288,7 +288,7 @@
 			"style": {
 				"navigationBarTitleText": "我的积分",
 				"navigationStyle": "custom",
-				"navigationBarTextStyle": "white",
+				"navigationBarTextStyle": "black",
 				"enablePullDownRefresh": false
 			}
 		}, {
@@ -296,7 +296,7 @@
 			"style": {
 				"navigationBarTitleText": "积分日志",
 				"navigationStyle": "custom",
-				"navigationBarTextStyle": "white",
+				"navigationBarTextStyle": "black",
 				"enablePullDownRefresh": false
 			}
 
@@ -305,7 +305,7 @@
 			"style": {
 				"navigationBarTitleText": "积分兑换",
 				"navigationStyle": "custom",
-				"navigationBarTextStyle": "white",
+				"navigationBarTextStyle": "black",
 				"enablePullDownRefresh": false
 			}
 
@@ -314,7 +314,7 @@
 			"style": {
 				"navigationBarTitleText": "兑换订单",
 				"navigationStyle": "custom",
-				"navigationBarTextStyle": "white",
+				"navigationBarTextStyle": "black",
 				"enablePullDownRefresh": false
 			}
 
@@ -324,7 +324,7 @@
 			"style": {
 				"navigationBarTitleText": "优惠券",
 				"navigationStyle": "custom",
-				"navigationBarTextStyle": "white",
+				"navigationBarTextStyle": "black",
 				"enablePullDownRefresh": false
 			}
 
@@ -333,7 +333,7 @@
 			"style": {
 				"navigationBarTitleText": "我的优惠券",
 				"navigationStyle": "custom",
-				"navigationBarTextStyle": "white",
+				"navigationBarTextStyle": "black",
 				"enablePullDownRefresh": false
 			}
 
@@ -342,7 +342,7 @@
 			"style": {
 				"navigationBarTitleText": "优惠券详情",
 				"navigationStyle": "custom",
-				"navigationBarTextStyle": "white",
+				"navigationBarTextStyle": "black",
 				"enablePullDownRefresh": false
 			}
 
@@ -378,9 +378,9 @@
 		{
 			"path": "pages/my/invitation",
 			"style": {
-				"navigationBarTitleText": "邀请好友",
+				"navigationBarTitleText": "邀请分享",
 				"navigationStyle": "custom",
-				"navigationBarTextStyle": "white"
+				"navigationBarTextStyle": "black"
 			}
 		
 		}
@@ -432,8 +432,8 @@
 					"style": {
 						"navigationBarTitleText": "开通VIP",
 						"navigationStyle": "custom",
-						"navigationBarTextStyle": "white",
-						"enablePullDownRefresh": false
+						"navigationBarTextStyle": "black",
+						"enablePullDownRefresh": true
 					}
 				},
 				{
@@ -441,7 +441,7 @@
 					"style": {
 						"navigationBarTitleText": "订单列表",
 						"navigationStyle": "custom",
-						"navigationBarTextStyle": "white",
+						"navigationBarTextStyle": "black",
 						"enablePullDownRefresh": false
 					}
 				}
@@ -454,7 +454,7 @@
 					"style": {
 						"navigationBarTitleText": "体验者列表",
 						"navigationStyle": "custom",
-						"navigationBarTextStyle": "white",
+						"navigationBarTextStyle": "black",
 						"enablePullDownRefresh": false
 					}
 				},
@@ -463,7 +463,7 @@
 					"style": {
 						"navigationBarTitleText": "编辑体验者信息",
 						"navigationStyle": "custom",
-						"navigationBarTextStyle": "white",
+						"navigationBarTextStyle": "black",
 						"enablePullDownRefresh": false
 					}
 				}
@@ -473,12 +473,15 @@
 	"preloadRule": {
 
 	},
+	// #ifdef CUSTOM
 	"tabBar": {
 		"height": "1px",
 		"list": [
 			{
 				"pagePath": "pages/index/index",
-				"text": ""
+				"iconPath": "static/tabbar/home.png",
+				"selectedIconPath": "static/tabbar/home-hl.png",
+				"text": "首页"
 			},
 			{
 				"pagePath": "pages/category/index",
@@ -493,11 +496,14 @@
 				"text": "购物车"
 			},
 			{
-				"pagePath": "pages/my/my",
-				"text": ""
+				"pagePath": "pages/index/my",
+				"iconPath": "static/tabbar/my.png",
+				"selectedIconPath": "static/tabbar/my-hl.png",
+				"text": "我的"
 			}
 		]
 	},
+	// #endif
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "眼靓亮",

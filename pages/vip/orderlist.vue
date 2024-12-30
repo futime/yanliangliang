@@ -1,6 +1,6 @@
 <template>
 	<view class="page">
-		<fa-navbar title="VIP充值订单" :background="{ background: '#fff' }"></fa-navbar>
+		<fa-navbar :title="vuex_config.vipPromptPageTxt || 'VIP开通订单'" :background="{ background: '#fff' }"></fa-navbar>
 		<view class="list">
 			<view class="list-item" v-for="item in orderlist" :key="item.id">
 				<view class="header">

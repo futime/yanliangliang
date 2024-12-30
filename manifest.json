@@ -142,8 +142,8 @@
     "h5" : {
         "template" : "template.h5.html",
         "router" : {
-            "mode" : "hash",
-            "base" : "./"
+            "mode" : "history",
+            "base" : "/h5/"
         },
         "title" : "眼靓亮",
         "devServer" : {
@@ -153,6 +153,11 @@
             "maps" : {
                 "qqmap" : {
                     "key" : ""
+                },
+                "amap" : {
+                    "key" : "7cc9f7202fc3179129eb6a154733017c",
+                    "securityJsCode" : "3bfc8c31a6218df0f950c3dbef3be753",
+                    "serviceHost" : ""
                 }
             }
         }

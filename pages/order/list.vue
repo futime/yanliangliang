@@ -100,7 +100,7 @@
 									</view>
 								</view>
 							</view>
-							<view class="u-p-30"><u-loadmore :status="loadStatus[key]" bgColor="#f2f2f2"></u-loadmore></view>
+							<view class="u-p-30"><u-loadmore :status="loadStatus[key]" bgColor="#F2F2F2"></u-loadmore></view>
 						</view>
 						<view class="page-box" v-else>
 							<view v-if="loadStatus[key]!='loadmore'">

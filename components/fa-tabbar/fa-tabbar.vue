@@ -275,7 +275,7 @@
 				flex: 1;
 				justify-content: center;
 				height: 100%;
-				padding: 12rpx 0;
+				padding: 36rpx 0;
 				display: flex;
 				flex-direction: column;
 				align-items: center;
@@ -283,15 +283,15 @@
 
 				&__button {
 					position: absolute;
-					top: 10rpx;
+					top: 16rpx;
 				}
 
 				&__text {
 					color: $u-content-color;
-					font-size: 26rpx;
+					font-size: 32rpx;
 					line-height: 28rpx;
 					position: absolute;
-					bottom: 12rpx;
+					bottom: 20rpx;
 					left: 50%;
 					transform: translateX(-50%);
 				}

@@ -54,10 +54,10 @@
 				<u-cell-item
 					v-if="vuex_config.money_score > 0"
 					icon="order"
-					title="充值VIP赠送积分"
-					value="去充值"
-					:label="`开通VIP,消费1元可兑换${vuex_config.money_score}积分`"
-					@click="goPage('/pages/vip/activate')"
+					:title="vuex_config.myScoreTipsTitleOne"
+					:value="vuex_config.myScoreTipsSubTitleOne"
+					:label="`消费1元可兑换${vuex_config.money_score}积分`"
+					@click="goPage(vuex_config.myScoreTipsLinks)"
 				></u-cell-item>
 				<!-- <u-cell-item
 					v-if="vuex_config.comment_score > 0"
@@ -89,7 +89,7 @@
 		<button class="wechatKfLink" open-type="contact"></button>
 		
 		<!-- 底部导航 -->
-		<fa-tabbar></fa-tabbar>
+		<fa-tabbar :visible="true"></fa-tabbar>
 		
 	</view>
 </template>

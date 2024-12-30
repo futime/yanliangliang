@@ -14,7 +14,7 @@
 			</view>
 		</view>
 		<view class="contentcard">
-			<view class="topcard" @click="handleClickBuyVip">
+			<view class="topcard" v-if="vuex_config.isVipCenter == 1" @click="handleClickBuyVip">
 				<view class="left">
 					<view class="text1">
 						<view class="">VIP套餐</view>
@@ -23,11 +23,33 @@
 						</view>
 					</view>
 					<view class="text2">
-						购买套餐享更多优惠
+						{{ vuex_config.vipPrompt || '购买VIP享更多体验服务' }}
 					</view>
 				</view>
 				<view class="right">
-					开通
+					{{ vuex_config.vipButtonTxt || '开通'}}
+				</view>
+			</view>
+			<view class="listitem" v-if="vuex_config.isOrderMenu == 1" @click="goPage('/pages/order/list'),true">
+				<view class="icon">
+					<image :src="staticurl('orderinquiry_icon.png')" mode=""></image>
+				</view>
+				<view class="text">
+					商品订单
+				</view>
+				<view class="rightIcon">
+					<image :src="staticurl('shuoming_btn_arrow.png')" mode=""></image>
+				</view>
+			</view>
+			<view class="listitem" v-if="vuex_config.isVipOrderMenu == 1" @click="handleClickVipOrder">
+				<view class="icon">
+					<image :src="staticurl('orderinquiry_icon.png')" mode=""></image>
+				</view>
+				<view class="text">
+					{{ vuex_config.vipPromptMenuTxt || 'VIP订单'}} 
+				</view>
+				<view class="rightIcon">
+					<image :src="staticurl('shuoming_btn_arrow.png')" mode=""></image>
 				</view>
 			</view>
 			<view class="listitem" v-for="item in list" :key="item.id" @click="handleClickItem(item)">
@@ -41,7 +63,6 @@
 					<image :src="staticurl('shuoming_btn_arrow.png')" mode=""></image>
 				</view>
 				 <button v-if="item.id == 2" open-type="contact" class="contactButton"></button>
-				 <!-- <button v-if="item.id == 3" open-type="share" class="shareButton"></button> -->
 			</view>
 			
 			<view class="logout" v-if="vuex_token">
@@ -60,23 +81,23 @@
 
 <script>
 	import { avatar } from '@/common/fa.mixin.js';
-	import faTabbarVue from '@/components/fa-tabbar/index.vue'
+	// import faTabbarVue from '@/components/fa-tabbar/index.vue'
 
 	export default {
 		mixins: [avatar],
-		components: {
-			faTabbarVue
-		},
+		// components: {
+		// 	faTabbarVue
+		// },
 		data() {
 			return {
 				list: [
+					// {
+					// 	img: this.staticurl('orderinquiry_icon.png'),
+					// 	label: '我的订单',
+					// 	id: 1
+					// },
 					{
-						img: this.staticurl('orderinquiry_icon.png'),
-						label: '我的订单',
-						id: 1
-					},
-					{
-						img: this.staticurl('orderinquiry_icon.png'),
+						img: this.staticurl('userlist_icon.png'),
 						label: '体验者资料',
 						id: 0
 					},
@@ -88,7 +109,7 @@
 					// #ifdef MP-WEIXIN || H5
 					{
 						img: this.staticurl('inviteshare_icon.png'),
-						label: '邀请有奖',
+						label: '邀请分享',
 						id: 3
 					},
 					// #endif
@@ -218,6 +239,17 @@
 					url: '/pages/vip/activate'
 				})
 			},
+			handleClickVipOrder() {
+				if(!this.vuex_token) {
+					uni.navigateTo({
+						url: '/pages/login/login'
+					})
+					return
+				}
+				uni.navigateTo({
+					url: '/pages/vip/orderlist'
+				})
+			},
 			getUserIndex: async function() {
 				let res = await this.$api.getUserIndex();
 				uni.stopPullDownRefresh();
@@ -260,6 +292,16 @@
 						url: '/pages/login/login'
 					})
 				}
+			}
+		},
+		//下拉刷新
+		onPullDownRefresh() {
+			if (this.vuex_token) {
+				this.getUserIndex();
+			} else {
+				uni.stopPullDownRefresh();
+				this.$u.toast('请先登录');
+				this.$u.vuex('vuex_user', {});
 			}
 		}
 		

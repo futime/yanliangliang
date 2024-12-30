@@ -12,9 +12,7 @@
 			<!-- #endif -->
 		</view>
 		<view class="title">
-			欢迎登录<br>
-			新纪元能量空间系统<br>
-			希望给你带来幸福健康！<br>
+			<u-parse :html="vuex_config.energySpaceTxt"></u-parse>
 		</view>
 		<view class="sanjiao">
 			<image :src="staticurl('energy_triangle.png')" mode=""></image>

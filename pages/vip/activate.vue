@@ -1,6 +1,6 @@
 <template>
 	<view class="page">
-		<fa-navbar title="开通VIP" :background="{ color: '#fff' }"></fa-navbar>
+		<fa-navbar :title="vuex_config.vipPageTxt || '开通VIP'" :background="{ color: '#fff' }"></fa-navbar>
 
 		<view class="tipBox" v-if="vuex_token && vuex_vipinfo">
 			<view class="icon">
@@ -24,19 +24,17 @@
 				</view>
 				<view class="select_vip_box_item_right">
 					<view class="label">{{ item.pricedata[0].days }}天{{ item.name }}</view>
-					<view class="price">{{ item.pricedata[0].price }}元</view>
+					<view class="price">{{ item.pricedata[0].price }}{{ vuex_config.payCurrencyTxt }}</view>
 				</view>
 			</view>
 		</view>
 		<view class="tipsTxt">
 			特别提示：
-			<br>1、如遇到问题，点击右下角在线客服沟通。
-			<br>2、VIP为线上付费线下体验服务，非虚拟商品。
-			<br>3、10积分可抵扣1元。
+			<u-parse :html="vuex_config.vipPageTipsTxt"></u-parse>
 		</view>
 
 		<view class="btns">
-			<view class="btn btn1" @click="handleClickWxPay('wechat')">
+			<view class="btn btn1" v-if="vuex_config.isVipPay == 1" @click="handleClickWxPay('wechat')">
 				微信支付
 			</view>
 			<view class="btn btn2" @click="handleClickWxPay('score')">

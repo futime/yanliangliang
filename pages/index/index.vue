@@ -1,5 +1,8 @@
 <template>
 	<view class="page">
+		<view class="notice bg-white" v-if="notice.length">
+			<u-notice-bar mode="horizontal" type="warning" :duration="5000" :is-circular="false" :autoplay="true" :list="notice" @click="click"></u-notice-bar>
+		</view>
 		<view class="topView" @click="handleClickNengliang">
 			<view class="bg">
 				<image :src="staticurl('homebanner_bg.jpeg')" mode=""></image>
@@ -16,7 +19,22 @@
 					<image :src="staticurl('homekvbottom_logo.svg')" mode=""></image>
 				</view>
 				<view class="text">
-					宇宙能量中心
+					{{vuex_config.title || '宇宙能量疗愈空间'}}
+				</view>
+			</view>
+			<view class="" :data-navigates="navigates" v-if="vuex_config.isGoodsLisHome == 1">
+				<swiper class="swiper" @change="change" :style="{ height: (vuex_config.navigate && vuex_config.navigate.length > 6 ? 580 : 360) + 'rpx' }">
+					<swiper-item v-for="(res, key) in navigateList" :key="key">
+						<u-grid :col="2" hover-class="hover-class">
+							<u-grid-item v-for="(item, index) in res" :custom-style="{ padding: '35rpx 0' }" @click="grids(item)" :key="index">
+								<u-icon :name="item.image" color="#ffffff" :size="item.size"></u-icon>
+								<view class="u-m-t-20">{{ item.name }}</view>
+							</u-grid-item>
+						</u-grid>
+					</swiper-item>
+				</swiper>
+				<view class="indicator-dots" v-if="navigateList.length > 1">
+					<view class="indicator-dots-item" v-for="(res, key) in navigateList" :key="key" :class="[current == key ? 'indicator-dots-active' : '']"></view>
 				</view>
 			</view>
 			<view class="menus">
@@ -24,16 +42,18 @@
 					<view class="icon">
 						<image :src="staticurl('energy_logo.png')" mode=""></image>
 					</view>
-					<view class="label">注入能量</view>
+					<view class="label">{{ vuex_config.energyButtonTxtHome || '注入能量'}}</view>
 				</view>
-				<view class="menus-item" @click="handleClickVip">
+				
+				<view class="menus-item" v-if="vuex_config.isVipGrade == 1" @click="handleClickVip">
 					<view class="icon">
 						<image :src="staticurl('vip_icon.png')" mode=""></image>
 					</view>
-					<view class="label">开通会员</view>
+					<view class="label">{{ vuex_config.vipButtonTxtHome || '开通VIP' }}</view>
 				</view>
 			</view> 
-			<view class="helpbox" @click="goPage('/pages/page/page?diyname=aboutus')">
+			
+			<view class="helpbox"  v-if="vuex_config.isInstructions == 1" @click="goPage('/pages/page/page?diyname=aboutus')">
 				<view class="icon">
 					<image :src="staticurl('shuoming_icon.png')" mode=""></image>
 				</view>
@@ -58,12 +78,51 @@
 		// },
 		data()  {
 			return {
-				
-			}
+				loading: true,
+				status: 'loadmore',
+				is_update: false,
+				has_more: false,
+				current: 0,
+				scrollTop: 0,
+				navigateList: [],
+				hots: [],
+				recommends: []
+			};
 		},
 		onLoad(opt) {
 			if(opt.recdkey){
 				this.$u.vuex('vuex_recdkey', opt.recdkey);
+			}
+		},
+		onShow() {
+			this.getGoodsIndex();
+		},
+		computed: {
+			notice() {
+				let arr = [];
+				if (this.vuex_config.notice) {
+					this.vuex_config.notice.map(item => {
+						arr.push(item.title);
+					});
+				}
+				return arr;
+			},
+			navigates() {
+				if (this.vuex_config.navigate) {
+					let arr1 = [],
+						arr2 = [];
+					this.vuex_config.navigate.forEach((item, index) => {
+						if (((index + 1) % 9 == 0 && index != 0) || index + 1 == this.vuex_config.navigate.length) {
+							arr2.push(item);
+							arr1.push(arr2);
+							arr2 = [];
+						} else {
+							arr2.push(item);
+						}
+					});
+					this.navigateList = arr1;
+				}
+				return 1;
 			}
 		},
 		methods: {
@@ -94,7 +153,6 @@
 					})
 					return
 				}
-				
 				const flag = this.getRemainingTime(this.vuex_vipinfo.expiredate, this.vuex_vipinfo.level)
 				
 				if(flag) {
@@ -104,7 +162,7 @@
 				}else{
 					uni.showModal({
 						title: '提示',
-						content: `您的体验时间已到期，请开通VIP？`,
+						content: `您的体验时间已到期，请开通VIP`,
 						cancelText: '再想想',
 						confirmText: '去开通',
 						success: async function(res) {
@@ -128,14 +186,66 @@
 				uni.navigateTo({
 					url: '/pages/vip/activate'
 				})
+			},
+			//商城自带
+			change(e) {
+				this.current = e.detail.current;
+			},
+			grids(e) {
+				let path = e.path;
+				if (path == '/' || !path) {
+					return;
+				}
+				if (path.substr(0, 1) == 'p') {
+					path = '/' + path;
+				}
+				if (path.includes('http')) {
+					this.$u.vuex('vuex_webs', {
+						path: e.path,
+						title: e.name
+					});
+					this.$u.route('/pages/webview/webview');
+					return;
+				}
+				this.$u.route(path);
+			},
+			openPage(index) {
+				this.grids({
+					path: this.vuex_config.swiper[index].url,
+					name: this.vuex_config.swiper[index].title
+				});
+			},
+			click(index) {
+				if (this.vuex_config.notice) {
+					let url = this.vuex_config.notice[index].path;
+					if (url) {
+						this.grids({
+							path: url,
+							name: this.vuex_config.notice[index].title
+						});
+					}
+				}
+			},
+			getGoodsIndex() {
+				this.$api.getGoodsIndex().then(({code,data:res,msg}) => {
+					if (code) {
+						this.hots = res.hots;
+						this.recommends = res.recommends;
+					}
+				});
 			}
-		}
+			
+			
+		},
+		//下拉刷新
+		onPullDownRefresh() {},
+		onReachBottom() {}
 	}
 </script>
 
 <style lang="scss" scoped>
 	.page {
-		padding-bottom: 220rpx;
+		padding-bottom: 120rpx;
 	}
 	.topView {
 		width: 100%;
@@ -168,7 +278,7 @@
 	.content {
 		position: relative;
 		top: -4vh;
-		padding: 0 40rpx 0 40rpx;
+		padding: 0 30rpx 0 30rpx;
 		.sanjiaoBox {
 			width: 100%;
 			height: 150rpx;
@@ -192,9 +302,11 @@
 			}
 		}
 		.menus {
+			width:calc(100% - 20rpx);
 			display: grid;
 			grid-template-columns: repeat(2, 1fr);
 			grid-column-gap: 20rpx;
+			margin:0 auto;
 			margin-top: 40rpx;
 			.menus-item {
 				width: 100%;
@@ -233,14 +345,15 @@
 		}
 		
 		.helpbox { 
-			width: 100%;
+			width: calc(100% - 20rpx);
 			height: 160rpx;
 			background-color: #C0EFFF;
 			border-radius: 16rpx;
-			margin-top: 20rpx;
 			display: flex;
 			align-items: center;
 			padding: 0 48rpx;
+			margin:0rpx auto;
+			margin-top: 20rpx;
 			.icon {
 				width: 100rpx;
 				height: 100rpx;
@@ -271,4 +384,152 @@
 			}
 		}
 	}
+
+//
+/deep/ uni-swiper,/deep/ swiper{
+	height:125px!important;
+	margin-top:22px;
+}
+/deep/ .u-grid-item{
+	padding:0rpx 8rpx;
+}
+/deep/ .u-grid-item-box{
+	background: #16D1B4!important;
+	border-radius: 12rpx;
+	color:#fff!important;
+	font-size:46rpx!important;
+	font-family: 思源黑体 CN;
+	font-weight: 400!important;
+	line-height: 27px;
+	letter-spacing: 0px;
+	text-align: center;
+	margin-top: 8px;
+}
+/deep/ .u-grid-item:nth-of-type(2) .u-grid-item-box{
+	background: #FCB358!important;
+}
+/deep/ .u-icon__img{
+	width: 88rpx!important;
+	height: 85rpx!important;
+	image {
+		width: 100%;
+		height: 100%;
+	}
+}
+
+	
+//框架自带
+.indicator-dots {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.indicator-dots-item {
+	background-color: $u-tips-color;
+	height: 6px;
+	width: 6px;
+	border-radius: 10px;
+	margin: 0 3px;
+}
+
+.indicator-dots-active {
+	background-color: $u-type-primary;
+}
+.notice {
+	
+}
+.index-content {
+	margin-top: 30rpx;
+	background-color: #ffffff;
+	.title {
+		position: relative;
+		padding: 30rpx 50rpx;
+		border-bottom: 1px solid #f4f6f8;
+		.stroke {
+			&::before {
+				content: '';
+				width: 8rpx;
+				height: 30rpx;
+				background-color: #374486;
+				position: absolute;
+				top: 36%;
+				left: 30rpx;
+				border-radius: 20rpx;
+			}
+		}
+	}
+}
+
+.goods-list {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	margin-top: 30rpx;
+	padding: 0 30rpx;
+	.item {
+		width: calc((100vw - 90rpx) / 2);
+		background-color: #ffffff;
+		box-shadow: 0px 0px 5px rgb(233, 235, 243);
+		margin-bottom: 30rpx;
+		border-radius: 10rpx;
+		overflow: hidden;
+		border: 1px solid #e9ebf3;
+		.name {
+			min-height: 110rpx;
+		}
+		.foot {
+			padding: 0 15rpx;
+		}
+		.images {
+			width: 100%;
+			height: 350rpx;
+			image {
+				width: 100%;
+				height: 100%;
+			}
+		}
+		.market_price {
+			text-decoration: line-through;
+			margin-left: 10rpx;
+		}
+	}
+}
+.hots-list{	
+	margin-top: 30rpx;
+	padding: 0 30rpx 30rpx;
+	.item {
+		width: 100%;
+		background-color: #ffffff;
+		box-shadow: 0px 0px 5px rgb(233, 235, 243);
+		margin-bottom: 30rpx;
+		border-radius: 10rpx;
+		overflow: hidden;
+		border: 1px solid #e9ebf3;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		.images {
+			width: 250rpx;
+			height: 220rpx;
+			image {
+				width: 100%;
+				height: 100%;
+			}
+		}
+		.content{
+			flex: 1;
+			.name {
+				min-height: 110rpx;
+			}
+			.foot {
+				padding: 0 15rpx;
+			}
+			.market_price {
+				text-decoration: line-through;
+				margin-left: 10rpx;
+			}
+		}
+	}
+}
 </style>
