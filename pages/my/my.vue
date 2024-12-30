@@ -53,14 +53,17 @@
 		
 		<!-- 小程序在线客服 -->
 		<button class="wechatKfLink" open-type="contact"></button>
-		<faTabbarVue :active="'my'"></faTabbarVue>
+		<fa-tabbar></fa-tabbar>
+		<!-- <faTabbarVue :active="'my'"></faTabbarVue> -->
 	</view>
 </template>
 
 <script>
+	import { avatar } from '@/common/fa.mixin.js';
 	import faTabbarVue from '@/components/fa-tabbar/index.vue'
 
 	export default {
+		mixins: [avatar],
 		components: {
 			faTabbarVue
 		},

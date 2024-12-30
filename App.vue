@@ -2,7 +2,7 @@
 	import md5Libs from "uview-ui/libs/function/md5";
 	export default {
 		onLaunch: async function() {
-			uni.hideTabBar()
+			// uni.hideTabBar()
 			console.log('uview 版本', this.$u.config.v);
 			// #ifdef H5
 			if (window.location.hash != '') {
@@ -21,12 +21,6 @@
 				}
 			}
 			// #endif
-			
-			// if (process.env.NODE_ENV === 'production') {
-			//   wx.setEnableDebug({
-			// 	enableDebug: false
-			//   });
-			// }
 
 			//加载配置
 			let res = await this.$api.getConfig();
@@ -44,40 +38,40 @@
 
 			this.$u.vuex('vuex_config', res.data);
 
-			// // #ifdef APP-PLUS
-			// let tabbar = this.$u.deepClone(this.vuex_config.tabbar);
-			// if (!tabbar) {
-			// 	this.$util.setTabbar(this.vuex_tabbar);
-			// 	return;
-			// }
-			// let num = 0;
-			// for (let i in tabbar.list) {
-			// 	try {
-			// 		let imagepath = await this.$util.getCachedImage(tabbar.list[i].image);
-			// 		let selectedImage = await this.$util.getCachedImage(tabbar.list[i].selectedImage);
-			// 		tabbar.list[i].image = imagepath;
-			// 		tabbar.list[i].selectedImage = selectedImage;
-			// 		num = i;
-			// 	} catch (e) {
-			// 		console.log(e);
-			// 	}
-			// }
-			// //更新tabbar配置
-			// this.$u.vuex('vuex_config.tabbar.list', tabbar.list);
-			// return;
+			// #ifdef APP-PLUS
+			let tabbar = this.$u.deepClone(this.vuex_config.tabbar);
+			if (!tabbar) {
+				this.$util.setTabbar(this.vuex_tabbar);
+				return;
+			}
+			let num = 0;
+			for (let i in tabbar.list) {
+				try {
+					let imagepath = await this.$util.getCachedImage(tabbar.list[i].image);
+					let selectedImage = await this.$util.getCachedImage(tabbar.list[i].selectedImage);
+					tabbar.list[i].image = imagepath;
+					tabbar.list[i].selectedImage = selectedImage;
+					num = i;
+				} catch (e) {
+					console.log(e);
+				}
+			}
+			//更新tabbar配置
+			this.$u.vuex('vuex_config.tabbar.list', tabbar.list);
+			return;
 
-			// //全部下载成功使用服务器的导航，否则启用本地备用导航
-			// if (parseInt(num) + 1 == tabbar.list.length) {
-			// 	this.$util.setTabbar(tabbar);
-			// } else {
-			// 	this.$util.setTabbar(this.vuex_tabbar);
-			// }
-			// // #endif
-			uni.hideTabBar()
+			//全部下载成功使用服务器的导航，否则启用本地备用导航
+			if (parseInt(num) + 1 == tabbar.list.length) {
+				this.$util.setTabbar(tabbar);
+			} else {
+				this.$util.setTabbar(this.vuex_tabbar);
+			}
+			// #endif
+			// uni.hideTabBar()
 		},
 		onShow: function() {
 			console.log('App Show');
-			uni.hideTabBar()
+			// uni.hideTabBar()
 		},
 		onHide: function() {
 			console.log('App Hide');

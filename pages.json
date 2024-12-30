@@ -135,7 +135,7 @@
 			}
 
 		}, 
-		/* {
+		{
 			"path": "pages/remark/remark",
 			"style": {
 				"navigationBarTitleText": "添加评论",
@@ -144,26 +144,28 @@
 				"enablePullDownRefresh": false
 			}
 
-		}, {
-			"path": "pages/remark/lists",
-			"style": {
-				"navigationBarTitleText": "评论列表",
-				"navigationStyle": "custom",
-				"navigationBarTextStyle": "white",
-				"enablePullDownRefresh": false
-			}
-
 		}, 
-		{
-			"path": "pages/remark/comment",
-			"style": {
-				"navigationBarTitleText": "我的评论",
-				"navigationStyle": "custom",
-				"navigationBarTextStyle": "white",
-				"enablePullDownRefresh": false
-			}
+		// {
+		// 	"path": "pages/remark/lists",
+		// 	"style": {
+		// 		"navigationBarTitleText": "评论列表",
+		// 		"navigationStyle": "custom",
+		// 		"navigationBarTextStyle": "white",
+		// 		"enablePullDownRefresh": false
+		// 	}
 
-		}, {
+		// }, 
+		// {
+		// 	"path": "pages/remark/comment",
+		// 	"style": {
+		// 		"navigationBarTitleText": "我的评论",
+		// 		"navigationStyle": "custom",
+		// 		"navigationBarTextStyle": "white",
+		// 		"enablePullDownRefresh": false
+		// 	}
+
+		// }, 
+		{
 			"path": "pages/my/collect",
 			"style": {
 				"navigationBarTitleText": "我的收藏",
@@ -171,7 +173,7 @@
 				"navigationBarTextStyle": "white",
 				"enablePullDownRefresh": false
 			}
-		}, */
+		},
 		{
 			"path": "pages/goods/goods",
 			"style": {
@@ -473,9 +475,22 @@
 	},
 	"tabBar": {
 		"height": "1px",
-		"list": [{
+		"list": [
+			{
 				"pagePath": "pages/index/index",
 				"text": ""
+			},
+			{
+				"pagePath": "pages/category/index",
+				"iconPath": "static/tabbar/category.png",
+				"selectedIconPath": "static/tabbar/category-hl.png",
+				"text": "分类"
+			},
+			{
+				"pagePath": "pages/cart/cart",
+				"iconPath": "static/tabbar/cart.png",
+				"selectedIconPath": "static/tabbar/cart-hl.png",
+				"text": "购物车"
 			},
 			{
 				"pagePath": "pages/my/my",

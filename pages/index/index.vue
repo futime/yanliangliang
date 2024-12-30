@@ -45,16 +45,17 @@
 				</view>
 			</view>
 		</view>
-		<faTabbarVue></faTabbarVue>
+		<fa-tabbar></fa-tabbar>
+		<!-- <faTabbarVue></faTabbarVue> -->
 	</view>
 </template>
 
 <script>
-	import faTabbarVue from '@/components/fa-tabbar/index.vue'
+	// import faTabbarVue from '@/components/fa-tabbar/index.vue'
 	export default {
-		components: {
-			faTabbarVue
-		},
+		// components: {
+		// 	faTabbarVue
+		// },
 		data()  {
 			return {
 				
@@ -103,9 +104,9 @@
 				}else{
 					uni.showModal({
 						title: '提示',
-						content: `您的VIP已到期，请充值？`,
+						content: `您的体验时间已到期，请开通VIP？`,
 						cancelText: '再想想',
-						confirmText: '去充值',
+						confirmText: '去开通',
 						success: async function(res) {
 							if (res.confirm) {
 								uni.navigateTo({
