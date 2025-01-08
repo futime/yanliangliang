@@ -121,7 +121,7 @@ export default {
 			if (this.pageNum == 1) {
 				//只有当前页面了
 				uni.$u.route({
-					type: 'switchTab',
+					//type: 'switchTab',
 					url: '/pages/index/index'
 				});
 			} else {

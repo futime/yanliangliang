@@ -283,11 +283,12 @@ export const loginfunc = {
 
 				//不在H5
 				// #ifndef H5
-				if(url == '/pages/space/start') {
-					uni.reLaunch({
-						url: url
-					})
-				} else if (typeof pages[delta] !== 'undefined') {
+				// if(url == '/pages/space/start') {
+				// 	uni.reLaunch({
+				// 		url: url
+				// 	})
+				// } else if (typeof pages[delta] !== 'undefined') {
+				if (typeof pages[delta] !== 'undefined') {	
 					uni.navigateBack({
 						delta: delta
 					});

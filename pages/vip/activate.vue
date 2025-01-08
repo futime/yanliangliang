@@ -70,6 +70,75 @@
 			this.queryVips()
 		},
 		methods: {
+			// #ifdef H5
+			async handleClickWxPay(paytype) {
+				if (!this.selectVip) {
+					uni.showToast({
+						title: '请选择会员类型',
+						icon: 'none'
+					})
+					return
+				}
+				uni.showLoading({
+					title: '加载中...'
+				})
+			
+				const res = await this.$api.submitOrder({
+					level: this.selectVipObj.level,
+					days: this.selectVipObj.pricedata[0].days,
+					paytype: paytype,
+					method: 'H5',
+					// openid: this.vuex_openid || "",
+					// #ifdef MP-WEIXIN
+					// logincode: await this.getMpCode(),
+					// #endif
+			
+				})
+				if (!res.code) {
+					this.$u.toast(res.msg);
+					return;
+				}
+			
+				if (paytype == 'wechat') {
+					uni.requestPayment({
+						provider: 'wxpay',
+						timeStamp: res.data.timeStamp,
+						nonceStr: res.data.nonceStr,
+						package: res.data.package,
+						signType: res.data.signType,
+						paySign: res.data.paySign,
+						success: rest => {
+							this.$u.toast('支付成功！');
+							wx.requestSubscribeMessage({
+								tmplIds: this.vuex_config.tpl_ids,
+								complete: (res) => {
+									if (res.errMsg == 'requestSubscribeMessage:ok') {
+										this.$api.subscribe({
+											tpl_ids: res,
+											order_sn: this.order.order_sn,
+											openid: this.vuex_openid
+										}).then(res => {
+											console.log(res)
+										})
+									}
+									this.$u.route('/pages/vip/orderlist');
+								}
+							})
+						},
+						fail: err => {
+							this.$u.toast('取消支付！');
+							// this.$api.cancelOrder({orderid: })
+							// this.$u.toast('fail:' + JSON.stringify(err));
+						}
+					});
+				} else {
+					this.$u.toast('兑换成功！')
+					this.$u.route('/pages/vip/orderlist');
+				}
+			
+			
+			},
+			// #endif
 			// #ifdef MP-WEIXIN
 			async handleClickWxPay(paytype) {
 				if (!this.selectVip) {

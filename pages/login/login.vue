@@ -1,19 +1,19 @@
 <template>
 	<view class="page">
-		<view class="bg">
+		
+		<view class="bg" v-if="vuex_config.loginPageBg.length > 56">
+			<image :src="vuex_config.loginPageBg" mode=""></image>
+		</view>
+		<view class="bg" v-else>
 			<image :src="staticurl('loginbg.jpeg')" mode=""></image>
 		</view>
+		
 		<fa-navbar title=" " :background="{ color: 'transparent' }" :borderBottom="false"></fa-navbar>
 		<!-- 顶部导航 -->
-			<!-- <view class="u-text-center other" v-if="isThreeLogin && checkLogintype('wechat')">
-				<u-grid :col="1" :border="false">
-					<u-grid-item @click="goThreeLogin">
-						<u-icon name="weixin-fill" color="#53c240" :size="50"></u-icon>
-						<view class="grid-text">微信登录</view>
-					</u-grid-item>
-				</u-grid> 
-			</view> -->
-			<view class="logo">
+			<view class="logo" v-if="vuex_config.loginLogo.length > 56">
+				<image class="" :src="vuex_config.loginLogo" mode=""></image>
+			</view>
+			<view class="logo" v-else>
 				<image class="" :src="staticurl('logo_yanliangliang.png')" mode=""></image>
 			</view>
 			<view class="loginBtn">

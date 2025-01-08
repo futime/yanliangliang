@@ -9,9 +9,10 @@
 				</view>
 			</view>
 			<view class="form-item">
-				<view class="form-item-label">出生年月日</view>
+				<view class="form-item-label">出生年月</view>
 				<view class="form-item-content" @click="handleClickShowPicker">
-					<input class="input" v-model="form.age" disabled placeholder="点击选择出生年月日" type="text">
+					<!-- <input class="input" v-model="form.age" disabled placeholder="请您输入出生年月" type="text"> -->
+					<input class="input" v-model="form.age" placeholder="请您输入出生年月" type="text">
 				</view>
 			</view>
 			<!-- 	<view class="form-item">
@@ -79,7 +80,7 @@
 				</view>
 			</view>
 		</view>
-		<u-picker ref="picker" default-time="1970-01-01 00:00:00" v-model="showPickerYear" :params="params" mode="time"
+		<u-picker ref="picker" default-time="1930-01-01 00:00:00" start-year="1920" v-model="showPickerYear" :params="params" mode="time"
 			@confirm="selectYear"></u-picker>
 		<u-picker ref="picker2" :range="weights" :default-selector="[50]" mode="selector" v-model="showPickerKg"
 			@confirm="selectKg"></u-picker>
@@ -236,7 +237,7 @@
 						this.$u.toast(`恭喜您获得${this.vuex_config.vipday}天VIP体验时间`)
 						setTimeout(() => {
 							this.$u.route({
-								type: 'switchTab',
+								type: 'redirectTo',
 								url: '/pages/space/start'
 							});
 						}, 1500)

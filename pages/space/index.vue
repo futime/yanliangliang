@@ -43,14 +43,14 @@
 			<!-- 
 			<view class="sanjiao">
 			</view> -->
-			<view class="progress" v-if="zhuruStatus">
+			<!-- <view class="progress" v-if="zhuruStatus">
 				<view class="bg">
 					<image :src="staticurl('energy_numbg.svg')" mode=""></image>
 				</view>
 				<view class="text">
 					{{ percentage }}
 				</view>
-			</view>
+			</view> -->
 		</view>
 
 		<view class="leftbtns">

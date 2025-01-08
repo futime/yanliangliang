@@ -5,12 +5,12 @@
 		</view>
 		<view class="topView" @click="handleClickNengliang">
 			<view class="bg">
-				<image :src="staticurl('homebanner_bg.jpeg')" mode=""></image>
+				<image :src="vuex_config.homekvBg" mode=""></image>
 			</view>
 			<view class="person">
-				<image :src="staticurl('homebanner_men.png')" mode="" v-if="vuex_user.gender == 1" ></image>
-				<image :src="staticurl('homebanner_madam.png')" mode="" v-else-if="vuex_user.gender == 0" ></image>
-				<image :src="staticurl('homebanner_men.png')" mode="" v-else ></image>
+				<image :src="vuex_config.homekvManBody" mode="" v-if="vuex_user.gender == 1" ></image>
+				<image :src="vuex_config.homekvMadamBody" mode="" v-else-if="vuex_user.gender == 0" ></image>
+				<image :src="vuex_config.homekvManBody" mode="" v-else ></image>
 			</view>
 		</view>
 		<view class="content">
