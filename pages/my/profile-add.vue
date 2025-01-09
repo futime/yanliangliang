@@ -16,9 +16,15 @@
 				<view class="form-item-group">
 					<view class="item-box">
 						<input class="input" v-model="form.age" placeholder="输入年份" type="text">
+						<view class="rightIcon">
+							年
+						</view>
 					</view>
 					<view class="item-box">
 						<input class="input" v-model="form.age" placeholder="输入月份" type="text">
+						<view class="rightIcon">
+							月
+						</view>
 					</view>
 				</view>
 			</view>
@@ -322,6 +328,14 @@
 					position: relative;
 					display: flex;
 					align-items: center;
+					.rightIcon {
+						position: absolute;
+						right: 20rpx;
+						top: 50%;
+						transform: translateY(-50%);
+						font-size:32rpx;
+						color: #303133;
+					}
 					.input {
 						width: 100%;
 						height: 100%;
