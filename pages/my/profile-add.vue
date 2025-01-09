@@ -13,7 +13,7 @@
 				<!-- <view class="form-item-content" @click="handleClickShowPicker"> -->
 					<!-- <input class="input" v-model="form.age" disabled placeholder="请您输入出生年月" type="text"> -->
 				<!-- </view>	 -->
-				<view class="form-item-content">
+				<view class="form-item-group">
 					<view class="item-box">
 						<input class="input" v-model="form.age" placeholder="输入年份" type="text">
 					</view>
@@ -307,6 +307,27 @@
 				letter-spacing: 0px;
 				text-align: left;
 				margin-bottom: 24rpx;
+			}
+			
+			&-group {
+				display: flex;
+				gap:20rpx;
+				.item-box{
+					width: 50%;
+					height: 132rpx;
+					box-sizing: border-box;
+					border: 2rpx solid rgb(221, 221, 221);
+					border-radius: 12rpx;
+					padding: 0 33rpx;
+					position: relative;
+					display: flex;
+					align-items: center;
+					.input {
+						width: 100%;
+						height: 100%;
+						font-size: 38rpx;
+					}
+				}
 			}
 
 			&-content {
