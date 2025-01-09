@@ -74,7 +74,7 @@
 		</view>
 		<view class="rightbtns" v-if="!zhuruStatus">
 			<view class="btnitem" @click="handleClickShowIcons('headCoord')">
-				<image :src="staticurl('energy_icon_head.png')" mode=""></image>
+				<image :src="staticurl('energy_icon_eyes.png')" mode=""></image>
 			</view>
 			<view class="btnitem" @click="handleClickShowIcons('limbCoord')">
 				<image :src="staticurl('energy_icon_limbs.png')" mode=""></image>

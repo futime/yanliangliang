@@ -42,7 +42,8 @@
 					<view class="icon">
 						<image :src="staticurl('energy_logo.png')" mode=""></image>
 					</view>
-					<view class="label">{{ vuex_config.energyButtonTxtHome || '注入能量'}}</view>
+					<view class="label" v-if="!vuex_token">{{ vuex_config.energyButtonNologinTxt}}</view>
+					<view class="label" v-else>{{ vuex_config.energyButtonTxtHome || '注入能量'}}</view>
 				</view>
 				
 				<view class="menus-item" v-if="vuex_config.isVipGrade == 1" @click="handleClickVip">

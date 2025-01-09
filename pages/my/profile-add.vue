@@ -10,9 +10,16 @@
 			</view>
 			<view class="form-item">
 				<view class="form-item-label">出生年月</view>
-				<view class="form-item-content" @click="handleClickShowPicker">
+				<!-- <view class="form-item-content" @click="handleClickShowPicker"> -->
 					<!-- <input class="input" v-model="form.age" disabled placeholder="请您输入出生年月" type="text"> -->
-					<input class="input" v-model="form.age" placeholder="请您输入出生年月" type="text">
+				<!-- </view>	 -->
+				<view class="form-item-content">
+					<view class="item-box">
+						<input class="input" v-model="form.age" placeholder="输入年份" type="text">
+					</view>
+					<view class="item-box">
+						<input class="input" v-model="form.age" placeholder="输入月份" type="text">
+					</view>
 				</view>
 			</view>
 			<!-- 	<view class="form-item">

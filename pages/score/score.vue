@@ -19,7 +19,7 @@
 				<view class="u-flex u-row-between u-m-t-15">
 					<view class="">
 						<u-button
-							size="mini"
+							size="default"
 							type="primary"
 							hover-class="none"
 							:custom-style="{ background: theme.bgColor, color: '#ffffff' }"
@@ -30,7 +30,7 @@
 					</view>
 					<view class="">
 						<u-button
-							size="mini"
+							size="default"
 							hover-class="none"
 							type="primary"
 							:custom-style="{ background: theme.bgColor, color: '#ffffff' }"
@@ -105,6 +105,12 @@ export default {
 				this.$u.toast('请先登录');
 				return;
 			}
+			if(this.vuex_token){
+				uni.navigateTo({
+					url: '/pages/my/invitation'
+				})
+				return
+			}
 			// #ifdef H5
 			let href = window.location.href.replace(/pages.*$/g,'pages/login/register?invite_id='+this.vuex_user.id);
 			this.copyUrl(href);
@@ -119,6 +125,7 @@ export default {
 	border-radius: 20rpx;
 	color: #ffffff;
 	box-shadow: 0 0 16rpx 4rpx rgba(55, 68, 134, 0.3);
+	padding-bottom: 8px!important;
 	.nickname {
 		font-weight: bold;
 	}

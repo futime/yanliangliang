@@ -31,7 +31,7 @@
 			</view>
 		</view>
 		<!-- 空数据 -->
-		<view class="u-flex u-row-center fa-empty " v-if="!list.length">
+		<view class="u-flex u-row-center fa-empty" v-if="!list.length">
 			<image src="../../static/image/data.png" mode=""></image>
 			<view class="u-tips-color">暂无更多数据~</view>
 		</view>
@@ -157,6 +157,7 @@
 					color: #F3941E;
 					font-weight: bold;
 					font-size: 32rpx;
+					margin:0px 4rpx;
 				}
 			}
 		}
