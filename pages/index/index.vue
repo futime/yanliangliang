@@ -238,8 +238,11 @@
 			
 			
 		},
-		//下拉刷新
-		onPullDownRefresh() {},
+		onPullDownRefresh() {
+			if (this.vuex_token) {
+				this.getUserIndex();
+			}
+		},
 		onReachBottom() {}
 	}
 </script>

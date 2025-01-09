@@ -99,6 +99,11 @@ export default {
 	data() {
 		return {};
 	},
+	onPullDownRefresh() {
+		if (this.vuex_token) {
+			this.getUserIndex();
+		}
+	},
 	methods: {
 		invite(){
 			if(!this.vuex_token){

@@ -1,7 +1,7 @@
 <template>
 	<view class="container">
-		<fa-navbar :title="title" :background="{ color: 'transparent' }" title-color="#fff" :borderBottom="false"
-			:styleBack="true"></fa-navbar>
+		<fa-navbar :title="title" fontSize="4px" :background="{ color: 'transparent' }" title-color="#fff"
+			:borderBottom="false" :styleBack="true"></fa-navbar>
 		<view class="bg">
 			<!-- #ifdef APP -->
 			<image :src="showBgVideo" mode=""></image>
@@ -11,14 +11,14 @@
 			<!-- #endif -->
 		</view>
 		<view class="guanghuanBox">
-			<uni-transition :styles="{ 'width': '788rpx', 'height': '439rpx'}" ref="guanghuan" :show="showGuanghuan" custom-class="guanghuan" :duration="2000"
-				mode-class="slide-bottom">
+			<uni-transition :styles="{ 'width': '788rpx', 'height': '439rpx'}" ref="guanghuan" :show="showGuanghuan"
+				custom-class="guanghuan" :duration="2000" mode-class="slide-bottom">
 				<image :src="staticurl('energy_aperturebg.png')" mode=""></image>
 			</uni-transition>
 		</view>
-		<view class="sanjiaoBox"  :class="zhuruStatus ? 'zhuru' : ''" >
-			<uni-transition :styles="{ 'width': '600rpx', 'height': '572rpx'}"  ref="sanjiao" :show="showSanjiao" custom-class="sanjiao" :duration="3000"
-				mode-class="zoom-in">
+		<view class="sanjiaoBox" :class="zhuruStatus ? 'zhuru' : ''">
+			<uni-transition :styles="{ 'width': '600rpx', 'height': '572rpx'}" ref="sanjiao" :show="showSanjiao"
+				custom-class="sanjiao" :duration="3000" mode-class="zoom-in">
 				<image :src="staticurl('energy_triangle.png')" mode=""></image>
 			</uni-transition>
 		</view>
@@ -34,12 +34,12 @@
 					<image :src="staticurl('energy_halo.png')" mode=""></image>
 				</view>
 			</template>
-			
+
 			<!-- <view class="guanghuan">
 				<image :src="staticurl('energy_aperturebg.png')" mode=""></image>
 			</view> -->
 
-			
+
 			<!-- 
 			<view class="sanjiao">
 			</view> -->
@@ -91,7 +91,12 @@
 
 
 <script>
+	import {
+		loginfunc
+	} from '@/common/fa.mixin.js';
+
 	export default {
+		mixins: [loginfunc],
 		data() {
 			return {
 				clickSound: null,
@@ -129,7 +134,16 @@
 								[49.77811102331037, 43.79836810228802],
 							],
 							headCoord: [
-								[51.55325895230446, 7.572764503201758]
+								[45.752481949458485, 6.157635467980295],
+								[53.39574710556746, 5.577791461412151],
+								[51.26917870036101, 10.793816827983887],
+								[41.92802346570397, 26.826765188834155],
+								[60.61596371206566, 24.894807060755337],
+								[23.24006944787201, 36.29155902831229],
+								[81.42485360376241, 37.25883095526734],
+								[49.148240072202164, 47.111037681842674],
+								[60.19290414527866, 66.42805829228243],
+								[56.36845667870036, 80.14419129720854],
 							],
 							limbCoord: [
 								[8.58912721893491, 53.25118587283395],
@@ -150,7 +164,9 @@
 								[51.57811102331037, 43.79836810228802],
 							],
 							headCoord: [
-								[51.55325895230446, 7.572764503201758]
+								[47.45036101083033, 27.01919129720854],
+								[56.36845667870036, 44.791661655570095],
+								[54.67057761732852, 78.01978701636905],
 							],
 							limbCoord: [
 								[8.58912721893491, 53.25118587283395],
@@ -173,7 +189,16 @@
 								[49.41752507136418, 42.055021673641484],
 							],
 							headCoord: [
-								[52.28661694047014, 7.015475739059346]
+								[44.04896209386281, 5.190373563218391],
+								[52.12093862815884, 4.41809843717929],
+								[48.29648014440433, 10.213977832512315],
+								[41.07626353790614, 21.998152709359605],
+								[61.89079422382672, 21.610734811165848],
+								[27.910649819494587, 36.29155902831229],
+								[72.08369836910536, 35.71428070318915],
+								[50.423059566786996, 41.895007304174364],
+								[60.19290414527866, 63.72383506035766],
+								[56.36845667870036, 79.17949507389163],
 							],
 							limbCoord: [
 								[21.458954218576647, 51.764392467719546],
@@ -194,7 +219,9 @@
 								[49.41752507136418, 42.055021673641484],
 							],
 							headCoord: [
-								[50.28661694047014, 7.015475739059346]
+								[43.62590252707581, 23.735119047619047],
+								[57.220205589321985, 39.575631277901785],
+								[54.241866239141466, 77.24753694581281],
 							],
 							limbCoord: [
 								[21.458954218576647, 51.764392467719546],
@@ -323,7 +350,9 @@
 					let mapData = JSON.parse(res.data.click_info)
 					// console.log(mapData)
 					this.selectBodyPoints = mapData
-					this.title = this.getRemainingTime2(res.data.createtime, this.vuex_vipinfo.level)
+					// this.title = this.getRemainingTime2(res.data.createtime, this.vuex_vipinfo.level)
+					this.title = `VIP有效至:${ this.checkVipExpiry() ? this.checkVipExpiry().split(' ')[0] : '已过期'}`
+
 					this.initCanvasNew()
 				} else {
 					this.initCanvasNew()
@@ -605,11 +634,11 @@
 							// 图片加载成功后，绘制图片
 							this.ctx.clearRect(0, 0, res.width, res.height); // 清空 canvas
 							this.ctx.drawImage(res.path, 0, 0, canvasWidth, canvasHeight); // 绘制图片
-							
+
 							this.ctx.draw()
 							this.showSanjiao = true
 							this.showGuanghuan = true
-							
+
 						}
 					});
 				});
@@ -746,8 +775,8 @@
 			}
 		}
 	}
-	
-	
+
+
 	.guanghuanBox {
 		width: 788rpx;
 		height: 439rpx;
@@ -759,18 +788,18 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-	
+
 		/deep/ .guanghuan {
 			width: 788rpx;
 			height: 439rpx;
-	
+
 			image {
 				width: 100%;
 				height: 100%;
 			}
 		}
 	}
-	
+
 	.sanjiaoBox {
 		width: 600rpx;
 		height: 572rpx;
@@ -782,14 +811,15 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+
 		&.zhuru {
 			z-index: 10;
 		}
-	
+
 		/deep/ .sanjiao {
 			width: 600rpx;
 			height: 572rpx;
-	
+
 			image {
 				width: 100%;
 				height: 100%;

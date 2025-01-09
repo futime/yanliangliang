@@ -7,7 +7,7 @@
 			:back-text-style="navbar.backTextStyle"
 			:title="isShow ? title : ''"
 			:title-color="titleColor"
-			:title-size="navbar.titleSize"
+			:title-size="fontSize || navbar.titleSize"
 			:background="background"
 			:border-bottom="borderBottom"
 			:custom-back="goBack"
@@ -48,6 +48,10 @@ export default {
 		styleBack: {
 			type: Boolean,
 			default: false
+		},
+		fontSize: {
+			type: String,
+			default: ''
 		}
 	},
 	computed: {

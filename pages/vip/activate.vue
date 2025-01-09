@@ -69,6 +69,11 @@
 		onLoad() {
 			this.queryVips()
 		},
+		onPullDownRefresh() {
+			if (this.vuex_token) {
+				this.getUserIndex();
+			}
+		},
 		methods: {
 			// #ifdef H5
 			async handleClickWxPay(paytype) {

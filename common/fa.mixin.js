@@ -6,6 +6,22 @@ export const tools = {
 
 	},
 	methods: {
+		getUserIndex: async function() {
+			let res = await this.$api.getUserIndex();
+			uni.stopPullDownRefresh();
+			if (res.code == 1) {
+				const res2 = await this.$api.getVipInfo()
+				this.$u.vuex('vuex_vipinfo', res2.data.vipInfo);
+				this.$u.vuex('vuex_user', res.data.userInfo || {});
+				if (res.data.showProfilePrompt && !this.vuex_setting.prompted) {
+					// 弹窗每次登录状态只提示一次
+					this.$u.vuex('vuex_setting.prompted', true);
+				}
+			} else {
+				this.$u.toast(res.msg);
+				return;
+			}
+		},
 		/**
 		 * 检查VIP是否过期
 		 */
@@ -15,13 +31,13 @@ export const tools = {
 
 			// 从本地存储中获取 VIP 到期时间（假设是毫秒时间戳）
 			let time = this.vuex_vipinfo?.expiredate || ''
-			
-			if(!time) {
+
+			if (!time) {
 				return ''
 			}
-			
+
 			let expiryTime = new Date(time.replace(' ', 'T')).getTime(); // 转换为 ISO 8601 格式
-			
+
 			// 判断是否有有效的到期时间
 			if (!expiryTime) {
 				console.log('没有找到VIP到期时间，无法判断');
@@ -167,7 +183,7 @@ export const tools = {
 			} else {
 				this.goPage(
 					`/pages/order/logistics?nu=${res.expressno}&coname=${res.expressname}&order_sn=${res.order_sn}`
-					);
+				);
 			}
 			// #endif
 			// #ifndef MP-WEIXIN
@@ -288,7 +304,7 @@ export const loginfunc = {
 				// 		url: url
 				// 	})
 				// } else if (typeof pages[delta] !== 'undefined') {
-				if (typeof pages[delta] !== 'undefined') {	
+				if (typeof pages[delta] !== 'undefined') {
 					uni.navigateBack({
 						delta: delta
 					});

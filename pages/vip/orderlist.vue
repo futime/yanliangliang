@@ -101,6 +101,11 @@
 		onLoad() {
 			this.getOrderList();
 		},
+		onPullDownRefresh() {
+			if (this.vuex_token) {
+				this.getUserIndex();
+			}
+		},
 		methods: {
 			getOrderList() {
 				this.$api.vipOrderList({

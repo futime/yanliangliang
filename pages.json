@@ -7,7 +7,8 @@
 			"style": {
 				"navigationBarTitleText": "首页",
 				"navigationStyle": "custom",
-				"navigationBarTextStyle": "white"
+				"navigationBarTextStyle": "white",
+				"enablePullDownRefresh": true
 			}
 		},
 		{
@@ -289,7 +290,7 @@
 				"navigationBarTitleText": "我的积分",
 				"navigationStyle": "custom",
 				"navigationBarTextStyle": "black",
-				"enablePullDownRefresh": false
+				"enablePullDownRefresh": true
 			}
 		}, {
 			"path": "pages/score/logs",
@@ -442,7 +443,7 @@
 						"navigationBarTitleText": "订单列表",
 						"navigationStyle": "custom",
 						"navigationBarTextStyle": "black",
-						"enablePullDownRefresh": false
+						"enablePullDownRefresh": true
 					}
 				}
 			]

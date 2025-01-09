@@ -15,13 +15,13 @@
 				<!-- </view>	 -->
 				<view class="form-item-group">
 					<view class="item-box">
-						<input class="input" v-model="form.age" placeholder="输入年份" type="text">
+						<input class="input" v-model="form.age1" placeholder="输入年份" type="text">
 						<view class="rightIcon">
 							年
 						</view>
 					</view>
 					<view class="item-box">
-						<input class="input" v-model="form.age" placeholder="输入月份" type="text">
+						<input class="input" v-model="form.age2" placeholder="输入月份" type="text">
 						<view class="rightIcon">
 							月
 						</view>
@@ -127,7 +127,8 @@
 				form: {
 					gender: 1,
 					nickname: '',
-					age: '',
+					age1: '',
+					age2: '',
 					body_weight: '',
 					face_image: ''
 				},
@@ -197,7 +198,8 @@
 			initUserData() {
 				this.form.nickname = this.vuex_user.nickname
 				this.form.gender = this.vuex_user.gender
-				this.form.age = this.vuex_user.age
+				this.form.age1 = this.vuex_user.age.split('-')[0]
+				this.form.age2 = this.vuex_user.age.split('-')[1]
 				this.form.body_weight = this.vuex_user.body_weight
 				this.form.face_image = this.vuex_user.face_image
 			},
@@ -210,9 +212,17 @@
 					return
 				}
 
-				if (!this.form.age) {
+				if (!this.form.age1) {
 					uni.showToast({
-						title: '请选择年龄',
+						title: '请选择出生年月',
+						icon: 'none'
+					})
+					return
+				}
+				
+				if (!this.form.age2) {
+					uni.showToast({
+						title: '请选择出生年月',
 						icon: 'none'
 					})
 					return
@@ -242,7 +252,8 @@
 				// #endif
 				let res = await this.$api.getUserProfile({
 					...this.form,
-					gender: this.form.gender
+					gender: this.form.gender,
+					age: this.form.age1 + '-' + this.form.age2
 				});
 				if (res.code) {
 					await this.getUserIndex()
