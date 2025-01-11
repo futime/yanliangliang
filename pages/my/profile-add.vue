@@ -214,7 +214,7 @@
 
 				if (!this.form.age1) {
 					uni.showToast({
-						title: '请选择出生年月',
+						title: '请输入出生年份',
 						icon: 'none'
 					})
 					return
@@ -222,7 +222,7 @@
 				
 				if (!this.form.age2) {
 					uni.showToast({
-						title: '请选择出生年月',
+						title: '请输入出生月份',
 						icon: 'none'
 					})
 					return

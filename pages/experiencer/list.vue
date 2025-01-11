@@ -317,7 +317,8 @@
 		position: fixed;
 		bottom: 0vh;
 		left: 0px;
-		height: 180rpx;
+		height: 210rpx;
+		padding-bottom:20px;
 		background: #fff;
 		flex-direction: column;
 	}
