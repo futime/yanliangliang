@@ -1,6 +1,6 @@
 <template>
 	<view class="page">
-		<fa-navbar :title="isnew ? '资料补充': '用户资料'" :background="{ color: '#fff' }"></fa-navbar>
+		<fa-navbar :title="isnew ? '资料补充': '用户资料'" :isBackFlag="isnew ? false : true" :background="{ color: '#fff' }"></fa-navbar>
 		<view class="form">
 			<view class="form-item">
 				<view class="form-item-label">姓名</view>

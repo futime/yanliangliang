@@ -52,6 +52,10 @@ export default {
 		fontSize: {
 			type: String,
 			default: ''
+		},
+		isBackFlag: {
+			type: [Boolean, null],
+			default: null
 		}
 	},
 	computed: {
@@ -73,6 +77,9 @@ export default {
 			}
 		},
 		isBack() {
+			if(this.isBackFlag != null) {
+				return this.isBackFlag
+			}
 			// #ifdef MP-ALIPAY || MP-BAIDU
 			return false;
 			// #endif

@@ -97,6 +97,10 @@
 		},
 		onShow() {
 			this.getGoodsIndex();
+			
+			if (this.vuex_token) {
+				this.getUserIndex();
+			}
 		},
 		computed: {
 			notice() {
@@ -154,13 +158,34 @@
 					})
 					return
 				}
-				const flag = this.getRemainingTime(this.vuex_vipinfo.expiredate, this.vuex_vipinfo.level)
-				
-				if(flag) {
-					uni.navigateTo({
-						url: '/pages/space/start'
+				if(!this.vuex_user.nickname || !this.vuex_user.age) {
+					uni.reLaunch({
+						url: '/pages/my/profile-add?isnew=true'
 					})
-				}else{
+					return
+				}
+				try {
+					const flag = this.getRemainingTime(this.vuex_vipinfo.expiredate, this.vuex_vipinfo.level)
+					if(flag) {
+						uni.navigateTo({
+							url: '/pages/space/start'
+						})
+					}else{
+						uni.showModal({
+							title: '提示',
+							content: `您的体验时间已到期，请开通VIP`,
+							cancelText: '再想想',
+							confirmText: '去开通',
+							success: async function(res) {
+								if (res.confirm) {
+									uni.navigateTo({
+										url: '/pages/vip/activate'
+									})
+								}
+							},
+						});
+					}
+				}catch {
 					uni.showModal({
 						title: '提示',
 						content: `您的体验时间已到期，请开通VIP`,
@@ -175,6 +200,8 @@
 						},
 					});
 				}
+				
+				
 			},
 			handleClickVip() {
 				if(!this.vuex_token){
