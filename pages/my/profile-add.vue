@@ -15,13 +15,13 @@
 				<!-- </view>	 -->
 				<view class="form-item-group">
 					<view class="item-box">
-						<input class="input" v-model="form.age1" placeholder="输入年份" type="text">
+						<input class="input" v-model="form.age1" placeholder="输入年份" type="number" maxlength="4">
 						<view class="rightIcon">
 							年
 						</view>
 					</view>
 					<view class="item-box">
-						<input class="input" v-model="form.age2" placeholder="输入月份" type="text">
+						<input class="input" v-model="form.age2" placeholder="输入月份" type="number" maxlength="2">
 						<view class="rightIcon">
 							月
 						</view>
@@ -93,7 +93,7 @@
 				</view>
 			</view>
 		</view>
-		<u-picker ref="picker" default-time="1930-01-01 00:00:00" start-year="1920" v-model="showPickerYear" :params="params" mode="time"
+		<u-picker ref="picker" default-time="1950-01-01 00:00:00" start-year="1910" v-model="showPickerYear" :params="params" mode="time"
 			@confirm="selectYear"></u-picker>
 		<u-picker ref="picker2" :range="weights" :default-selector="[50]" mode="selector" v-model="showPickerKg"
 			@confirm="selectKg"></u-picker>
