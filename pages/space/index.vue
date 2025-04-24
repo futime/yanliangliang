@@ -1,4 +1,4 @@
-<template>
+	<template>
 	<view class="container">
 		<fa-navbar :title="title" fontSize="4px" :background="{ color: 'transparent' }" title-color="#fff"
 			:borderBottom="false" :styleBack="true"></fa-navbar>
@@ -7,7 +7,7 @@
 			<image :src="showBgVideo" mode=""></image>
 			<!-- #endif -->
 			<!-- #ifndef APP -->
-			<video :src="showBgVideo" :controls="false" loop muted autoplay></video>
+			<video id="myVideo" :src="showBgVideo" :controls="false" loop muted autoplay @ended="handleVideoEnd"></video>
 			<!-- #endif -->
 		</view>
 		<view class="guanghuanBox">
@@ -318,6 +318,7 @@
 					}
 				},
 				userid: null,
+				videoContext: null
 			};
 		},
 		computed: {
@@ -362,8 +363,14 @@
 			this.initClickSound()
 			this.initBackgroundAudioSound()
 			this.startSlowIncrease();
+			//#ifndef APP
+			this.videoContext = uni.createVideoContext('myVideo')
+			//#endif
 		},
 		methods: {
+			handleVideoEnd() {
+				this.videoContext.play()
+			},
 			async getinject(id) {
 				let reqForm = {}
 

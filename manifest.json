@@ -5,6 +5,8 @@
     "versionName" : "1.2.0",
     "versionCode" : 3,
     "transformPx" : false,
+	"sassImplementationName": "node-sass",
+	
     /* 5+App特有相关 */
     "app-plus" : {
         "safearea" : {

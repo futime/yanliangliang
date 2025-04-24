@@ -7,8 +7,8 @@
 			<image :src="staticurl('startpage_bg.jpeg')" mode=""></image>
 			<!-- #endif -->
 			<!-- #ifdef MP-WEIXIN -->
-			<video :src="videourl('startpage_bg.mp4')" :poster="staticurl('startpage_bg.jpeg')" autoplay
-				:controls="false" loop muted=""></video>
+			<video id="myVideo" :src="videourl('startpage_bg.mp4')" autoplay
+				:controls="false" @ended="handleVideoEnd" muted="" loop></video>
 			<!-- #endif -->
 		</view>
 		<view class="title">
@@ -69,8 +69,14 @@
 					backgroundColor: 'transparent',
 					borderRadius: '24rpx'
 				},
-				selectType: 1
+				selectType: 1,
+				videoContext: null
 			}
+		},
+		onReady() {
+			//#ifndef APP 
+			this.videoContext = uni.createVideoContext('myVideo')
+			//#endif
 		},
 		onShow() {
 			if (this.vuex_token) {
@@ -88,21 +94,21 @@
 					if (res.data.showProfilePrompt && !this.vuex_setting.prompted) {
 						// 弹窗每次登录状态只提示一次
 						this.$u.vuex('vuex_setting.prompted', true);
-					// 	uni.showModal({
-					// 		title: '温馨提示',
-					// 		confirmText: '去设置',
-					// 		cancelText: '取消',
-					// 		showCancel: true,
-					// 		content: '当前未设置昵称，请设置昵称后再继续操作',
-					// 		success: (res) => {
-					
-					// 			if (res.confirm) {
-					// 				this.$u.route("/pages/my/profile");
-					// 			} else if (res.cancel) {
-					
-					// 			}
-					// 		}
-					// 	});
+						// 	uni.showModal({
+						// 		title: '温馨提示',
+						// 		confirmText: '去设置',
+						// 		cancelText: '取消',
+						// 		showCancel: true,
+						// 		content: '当前未设置昵称，请设置昵称后再继续操作',
+						// 		success: (res) => {
+
+						// 			if (res.confirm) {
+						// 				this.$u.route("/pages/my/profile");
+						// 			} else if (res.cancel) {
+
+						// 			}
+						// 		}
+						// 	});
 					}
 				} else {
 					this.$u.toast(res.msg);
@@ -118,7 +124,7 @@
 						})
 						return
 					}
-					uni.redirectTo({
+					uni.navigateTo({
 						url: '/pages/space/index'
 					})
 					this.show = false;
@@ -128,9 +134,10 @@
 						uni.navigateTo({
 							url: '/pages/my/profile-add'
 						})
+						this.show = false;
 						return
 					}
-					uni.redirectTo({
+					uni.navigateTo({
 						url: '/pages/space/index'
 					})
 					this.show = false;
@@ -140,21 +147,30 @@
 						this.selectUserSuccess(e.id);
 					});
 					uni.navigateTo({
-						url: '/pages/experiencer/list'
+						url: '/pages/experiencer/list',
+						success() {
+							this.show = false;
+						}
 					})
 				}
+				this.show = false;
 			},
 			selectUserSuccess(id) {
-				uni.redirectTo({
-					url: '/pages/space/index?userid=' + id
+				uni.navigateTo({
+					url: '/pages/space/index?userid=' + id,
+					success() {
+						this.show = false
+					}
 				})
-				this.show = false
 			},
 			handleClickSelect(type) {
 				this.selectType = type
 			},
 			handleClickStart() {
 				this.show = true
+			},
+			handleVideoEnd() {
+				this.videoContext.play()
 			}
 		}
 	}
