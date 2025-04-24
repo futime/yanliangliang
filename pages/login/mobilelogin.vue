@@ -240,4 +240,7 @@
 		font-size:36rpx;
 		font-weight: bold;
 	}
+	.uni-input-placeholder{
+		padding-left:8px;
+	}
 </style>
