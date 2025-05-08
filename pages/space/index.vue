@@ -17,26 +17,10 @@
 					<image :src="staticurl('energy_aperturebg.png')" mode=""></image>
 				</uni-transition>
 			</view>
-			<!-- <view class="sanjiaoBox" :class="zhuruStatus ? 'zhuru' : ''">
-				<uni-transition :styles="{ 'width': '600rpx', 'height': '572rpx'}" ref="sanjiao" :show="showSanjiao"
-					custom-class="sanjiao" :duration="3000" mode-class="zoom-in">
-					<image :src="staticurl('energy_triangle.png')" mode=""></image>
-				</uni-transition>
-			</view> -->
 			<view>
 				<uni-transition :styles="{ 'width': '600rpx', 'height': '600rpx'}" ref="sanjiao" :show="showSanjiao"
 					:duration="4000" mode-class="zoom-in">
-					<!-- <view class="sanjiaoBox2" :class="zhuruStatus ? 'zhuru' : ''">
-						<view class="wrapper">
-							<view class="side side1"></view>
-							<view class="side side2"></view>
-							<view class="side side3"></view>
-							<view class="side side4"></view>
-							<view class="shadow"></view>
-						</view>
-					</view> -->
-
-					<view class="pyramid-gyro">
+					<view class="pyramid-gyro" :class="zhuruStatus ? 'zhuru' : ''">
 						<view class="pyramid-axis">
 							<view class="pyramid-wall front"></view>
 							<view class="pyramid-wall back"></view>
@@ -1163,7 +1147,12 @@
 			margin-left: -100px;
 			-webkit-perspective: 1000px;
 			-webkit-perspective-origin: 50% -40px;
-			transform: scale(1.2);
+			transform: scale(1.3);
+			z-index: -1;
+
+			&.zhuru {
+				z-index: 10;
+			}
 			.pyramid-axis {
 				position: relative;
 				width: 200px;
