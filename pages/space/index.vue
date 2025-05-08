@@ -17,22 +17,22 @@
 					<image :src="staticurl('energy_aperturebg.png')" mode=""></image>
 				</uni-transition>
 			</view>
-			<view>
+			<view class="sanjiaoBox" :class="zhuruStatus ? 'zhuru' : ''">
 				<uni-transition :styles="{ 'width': '600rpx', 'height': '600rpx'}" ref="sanjiao" :show="showSanjiao"
 					:duration="4000" mode-class="zoom-in">
-					<view class="pyramid-gyro" :class="zhuruStatus ? 'zhuru' : ''">
+					<view class="pyramid-gyro">
 						<view class="pyramid-axis">
 							<view class="pyramid-wall front"></view>
 							<view class="pyramid-wall back"></view>
 							<view class="pyramid-wall left"></view>
 							<view class="pyramid-wall right"></view>
-
 							<view class="bottom"></view>
 							<!-- <view class="shadow"></view> -->
 						</view>
 					</view>
 				</uni-transition>
 			</view>
+			
 			<!-- Canvas用于绘制图片 -->
 			<view class="renwu">
 				<!-- <image class="" :src="yourImageSrc" mode="heightFix"></image> -->
@@ -873,7 +873,7 @@
 
 		.sanjiaoBox {
 			width: 600rpx;
-			height: 572rpx;
+			height: 600rpx;
 			position: fixed;
 			top: 50%;
 			left: 50%;
@@ -884,17 +884,7 @@
 			align-items: center;
 
 			&.zhuru {
-				z-index: 10;
-			}
-
-			/deep/ .sanjiao {
-				width: 600rpx;
-				height: 572rpx;
-
-				image {
-					width: 100%;
-					height: 100%;
-				}
+				z-index: 9999;
 			}
 		}
 
@@ -993,9 +983,13 @@
 
 		}
 
-		@keyframes spin {
-			100% {
-				transform: rotateY(360deg);
+		@-webkit-keyframes spin {
+			from {
+				-webkit-transform: rotateY(0);
+			}
+
+			to {
+				-webkit-transform: rotateY(360deg);
 			}
 		}
 
@@ -1139,9 +1133,9 @@
 			}
 		}
 
+
 		.pyramid-gyro {
-			z-index: 100;
-			position: absolute;
+			position: fixed;
 			top: -36px;
 			left: 50%;
 			margin-left: -100px;
@@ -1151,8 +1145,9 @@
 			z-index: -1;
 
 			&.zhuru {
-				z-index: 10;
+				z-index: 999999;
 			}
+
 			.pyramid-axis {
 				position: relative;
 				width: 200px;
