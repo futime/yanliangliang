@@ -26,13 +26,25 @@
 			<view>
 				<uni-transition :styles="{ 'width': '600rpx', 'height': '600rpx'}" ref="sanjiao" :show="showSanjiao"
 					:duration="4000" mode-class="zoom-in">
-					<view class="sanjiaoBox2" :class="zhuruStatus ? 'zhuru' : ''">
+					<!-- <view class="sanjiaoBox2" :class="zhuruStatus ? 'zhuru' : ''">
 						<view class="wrapper">
 							<view class="side side1"></view>
 							<view class="side side2"></view>
 							<view class="side side3"></view>
 							<view class="side side4"></view>
 							<view class="shadow"></view>
+						</view>
+					</view> -->
+
+					<view class="pyramid-gyro">
+						<view class="pyramid-axis">
+							<view class="pyramid-wall front"></view>
+							<view class="pyramid-wall back"></view>
+							<view class="pyramid-wall left"></view>
+							<view class="pyramid-wall right"></view>
+
+							<view class="bottom"></view>
+							<!-- <view class="shadow"></view> -->
 						</view>
 					</view>
 				</uni-transition>
@@ -938,47 +950,59 @@
 
 					&.side1 {
 						transform: rotateZ(-30deg) rotateY(90deg); //*设置绕Z轴旋转-30度绕Y轴旋转90度*
-						background: linear-gradient(
-						    to bottom,
-						    rgba(255, 224, 102, 0.7) 0%,         /* 顶部较亮 */
-						    rgba(255, 215, 0, 0.4) 60%,          /* 中间渐变 */
-						    rgba(255, 179, 0, 0.15) 90%,         /* 底部淡淡的金色 */
-						    rgba(255, 179, 0, 0.08) 100%         /* 最底部有一点点颜色，不是完全透明 */
-						  );
+						background: linear-gradient(to bottom,
+								rgba(255, 224, 102, 0.7) 0%,
+								/* 顶部较亮 */
+								rgba(255, 215, 0, 0.4) 60%,
+								/* 中间渐变 */
+								rgba(255, 179, 0, 0.15) 90%,
+								/* 底部淡淡的金色 */
+								rgba(255, 179, 0, 0.08) 100%
+								/* 最底部有一点点颜色，不是完全透明 */
+							);
 					}
 
 					&.side2 {
 						transform: rotateZ(30deg) rotateY(90deg); //*设置绕Z轴旋转-30度绕Y轴旋转90度*
-						 background: linear-gradient(
-						     to bottom,
-						     rgba(255, 224, 102, 0.7) 0%,         /* 顶部较亮 */
-						     rgba(255, 215, 0, 0.4) 60%,          /* 中间渐变 */
-						     rgba(255, 179, 0, 0.15) 90%,         /* 底部淡淡的金色 */
-						     rgba(255, 179, 0, 0.08) 100%         /* 最底部有一点点颜色，不是完全透明 */
-						   );
+						background: linear-gradient(to bottom,
+								rgba(255, 224, 102, 0.7) 0%,
+								/* 顶部较亮 */
+								rgba(255, 215, 0, 0.4) 60%,
+								/* 中间渐变 */
+								rgba(255, 179, 0, 0.15) 90%,
+								/* 底部淡淡的金色 */
+								rgba(255, 179, 0, 0.08) 100%
+								/* 最底部有一点点颜色，不是完全透明 */
+							);
 					}
 
 					&.side3 {
 						transform: rotateX(30deg); //*设置绕Z轴旋转-30度绕Y轴旋转90度*
-						background: linear-gradient(
-						    to bottom,
-						    rgba(255, 224, 102, 0.7) 0%,         /* 顶部较亮 */
-						    rgba(255, 215, 0, 0.4) 60%,          /* 中间渐变 */
-						    rgba(255, 179, 0, 0.15) 90%,         /* 底部淡淡的金色 */
-						    rgba(255, 179, 0, 0.08) 100%         /* 最底部有一点点颜色，不是完全透明 */
-						  );
+						background: linear-gradient(to bottom,
+								rgba(255, 224, 102, 0.7) 0%,
+								/* 顶部较亮 */
+								rgba(255, 215, 0, 0.4) 60%,
+								/* 中间渐变 */
+								rgba(255, 179, 0, 0.15) 90%,
+								/* 底部淡淡的金色 */
+								rgba(255, 179, 0, 0.08) 100%
+								/* 最底部有一点点颜色，不是完全透明 */
+							);
 					}
 
 					&.side4 {
 						transform: rotateX(-30deg); //*设置绕Z轴旋转-30度绕Y轴旋转90度*
-						background: linear-gradient(
-						    to bottom,
-						    rgba(255, 224, 102, 0.7) 0%,         /* 顶部较亮 */
-						    rgba(255, 215, 0, 0.4) 60%,          /* 中间渐变 */
-						    rgba(255, 179, 0, 0.15) 90%,         /* 底部淡淡的金色 */
-						    rgba(255, 179, 0, 0.08) 100%         /* 最底部有一点点颜色，不是完全透明 */
-						  );
-						
+						background: linear-gradient(to bottom,
+								rgba(255, 224, 102, 0.7) 0%,
+								/* 顶部较亮 */
+								rgba(255, 215, 0, 0.4) 60%,
+								/* 中间渐变 */
+								rgba(255, 179, 0, 0.15) 90%,
+								/* 底部淡淡的金色 */
+								rgba(255, 179, 0, 0.08) 100%
+								/* 最底部有一点点颜色，不是完全透明 */
+							);
+
 					}
 				}
 			}
@@ -1129,5 +1153,73 @@
 				transform: scale(0.35);
 				z-index: -99;
 			}
+		}
+
+		.pyramid-gyro {
+			z-index: 100;
+			position: absolute;
+			top: -36px;
+			left: 50%;
+			margin-left: -100px;
+			-webkit-perspective: 1000px;
+			-webkit-perspective-origin: 50% -40px;
+			transform: scale(1.2);
+			.pyramid-axis {
+				position: relative;
+				width: 200px;
+				-webkit-transform-style: preserve-3d;
+				-webkit-animation: spin 16s infinite linear;
+			}
+
+			.pyramid-wall {
+				position: absolute;
+				border: 100px solid transparent;
+			}
+
+			.front {
+				bottom: -20px;
+				border-bottom: 200px solid rgba(255, 165, 90, 0.5);
+				-webkit-transform: translateZ(25px) rotateX(30deg);
+			}
+
+			.back {
+				bottom: -20px;
+				border-bottom: 200px solid rgba(255, 165, 90, 0.5);
+				-webkit-transform: translateZ(-25px) rotateY(180deg) rotateX(30deg);
+			}
+
+			.left {
+				bottom: -20px;
+				left: 75px;
+				border-bottom: 200px solid rgba(254, 136, 37, 0.5);
+				-webkit-transform: rotateY(270deg) translateX(-100px) rotateX(30deg);
+				-webkit-transform-origin: center left;
+			}
+
+			.right {
+				bottom: -40px;
+				right: 150px;
+				border-bottom: 200px solid rgba(254, 136, 37, 0.5);
+				-webkit-transform: rotateY(-270deg) translateX(100px) rotateX(30deg);
+				-webkit-transform-origin: top right;
+			}
+
+			.bottom {
+				width: 200px;
+				height: 200px;
+				background: #eec26f;
+				-webkit-transform: rotateX(90deg) translateY(100px);
+				-webkit-transform-origin: bottom center;
+			}
+
+			.shadow {
+				position: absolute;
+				top: 250px;
+				width: 0;
+				height: 0;
+				box-shadow: 0 0 50px 100px rgba(0, 0, 0, 0.5);
+				-webkit-transform: rotateX(90deg) translateX(100px);
+			}
+
 		}
 	</style>
