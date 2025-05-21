@@ -895,7 +895,7 @@
 			transform-style: preserve-3d;
 			transform: rotateX(-20deg) translate(-50%, -50%);
 			position: fixed;
-			top: 26%;
+			top: 40%;
 			left: 50%;
 			z-index: -1;
 

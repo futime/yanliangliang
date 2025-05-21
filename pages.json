@@ -12,6 +12,15 @@
 			}
 		},
 		{
+			"path": "pages/index/trailer",
+			"style": {
+				"navigationBarTitleText": "宣传片",
+				"navigationStyle": "default",
+				"navigationBarTextStyle": "blank",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
 			"path": "pages/my/my",
 			"style": {
 				"navigationBarTitleText": "个人中心",
@@ -41,7 +50,7 @@
 				"navigationBarTextStyle": "white"
 			}
 
-		}, 
+		},
 		{
 			"path": "pages/login/openid",
 			"style": {
@@ -50,7 +59,7 @@
 				"navigationBarTextStyle": "white"
 			}
 
-		}, 
+		},
 		{
 			"path": "pages/login/login",
 			"style": {
@@ -118,7 +127,7 @@
 				"navigationBarTextStyle": "white"
 			}
 
-		}, 
+		},
 		{
 			"path": "pages/webview/webview",
 			"style": {
@@ -135,7 +144,7 @@
 				"enablePullDownRefresh": false
 			}
 
-		}, 
+		},
 		{
 			"path": "pages/remark/remark",
 			"style": {
@@ -145,7 +154,7 @@
 				"enablePullDownRefresh": false
 			}
 
-		}, 
+		},
 		{
 			"path": "pages/remark/lists",
 			"style": {
@@ -155,7 +164,7 @@
 				"enablePullDownRefresh": false
 			}
 
-		}, 
+		},
 		{
 			"path": "pages/remark/comment",
 			"style": {
@@ -165,7 +174,7 @@
 				"enablePullDownRefresh": false
 			}
 
-		}, 
+		},
 		{
 			"path": "pages/my/collect",
 			"style": {
@@ -202,7 +211,7 @@
 				"enablePullDownRefresh": false
 			}
 
-		}, 
+		},
 		{
 			"path": "pages/cart/cart",
 			"style": {
@@ -212,7 +221,7 @@
 				"enablePullDownRefresh": false
 			}
 
-		}, 
+		},
 		{
 			"path": "pages/goods/order",
 			"style": {
@@ -319,7 +328,7 @@
 				"enablePullDownRefresh": false
 			}
 
-		}, 
+		},
 		{
 			"path": "pages/coupon/coupon",
 			"style": {
@@ -347,7 +356,7 @@
 				"enablePullDownRefresh": false
 			}
 
-		}, 
+		},
 		{
 			"path": "pages/page/page",
 			"style": {
@@ -366,7 +375,7 @@
 				"enablePullDownRefresh": false
 			}
 
-		}, 
+		},
 		{
 			"path": "pages/help/index",
 			"style": {
@@ -383,7 +392,7 @@
 				"navigationStyle": "custom",
 				"navigationBarTextStyle": "black"
 			}
-		
+
 		}
 	],
 	"subPackages": [{
@@ -477,8 +486,7 @@
 	// #ifdef CUSTOM
 	"tabBar": {
 		"height": "1px",
-		"list": [
-			{
+		"list": [{
 				"pagePath": "pages/index/index",
 				"iconPath": "static/tabbar/home.png",
 				"selectedIconPath": "static/tabbar/home-hl.png",

@@ -12,6 +12,8 @@ unpackage/dist/
 # 忽略日志文件夹
 logs/
 
+history/
+
  
 # 忽略所有的 yarn-lock.json 文件
 yarn-lock.json
