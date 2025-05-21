@@ -877,7 +877,7 @@
 			position: fixed;
 			top: 50%;
 			left: 50%;
-			transform: translate(-50%, -50%);
+			transform: translate(-50%, -32%);
 			z-index: -1;
 			display: flex;
 			justify-content: center;
@@ -893,9 +893,9 @@
 			height: 600rpx;
 			display: block;
 			transform-style: preserve-3d;
-			transform: rotateX(-20deg) translate(-50%, -50%);
+			transform: rotateX(-20deg) translate(-50%, -40%);
 			position: fixed;
-			top: 40%;
+			top: 26%;
 			left: 50%;
 			z-index: -1;
 
