@@ -15,7 +15,7 @@
 		</view>
 		<view class="content">
 			<view class="sanjiaoBox">
-				<view class="bgsanjiao">
+				<view class="bgsanjiao"  @click="goPage('/pages/index/trailer')">
 					<image :src="staticurl('homekvbottom_logo.svg')" mode=""></image>
 				</view>
 				<view class="text">

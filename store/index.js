@@ -19,7 +19,7 @@ let saveStateKeys = [
 	'vuex_openid',
 	'vuex_signin',
 	'vuex_webs',
-	'vuex_lasturl',
+	'vuex_lasturl',			   
 	'vuex_theme',
 	'vuex_invite_id',
 	'vuex_history_keyword',

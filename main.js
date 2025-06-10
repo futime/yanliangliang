@@ -5,6 +5,9 @@ Vue.config.productionTip = false
 
 App.mpType = 'app'
 
+import VueCompositionAPI from '@vue/composition-api'
+Vue.use(VueCompositionAPI)
+
 import * as Util from '@/common/util.js'
 //原型追加工具函数
 Vue.prototype.$util = Util;

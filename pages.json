@@ -12,15 +12,6 @@
 			}
 		},
 		{
-			"path": "pages/index/trailer",
-			"style": {
-				"navigationBarTitleText": "宣传片",
-				"navigationStyle": "default",
-				"navigationBarTextStyle": "blank",
-				"enablePullDownRefresh": true
-			}
-		},
-		{
 			"path": "pages/my/my",
 			"style": {
 				"navigationBarTitleText": "个人中心",
