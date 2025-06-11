@@ -240,6 +240,18 @@ const install = (Vue, vm) => {
 	vm.$api.getrecommend 		  = async (params = {}) => await vm.$u.get('/addons/shop/api.user/getrecommend',params);
 	// 获取积分列表
 	vm.$api.getscore 		  = async (params = {}) => await vm.$u.get('/addons/shop/api.user/getscore',params);
+
+	// 获取分类
+	vm.$api.getCategory 		  = async (params = {}) => await vm.$u.get('/addons/cms/api.common/getCategory',params);
+	vm.$api.getCategoryList 		  = async (params = {}) => await vm.$u.get('/addons/cms/api.archives/index',params);
+	vm.$api.getCategoryDetail		  = async (params = {}) => await vm.$u.get('/addons/cms/api.common/getCategorylist',params);
+
+	vm.$api.getArchiveDetail 		  = async (params = {}) => await vm.$u.get('/addons/cms/api.archives/detail',params);
+
+	vm.$api.checkCollection 		  = async (params = {}) => await vm.$u.get('/addons/cms/api.collection/check',params);
+	vm.$api.createCollection 		  = async (params = {}) => await vm.$u.post('/addons/cms/api.collection/create',params);
+	vm.$api.deleteCollection 		  = async (params = {}) => await vm.$u.post('/addons/cms/api.collection/delete',params);
+
 }
 
 export default {

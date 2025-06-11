@@ -8,7 +8,7 @@ dist/
 .idea/
 unpackage/
 unpackage/dist/
-
+.history
 # 忽略日志文件夹
 logs/
 

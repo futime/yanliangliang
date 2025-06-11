@@ -1,8 +1,13 @@
 <template>
 	<view class="page">
-		<fa-navbar title=" " :background="{ background: scrollTop > 800 ? '#fff' : 'transparent' }" :borderBottom="false"
-		:autoBack="true" title-color="#fff" :is-back="true"></fa-navbar>
-		
+		<fa-navbar
+      :title="archivesInfo.title"
+      :borderBottom="false"
+      :autoBack="true"
+      title-color="#333"
+      :is-back="true"
+	  :placeholder="true"
+    ></fa-navbar>
 		<view class="detail-top">
 			<view class="detailImg">
 				<!-- <image :src="staticurl('/course/coursedetail_img.jpg')" mode="aspectFill"></image> -->
@@ -28,16 +33,16 @@
 		<view class="detailWrap">
 			<view class="titleWrap">
 				<view class="title">
-					3分钟古法养生操 · 缓解颈椎腰椎不适
+					{{ archivesInfo.title }}
 				</view>
 				<view class="desc">
-					<text>主讲人：宋连喜</text>
-					<text>3001人看过</text>
+					<text>主讲人：{{ archivesInfo.column_speaker }}</text>
+					<text>{{ archivesInfo.views }}人看过</text>
 				</view>
 			</view>
 			
 			<view class="introTxt">
-				古法健身操，缓解颈椎腰椎不适，疏通经络、调节气血
+				{{ archivesInfo.description }}
 			</view>
 		</view>
 		
@@ -52,17 +57,17 @@
 			
 			<view class="anchor-view" @click="handleClickColumn">
 				<view class="avatar-img">
-					<image :src="staticurl('/course/columnpage_kvbg.jpg')" mode="aspectFill"></image>
+					<image :src="archivesInfo.speakerimg" mode="aspectFill"></image>
 				</view>
 				<view class="intro-box">
 					<view class="title">
-						宋连喜
+						{{ archivesInfo.column_speaker }}
 					</view>
 					<view class="subtitle">
-						中医火灸炁疗技术传承人
+						{{ archivesInfo.speaker_subtitle }}
 					</view>
 					<view class="intro">
-						上海交通大学传统中医药挖掘与传承创新中心特别研究员，出身医学世家，祖母为清朝太医
+						{{ archivesInfo.speaker_intro }}
 					</view>
 				</view>
 			</view>
@@ -91,27 +96,110 @@
 
 <script>
 	export default {
-		
-		data()  {
+		data() {
 			return {
-				videoSrc: 'https://yanliangliang.com/static/video/qiangang_video.mp4',
-				videoPoster: 'https://yanliangliang.com/static/images/course/coursedetail_img.jpg',
+				videoStarted: false,
+				videoSrc: '',
+				videoPoster: '',
+				archivesInfo: {},
+				isCollect: false,
+				id: null
 			};
 		},
 		onLoad(opt) {
-			
+			this.getUserIndex && this.getUserIndex();
+			this.id = opt.id;
+			this.getArchiveDetail();
+			this.checkCollection();
 		},
 		onShow() {
 			
 		},
 		computed: {
-			
+			trialtime() {
+				if (this.checkVipExpiry && this.checkVipExpiry()) {
+					return 0;
+				} else {
+					if (this.archivesInfo.isfree == 0) {
+						return 0;
+					}
+					if (this.archivesInfo.trialtime > 0) {
+						return this.archivesInfo.trialtime;
+					} else {
+						return 0.1;
+					}
+				}
+			},
+			tipText() {
+				if (this.checkVipExpiry && this.checkVipExpiry()) {
+					return '本片是会员专享内容';
+				} else {
+					if (this.archivesInfo.isfree == 0) {
+						return '试看已结束，本片是会员专享内容';
+					}
+					if (this.archivesInfo.trialtime > 0) {
+						return '试看已结束，本片是会员专享内容';
+					} else {
+						return '本片是会员专享内容';
+					}
+				}
+			}
 		},
 		methods: {
+			async getArchiveDetail() {
+				let res = await this.$api.getArchiveDetail({
+					id: this.id,
+				});
+				this.archivesInfo = res.data.archivesInfo;
+				this.videoSrc = res.data.archivesInfo.videourl;
+				this.videoPoster = res.data.archivesInfo.image;
+			},
+			async checkCollection() {
+				let res = await this.$api.checkCollection({
+					id: this.id
+				});
+				this.isCollect = res.data.check == 1;
+			},
+			handleCollect() {
+				if (this.isCollect) {
+					this.$api.deleteCollection({
+						id: this.id
+					});
+				} else {
+					this.$api.createCollection({
+						aid: this.id,
+						type: 'archives'
+					});
+				}
+				setTimeout(() => {
+					this.checkCollection();
+				}, 400);
+			},
+			play(e) {
+				this.videoStarted = true;
+				// 自动暂停音频，兼容 H5 和小程序
+				const audio = this.$refs.audioRef;
+				if (audio) {
+					// H5 原生 audio
+					if (audio.pause) {
+						audio.pause();
+					}
+					// 微信小程序 audio context
+					if (audio.context && audio.context.pause) {
+						audio.context.pause();
+					}
+					// #ifdef MP-WEIXIN
+					if (typeof wx !== 'undefined' && wx.createAudioContext) {
+						const ctx = wx.createAudioContext(audio.id, this);
+						ctx && ctx.pause && ctx.pause();
+					}
+					// #endif
+				}
+			},
 			handleClickColumn() {
 				uni.navigateTo({
 					url: '/pages/course/column'
-				})
+				});
 			},
 		},
 		onPullDownRefresh() {
@@ -172,7 +260,6 @@
 
 
 .detail-top{
-	margin-top:-44px;
 	.detailImg{
 		height:1080rpx;
 		image{
