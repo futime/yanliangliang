@@ -80,7 +80,7 @@
 			    <button class="btn-collect">
 					<u-icon :name="staticurl('/course/collectico.svg')" size="64"></u-icon>
 					收藏
-					{{ '收藏' ? '已收藏' : '收藏' }}
+				
 				</button>
 			  </view>
 			</view>

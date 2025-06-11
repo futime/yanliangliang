@@ -43,6 +43,66 @@
 			
 		<view class="gapline"></view>
 		
+		<!---->
+		<view class="meditationList">
+			<view class="courseTitle" @click="handleClickMeditation">
+				<view class="titleBox">
+					<view class="title">
+						助眠音乐
+					</view>
+					<view class="subtitle">
+						舒缓身心，改善睡眠质量
+					</view>
+				</view>
+				<view class="arrowMore">
+					<u-icon :name="staticurl('/course/morearrow.svg')" size="28"></u-icon>
+				</view>
+			</view>
+			
+			<view class="listWrap">
+				<view class="listInner" @click="handleClickSound">
+					<view class="image">
+						<view class="innerTag viewtxt">免费</view>
+						<u-image width="100%" height="220rpx" :border-radius="12" :src="staticurl('/course/meditationlist_img1.jpg')" mode="aspectFit"></u-image>
+					</view>
+					<view class="cardBox">
+						<view class="name">
+							解郁调理身心，放松，安神的睡眠
+						</view>
+						<view class="intro">
+							<view class="time">
+								<u-icon :name="staticurl('/course/audioplayer.svg')" size="28"></u-icon>
+							</view>
+							<view class="viewer">
+								<text>435</text>人听过
+							</view>
+						</view>
+					</view>
+				</view>
+				<view class="listInner" @click="handleClickSound">
+					<view class="image">
+						<view class="innerTag viewtxt">免费</view>
+						<u-image width="100%" height="220rpx" :border-radius="12" :src="staticurl('/course/meditationlist_img2.jpg')" mode="aspectFit"></u-image>
+					</view>
+					<view class="cardBox">
+						<view class="name">
+							深度助眠音乐,静心纯音乐
+						</view>
+						<view class="intro">
+							<view class="time">
+								<u-icon :name="staticurl('/course/audioplayer.svg')" size="28"></u-icon>
+							</view>
+							<view class="viewer">
+								<text>435</text>人听过
+							</view>
+						</view>
+					</view>
+				</view>
+				
+			</view>
+		
+		</view>
+		
 		<view class="courseList">
 			<view class="courseTitle" @click="handleClickColumn">
 				<view class="titleBox">
