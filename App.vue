@@ -81,7 +81,9 @@
 
 <style lang="scss">
 	@import 'uview-ui/index.scss';
-	
+	page {
+		font-family: Dream Han Sans CN;
+	}
 
 	/*每个页面公共css */
 	.u-bg-white {

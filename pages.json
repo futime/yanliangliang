@@ -427,6 +427,55 @@
 			]
 		},
 		{
+				"root": "pages/course",
+				"pages": [{
+						"path": "index",
+						"style": {
+							"navigationBarTitleText": "每日冥想",
+							"navigationStyle": "custom",
+							"navigationBarTextStyle": "white",
+							"enablePullDownRefresh": false
+						}
+					},
+					{
+						"path": "column",
+						"style": {
+							"navigationBarTitleText": "专栏",
+							"navigationStyle": "custom",
+							"navigationBarTextStyle": "white",
+							"enablePullDownRefresh": false
+						}
+					},
+					{
+						"path": "meditation",
+						"style": {
+							"navigationBarTitleText": "冥想疗愈",
+							"navigationStyle": "custom",
+							"navigationBarTextStyle": "white",
+							"enablePullDownRefresh": false
+						}
+					},
+					{
+						"path": "detail",
+						"style": {
+							"navigationBarTitleText": "详情",
+							"navigationStyle": "custom",
+							"navigationBarTextStyle": "white",
+							"enablePullDownRefresh": false
+						}
+					},
+					{
+						"path": "sound-detail",
+						"style": {
+							"navigationBarTitleText": "冥想旋律",
+							"navigationStyle": "custom",
+							"navigationBarTextStyle": "white",
+							"enablePullDownRefresh": false
+						}
+					}
+				]
+		},
+		{
 			"root": "pages/vip",
 			"pages": [{
 					"path": "activate",

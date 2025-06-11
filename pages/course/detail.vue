@@ -1,0 +1,304 @@
+<template>
+	<view class="page">
+		<fa-navbar title=" " :background="{ background: scrollTop > 800 ? '#fff' : 'transparent' }" :borderBottom="false"
+		:autoBack="true" title-color="#fff" :is-back="true"></fa-navbar>
+		
+		<view class="detail-top">
+			<view class="detailImg">
+				<!-- <image :src="staticurl('/course/coursedetail_img.jpg')" mode="aspectFill"></image> -->
+				<sunny-video
+					ref="VideoRef"
+					title="" 
+					videoHeight='1080rpx'
+					playImgHeight='120rpx'
+					:videoId='30'
+					:loop='true'
+					:autoplay='false'
+					:src="videoSrc"
+					tipText='试看已结束，本片是会员专享内容'
+					btnText='成为会员免费观看'
+					:showMuteBtn='true'
+					:poster='videoPoster'
+					:trialTime="30"
+					:seekTime="0"
+				></sunny-video>
+			</view>
+		</view>
+		
+		<view class="detailWrap">
+			<view class="titleWrap">
+				<view class="title">
+					3分钟古法养生操 · 缓解颈椎腰椎不适
+				</view>
+				<view class="desc">
+					<text>主讲人：宋连喜</text>
+					<text>3001人看过</text>
+				</view>
+			</view>
+			
+			<view class="introTxt">
+				古法健身操，缓解颈椎腰椎不适，疏通经络、调节气血
+			</view>
+		</view>
+		
+		<view class="gapline"></view>
+		
+		<view class="anchorContent">
+			<view class="wrapTitle">
+				<view class="boxTitle">
+					主讲人介绍
+				</view>
+			</view>
+			
+			<view class="anchor-view" @click="handleClickColumn">
+				<view class="avatar-img">
+					<image :src="staticurl('/course/columnpage_kvbg.jpg')" mode="aspectFill"></image>
+				</view>
+				<view class="intro-box">
+					<view class="title">
+						宋连喜
+					</view>
+					<view class="subtitle">
+						中医火灸炁疗技术传承人
+					</view>
+					<view class="intro">
+						上海交通大学传统中医药挖掘与传承创新中心特别研究员，出身医学世家，祖母为清朝太医
+					</view>
+				</view>
+			</view>
+		</view>
+		
+		<view class="gap-placeholder"></view>
+		
+		<view class="bottom-fixed-bar">
+			<view class="detail-action-bar">
+			  <view class="action-buttons">
+			    <button class="btn-share" open-type="share">
+					<u-icon :name="staticurl('/course/shareico.svg')" size="64"></u-icon>
+					分享
+				</button>
+			    <button class="btn-collect">
+					<u-icon :name="staticurl('/course/collectico.svg')" size="64"></u-icon>
+					收藏
+					{{ '收藏' ? '已收藏' : '收藏' }}
+				</button>
+			  </view>
+			</view>
+		</view>
+		
+	</view>
+</template>
+
+<script>
+	export default {
+		
+		data()  {
+			return {
+				videoSrc: 'https://yanliangliang.com/static/video/qiangang_video.mp4',
+				videoPoster: 'https://yanliangliang.com/static/images/course/coursedetail_img.jpg',
+			};
+		},
+		onLoad(opt) {
+			
+		},
+		onShow() {
+			
+		},
+		computed: {
+			
+		},
+		methods: {
+			handleClickColumn() {
+				uni.navigateTo({
+					url: '/pages/course/column'
+				})
+			},
+		},
+		onPullDownRefresh() {
+			
+		},
+		onReachBottom() {}
+	}
+</script>
+
+<style lang="scss" scoped>
+	
+/deep/ .u-back-wrap{
+	.u-icon-wrap{
+		width:60rpx;
+		height:60rpx;
+		background: rgba(0,0,0,.3);
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		.u-icon__icon,.u-iconfont{
+			font-size:18px!important;
+		}
+	}
+}
+
+.detailWrap{
+	padding:48rpx 36rpx 60rpx 36rpx;
+	.titleWrap{
+		.title{
+			color:#000000;
+			font-size:40rpx;
+			font-weight: bold;
+			margin-bottom:24rpx;
+		}
+		.desc{
+			font-size:26rpx;
+			color:#8d8d8d;
+			line-height: 1.8;
+			display: flex;
+			gap:24rpx;
+			margin-bottom:40rpx;
+		}
+	}
+	
+	.introTxt{
+		font-size:28rpx;
+		color:#787878;
+		line-height: 1.5;
+	}
+}
+
+.gapline{
+	height:20rpx;
+	background: #F7F9FC;
+	width:100%;
+}
+
+
+.detail-top{
+	margin-top:-44px;
+	.detailImg{
+		height:1080rpx;
+		image{
+			width:100%;
+			height:100%;
+		}
+	}
+}
+
+.anchorContent{
+	padding:60rpx 36rpx 40rpx 36rpx;
+	.wrapTitle{
+		margin-bottom:40rpx;
+		.boxTitle{
+			font-size:32rpx;
+			font-weight: bold;
+			color:#000;
+			line-height: 1.5;
+		}
+	}
+	.anchor-view{
+		display: flex;
+		gap:30rpx;
+		.avatar-img{
+			width:30%;
+			image{
+				width:180rpx;
+				height:180rpx;
+				object-fit: cover;
+				border-radius: 50%;
+			}
+		}
+		.intro-box{
+			width:70%;
+			.title{
+				font-size:38rpx;
+				color:#000000;
+				margin-bottom:12rpx;
+			}
+			.subtitle{
+				margin-bottom:16rpx;
+				font-size:26rpx;
+				color:#595959;
+			}
+			.intro{
+				font-size:24rpx;
+				color:#808080;
+				line-height: 1.5;
+			}
+		}
+	}
+}
+
+
+.gap-placeholder {
+  height: 240rpx;
+  width: 100%;
+}
+
+
+.bottom-fixed-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  background: #fff;
+  color: #fff;
+  padding: 24rpx 32rpx 32rpx 32rpx;
+  box-sizing: border-box;
+  height: 156rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid #f5f5f5;
+}
+
+.detail-action-bar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .action-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    button {
+      width: 236.84rpx;
+      height: 70rpx;
+      line-height: 70rpx;
+      padding: 0 30rpx;
+      border-radius: 35rpx;
+      font-size: 28rpx;
+      margin-left: 20rpx;
+	  background: none!important;
+	  border:none!important;
+	  outline: none!important;
+	  box-shadow: none!important;
+    }
+	
+	/deep/ uni-button:after{
+		display: none!important;
+	}
+
+    .btn-share {
+      background: transparent;
+      color: rgba(0,0,0,.5);
+      font-size: 32rpx;
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	  gap:8rpx;
+    }
+
+    .btn-collect {
+      color: rgba(0,0,0,.5);
+      border: none;
+      font-size: 32rpx;
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	gap:8rpx;
+    }
+  }
+}
+
+</style>

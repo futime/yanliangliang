@@ -177,6 +177,42 @@ function getCachedImage(image_url) {
 		}
 	});
 }
+
+/**
+ * 下载图片
+ */
+function getCachedCmsImage(image_url) {
+	return new Promise((resolve, reject) => {
+		let arr = image_url.split('/');
+		let image_name = arr[arr.length - 1];
+		var u = getDb('cms' + image_name);
+		if (u) {
+			resolve(u);
+		} else {
+			// 本地没有缓存 需要下载
+			uni.downloadFile({
+				url: image_url,
+				success: res => {
+					if (res.statusCode === 200) {
+						uni.saveFile({
+							tempFilePath: res.tempFilePath,
+							success: function(res) {
+								setDb('cms' + image_name, res.savedFilePath)
+								resolve(res.savedFilePath);
+							}
+						});
+					} else {
+						reject('下载失败');
+					}
+				},
+				fail: function() {
+					reject('下载失败');
+				}
+			});
+		}
+	});
+}
+
 /**
  * 重设tabbar
  * @param {Object} tablist
@@ -208,6 +244,7 @@ export {
 	setDb,
 	getDb,
 	getCachedImage,
+	getCachedCmsImage,
 	setTabbar,
 	getByteSize
 }

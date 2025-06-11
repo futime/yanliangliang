@@ -1,24 +1,33 @@
 <template>
 	<view class="page">
-		<fa-navbar :title="' '" :background="{ color: 'transparent' }" :borderBottom="false"
-			:styleBack="true"></fa-navbar>
+	<!-- 	<fa-navbar :title="' '" :background="{ color: 'transparent' }" :borderBottom="false"
+			:styleBack="true"></fa-navbar> -->
 		<view class="bg">
-			<!-- #ifdef APP -->
-			<image :src="staticurl('startpage_bg.jpeg')" mode=""></image>
-			<!-- #endif -->
-			<!-- #ifdef MP-WEIXIN -->
-			<video id="myVideo" :src="videourl('startpage_bg.mp4')" autoplay
-				:controls="false" @ended="handleVideoEnd" muted="" loop></video>
-			<!-- #endif -->
+			<image :src="staticurl('/common/spacebg.jpg')" mode=""></image>
 		</view>
-		<view class="title">
-			<u-parse :html="vuex_config.energySpaceTxt"></u-parse>
+		
+		
+		<view class="wrapTitleBox">
+			<view class="pageTitle">
+				<u-parse html="欢迎进入能量空间"></u-parse>
+			</view>
+			<view class="pageSubTitle">
+				<u-parse html="感受自然能量 每日放松冥想<br>专注呼吸感知身心元炁，补炁养神<br>舒缓身体疼痛 重塑健康体态"></u-parse>
+			</view>
 		</view>
-		<view class="sanjiao">
-			<image :src="staticurl('energy_triangle.png')" mode=""></image>
-		</view>
-		<view class="startbtn" @click="handleClickStart">
-			<image :src="staticurl('startpage_btn.svg')" mode=""></image>
+		
+		
+		<view class="btnCon">
+			<view class="startbtn" @click="handleClickStart">
+				<!-- <image :src="staticurl('startpage_btn.svg')" mode=""></image> -->
+				<view class="btntxt">
+					开始注入能量
+				</view>
+			</view>
+			
+			<view class="tipsbtn" @click="goPage('/pages/page/page?diyname=aboutus')">
+				使用说明
+			</view>
 		</view>
 
 		<u-popup v-model="show" mode="center" :custom-style="popupStyle" :border-radius="24">
@@ -26,7 +35,7 @@
 				<view class="selectuser-title">
 					请选择体验者角色
 				</view>
-				<view class="tips">
+				<view class="poptips">
 					便于我们为您提供最佳服务
 				</view>
 				<view class="selectuserBox">
@@ -57,6 +66,8 @@
 				<view class="cancel" @click="show = !show">稍后体验</view>
 			</view>
 		</u-popup>
+		
+		<fa-tabbar :visible="true"></fa-tabbar>
 	</view>
 </template>
 
@@ -167,6 +178,12 @@
 				this.selectType = type
 			},
 			handleClickStart() {
+				if(!this.vuex_token) {
+					uni.navigateTo({
+						url: '/pages/login/login'
+					})
+					return
+				}
 				this.show = true
 			},
 			handleVideoEnd() {
@@ -187,25 +204,6 @@
 		flex-direction: column;
 		align-items: center;
 
-		.selectuser-title {
-			color: rgb(0, 0, 0);
-			font-family: 思源黑体;
-			font-size: 42rpx;
-			font-weight: 400;
-			line-height: 61rpx;
-			letter-spacing: 0px;
-			margin-bottom: 8rpx;
-		}
-
-		.tips {
-			color: rgb(146, 146, 146);
-			font-family: 思源黑体;
-			font-size: 32rpx;
-			font-weight: 400;
-			line-height: 46rpx;
-			letter-spacing: 0px;
-		}
-
 		.nextBtn {
 			width: 100%;
 			height: 100rpx;
@@ -217,6 +215,26 @@
 			margin-top: 64rpx;
 			color: #fff;
 			font-size: 38rpx;
+		}
+		
+		
+		.poptips {
+			color: rgb(146, 146, 146);
+			font-size: 32rpx;
+			font-weight: 400;
+			line-height: 46rpx;
+			letter-spacing: 0px;
+		}
+		
+		
+		.selectuser-title {
+			color: rgb(0, 0, 0);
+			font-family: 思源黑体;
+			font-size: 42rpx;
+			font-weight: 400;
+			line-height: 61rpx;
+			letter-spacing: 0px;
+			margin-bottom: 8rpx;
 		}
 
 		.cancel {
@@ -308,41 +326,64 @@
 		position: relative;
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
-		align-items: center;
 
 		.startbtn {
 			width: 480rpx;
-			height: 113rpx;
 			margin-top: 100rpx;
-
+			.btntxt{
+				color:#fff;
+				font-size:32rpx;
+				display: flex;
+				justify-content: center;
+				background: #12A89D;
+				padding:32rpx 40rpx;
+				border-radius: 60rpx;
+			}
 			image {
 				width: 100%;
 				height: 100%;
 			}
 		}
-
-		.sanjiao {
-			width: 500rpx;
-			height: 422rpx;
-			margin-top: 80rpx;
-
-			image {
-				width: 100%;
-				height: 100%;
-			}
+		
+		
+		.tipsbtn{
+			color:rgba(255, 255, 255,0.7);
+			margin-top:20rpx;
 		}
 
-		.title {
+
+		.pageTitle {
 			color: rgb(255, 255, 255);
 			font-family: 思源黑体 CN;
-			font-size: 48rpx;
-			font-weight: 400;
+			font-size: 64rpx;
+			font-weight: 500;
 			line-height: 80rpx;
-			letter-spacing: 4rpx;
-			text-align: center;
-			top: -120rpx;
+			letter-spacing: 2rpx;
 			position: relative;
+			margin-bottom:140rpx;
+		}
+		
+		.pageSubTitle{
+			color:#fff;
+			font-size: 32rpx;
+			line-height: 56rpx;
+			font-weight: 500;
+			letter-spacing: 1px;
+		}
+		
+		
+		.wrapTitleBox{
+			padding:240rpx 80rpx 160rpx 80rpx;
+		}
+		
+		.btnCon{
+			width: 100%;
+			position: absolute;
+			bottom:20vh;
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+			align-items: center;
 		}
 
 		.bg {

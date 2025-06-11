@@ -1,16 +1,35 @@
 <template>
 	<view class="page">
-		<fa-navbar title="扫描面部信息" :background="{ color: '#fff' }"></fa-navbar>
+		<fa-navbar title="" :background="{ color: '#fff' }" :border-bottom="false"></fa-navbar>
+		<view class="titleWrap">
+			<view class="title">
+				扫描面部信息
+			</view>
+			<view class="subtitle">
+				提取面部图像特征,检测您的能量频率
+			</view>
+		</view>
 		<view class="icon">
-			<image :src="staticurl('facescan_icon.png')" mode=""></image>
+			<image :src="staticurl('/common/facescan_con.png')" mode=""></image>
 		</view>
-		<view class="title">
-			扫描面部信息<br>
-			提取面部图像特征
+		
+		
+		<view class="tipsWrap">
+			<view class="tipsInner">
+				<u-icon :name="staticurl('/common/facescan_ico1.svg')" size="80"></u-icon>
+				<text>正对手机</text>
+			</view>
+			<view class="tipsInner">
+				<u-icon :name="staticurl('/common/facescan_ico2.svg')" size="80"></u-icon>
+				<text>光线充足</text>
+			</view>
+			<view class="tipsInner">
+				<u-icon :name="staticurl('/common/facescan_ico3.svg')" size="80"></u-icon>
+				<text>脸无遮挡</text>
+			</view>
 		</view>
-		<view class="nextBtn" @click="nextFun">
-			开始扫描
-		</view>
+		
+		
 		<view class="xieyi" @click="check = !check">
 			<view class="check">
 				<checkbox :checked="check" />
@@ -19,6 +38,10 @@
 				已阅读并同意 <text @click="goPage('/pages/page/page?diyname=facialprivacy')">《人脸信息采集用户隐私条款》</text>
 			</view>
 		</view>
+		<view class="nextBtn" @click="nextFun">
+			开始扫描
+		</view>
+		
 
 		<u-popup v-model="showModal" :safe-area-inset-bottom="true" mode="bottom" border-radius="24">
 			<view class="modal">
@@ -72,7 +95,6 @@
 		width: 100vw;
 		height: 100vh;
 		display: flex;
-		justify-content: center;
 		align-items: center;
 		flex-direction: column;
 
@@ -85,24 +107,46 @@
 				height: 100%;
 			}
 		}
+		
+		.titleWrap{
+			margin-bottom:100rpx;
+			margin-top:120rpx;
+		}
 
 		.title {
 			color: rgb(17, 17, 17);
 			font-family: Dream Han Sans CN;
 			font-size: 48rpx;
-			font-weight: 400;
+			font-weight: 600;
+			margin-bottom:12rpx;
 			line-height: 80rpx;
 			letter-spacing: 0px;
 			text-align: center;
-			margin-top: 120rpx;
+		}
+		
+		.subtitle{
+			font-size: 32rpx;
+			color: rgba(0, 0, 0,.6);
+		}
+	}
+	
+	.tipsWrap{
+		display: flex;
+		gap:80rpx;
+		margin:80rpx 0rpx 60rpx 0rpx;
+		.tipsInner{
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap:12rpx;
 		}
 	}
 
 	.nextBtn {
 		width: 648rpx;
-		height: 130rpx;
+		height: 110rpx;
 		border-radius: 300px;
-		background: rgb(243, 148, 30);
+		background: #12A89D;
 		color: rgb(255, 255, 255);
 		font-family: 思源黑体 CN;
 		font-size: 40rpx;
@@ -113,23 +157,27 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		margin-top: 75rpx;
+		margin-top: 36rpx;
+	}
+	
+	/deep/ uni-checkbox .uni-checkbox-input {
+		border-radius: 50%!important;
 	}
 
 	.xieyi {
 		display: flex;
 		margin-top: 80rpx;
-
+		align-items: center;
 		.text {
 			font-family: Dream Han Sans CN;
-			font-size: 30rpx;
+			font-size: 28rpx;
 			font-weight: 400;
 			line-height: 50rpx;
 			letter-spacing: 0px;
 			text-align: left;
 
 			text {
-				color: #1B78FB;
+				color: #12A89D;
 			}
 		}
 	}

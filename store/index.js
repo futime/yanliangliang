@@ -19,7 +19,10 @@ let saveStateKeys = [
 	'vuex_openid',
 	'vuex_signin',
 	'vuex_webs',
-	'vuex_lasturl',			   
+	'vuex_lasturl',
+	'vuex_invitecode',
+	'vuex_channel_id',
+	
 	'vuex_theme',
 	'vuex_invite_id',
 	'vuex_history_keyword',
@@ -47,7 +50,10 @@ const store = new Vuex.Store({
 		vuex_user: lifeData.vuex_user ? lifeData.vuex_user : {},
 		vuex_history_keyword: lifeData.vuex_history_keyword ? lifeData.vuex_history_keyword : [],
 		vuex_token: lifeData.vuex_token ? lifeData.vuex_token : '',
-		vuex_openid: lifeData.vuex_openid ? lifeData.vuex_openid : '',
+		vuex_openid: lifeData.vuex_user && lifeData.vuex_openid ? lifeData.vuex_openid : '',
+		
+		vuex_channel_id: lifeData.vuex_channel_id ? lifeData.vuex_channel_id : '',
+		vuex_version: '1.0.1',
 		vuex_invite_id: '',
 		vuex_config: {},
 		vuex_setting: lifeData.vuex_setting ? lifeData.vuex_setting : {},
@@ -55,14 +61,17 @@ const store = new Vuex.Store({
 		vuex_lasturl: lifeData.vuex_lasturl ? lifeData.vuex_lasturl : '/pages/index/index',
 		vuex_vipinfo: lifeData.vuex_vipinfo ? lifeData.vuex_vipinfo : null,
 		vuex_recdkey: lifeData.vuex_recdkey ? lifeData.vuex_recdkey : null, 
+		vuex_table_title: '',
 		
 		vuex_address: {},
 		vuex__token__: '',
 		vuex_third: {},
+		vuex_signin: lifeData.vuex_signin ? lifeData.vuex_signin : '', //签到init	
+		vuex_invitecode: lifeData.vuex_invitecode ? lifeData.vuex_invitecode : '', //邀请码	
 		vuex_cart: [], //暂存购物车选择的
 		vuex_current: 0,
 		vuex_signin: {},
-		vuex_webs: {},
+		vuex_webs: lifeData.vuex_webs ? lifeData.vuex_webs : {},
 		vuex_parse_style: {
 			// 字符串的形式
 			h1: 'padding:20rpx 0;',

@@ -1,75 +1,71 @@
 <template>
 	<view class="page">
-		<fa-navbar title="我的" :background="{ background: scrollTop > 40 ? '#fff' : 'transparent' }" :borderBottom="false"></fa-navbar>
-		<view class="bg">
-			<image :src="staticurl('userbg.png')" mode=""></image>
-		</view>
+		<fa-navbar title=" " :background="{ background: scrollTop > 40 ? 'transparent' : 'transparent' }" :borderBottom="false"></fa-navbar>
+		
 		<view class="userInfo">
-			<view class="avatar" @click="gotoProfile">
-				<image :src="staticurl('shuoming_icon.png')" mode=""></image>
-			</view>
-			<view class="right">
+			<view class="leftWrap">
 				<view class="nickname" @click="gotoProfile">{{ vuex_user.nickname || '点击登录' }}</view>
 				<view class="vipstatus" v-if="vuex_token && vuex_vipinfo" @click="handleClickBuyVip">{{ 'VIP有效期至' || 'VIP截止'}}：{{ checkVipExpiry() || '已过期'}}</view>
 			</view>
+			<view class="avatar" @click="gotoProfile">
+				<image :src="staticurl('shuoming_icon.png')" mode=""></image>
+			</view>
 		</view>
+		
 		<view class="contentcard">
-			<view class="topcard" v-if="vuex_config.isVipCenter == 1" @click="handleClickBuyVip">
-				<view class="left">
-					<view class="text1">
-						<view class="">VIP套餐</view>
-						<view class="icon">
-							<image :src="staticurl('vip_icon.png')" mode=""></image>
-						</view>
+			<view class="topcard" v-if="vuex_config.isVipCenter == 1">
+				<view class="leftBox">
+					<view class="titile">
+						<view class="">疼点典会员</view>
 					</view>
-					<view class="text2">
-						{{ vuex_config.vipPrompt || '购买VIP享更多体验服务' }}
+					<view class="tips">
+						<text v-if="vuex_token">新用户 9 天免费试用</text>
+						<text v-if="vuex_token && vuex_vipinfo">会员享专属商品折扣</text>
+						<text v-if="!vuex_token">{{ vuex_config.vipPrompt || '新用户 9 天免费试用'}}</text>
 					</view>
 				</view>
-				<view class="right">
-					{{ vuex_config.vipButtonTxt || '开通'}}
+				<view class="rightBox" @click="handleClickBuyVip">
+					<text v-if="vuex_token && vuex_vipinfo">购买VIP享更多体验服务</text>
+					<text v-else>{{ vuex_config.vipButtonTxt || '开通会员'}}</text>
 				</view>
-			</view>
-			<view class="listitem" v-if="vuex_config.isOrderMenu == 1" @click="goPage('/pages/order/list'),true">
-				<view class="icon">
-					<image :src="staticurl('orderinquiry_icon.png')" mode=""></image>
-				</view>
-				<view class="text">
-					商品订单
-				</view>
-				<view class="rightIcon">
-					<image :src="staticurl('shuoming_btn_arrow.png')" mode=""></image>
-				</view>
-			</view>
-			<view class="listitem" v-if="vuex_config.isVipOrderMenu == 1" @click="handleClickVipOrder">
-				<view class="icon">
-					<image :src="staticurl('orderinquiry_icon.png')" mode=""></image>
-				</view>
-				<view class="text">
-					{{ vuex_config.vipPromptMenuTxt || 'VIP订单'}} 
-				</view>
-				<view class="rightIcon">
-					<image :src="staticurl('shuoming_btn_arrow.png')" mode=""></image>
-				</view>
-			</view>
-			<view class="listitem" v-for="item in list" :key="item.id" @click="handleClickItem(item)">
-				<view class="icon">
-					<image :src="item.img" mode=""></image>
-				</view>
-				<view class="text">
-					{{ item.label }}
-				</view>
-				<view class="rightIcon">
-					<image :src="staticurl('shuoming_btn_arrow.png')" mode=""></image>
-				</view>
-				 <button v-if="item.id == 2" open-type="contact" class="contactButton"></button>
 			</view>
 			
-			<view class="logout" v-if="vuex_token">
-				<view class="logoutbtn" @click="goPage('out')">
-					退出登录
-				</view>
+			
+			<view class="memberRowWrap">
+				<u-row gutter="16">
+					<u-col span="6">
+						<view class="cardInner" @click="goPage('/pages/order/list'),true">
+							<u-icon :name="staticurl('/common/mycollects_icon.svg')" size="48"></u-icon>
+							<view class="txt">我的收藏</view>
+						</view>
+					</u-col>
+					<u-col span="6">
+						<view class="cardInner" @click="handleClickMyScroe">
+							<u-icon :name="staticurl('/common/myscore_icon.svg')" size="48"></u-icon>
+							<view class="txt">我的积分</view>
+						</view>
+					</u-col>
+				</u-row>
 			</view>
+			
+			<view class="memberMenu">
+				<u-cell-group :border="false">
+					<u-cell-item :icon="staticurl('/common/myexperiencers_icon.svg')" icon-size="48" title="体验者管理" :border-bottom="false" @click="handleClickInvitation"></u-cell-item>
+				</u-cell-group>
+			</view>
+			
+			<view class="memberMenu">
+				<u-cell-group :border="false">
+					<u-cell-item :icon="staticurl('/common/myorder_icon.svg')" icon-size="48" title="VIP充值订单" :border-bottom="false" v-if="vuex_config.isVipOrderMenu == 1" @click="handleClickVipOrder"></u-cell-item>
+					
+					<u-cell-item :icon="item.img" icon-size="48" :title="item.label" :border-bottom="false" v-for="item in list" :key="item.id" 
+					@click="handleClickItem(item)">
+					</u-cell-item>
+					
+					<u-cell-item :icon="staticurl('/common/document_icon.svg')" icon-size="48" title="退出登录" :border-bottom="false" v-if="vuex_token" @click="goPage('out')"></u-cell-item>
+				</u-cell-group>
+			</view>
+			
 		</view>
 		
 		<!-- 小程序在线客服 -->
@@ -91,53 +87,28 @@
 		data() {
 			return {
 				list: [
-					// {
-					// 	img: this.staticurl('orderinquiry_icon.png'),
-					// 	label: '我的订单',
-					// 	id: 1
-					// },
 					{
-						img: this.staticurl('userlist_icon.png'),
-						label: '体验者资料',
+						img: this.staticurl('/common/pointsmall_icon.svg'),
+						label: '积分商城',
 						id: 0
-					},
-					{
-						img: this.staticurl('mypoints_icon.png'),
-						label: '我的积分',
-						id: 5
 					},
 					// #ifdef MP-WEIXIN || H5
 					{
-						img: this.staticurl('inviteshare_icon.png'),
-						label: '邀请分享',
-						id: 3
+						img: this.staticurl('/common/myinvite_icon.svg'),
+						label: '我的邀请',
+						id: 1
 					},
 					// #endif
 					{
-						img: this.staticurl('pointsmall_icon.png'),
-						label: '积分商城',
-						id: 4
-					},
-					{
-						img: this.staticurl('address_icon.png'),
-						label: '收货地址',
-						id: 6
-					},
-					{
-						img: this.staticurl('onlineservice _icon.png'),
-						label: '在线客服',
+						img: this.staticurl('/common/document_icon.svg'),
+						label: '隐私条款政策',
 						id: 2
 					},
 					{
-						img: this.staticurl('privacypolicy_icon.png'),
-						label: '隐私条例政策',
-						id: 7
-					},
-					// {
-					// 	img: this.staticurl('setup_icon.png'),
-					// 	label: '清除本机缓存',
-					// 	id: 8
-					// }
+						img: this.staticurl('/common/address_icon.svg'),
+						label: '收货地址',
+						id: 3
+					}
 				],
 				scrollTop: 0
 			}
@@ -163,21 +134,10 @@
 							return
 						}
 						uni.navigateTo({
-							url: '/pages/experiencer/list'
+							url: '/pages/score/exchange'
 						})
-						break
+						break;
 					case 1:
-						if(!this.vuex_token) {
-							uni.navigateTo({
-								url: '/pages/login/login'
-							})
-							return
-						}
-						uni.navigateTo({
-							url: '/pages/vip/orderlist'
-						})
-						break
-					case 3: 
 						if(!this.vuex_token) {
 							uni.navigateTo({
 								url: '/pages/login/login'
@@ -188,23 +148,13 @@
 							url: '/pages/my/invitation'
 						})
 						break;
-					case 4: 
+					
+					case 2:
 						uni.navigateTo({
-							url: '/pages/score/exchange'
+							url: '/pages/page/page?diyname=privacypolicy'
 						})
 						break;
-					case 5:
-						if(!this.vuex_token) {
-							uni.navigateTo({
-								url: '/pages/login/login'
-							})
-							return
-						}
-						uni.navigateTo({
-							url: '/pages/score/score'
-						})
-						break;
-					case 6:
+					case 3:
 						if(!this.vuex_token) {
 							uni.navigateTo({
 								url: '/pages/login/login'
@@ -214,18 +164,7 @@
 						uni.navigateTo({
 							url: '/pages/address/address'
 						})
-						break;
-					case 7:
-						uni.navigateTo({
-							url: '/pages/page/page?diyname=privacypolicy'
-						})
-						break;
-					case 8:
-						uni.showToast({
-							title: '清除缓存成功！',
-							icon: 'none'
-						})
-						break;
+						break;	
 				}
 			},
 			handleClickBuyVip() {
@@ -237,6 +176,28 @@
 				}
 				uni.navigateTo({
 					url: '/pages/vip/activate'
+				})
+			},
+			handleClickInvitation() {
+				if(!this.vuex_token) {
+					uni.navigateTo({
+						url: '/pages/login/login'
+					})
+					return
+				}
+				uni.navigateTo({
+					url: '/pages/my/invitation'
+				})
+			},
+			handleClickMyScroe() {
+				if(!this.vuex_token) {
+					uni.navigateTo({
+						url: '/pages/login/login'
+					})
+					return
+				}
+				uni.navigateTo({
+					url: '/pages/score/score'
 				})
 			},
 			handleClickVipOrder() {
@@ -251,7 +212,7 @@
 				})
 			},
 			gotoProfile(){
-				console.log(this.vuex_token)
+				console.log(this.vuexi_token)
 				if(this.vuex_token){
 					uni.navigateTo({
 						url: '/pages/my/profile-add'
@@ -291,34 +252,32 @@
 			right: 0;
 			top: 0;
 			bottom: 0;
-			background: linear-gradient(180.00deg, rgb(192, 239, 255) 0%, rgba(192, 239, 255, 0) 21.453%), rgb(228, 237, 240);
+			background: linear-gradient(180.00deg, rgb(199, 213, 241),rgb(219, 232, 235),rgb(245, 245, 245));
 			z-index: -2;
 		}
 
 		.userInfo {
 			padding: 50rpx 0;
 			display: flex;
+			justify-content: space-between;
 			.avatar {
 				width: 150rpx;
 				height: 150rpx;
 				border-radius: 100%;
 				overflow: hidden;
-				border: 4rpx solid rgb(255, 255, 255);
 				display: flex;
 				justify-content: center;
 				align-items: center;
 				box-sizing: border-box;
 				border-radius: 300rpx;
-				box-shadow: 0px 10rpx 30rpx 0px rgba(0, 0, 0, 0.1);
-				background: rgb(192, 239, 255);
 
 				image {
-					width: 100rpx;
-					height: 100rpx;
+					width: 100%;
+					height:100%;
 				}
 			}
 
-			.right {
+			.leftWrap {
 				height: 160rpx;
 				display: flex;
 				flex-direction: column;
@@ -327,17 +286,17 @@
 
 				.nickname {
 					color: rgb(0, 0, 0);
-					font-size: 48rpx;
+					font-size: 56rpx;
 					font-weight: 400;
 					line-height: 50rpx;
-					letter-spacing: 0px;
+					letter-spacing: 2px;
 					text-align: left;
-					margin-bottom: 22rpx;
+					margin-bottom: 16rpx;
 				}
 
 				.vipstatus {
-					color: rgb(0, 0, 0);
-					font-size: 30rpx;
+					color: #787D7C;
+					font-size: 32rpx;
 					font-weight: 500;
 					line-height: 50rpx;
 					letter-spacing: 0px;
@@ -361,35 +320,33 @@
 			}
 		}
 	}
-
+	
+	
 	.contentcard {
 		width: 100%;
-		background-color: #fff;
 		border-radius: 24rpx;
 		position: relative;
 		top: 10rpx;
 		.topcard {
-			padding: 40rpx 38rpx;
-			border-radius: 24rpx 24rpx 0px 0px;
-			background: linear-gradient(180.00deg, rgb(243, 148, 30), rgba(243, 148, 30, 0) 100%), rgb(252, 179, 88);
+			padding:24rpx 38rpx;
+			background: linear-gradient(90.00deg, rgb(39, 43, 51),rgb(57, 63, 69));
+			border-radius: 24rpx;
 			display: flex;
-			.left {
+			align-items: center;
+			.leftBox {
 				flex: 1;
-				height: 120rpx;
 				flex-direction: column;
 				display: flex;
 				justify-content: center;
-				.text1 {
-					color: rgb(255, 255, 255);
+				.titile {
+					color: #E0E0E0;
 					font-family: Dream Han Sans CN;
-					font-size: 42rpx;
+					font-size: 36rpx;
 					font-weight: 400;
 					line-height: 50rpx;
 					letter-spacing: 0px;
 					text-align: left;
-					display: flex;
-					align-items: center;
-					margin-bottom: 12rpx;
+					margin-bottom: 2rpx;
 					.icon {
 						width: 42rpx;
 						height: 42rpx;
@@ -400,115 +357,67 @@
 						}
 					}
 				}
-				.text2 {
-					color: rgb(255, 255, 255);
-					font-family: Dream Han Sans CN;
-					font-size: 36rpx;
+				.tips {
+					color: #797979;
+					font-size: 28rpx;
 					font-weight: 400;
+					font-family: Dream Han Sans CN;
 					line-height: 50rpx;
 					letter-spacing: 0px;
 					text-align: left;
 				}
 			}
-			.right  {
-				width: 210rpx;
-				height: 100rpx;
+			.rightBox  {
+				height: 82rpx;
 				box-sizing: border-box;
-				border: 4rpx solid rgb(255, 255, 255);
-				border-radius: 300px;
+				border-radius: 60px;
+				padding:12rpx 60rpx;
 				display: flex;
 				justify-content: center;
 				align-items: center;
-				color: rgb(255, 255, 255);
+				background: #E5B765;
+				color: #1F190E;
+				font-size:36rpx;
 				font-family: Dream Han Sans CN;
-				font-size: 42rpx;
-				font-weight: 400;
-				line-height: 42rpx;
 				letter-spacing: 0px;
-				text-align: left;
 			}
 		}
 	}
 	
-	.listitem {
-		padding: 30rpx 36rpx;
-		display: flex;
-		align-items: center;
-		border-bottom: 2rpx solid #e5e5e5;
-		position: relative;
-		.contactButton,.shareButton {
-			position: absolute;
-			top: 0;
-			left: 0;
-			right: 0;
-			bottom: 0;
-			background-color: transparent;
-			border:none;
-			&:after{
-				display: none;
-			}
-		}
-		&:last-child {
-			border-bottom: none;
-		}
-		.icon {
-			width: 54rpx;
-			height: 54rpx;
-			flex-shrink: 0;
-			margin-right: 20rpx;
-			image {
-				width: 100%;
-				height: 100%;
-			}
-		}
-		
-		.text {
-			flex: 1;
-			color: rgb(17, 17, 17);
-			font-family: Dream Han Sans CN;
-			font-size: 38rpx;
-			font-weight: 500;
-			line-height: 50rpx;
-			letter-spacing: 0px;
-			text-align: left;
-		}
-		
-		.rightIcon {
-			flex-shrink: 0;
-			width: 20rpx;
-			height: 40rpx;
-			opacity: .6;
-			image {
-				width: 100%;
-				height: 100%;
-			}
-		}
-	}
 	
-	.logout {
-		padding: 91rpx;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		
-		.logoutbtn {
-			width: 480rpx;
-			height: 120rpx;
-			border-radius: 300px;
-			background: rgb(243, 148, 30);
-			display: flex;
-			justify-content: center;
+
+	.memberRowWrap {
+		border-radius: 8rpx;
+		margin-top:40rpx;
+		.cardInner{
 			align-items: center;
-			color: rgb(255, 255, 255);
-			font-family: 思源黑体 CN;
-			font-size: 40rpx;
-			font-weight: 400;
-			line-height: 50rpx;
-			letter-spacing: 0px;
-			text-align: center;
+			display: flex;
+			border-radius: 30rpx;
+			background: #fff;
+			height:120rpx;
+			gap:8px;
+			padding:0rpx 30rpx;
+			.txt{
+				font-size:17px;
+				color: #1F190E;
+			}
 		}
 	}
+
 	
+	.memberMenu{
+		margin-top:32rpx;
+		/deep/ .u-cell-item-box{
+		    padding:16rpx 0rpx;
+			border-radius: 12px;
+		}
+		/deep/ .u-cell_title{
+		    font-size: 17px;
+		    margin-left: 8px;
+			color: #1F190E;
+		}
+	}
+
 	
 	.wechatKfLink{
 		  border:none;

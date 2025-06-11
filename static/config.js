@@ -1,0 +1,1 @@
+var fastUrl = 'https://tengdiandian.yanliangliang.com';

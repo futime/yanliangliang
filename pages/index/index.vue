@@ -3,69 +3,213 @@
 		<view class="notice bg-white" v-if="notice.length">
 			<u-notice-bar mode="horizontal" type="warning" :duration="5000" :is-circular="false" :autoplay="true" :list="notice" @click="click"></u-notice-bar>
 		</view>
-		<view class="topView" @click="handleClickNengliang">
-			<view class="bg">
-				<image :src="vuex_config.homekvBg" mode=""></image>
-			</view>
-			<view class="person">
-				<image :src="vuex_config.homekvManBody" mode="" v-if="vuex_user.gender == 1" ></image>
-				<image :src="vuex_config.homekvMadamBody" mode="" v-else-if="vuex_user.gender == 0" ></image>
-				<image :src="vuex_config.homekvManBody" mode="" v-else ></image>
+		
+		
+		<view class="topBanner" @click="handleClickNengliang">
+			<view class="bannerWrap">
+				<view class="welcomeSlogan">
+					<text>hi,早上好</text>
+				</view>
+				<view class="conIntro">
+					<view class="titleBox">
+						<view class="title">每日放松<br>冥想</view>
+						<view class="subtitle">告别僵硬酸痛<br>重塑健康体态</view>
+					</view>
+				</view>
+				<view class="imgBg">
+					<image :src="staticurl('/common/indexbanng_bg.jpg')" mode="widthFix"></image>
+				</view>
 			</view>
 		</view>
-		<view class="content">
-			<view class="sanjiaoBox">
-				<view class="bgsanjiao"  @click="goPage('/pages/index/trailer')">
-					<image :src="staticurl('homekvbottom_logo.svg')" mode=""></image>
-				</view>
-				<view class="text">
-					{{vuex_config.title || '宇宙能量疗愈空间'}}
-				</view>
-			</view>
-			<view class="" :data-navigates="navigates" v-if="vuex_config.isGoodsLisHome == 1">
-				<swiper class="swiper" @change="change" :style="{ height: (vuex_config.navigate && vuex_config.navigate.length > 6 ? 580 : 360) + 'rpx' }">
-					<swiper-item v-for="(res, key) in navigateList" :key="key">
-						<u-grid :col="2" hover-class="hover-class">
-							<u-grid-item v-for="(item, index) in res" :custom-style="{ padding: '35rpx 0' }" @click="grids(item)" :key="index">
-								<u-icon :name="item.image" color="#ffffff" :size="item.size"></u-icon>
-								<view class="u-m-t-20">{{ item.name }}</view>
-							</u-grid-item>
-						</u-grid>
-					</swiper-item>
-				</swiper>
-				<view class="indicator-dots" v-if="navigateList.length > 1">
-					<view class="indicator-dots-item" v-for="(res, key) in navigateList" :key="key" :class="[current == key ? 'indicator-dots-active' : '']"></view>
-				</view>
-			</view>
-			<view class="menus">
-				<view class="menus-item" @click="handleClickNengliang">
-					<view class="icon">
-						<image :src="staticurl('energy_logo.png')" mode=""></image>
+		
+		
+		<view class="pageContent">
+			<view class="spaceLinkBox">
+				<view class="spaceDesc">
+					<view class="titleBox">
+						<text class="title">能量炁疗 解压放松</text>
+						<text class="subtitle">感受自然能量 舒缓身体疼痛</text>
 					</view>
-					<view class="label" v-if="!vuex_token">{{ vuex_config.energyButtonNologinTxt}}</view>
-					<view class="label" v-else>{{ vuex_config.energyButtonTxtHome || '进入能量仓'}}</view>
+					<view class="spaceBtn">
+						<text>进入能量仓</text>
+					</view>
+				</view>
+				<view class="spaceImg">
+					<u-image width="100%" height="260rpx" :src="staticurl('/common/spacerecom_body.png')" mode="aspectFit"></u-image>
+				</view>
+			</view>
+		</view>	
+		
+			
+		<view class="gapline"></view>
+		
+		<view class="courseList">
+			<view class="courseTitle" @click="handleClickColumn">
+				<view class="titleBox">
+					<view class="title">
+						大师养生课
+					</view>
+					<view class="subtitle">
+						中医大师亲授
+					</view>
+				</view>
+				<view class="arrowMore">
+					<u-icon :name="staticurl('/course/morearrow.svg')" size="28"></u-icon>
+				</view>
+			</view>
+			
+			<view class="listWrap">
+				<WCard1 v-for="(item, key, index) in recommend" :key="key" :detail="item"></WCard1>
+					
+				<view class="itemCard" @click="handleClickDetail">
+					<view class="image">
+						<view class="innerTag viewtxt">试看</view>
+						<u-image width="100%" height="240rpx" :border-radius="12" :src="staticurl('/course/courseinner_img1.jpg')" mode="aspectFit"></u-image>
+					</view>
+					<view class="cardBox">
+						<view class="name">
+							古法养生操 · 缓解肩颈僵硬
+						</view>
+						<view class="intro">
+							<view class="time">
+								<text>4</text>分钟
+							</view>
+							<view class="viewer">
+								<text>528</text>人看过
+							</view>
+						</view>
+						<view class="playBtn">
+							<u-icon :name="staticurl('/course/player_gray.svg')" size="32"></u-icon>
+						</view>
+					</view>
+				</view>
+				<view class="itemCard" @click="handleClickDetail">
+					<view class="image">
+						<view class="innerTag viptxt">VIP</view>
+						<u-image width="100%" height="240rpx" :border-radius="12" :src="staticurl('/course/courseinner_img2.jpg')" mode="aspectFit"></u-image>
+					</view>
+					<view class="cardBox">
+						<view class="name">
+							宫廷秘传古法养生操
+						</view>
+						<view class="intro">
+							<view class="time">
+								<text>4</text>分钟
+							</view>
+							<view class="viewer">
+								<text>528</text>人看过
+							</view>
+						</view>
+						<view class="playBtn">
+							<u-icon :name="staticurl('/course/player_gray.svg')" size="32"></u-icon>
+						</view>
+					</view>
 				</view>
 				
-				<view class="menus-item" v-if="vuex_config.isVipGrade == 1" @click="handleClickVip">
-					<view class="icon">
-						<image :src="staticurl('vip_icon.png')" mode=""></image>
-					</view>
-					<view class="label">{{ vuex_config.vipButtonTxtHome || '开通VIP' }}</view>
-				</view>
-			</view> 
-			
-			<view class="helpbox"  v-if="vuex_config.isInstructions == 1" @click="goPage('/pages/page/page?diyname=aboutus')">
-				<view class="icon">
-					<image :src="staticurl('shuoming_icon.png')" mode=""></image>
-				</view>
-				<view class="helpbox-content">
-					眼靓亮使用说明
-				</view>
-				<view class="rightIcon">
-					<image :src="staticurl('shuoming_btn_arrow.png')" mode=""></image>
-				</view>
 			</view>
 		</view>
+			
+		<view class="gapline"></view>
+		
+		<!---->
+		<view class="meditationList">
+			<view class="courseTitle" @click="handleClickMeditation">
+				<view class="titleBox">
+					<view class="title">
+						冥想疗愈
+					</view>
+					<view class="subtitle">
+						能量吸引，补炁养神
+					</view>
+				</view>
+				<view class="arrowMore">
+					<u-icon :name="staticurl('/course/morearrow.svg')" size="28"></u-icon>
+				</view>
+			</view>
+			
+			<view class="listWrap">
+				<view class="listInner" @click="handleClickSound">
+					<view class="image">
+						<view class="innerTag viewtxt">免费</view>
+						<u-image width="100%" height="220rpx" :border-radius="12" :src="staticurl('/course/meditationlist_img1.jpg')" mode="aspectFit"></u-image>
+					</view>
+					<view class="cardBox">
+						<view class="name">
+							财富丰盈冥想
+						</view>
+						<view class="intro">
+							<view class="time">
+								<u-icon :name="staticurl('/course/audioplayer.svg')" size="28"></u-icon>
+							</view>
+							<view class="viewer">
+								<text>435</text>人听过
+							</view>
+						</view>
+					</view>
+				</view>
+				<view class="listInner" @click="handleClickSound">
+					<view class="image">
+						<view class="innerTag viewtxt">免费</view>
+						<u-image width="100%" height="220rpx" :border-radius="12" :src="staticurl('/course/meditationlist_img2.jpg')" mode="aspectFit"></u-image>
+					</view>
+					<view class="cardBox">
+						<view class="name">
+							缓解焦虑-减压放松
+						</view>
+						<view class="intro">
+							<view class="time">
+								<u-icon :name="staticurl('/course/audioplayer.svg')" size="28"></u-icon>
+							</view>
+							<view class="viewer">
+								<text>435</text>人听过
+							</view>
+						</view>
+					</view>
+				</view>
+				<view class="listInner" @click="handleClickSound">
+					<view class="image">
+						<view class="innerTag viptxt">VIP</view>
+						<u-image width="100%" height="220rpx" :border-radius="12" :src="staticurl('/course/meditationlist_img3.jpg')" mode="aspectFit"></u-image>
+					</view>
+					<view class="cardBox">
+						<view class="name">
+							晚安好眠冥想
+						</view>
+						<view class="intro">
+							<view class="time">
+								<u-icon :name="staticurl('/course/audioplayer.svg')" size="28"></u-icon>
+							</view>
+							<view class="viewer">
+								<text>384</text>人听过
+							</view>
+						</view>
+					</view>
+				</view>
+				<view class="listInner" @click="handleClickSound">
+					<view class="image">
+						<view class="innerTag viptxt">VIP</view>
+						<u-image width="100%" height="220rpx" :border-radius="12" :src="staticurl('/course/meditationlist_img4.jpg')" mode="aspectFit"></u-image>
+					</view>
+					<view class="cardBox">
+						<view class="name">
+							自然能量呼吸冥想
+						</view>
+						<view class="intro">
+							<view class="time">
+								<u-icon :name="staticurl('/course/audioplayer.svg')" size="28"></u-icon>
+							</view>
+							<view class="viewer">
+								<text>145</text>人听过
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+		
+		</view>
+		
+		<view class="gapModular"></view>
+		
 		<fa-tabbar></fa-tabbar>
 		<!-- <faTabbarVue></faTabbarVue> -->
 	</view>
@@ -91,6 +235,7 @@
 			};
 		},
 		onLoad(opt) {
+			this.initShare()
 			if(opt.recdkey){
 				this.$u.vuex('vuex_recdkey', opt.recdkey);
 			}
@@ -201,7 +346,17 @@
 					});
 				}
 				
-				
+			},
+			
+			// 分享
+			initShare() {
+				// #ifdef MP-WEIXIN
+				this.$u.mpShare = {
+					title: '每日冥想',
+					imageUrl: 'https://yanliangliang.com/static/images/mpshare.jpg',
+					path: '/pages/course/index'
+				};
+				// #endif
 			},
 			handleClickVip() {
 				if(!this.vuex_token){
@@ -213,6 +368,32 @@
 				
 				uni.navigateTo({
 					url: '/pages/vip/activate'
+				})
+			},
+			handleClickColumn() {
+				uni.navigateTo({
+					url: '/pages/course/column'
+				})
+			},
+			handleClickMeditation() {
+				uni.navigateTo({
+					url: '/pages/course/meditation'
+				})
+			},
+			handleClickDetail() {
+				// if(!this.vuex_token){
+				// 	uni.navigateTo({
+				// 		url: '/pages/login/login'
+				// 	})
+				// 	return
+				// }
+				uni.navigateTo({
+					url: '/pages/course/detail'
+				})
+			},
+			handleClickSound() {
+				uni.navigateTo({
+					url: '/pages/course/sound-detail'
 				})
 			},
 			//商城自带
@@ -275,146 +456,309 @@
 </script>
 
 <style lang="scss" scoped>
-	.page {
-		padding-bottom: 120rpx;
-	}
-	.topView {
-		width: 100%;
-		height: 887rpx;
+	
+.page {
+	
+}
+
+.topBanner {
+	width: 100%;
+	position: relative;
+	z-index: 5;
+	.bannerWrap{
 		position: relative;
-		.bg {
-			width: 100%;
-			height: 100%;
-			
-			image {
-				width: 100%;
-				height: 100%;
+		.welcomeSlogan{
+			position: absolute;
+			z-index: 120;
+			top:120rpx;
+			left:36rpx;
+			// #ifdef H5
+			top:2vh;
+			// #endif
+			color:#fff;
+			font-size: 30rpx;
+		}
+		.conIntro{
+			position: absolute;
+			z-index: 100;
+			padding:0rpx 80rpx 0rpx 80rpx;
+			top:240rpx;
+			.titleBox{
+				display: flex;
+				flex-direction: column;
+				.title{
+					color:#fff;
+					margin-bottom:24rpx;
+					font-size:64rpx;
+					line-height: 76rpx;
+					font-weight: bold;
+				}
+				.subtitle{
+					color:rgba(255,255,255,.8);
+					font-size:34rpx;
+					line-height: 56rpx;
+				}
 			}
 		}
-		
-		.person {
-			position: absolute;
-			width: 330rpx;
-			height: 688rpx;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-			image {
-				width: 100%;
-				height: 100%;
+		.imgBg{
+			width:100%;
+			position: relative;
+			z-index: 10;
+			image{
+				width:100%;
+				height:100%;
 			}
 		}
 	}
 	
-	.content {
-		position: relative;
-		top: -4vh;
-		padding: 0 30rpx 0 30rpx;
-		.sanjiaoBox {
-			width: 100%;
-			height: 150rpx;
+	
+}
+
+.pageContent {
+	position: relative;
+	padding: 0 36rpx;
+	border-top-left-radius: 24rpx;
+	border-top-right-radius: 24rpx;
+	z-index: 10;
+	margin-top:-60px;
+	background: #fff;
+	padding-top:60rpx;
+}
+
+.gapline{
+	height:30rpx;
+	width:100%;
+}
+
+.gapModular{
+	height:40rpx;
+	width:100%;
+}
+
+//
+.courseTitle{
+	display: flex;
+	gap:16rpx;
+	margin-bottom:16rpx;
+	.titleBox{
+		display: flex;
+		width:100%;
+		.title{
+			color:#000000;
+			font-size:40rpx;
+			font-weight: bold;
+			margin-right:16rpx;
+		}
+		.subtitle{
+			font-size:28rpx;
+			color:#808080;
 			display: flex;
+			align-items: flex-end;
+			margin-bottom:4rpx;
+		}
+	}
+	.arrowMore{
+		display: flex;
+		align-items: center;
+	}
+
+}
+
+
+.spaceLinkBox{
+	display: flex;
+	justify-content: space-between;
+	background: #E5F3F5;
+	border-radius: 24rpx;
+	padding:30rpx 20rpx 0rpx 40rpx;
+	padding-top:60rpx;
+	.spaceDesc{
+		padding-bottom:40rpx;
+		.titleBox{
+			display: flex;
+			flex-direction: column;
+			.title{
+				color:rgba(0,0,0,.8);
+				font-size:42rpx;
+				font-weight: 600;
+				margin-bottom:16rpx;
+				
+			}
+			.subtitle{
+				color:rgba(0,0,0,.4);
+				font-size:26rpx;
+				
+			}
+		}
+		.spaceBtn{
+			font-size:28rpx;
+			color:#fff;
+			background: #12A89D;
+			width:220rpx;
+			height:68rpx;
+			display: flex;
+			align-items: center;
 			justify-content: center;
-			align-items: center;
-			position: relative;
-			.bgsanjiao {
-				width: 400rpx;
-				height: 150rpx;
-				image {
-					width: 100%;
-					height: 100%;
-				}
-			}
-			.text {
-				position: absolute;
-				bottom: -20rpx;
-				font-size: 36rpx;
-				color: #009E96;
-			}
+			border-radius: 60px;
+			margin-top:40rpx;
+			
 		}
-		.menus {
-			width:calc(100% - 20rpx);
-			display: grid;
-			grid-template-columns: repeat(2, 1fr);
-			grid-column-gap: 20rpx;
-			margin:0 auto;
-			margin-top: 40rpx;
-			.menus-item {
-				width: 100%;
-				height: 100%;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				flex-direction: column;
-				border-radius: 12rpx;
-				padding: 27rpx 0 27rpx 0;
-				&:first-child {
-					background: rgb(22, 209, 180);
-				}
-				&:last-child {
-					background: rgb(252, 179, 88);
-				}
-				.icon {
-					width: 88rpx;
-					height: 85rpx;
-					image {
-						width: 100%;
-						height: 100%;
-					}
-				}
-				.label {
-					color: rgb(255, 255, 255);
-					font-family: 思源黑体 CN;
-					font-size: 48rpx;
-					font-weight: 400;
-					line-height: 50rpx;
-					letter-spacing: 0px;
-					text-align: center;
-					margin-top: 15rpx;
-				}
-			}
-		}
-		
-		.helpbox { 
-			width: calc(100% - 20rpx);
-			height: 160rpx;
-			background-color: #C0EFFF;
-			border-radius: 16rpx;
+	}
+	.spaceImg{
+		width:40%;
+	}
+}
+
+
+.courseList{
+	padding:40rpx 36rpx 20rpx 36rpx;
+	.listWrap{
+		.itemCard{
 			display: flex;
-			align-items: center;
-			padding: 0 48rpx;
-			margin:0rpx auto;
-			margin-top: 20rpx;
-			.icon {
-				width: 100rpx;
-				height: 100rpx;
-				image {
-					width: 100%;
-					height: 100%;
-				}
+			gap:40rpx;
+			position: relative;
+			padding:30rpx 0rpx 40rpx 0rpx;
+			margin-bottom:10rpx;
+			border-bottom:1px solid #F3F3F3;
+			&:nth-last-of-type(1){
+				border:none;
 			}
-			.helpbox-content { 
-				color: rgb(51, 51, 51);
-				font-family: 思源黑体 CN;
-				font-size: 48rpx;
-				font-weight: 400;
-				display: flex;
-				align-items: center;
-				flex: 1;
-				margin-left: 48rpx;
+			.image{
+				width:220rpx;
+				height:240rpx;
+				position: relative;
+			}
+			.innerTag{
+				position: absolute;
+				right:0;
+				bottom:0;
+				z-index: 10;
+				font-size:12px;
+				padding:6rpx 16rpx;
+				background: #000000;
+				color:#fff;
+				border-top-left-radius: 16rpx;
+			}
+			.viewtxt{
+				
+			}
+			.viptxt{
+				background: #FE8825;
 			}
 			
-			.rightIcon {
-				width: 20rpx;
-				height: 40rpx;
-				flex-shrink: 0;
-				image {
-					width: 100%;
-					height: 100%;
+			.cardBox{
+				margin-top:20rpx;
+				.name{
+					font-size: 32rpx;
+					color:#333333;
+					font-weight: bold;
+					line-height: 1.5;
+					width:90%;
+					
+				}
+			}
+			
+			.intro{
+				color:#b7b7ba;
+				display: flex;
+				gap:16rpx;
+				font-size:28rpx;
+				margin-top:30rpx;
+				
+				.time{
+					
+				}
+				.viewer{
+					
+				}
+			}
+			.playBtn{
+				position: absolute;
+				right:12rpx;
+				bottom:40rpx;
+				background: #F5F7FA;
+				border-radius: 50%;
+				width:64rpx;
+				height:64rpx;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				image{
+					
 				}
 			}
 		}
 	}
+}
+
+
+
+
+//
+.meditationList{
+	padding:60rpx 36rpx;
+	border-top: 1px solid #f3f3f3;
+	.listWrap{
+		display: flex;
+		gap:30rpx 24rpx;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		margin-top:40rpx;
+	}
+	.listInner{
+		width:calc(50% - 20rpx);
+		position: relative;
+		.image{
+			width:100%;
+			height:214rpx;
+			position: relative;
+		}
+		.innerTag{
+			position: absolute;
+			right:0;
+			bottom:0;
+			z-index: 10;
+			font-size:12px;
+			padding:6rpx 16rpx;
+			background: #000000;
+			color:#fff;
+			border-top-left-radius: 16rpx;
+		}
+		.viewtxt{
+			
+		}
+		.viptxt{
+			background: #FE8825;
+		}
+		.cardBox{
+			padding:16rpx 24rpx 20rpx 24rpx;
+			border:1px solid #EDF1F7;
+			border-bottom-left-radius: 12rpx;
+			border-bottom-right-radius: 12rpx;
+			.name{
+				font-size: 32rpx;
+				color:#333333;
+				font-weight: bold;
+				line-height: 1.5;
+				width:100%;
+				height:80rpx;
+				
+			}
+		}
+		
+		.intro{
+			color:#b7b7ba;
+			display: flex;
+			gap:16rpx;
+			font-size:28rpx;
+			margin-top:30rpx;
+			.time{
+				margin-top:4rpx;
+			}
+		}
+	}
+}
+
 
 //
 /deep/ uni-swiper,/deep/ swiper{
@@ -439,14 +783,7 @@
 /deep/ .u-grid-item:nth-of-type(2) .u-grid-item-box{
 	background: #FCB358!important;
 }
-/deep/ .u-icon__img{
-	width: 88rpx!important;
-	height: 85rpx!important;
-	image {
-		width: 100%;
-		height: 100%;
-	}
-}
+
 
 	
 //框架自带
@@ -469,98 +806,5 @@
 }
 .notice {
 	
-}
-.index-content {
-	margin-top: 30rpx;
-	background-color: #ffffff;
-	.title {
-		position: relative;
-		padding: 30rpx 50rpx;
-		border-bottom: 1px solid #f4f6f8;
-		.stroke {
-			&::before {
-				content: '';
-				width: 8rpx;
-				height: 30rpx;
-				background-color: #374486;
-				position: absolute;
-				top: 36%;
-				left: 30rpx;
-				border-radius: 20rpx;
-			}
-		}
-	}
-}
-
-.goods-list {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	margin-top: 30rpx;
-	padding: 0 30rpx;
-	.item {
-		width: calc((100vw - 90rpx) / 2);
-		background-color: #ffffff;
-		box-shadow: 0px 0px 5px rgb(233, 235, 243);
-		margin-bottom: 30rpx;
-		border-radius: 10rpx;
-		overflow: hidden;
-		border: 1px solid #e9ebf3;
-		.name {
-			min-height: 110rpx;
-		}
-		.foot {
-			padding: 0 15rpx;
-		}
-		.images {
-			width: 100%;
-			height: 350rpx;
-			image {
-				width: 100%;
-				height: 100%;
-			}
-		}
-		.market_price {
-			text-decoration: line-through;
-			margin-left: 10rpx;
-		}
-	}
-}
-.hots-list{	
-	margin-top: 30rpx;
-	padding: 0 30rpx 30rpx;
-	.item {
-		width: 100%;
-		background-color: #ffffff;
-		box-shadow: 0px 0px 5px rgb(233, 235, 243);
-		margin-bottom: 30rpx;
-		border-radius: 10rpx;
-		overflow: hidden;
-		border: 1px solid #e9ebf3;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		.images {
-			width: 250rpx;
-			height: 220rpx;
-			image {
-				width: 100%;
-				height: 100%;
-			}
-		}
-		.content{
-			flex: 1;
-			.name {
-				min-height: 110rpx;
-			}
-			.foot {
-				padding: 0 15rpx;
-			}
-			.market_price {
-				text-decoration: line-through;
-				margin-left: 10rpx;
-			}
-		}
-	}
 }
 </style>

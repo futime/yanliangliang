@@ -1,21 +1,24 @@
 <template>
 	<view class="page">
 		
+		<fa-navbar title=" " :background="{ background: scrollTop > 800 ? '#fff' : 'transparent' }" :borderBottom="false"
+		:autoBack="true" title-color="#fff" :is-back="true"></fa-navbar>
+		
+		
 		<view class="bg" v-if="vuex_config.loginPageBg.length > 56">
-			<image :src="vuex_config.loginPageBg" mode=""></image>
+			<image :src="staticurl('/common/spacebg.jpg')" mode=""></image>
 		</view>
 		<view class="bg" v-else>
-			<image :src="staticurl('loginbg.jpeg')" mode=""></image>
+			<image :src="staticurl('/common/spacebg.jpg')" mode=""></image>
 		</view>
 		
-		<fa-navbar title=" " :background="{ color: 'transparent' }" :borderBottom="false"></fa-navbar>
 		<!-- 顶部导航 -->
-			<view class="logo" v-if="vuex_config.loginLogo.length > 56">
+			<!-- <view class="logo" v-if="vuex_config.loginLogo.length > 56">
 				<image class="" :src="vuex_config.loginLogo" mode=""></image>
-			</view>
-			<view class="logo" v-else>
+			</view> -->
+			<!-- <view class="logo" v-else>
 				<image class="" :src="staticurl('logo_yanliangliang.png')" mode=""></image>
-			</view>
+			</view> -->
 			<view class="loginBtn">
 				<!-- #ifdef MP-WEIXIN -->
 				<view class="u-text-center" style="width: 100%; height: 100%;" v-if="checkLogintype('wechatmobile')">
@@ -108,6 +111,23 @@
 	page {
 		background-color: transparent;
 	}
+	
+	
+	/deep/ .u-back-wrap{
+		.u-icon-wrap{
+			width:60rpx;
+			height:60rpx;
+			background: rgba(0,0,0,.3);
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			.u-icon__icon,.u-iconfont{
+				font-size:18px!important;
+			}
+		}
+	}
+	
 	.page {
 		position: relative;
 		width: 100vw;
@@ -141,7 +161,8 @@
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			margin-top: 173rpx;
+			position: relative;
+			bottom:0rpx;
 		}
 		
 		.bg {

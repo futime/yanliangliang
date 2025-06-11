@@ -291,7 +291,7 @@
 					font-size: 32rpx;
 					line-height: 28rpx;
 					position: absolute;
-					bottom: 20rpx;
+					bottom: 21rpx;
 					left: 50%;
 					transform: translateX(-50%);
 				}

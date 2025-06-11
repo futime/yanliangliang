@@ -1,6 +1,11 @@
 //免登录接口
 let noLoginUrl = [	
 	'/addons/shop/api.common/init',
+	'/addons/cms/api.archives/index',
+	'/addons/cms/api.archives/detail',	
+	'/addons/cms/api.search/index',
+	'/addons/cms/api.tag/index',							  
+	'/addons/cms/api.common/getCategory',							   
 	'/addons/shop/api.common/area',
 	'/addons/shop/api.ems/send',
 	'/addons/shop/api.sms/send',
