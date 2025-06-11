@@ -101,7 +101,7 @@
 			</view>
 			
 			<view class="listWrap">
-				<view class="itemCard" v-for="item in list2" :key="item.id" @click="handleClickDetail">
+				<view class="itemCard" v-for="item in list2" :key="item.id" @click="handleClickDetail(item.id)">
 					<view class="image">
 						<view class="innerTag viewtxt" v-if="item.isfree == 0">免费</view>
 						<view class="innerTag viewtxt" v-else-if="item.trialtime  > 0">试看</view>
@@ -373,7 +373,7 @@
 					url: `/pages/course/meditation?channel=${channel}`
 				})
 			},
-			handleClickDetail() {
+			handleClickDetail(id) {
 				// if(!this.vuex_token){
 				// 	uni.navigateTo({
 				// 		url: '/pages/login/login'
@@ -381,7 +381,7 @@
 				// 	return
 				// }
 				uni.navigateTo({
-					url: '/pages/course/detail'
+					url: `/pages/course/detail?id=${id}`
 				})
 			},
 			handleClickSound(item) {
