@@ -1,7 +1,13 @@
 <template>
   <view class="page" v-if="Object.keys(archivesInfo).length > 0">
-    	<fa-navbar title=" " :background="{ background: scrollTop > 800 ? '#fff' : 'transparent' }" :borderBottom="false"
-        :autoBack="true" title-color="#fff" :is-back="true"></fa-navbar>
+    <fa-navbar
+      :title="archivesInfo.title"
+      :borderBottom="false"
+      :autoBack="true"
+      title-color="#333"
+      :is-back="true"
+	  :placeholder="true"
+    ></fa-navbar>
     <view class="detail-top">
       <view class="detailContent">
         <!-- <image :src="staticurl('/course/meditationlist_img1.jpg')" mode="aspectFill"></image> -->
