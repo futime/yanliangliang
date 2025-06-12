@@ -216,7 +216,7 @@ export default {
   .u-icon-wrap {
     width: 60rpx;
     height: 60rpx;
-    background: rgba(0, 0, 0, 0.3);
+    // background: rgba(0, 0, 0, 0.3);
     border-radius: 50%;
     display: flex;
     align-items: center;

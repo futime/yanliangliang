@@ -37,7 +37,7 @@
     <view class="columnIntroWrap">
       <view class="introTitle">
         <view class="titleBox">
-          <view class="title"> 专栏内容 </view>
+          <view class="title"> 专栏介绍 </view>
           <view class="subtitle"> 主讲人介绍 </view>
         </view>
 

@@ -23,7 +23,7 @@
 		</view>
 		
 		
-		<view class="pageContent">
+		<view class="pageContent" @click="handleClickNengliang">
 			<view class="spaceLinkBox">
 				<view class="spaceDesc">
 					<view class="titleBox">
@@ -40,8 +40,6 @@
 			</view>
 		</view>	
 		
-			
-		<view class="gapline"></view>
 		
 		<!---->
 		<view class="meditationList">
@@ -690,7 +688,6 @@
 //
 .meditationList{
 	padding:60rpx 36rpx;
-	border-top: 1px solid #f3f3f3;
 	.listWrap{
 		display: flex;
 		gap:30rpx 24rpx;

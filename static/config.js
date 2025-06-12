@@ -1,1 +1,1 @@
-var fastUrl = 'https://tengdiandian.yanliangliang.com';
+var fastUrl = 'https://yanliangliang.com';

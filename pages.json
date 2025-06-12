@@ -555,7 +555,7 @@
 	// #endif
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "眼靓亮",
+		"navigationBarTitleText": "疼点典",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8",
 		"pageOrientation": "portrait"

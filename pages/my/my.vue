@@ -19,13 +19,16 @@
 						<view class="">疼点典会员</view>
 					</view>
 					<view class="tips">
-						<text v-if="vuex_token">新用户 9 天免费试用</text>
-						<text v-if="vuex_token && vuex_vipinfo">会员享专属商品折扣</text>
-						<text v-if="!vuex_token">{{ vuex_config.vipPrompt || '新用户 9 天免费试用'}}</text>
+						<view v-if="!vuex_token">新用户 9 天免费试用</view>
+						<view v-else>
+							<text v-if="vuex_token && vuex_vipinfo">会员享专属商品折扣</text>
+							<text v-else>{{ vuex_config.vipPrompt || '新用户 9 天免费试用'}}</text>
+						</view>
+						
 					</view>
 				</view>
 				<view class="rightBox" @click="handleClickBuyVip">
-					<text v-if="vuex_token && vuex_vipinfo">购买VIP享更多体验服务</text>
+					<text v-if="vuex_token && vuex_vipinfo">续费会员</text>
 					<text v-else>{{ vuex_config.vipButtonTxt || '开通会员'}}</text>
 				</view>
 			</view>
@@ -34,7 +37,7 @@
 			<view class="memberRowWrap">
 				<u-row gutter="16">
 					<u-col span="6">
-						<view class="cardInner" @click="goPage('/pages/order/list'),true">
+						<view class="cardInner" @click="goPage('/pages/my/collect'),true">
 							<u-icon :name="staticurl('/common/mycollects_icon.svg')" size="48"></u-icon>
 							<view class="txt">我的收藏</view>
 						</view>
@@ -50,7 +53,7 @@
 			
 			<view class="memberMenu">
 				<u-cell-group :border="false">
-					<u-cell-item :icon="staticurl('/common/myexperiencers_icon.svg')" icon-size="48" title="体验者管理" :border-bottom="false" @click="handleClickInvitation"></u-cell-item>
+					<u-cell-item :icon="staticurl('/common/myexperiencers_icon.svg')" icon-size="48" title="体验者管理" :border-bottom="false" @click="handleClickExperien"></u-cell-item>
 				</u-cell-group>
 			</view>
 			
@@ -178,7 +181,7 @@
 					url: '/pages/vip/activate'
 				})
 			},
-			handleClickInvitation() {
+			handleClickExperien() {
 				if(!this.vuex_token) {
 					uni.navigateTo({
 						url: '/pages/login/login'
@@ -186,7 +189,7 @@
 					return
 				}
 				uni.navigateTo({
-					url: '/pages/my/invitation'
+					url: '/pages/experiencer/list'
 				})
 			},
 			handleClickMyScroe() {
