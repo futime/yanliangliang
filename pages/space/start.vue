@@ -351,6 +351,10 @@
 			margin-top:20rpx;
 		}
 
+		
+		.wrapTitleBox{
+			padding:240rpx 80rpx 160rpx 80rpx;
+		}
 
 		.pageTitle {
 			color: rgb(255, 255, 255);
@@ -372,9 +376,6 @@
 		}
 		
 		
-		.wrapTitleBox{
-			padding:240rpx 80rpx 160rpx 80rpx;
-		}
 		
 		.btnCon{
 			width: 100%;

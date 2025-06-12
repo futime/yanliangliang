@@ -12,6 +12,16 @@
 			<image :src="staticurl('/common/spacebg.jpg')" mode=""></image>
 		</view>
 		
+		
+		<view class="wrapTitleBox">
+			<view class="pageTitle">
+				<u-parse html="欢迎进入疼点典"></u-parse>
+			</view>
+			<view class="pageSubTitle">
+				<u-parse html="感受自然能量 每日放松冥想<br>专注呼吸感知身心元炁，补炁养神<br>舒缓身体疼痛 重塑健康体态"></u-parse>
+			</view>
+		</view>
+		
 		<!-- 顶部导航 -->
 			<!-- <view class="logo" v-if="vuex_config.loginLogo.length > 56">
 				<image class="" :src="vuex_config.loginLogo" mode=""></image>
@@ -177,6 +187,32 @@
 			
 		}
 	}
+	
+	.wrapTitleBox{
+		padding:240rpx 80rpx 160rpx 80rpx;
+	}
+	
+	.pageTitle {
+		color: rgb(255, 255, 255);
+		font-family: 思源黑体 CN;
+		font-size: 64rpx;
+		font-weight: 500;
+		line-height: 80rpx;
+		letter-spacing: 2rpx;
+		position: relative;
+		margin-bottom:140rpx;
+	}
+	
+	.pageSubTitle{
+		color:#fff;
+		font-size: 32rpx;
+		line-height: 56rpx;
+		font-weight: 500;
+		letter-spacing: 1px;
+	}
+	
+	
+	
 	.login {
 		padding: 80rpx 100rpx 0 100rpx;
 	}
