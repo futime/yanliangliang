@@ -5,20 +5,20 @@
 		<!-- 内容 -->
 		<view class="u-p-30">
 			<u-form :model="form" ref="uForm">
-				<!-- <u-form-item :label-position="labelPosition" label="头像:" prop="avatar" label-width="150"> -->
+				<u-form-item :label-position="labelPosition" label="头像:" prop="avatar" label-width="150">
 					<!-- #ifdef MP-WEIXIN -->
-					<!-- <button class="avatar-wrapper" open-type="chooseAvatar" @chooseavatar="onChooseAvatar">
+					<button class="avatar-wrapper" open-type="chooseAvatar" @chooseavatar="onChooseAvatar">
 						<image class="avatar" :src="url || userInfo.avatar"></image>
-					</button> -->
+					</button>
 					<!-- #endif -->
 
 					<!-- #ifndef MP-WEIXIN -->
-					<!-- <u-image width="70" height="70" :src="url || userInfo.avatar" @click="chooseAvatar"></u-image> -->
+					<u-image width="70" height="70" :src="url || userInfo.avatar" @click="chooseAvatar"></u-image>
 					<!-- #endif -->
-				<!-- </u-form-item> -->
-				<u-form-item label="用户名:" prop="username" label-width="150">
-					<u-input v-model="form.username" />
 				</u-form-item>
+				<!-- <u-form-item label="用户名:" prop="nickname" label-width="150">
+					<u-input v-model="form.nickname" />
+				</u-form-item> -->
 				<u-form-item label="姓名:" prop="nickname" label-width="150">
 					<input type="nickname" v-model="form.nickname" @change="onInput" placeholder="请输入姓名" />
 				</u-form-item>

@@ -17,7 +17,7 @@
 		</view>
 		
 		
-		<view class="btnCon">
+		<view class="btnGroup">
 			<view class="startbtn" @click="handleClickStart">
 				<!-- <image :src="staticurl('startpage_btn.svg')" mode=""></image> -->
 				<view class="btntxt">
@@ -198,7 +198,7 @@
 		width: 600rpx;
 		// height: 961rpx;
 		border-radius: 24rpx;
-		background: linear-gradient(180.00deg, rgba(243, 148, 30, 0.16) 0%, rgba(255, 255, 255, 0) 21.904%), rgb(255, 255, 255);
+		background: linear-gradient(180.00deg, rgba(18, 168, 157, 0.16) 0%, rgba(255, 255, 255, 0) 21.904%), rgb(255, 255, 255);
 		padding: 60rpx 50rpx;
 		display: flex;
 		flex-direction: column;
@@ -326,9 +326,21 @@
 		position: relative;
 		display: flex;
 		flex-direction: column;
+		
+		
+		.btnGroup{
+			width: 100%;
+			position: absolute;
+			bottom:20vh;
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+			align-items: center;
+		}
+		
 
 		.startbtn {
-			width: 480rpx;
+			width: 70%;
 			margin-top: 100rpx;
 			.btntxt{
 				color:#fff;
@@ -348,7 +360,8 @@
 		
 		.tipsbtn{
 			color:rgba(255, 255, 255,0.7);
-			margin-top:20rpx;
+			margin-top:40rpx;
+			font-size:28rpx;
 		}
 
 		
@@ -376,17 +389,6 @@
 		}
 		
 		
-		
-		.btnCon{
-			width: 100%;
-			position: absolute;
-			bottom:20vh;
-			display: flex;
-			justify-content: center;
-			flex-direction: column;
-			align-items: center;
-		}
-
 		.bg {
 			position: absolute;
 			top: 0;

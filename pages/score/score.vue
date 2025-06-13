@@ -5,7 +5,7 @@
 		<view class="u-p-30 u-m-t-40">
 			<view class="center u-p-30" :style="[{ background: theme.bgColor }]">
 				<view class="header u-row-center">
-					<view class="u-m-r-15"><u-avatar size="100" :src="vuex_user.avatar"></u-avatar></view>
+					<view class="u-m-r-15"><u-avatar size="100" :src="staticurl('shuoming_icon.png')"></u-avatar></view>
 					<view class="u-flex u-flex-column u-row-center u-col-center u-flex-1">
 						<view class="u-flex u-m-t-10">
 							<view class="nickname">{{ vuex_user.nickname }}</view>
@@ -129,7 +129,7 @@ export default {
 .center {
 	border-radius: 20rpx;
 	color: #ffffff;
-	box-shadow: 0 0 16rpx 4rpx rgba(55, 68, 134, 0.3);
+	// box-shadow: 0 0 16rpx 4rpx rgba(55, 68, 134, 0.3);
 	padding-bottom: 8px!important;
 	.nickname {
 		font-weight: bold;

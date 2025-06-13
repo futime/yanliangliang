@@ -87,7 +87,7 @@
 				</view>
 			</view>
 			<!-- #endif -->
-			<view class="btnGroup">
+			<view class="bottom-fixed-bar">
 				<view class="loginBtn" @click="handleClickSubmit">
 					<view class="label">{{ isnew ? '下一步' : '保存编辑'}}</view>
 				</view>
@@ -307,18 +307,23 @@
 <style lang="scss" scoped>
 	.page {
 		padding-top: 54rpx;
-		padding-left: 70rpx;
-		padding-right: 70rpx;
+		padding-left: 36rpx;
+		padding-right: 36rpx;
 		padding-bottom: 150rpx;
+		background: #F7F7F7;
+		min-height: 100vh;
 	}
 
 	.form {
+		background: #fff;
+		padding:40rpx 48rpx;
+		border-radius: 24rpx;
 		&-item {
 			margin-bottom: 36rpx;
 
 			&-label {
-				color: rgb(17, 17, 17);
-				font-size: 38rpx;
+				color: rgba(0, 0, 0,.6);
+				font-size: 32rpx;
 				font-weight: 500;
 				line-height: 1.2;
 				letter-spacing: 0px;
@@ -331,7 +336,7 @@
 				gap:20rpx;
 				.item-box{
 					width: 50%;
-					height: 132rpx;
+					height: 110rpx;
 					box-sizing: border-box;
 					border: 2rpx solid rgb(221, 221, 221);
 					border-radius: 12rpx;
@@ -350,14 +355,14 @@
 					.input {
 						width: 100%;
 						height: 100%;
-						font-size: 38rpx;
+						font-size: 32rpx;
 					}
 				}
 			}
 
 			&-content {
 				width: 100%;
-				height: 132rpx;
+				height: 110rpx;
 				box-sizing: border-box;
 				border: 2rpx solid rgb(221, 221, 221);
 				border-radius: 12rpx;
@@ -404,7 +409,7 @@
 				.input {
 					width: 100%;
 					height: 100%;
-					font-size: 38rpx;
+					font-size: 32rpx;
 				}
 			}
 
@@ -431,7 +436,7 @@
 					}
 
 					&.active {
-						border: 3rpx solid rgb(255, 141, 0);
+						border: 3rpx solid #12A89D;
 
 						.label {
 							color: rgb(17, 17, 17);
@@ -447,7 +452,7 @@
 						width: 50rpx;
 						height: 50rpx;
 						border-radius: 8rpx;
-						background-color: rgb(255, 141, 0);
+						background-color: #12A89D;
 						position: absolute;
 						border-top-left-radius: 0;
 						border-bottom-right-radius: 0;
@@ -483,33 +488,40 @@
 		}
 	}
 
-	.btnGroup {
-		width: 100%;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		position: fixed;
-		bottom: 0vh;
-		left: 0px;
-		height: 160rpx;
-		background: #fff;
+	.bottom-fixed-bar {
+	  position: fixed;
+	  left: 0;
+	  right: 0;
+	  bottom: 0;
+	  z-index: 999;
+	  background: #fff;
+	  color: #fff;
+	  padding: 0rpx 32rpx 60rpx 32rpx;
+	  box-sizing: border-box;
+	  height: 210rpx;
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	  border-top: 1px solid #f5f5f5;
 	}
+	
 
 	.loginBtn {
-		width: 80%;
+		width: 598rpx;
 		height: 110rpx;
-		border-radius: 300px;
-		background: rgb(243, 148, 30);
-		color: rgb(255, 255, 255);
-		font-family: 思源黑体 CN;
-		font-size: 40rpx;
-		font-weight: 400;
-		line-height: 50rpx;
-		letter-spacing: 0px;
-		text-align: center;
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		color: #fff;
+		color: rgb(255, 255, 255);
+		font-size: 36rpx;
+		font-weight: 400;
+		line-height: 42rpx;
+		letter-spacing: 0px;
+		text-align: center;
+		border-radius: 300rpx;
+		margin-top: 20rpx;
+		background: #12A89D;
 	}
 
 	.addImage {

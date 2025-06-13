@@ -60,7 +60,7 @@
 			</view>
 		</view>
 
-		<view class="btnGroup">
+		<view class="bottom-fixed-bar">
 			<view class="addbottom" @click="handleClickAdd">
 				<view class="icon">
 					<image :src="staticurl('adduser_icon.png')" mode=""></image>
@@ -159,13 +159,12 @@
 		display: flex;
 		align-items: center;
 		color: #F3941E;
-		font-family: 思源黑体;
 		font-size: 30rpx;
 		font-weight: 400;
 		line-height: 43rpx;
 		letter-spacing: 0px;
 		text-align: left;
-		background: rgb(253, 241, 225);
+		background:#FFF7EE;
 		padding: 26rpx 50rpx;
 
 		.icon {
@@ -309,7 +308,7 @@
 		}
 	}
 
-	.btnGroup {
+	.bottom-fixed-bar {
 		width: 100%;
 		display: flex;
 		justify-content: center;
@@ -323,17 +322,14 @@
 		flex-direction: column;
 	}
 	
-	.addbtnTips{
-		
-	}
 
 	.addbottom {
 		width: 80%;
-		height: 123rpx;
+		height: 110rpx;
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		background: #F3941E;
+		background: #12A89D;
 		border-radius: 100rpx;
 		margin: 0 50rpx;
 
@@ -351,7 +347,7 @@
 		.text {
 			color: rgb(255, 255, 255);
 			font-family: 思源黑体 CN;
-			font-size: 42rpx;
+			font-size: 38rpx;
 			font-weight: 400;
 			line-height: 50rpx;
 			letter-spacing: 0px;

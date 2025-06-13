@@ -74,6 +74,13 @@
 				"navigationStyle": "custom",
 				"navigationBarTextStyle": "white"
 			}
+		}, {
+			"path": "pages/login/userlogin",
+			"style": {
+				"navigationBarTitleText": "账号密码登录",
+				"navigationStyle": "custom",
+				"navigationBarTextStyle": "white"
+			}
 
 		}, {
 			"path": "pages/login/mobilelogin",

@@ -10,6 +10,10 @@
 				您当前VIP有效期至：{{ checkVipExpiry() || '已过期'}}
 			</view>
 		</view>
+		
+		<view class="selectTipsBox">
+			选择会员计划
+		</view>
 
 		<view class="select_vip_box">
 			<view class="select_vip_box_item" :class="selectVip == item.points ? 'active' : ''"
@@ -17,11 +21,11 @@
 				<view class="check">
 					<u-icon name="checkbox-mark" color="#fff"></u-icon>
 				</view>
-				<view class="select_vip_box_item_left">
+				<!-- <view class="select_vip_box_item_left">
 					<view class="radio">
 
 					</view>
-				</view>
+				</view> -->
 				<view class="select_vip_box_item_right">
 					<view class="label">{{ item.pricedata[0].days }}天{{ item.name }}</view>
 					<view class="price">{{ item.pricedata[0].price }}{{ vuex_config.payCurrencyTxt }}</view>
@@ -32,19 +36,23 @@
 			特别提示：
 			<u-parse :html="vuex_config.vipPageTipsTxt"></u-parse>
 		</view>
+		
+		<view class="tiptxt">
+			<view>您的当前积分：{{ vuex_user.score }}</view>
+			<view></view>
+		</view>
 
-		<view class="btns">
-			<view class="btn btn1" v-if="vuex_config.isVipPay == 1" @click="handleClickWxPay('wechat')">
-				微信支付
-			</view>
-			<view class="btn btn2" @click="handleClickWxPay('score')">
-				积分兑换
-			</view>
-			<view class="tiptxt">
-				<view>您的当前积分：{{ vuex_user.score }}</view>
-				<view></view>
+		<view class="bottom-fixed-bar">
+			<view class="groupbtns">
+				<view class="btn btn1" v-if="vuex_config.isVipPay == 1" @click="handleClickWxPay('wechat')">
+					微信支付
+				</view>
+				<view class="btn btn2" @click="handleClickWxPay('score')">
+					积分兑换
+				</view>
 			</view>
 		</view>
+		
 
 		<!-- 小程序在线客服 -->
 		<button class="wechatKfLink" open-type="contact"></button>
@@ -261,48 +269,23 @@
 	.page {
 		padding: 0rpx 0rpx;
 
-		.btns {
-			width: 100%;
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			margin-top: 60rpx;
-
-			.btn {
-				width: 620rpx;
-				height: 100rpx;
-				border-radius: 300px;
-				margin-bottom: 32rpx;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				font-size: 42rpx;
-				font-weight: 400;
-				line-height: 50rpx;
-				letter-spacing: 0px;
-				text-align: center;
-
-				&.btn1 {
-					background: rgb(243, 148, 30);
-					color: rgb(255, 255, 255);
-				}
-
-				&.btn2 {
-					border: 4rpx solid rgb(243, 148, 30);
-					color: rgb(243, 148, 30);
-				}
-			}
-
-			.tiptxt {
-				color: #333;
-				// font-family: Dream Han Sans CN;
-				font-size: 38rpx;
-				font-weight: 54200;
-				line-height: 50rpx;
-				letter-spacing: 0px;
-				text-align: center;
-				margin-top: 12rpx;
-			}
+		
+		
+		.tiptxt {
+			color: #333;
+			font-size: 32rpx;
+			font-weight: 54200;
+			line-height: 50rpx;
+			letter-spacing: 0px;
+			text-align: center;
+			margin-top: 12rpx;
+		}
+		
+		.selectTipsBox{
+			text-align: center;
+			margin:40rpx 0rpx 0rpx 0rpx;
+			color:#CCCCCC;
+			font-size:32rpx;
 		}
 
 		.tipBox {
@@ -310,7 +293,6 @@
 			display: flex;
 			align-items: center;
 			color: #F3941E;
-			font-family: 思源黑体;
 			font-size: 28rpx;
 			font-weight: 400;
 			line-height: 43rpx;
@@ -327,10 +309,10 @@
 
 		.tipsTxt {
 			margin-top: 30rpx;
-			color: #666;
+			color: #999999;
 			font-size: 28rpx;
 			font-weight: 400;
-			line-height: 60rpx;
+			line-height: 56rpx;
 			letter-spacing: 0px;
 			text-align: left;
 			padding: 16rpx 50rpx;
@@ -341,7 +323,7 @@
 			grid-template-columns: repeat(2, 1fr);
 			grid-column-gap: 32rpx;
 			grid-row-gap: 32rpx;
-			margin: 50rpx 32rpx;
+			margin: 40rpx 32rpx 50rpx 32rpx;
 
 			&_item {
 				width: 100%;
@@ -350,16 +332,17 @@
 				border: 4rpx solid rgb(221, 221, 221);
 				border-radius: 12rpx;
 				padding: 37rpx 0;
-				padding-left: 20rpx;
+				padding-left: 0rpx;
 				display: flex;
 				position: relative;
-
+				justify-content: center;
 
 				.check {
 					width: 40rpx;
 					height: 40rpx;
 					border-radius: 8rpx;
-					background-color: rgb(255, 141, 0);
+					background-color: #12A89D;
+					background: linear-gradient(3.93deg, rgb(247, 198, 72),rgb(233, 99, 164));
 					position: absolute;
 					border-top-left-radius: 0;
 					border-bottom-right-radius: 0;
@@ -369,16 +352,22 @@
 					justify-content: center;
 					align-items: center;
 				}
+				
+				
 
 				&.active {
 					border: 4rpx solid #F3941E;
-
+					background: #FFF7EE;
 					.check {
 						display: flex;
 					}
+					
+					/deep/ .u-icon__icon{
+					    color:#fff!important;
+					}
 
 					.radio {
-						border: 6rpx solid #F3941E;
+						border: 6rpx solid #12A89D;
 						position: relative;
 
 						&:before {
@@ -391,18 +380,19 @@
 							border-radius: 100%;
 							box-sizing: border-box;
 							border: 6rpx solid #fff;
-							background-color: #F3941E;
+							background-color: #12A89D;
+							
 						}
 					}
 
 					.label {
-						color: #F3941E;
+						color: #000;
 						font-weight: bold;
 					}
 
 					.price {
-						color: #999;
-						font-weight: 500;
+						color: #F3941E;
+						font-weight:700;
 					}
 				}
 
@@ -424,7 +414,7 @@
 						font-weight: 00;
 						line-height: 50rpx;
 						letter-spacing: 0px;
-						text-align: left;
+						text-align: center;
 						margin-bottom: 8rpx;
 					}
 
@@ -432,21 +422,73 @@
 						font-size: 34rpx;
 						font-weight: 600;
 						letter-spacing: 0px;
-						text-align: left;
 						color: #F3941E;
+						text-align: center;
 					}
 				}
 			}
 		}
 	}
+	
 
+	.bottom-fixed-bar {
+	  position: fixed;
+	  left: 0;
+	  right: 0;
+	  bottom: 0;
+	  z-index: 999;
+	  background: #fff;
+	  color: #fff;
+	  padding: 0rpx 32rpx 60rpx 32rpx;
+	  box-sizing: border-box;
+	  height: 210rpx;
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	  border-top: 1px solid #f5f5f5;
+	}
+	
+	
+	.groupbtns {
+		width: 100%;
+		display: flex;
+		align-items: center;
+		margin-top: 60rpx;
+		gap:12rpx;
+		.btn {
+			width: 50%;
+			height: 100rpx;
+			border-radius: 300px;
+			margin-bottom: 32rpx;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 36rpx;
+			font-weight: 400;
+			line-height: 50rpx;
+			letter-spacing: 0px;
+			text-align: center;
+	
+			&.btn1 {
+				background:#12A89D;
+				color: rgb(255, 255, 255);
+			}
+	
+			&.btn2 {
+				border: 4rpx solid #12A89D;
+				color:#12A89D;
+			}
+		}
+	}
+	
+	
 
 	.wechatKfLink {
 		border: none;
 		outline: none;
 		box-shadow: none;
 		position: fixed;
-		bottom: 6vh;
+		bottom: 15vh;
 		right: 30rpx;
 		width: 110rpx;
 		height: 110rpx;

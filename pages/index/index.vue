@@ -63,7 +63,7 @@
 						<view class="innerTag viewtxt" v-if="item.isfree == 0">免费</view>
 						<view class="innerTag viewtxt" v-else-if="item.trialtime  > 0">试看</view>
 						<view class="innerTag viptxt" v-else>VIP</view>
-						<u-image width="100%" height="220rpx" :border-radius="12" :src="item.image" mode="widthFix"></u-image>
+						<u-image width="100%" height="215rpx" :border-radius="12" :src="item.image" mode="widthFix"></u-image>
 					</view>
 					<view class="cardBox">
 						<view class="name">
@@ -104,7 +104,7 @@
 						<view class="innerTag viewtxt" v-if="item.isfree == 0">免费</view>
 						<view class="innerTag viewtxt" v-else-if="item.trialtime  > 0">试看</view>
 						<view class="innerTag viptxt" v-else>VIP</view>
-						<u-image width="100%" height="240rpx" :border-radius="12" :src="item.image" mode="widthFix"></u-image>
+						<u-image width="100%" height="232rpx" :border-radius="12" :src="item.image" mode="widthFix"></u-image>
 					</view>
 					<view class="cardBox">
 						<view class="name">
@@ -150,7 +150,7 @@
 						<view class="innerTag viewtxt" v-if="item.isfree == 0">免费</view>
 						<view class="innerTag viewtxt" v-else-if="item.trialtime  > 0">试看</view>
 						<view class="innerTag viptxt" v-else>VIP</view>
-						<u-image width="100%" height="220rpx" :border-radius="12" :src="item.image" mode="widthFix"></u-image>
+						<u-image width="100%" height="208rpx" :border-radius="12" :src="item.image" mode="widthFix"></u-image>
 					</view>
 					<view class="cardBox">
 						<view class="name">
@@ -343,7 +343,7 @@
 			initShare() {
 				// #ifdef MP-WEIXIN
 				this.$u.mpShare = {
-					title: '每日冥想',
+					title: '每日放松冥想-疼点典',
 					imageUrl: 'https://yanliangliang.com/static/images/mpshare.jpg',
 					path: '/pages/course/index'
 				};
@@ -372,17 +372,23 @@
 				})
 			},
 			handleClickDetail(id) {
-				// if(!this.vuex_token){
-				// 	uni.navigateTo({
-				// 		url: '/pages/login/login'
-				// 	})
-				// 	return
-				// }
+				if(!this.vuex_token){
+					uni.navigateTo({
+						url: '/pages/login/login'
+					})
+					return
+				}
 				uni.navigateTo({
 					url: `/pages/course/detail?id=${id}`
 				})
 			},
 			handleClickSound(item) {
+				if(!this.vuex_token){
+					uni.navigateTo({
+						url: '/pages/login/login'
+					})
+					return
+				}
 				uni.navigateTo({
 					url: `/pages/course/sound-detail?id=${item.id}`
 				})
@@ -616,13 +622,13 @@
 			}
 			.image{
 				width:220rpx;
-				height:240rpx;
+				height:230rpx;
 				position: relative;
 			}
 			.innerTag{
 				position: absolute;
 				right:0;
-				bottom:0;
+				bottom:-2px;
 				z-index: 10;
 				font-size:12px;
 				padding:6rpx 16rpx;
@@ -700,7 +706,6 @@
 		position: relative;
 		.image{
 			width:100%;
-			height:214rpx;
 			position: relative;
 		}
 		.innerTag{

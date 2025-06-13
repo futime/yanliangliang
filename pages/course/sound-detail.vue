@@ -297,16 +297,16 @@ export default {
 }
 
 .bottom-fixed-bar {
-  position: fixed;
+	position: fixed;
   left: 0;
   right: 0;
   bottom: 0;
   z-index: 999;
   background: #fff;
   color: #fff;
-  padding: 24rpx 32rpx 32rpx 32rpx;
+  padding: 16rpx 32rpx 60rpx 32rpx;
   box-sizing: border-box;
-  height: 156rpx;
+  height: 180rpx;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -336,6 +336,9 @@ export default {
       border: none !important;
       outline: none !important;
       box-shadow: none !important;
+	  &:after {
+	  		  display: none !important;
+	  }
     }
 
     /deep/ uni-button:after {

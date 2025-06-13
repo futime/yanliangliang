@@ -260,7 +260,7 @@
 		}
 
 		.userInfo {
-			padding: 50rpx 0;
+			padding: 50rpx 0 30rpx 0rpx;
 			display: flex;
 			justify-content: space-between;
 			.avatar {
@@ -401,8 +401,8 @@
 			gap:8px;
 			padding:0rpx 30rpx;
 			.txt{
-				font-size:17px;
-				color: #1F190E;
+				font-size:18px;
+				color: #000000;
 			}
 		}
 	}
@@ -415,9 +415,9 @@
 			border-radius: 12px;
 		}
 		/deep/ .u-cell_title{
-		    font-size: 17px;
+		    font-size: 18px;
 		    margin-left: 8px;
-			color: #1F190E;
+			color: #000000;
 		}
 	}
 

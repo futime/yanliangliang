@@ -220,6 +220,10 @@
 		height:38px;
 	}
 	
+	/deep/ .u-input__input{
+		padding-left: 6px;
+	}
+	
 	.u-form{
 		margin-top:-10vh;
 	}

@@ -8,6 +8,7 @@
 		<view class="bg" v-if="vuex_config.loginPageBg.length > 56">
 			<image :src="staticurl('/common/spacebg.jpg')" mode=""></image>
 		</view>
+		
 		<view class="bg" v-else>
 			<image :src="staticurl('/common/spacebg.jpg')" mode=""></image>
 		</view>
@@ -15,24 +16,18 @@
 		
 		<view class="wrapTitleBox">
 			<view class="pageTitle">
-				<u-parse html="欢迎进入疼点典"></u-parse>
+				<u-parse html="欢迎登录疼点典"></u-parse>
 			</view>
 			<view class="pageSubTitle">
-				<u-parse html="感受自然能量 每日放松冥想<br>专注呼吸感知身心元炁，补炁养神<br>舒缓身体疼痛 重塑健康体态"></u-parse>
+				<u-parse html="感受自然能量 每日放松冥想<br>专注呼吸感知身心元炁，补炁养神"></u-parse>
 			</view>
 		</view>
-		
-		<!-- 顶部导航 -->
-			<!-- <view class="logo" v-if="vuex_config.loginLogo.length > 56">
-				<image class="" :src="vuex_config.loginLogo" mode=""></image>
-			</view> -->
-			<!-- <view class="logo" v-else>
-				<image class="" :src="staticurl('logo_yanliangliang.png')" mode=""></image>
-			</view> -->
+			
+		<view class="btnGroup">
 			<view class="loginBtn">
 				<!-- #ifdef MP-WEIXIN -->
 				<view class="u-text-center" style="width: 100%; height: 100%;" v-if="checkLogintype('wechatmobile')">
-					<u-button hover-class="none" open-type="getPhoneNumber" text="立即登录" type="primary" :custom-style="{ backgroundColor: 'rgb(243, 148, 30)', width: '100%', height: '100%', color: '#fff'}" shape="circle" @getphonenumber="getPhoneNumber">
+					<u-button hover-class="none" open-type="getPhoneNumber" text="立即登录" type="primary" :custom-style="{ backgroundColor: '#12A89D', width: '100%', height: '100%', color: '#fff'}" shape="circle" @getphonenumber="getPhoneNumber">
 						手机号授权登录
 					</u-button>
 				</view>
@@ -40,7 +35,7 @@
 				<!-- #ifdef H5 || APP-PLUS -->
 				<view v-if="checkLogintype('mobile') || checkLogintype('wechatmobile')">
 					<u-button hover-class="none" open-type="getPhoneNumber" text="立即登录" type="primary" 
-					:custom-style="{ backgroundColor: 'rgb(243, 148, 30)', width: '100%', height: '100%', color: '#fff'}" shape="circle" 
+					:custom-style="{ backgroundColor: '#12A89D', width: '100%', height: '100%', color: '#fff'}" shape="circle" 
 					@click="goPage('/pages/login/mobilelogin')">
 						手机号验证登录
 					</u-button>
@@ -48,6 +43,7 @@
 				<!-- #endif -->
 			</view>
 		</view>
+		
 	</view>
 </template>
 
@@ -145,36 +141,6 @@
 		overflow: hidden;
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		.logo {
-			width: 518rpx;
-			height: 653rpx;
-			image {
-				width: 100%;
-				height: 100%;
-			}
-		}
-		
-		.loginBtn {
-			width: 648rpx;
-			height: 130rpx;
-			border-radius: 300px;
-			background: rgb(243, 148, 30);
-			color: rgb(255, 255, 255);
-			font-family: 思源黑体 CN;
-			font-size: 40rpx;
-			font-weight: 400;
-			line-height: 50rpx;
-			letter-spacing: 0px;
-			text-align: center;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			position: relative;
-			bottom:0rpx;
-		}
-		
 		.bg {
 			position: absolute;
 			width: 100vw;
@@ -194,13 +160,13 @@
 	
 	.pageTitle {
 		color: rgb(255, 255, 255);
-		font-family: 思源黑体 CN;
 		font-size: 64rpx;
 		font-weight: 500;
 		line-height: 80rpx;
 		letter-spacing: 2rpx;
 		position: relative;
 		margin-bottom:140rpx;
+		text-align: center;
 	}
 	
 	.pageSubTitle{
@@ -209,18 +175,30 @@
 		line-height: 56rpx;
 		font-weight: 500;
 		letter-spacing: 1px;
+		text-align: center;
+	}
+	
+	.btnGroup {
+	    width: 100%;
+	    position: absolute;
+	    bottom: 20vh;
+	    display: flex;
+	    justify-content: center;
+	    flex-direction: column;
+	    align-items: center;
+	}
+	
+	.loginBtn {
+		width: 70%;
+		margin-top: 100rpx;
+		color:#fff;
+		font-size:32rpx;
+		display: flex;
+		justify-content: center;
+		background: #12A89D;
+		padding:24rpx 30rpx;
+		border-radius: 60rpx;
 	}
 	
 	
-	
-	.login {
-		padding: 80rpx 100rpx 0 100rpx;
-	}
-
-	.other {
-		position: absolute;
-		width: 100%;
-		left: 0;
-		bottom: 40rpx;
-	}
 </style>

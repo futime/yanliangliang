@@ -3,22 +3,22 @@
 		<fa-navbar :title="title" :borderBottom="true"></fa-navbar>
 		<view class="content">
 			<u-form :model="form" ref="uForm" :label-width="160">
-				<u-form-item label="姓名" prop="name" required><u-input v-model="form.name"
+				<u-form-item label="姓名" prop="name" required :border-bottom="false"><u-input v-model="form.name"
 						placeholder="请输入体验者姓名" /></u-form-item>
-				<u-form-item label="手机号" prop="phone" required><u-input v-model="form.phone"
-						placeholder="请输入体验者手机号" /></u-form-item>
-				<u-form-item label="性别" prop="sex" required>
+				<u-form-item label="性别" prop="sex" required :border-bottom="false">
 					<u-radio-group v-model="form.sex">
 						<u-radio v-for="(item, index) in radioList" :key="index" :name="item.value">
 							{{ item.name }}
 						</u-radio>
 					</u-radio-group>
 				</u-form-item>
-				<u-form-item label="出生年月日" prop="age" required><u-input v-model="form.age" type="select"
+				<u-form-item label="手机号" prop="phone" required :border-bottom="false"><u-input v-model="form.phone"
+						placeholder="请输入体验者手机号" /></u-form-item>
+				<u-form-item label="出生年月日" prop="age" required :border-bottom="false"><u-input v-model="form.age" type="select"
 						placeholder="选择出生年月日" @click="handleClickShowAge" /></u-form-item>
 				<!-- <u-form-item label="体重"  prop="body_weight" required><u-input v-model="form.body_weight" type="select"
 						placeholder="请选择体重（单位kg）" @click="handleClickShowWeight" /></u-form-item> -->
-				<u-form-item label="点击上传体验者照片" prop="image" label-position="top" required>
+				<u-form-item label="点击上传体验者照片" prop="image" :border-bottom="false" label-position="top" required>
 					<view class="uploadBox">
 						<view class="uploadImage" v-if="form.image">
 							<image :src="cdnurl(form.image)" mode=""></image>
@@ -34,8 +34,10 @@
 			</u-form>
 		</view>
 
-		<view class="submitBtn" @click="submit">
-			保存资料
+		<view class="bottom-fixed-bar">
+			<view class="submitBtn" @click="submit">
+				保存资料
+			</view>
 		</view>
 		<u-picker ref="picker" default-time="1970-01-01 00:00:00" v-model="showAge" :params="params" mode="time"
 			@confirm="selectYear"></u-picker>
@@ -255,10 +257,9 @@
 	.content {
 		background-color: #fff;
 		width: 100%;
-		padding: 30rpx 50rpx;
+		padding: 30rpx 36rpx;
 		border-radius: 20rpx;
 
-		box-shadow: 0px 4rpx 4rpx 2rpx rgba(0, 0, 0, 0.08);
 		background: rgb(255, 255, 255);
 	}
 
@@ -305,24 +306,40 @@
 			}
 		}
 	}
+	
+	.bottom-fixed-bar {
+	  position: fixed;
+	  left: 0;
+	  right: 0;
+	  bottom: 0;
+	  z-index: 999;
+	  background: #fff;
+	  color: #fff;
+	  padding: 0rpx 32rpx 60rpx 32rpx;
+	  box-sizing: border-box;
+	  height: 210rpx;
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	  border-top: 1px solid #f5f5f5;
+	}
+	
 
 	.submitBtn {
 		width: 598rpx;
-		height: 123rpx;
+		height: 110rpx;
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		color: #fff;
 		color: rgb(255, 255, 255);
-		font-family: 思源黑体 CN;
-		font-size: 42rpx;
+		font-size: 36rpx;
 		font-weight: 400;
-		line-height: 50rpx;
+		line-height: 42rpx;
 		letter-spacing: 0px;
 		text-align: center;
 		border-radius: 300rpx;
-		margin-top: 50rpx;
-
-		background: rgb(243, 148, 30);
+		margin-top: 20rpx;
+		background: #12A89D;
 	}
 </style>

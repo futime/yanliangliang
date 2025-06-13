@@ -9,6 +9,7 @@
 		
 		<view class="gapline"></view>
 		
+		
 		<view class="courseList">
 			<view class="courseTitle" @click="handleClickColumn">
 				<view class="titleBox">
@@ -25,23 +26,23 @@
 			</view>
 			
 			<view class="listWrap">
-				<WCard1 v-for="(item, key, index) in recommend" :key="key" :detail="item"></WCard1>
-					
-				<view class="itemCard" @click="handleClickDetail">
+				<view class="itemCard" v-for="item in list2" :key="item.id" @click="handleClickDetail(item.id)">
 					<view class="image">
-						<view class="innerTag viewtxt">试看</view>
-						<u-image width="100%" height="240rpx" :border-radius="12" :src="staticurl('/course/courseinner_img1.jpg')" mode="aspectFit"></u-image>
+						<view class="innerTag viewtxt" v-if="item.isfree == 0">免费</view>
+						<view class="innerTag viewtxt" v-else-if="item.trialtime  > 0">试看</view>
+						<view class="innerTag viptxt" v-else>VIP</view>
+						<u-image width="100%" height="230rpx" :border-radius="12" :src="item.image" mode="widthFix"></u-image>
 					</view>
 					<view class="cardBox">
 						<view class="name">
-							古法养生操 · 缓解肩颈僵硬
+							{{ item.title }}
 						</view>
 						<view class="intro">
 							<view class="time">
-								<text>4</text>分钟
+								<text>{{ item.videoduration }}</text>
 							</view>
 							<view class="viewer">
-								<text>528</text>人看过
+								<text>{{ item.views }}</text>人看过
 							</view>
 						</view>
 						<view class="playBtn">
@@ -49,37 +50,14 @@
 						</view>
 					</view>
 				</view>
-				<view class="itemCard" @click="handleClickDetail">
-					<view class="image">
-						<view class="innerTag viptxt">VIP</view>
-						<u-image width="100%" height="240rpx" :border-radius="12" :src="staticurl('/course/courseinner_img2.jpg')" mode="aspectFit"></u-image>
-					</view>
-					<view class="cardBox">
-						<view class="name">
-							宫廷秘传古法养生操
-						</view>
-						<view class="intro">
-							<view class="time">
-								<text>4</text>分钟
-							</view>
-							<view class="viewer">
-								<text>528</text>人看过
-							</view>
-						</view>
-						<view class="playBtn">
-							<u-icon :name="staticurl('/course/player_gray.svg')" size="32"></u-icon>
-						</view>
-					</view>
-				</view>
-				
 			</view>
 		</view>
-		
+			
 		<view class="gapline"></view>
 		
 		<!---->
 		<view class="meditationList">
-			<view class="courseTitle" @click="handleClickMeditation">
+			<view class="courseTitle" @click="handleClickMeditation(1)">
 				<view class="titleBox">
 					<view class="title">
 						冥想疗愈
@@ -94,83 +72,29 @@
 			</view>
 			
 			<view class="listWrap">
-				<view class="listInner" @click="handleClickSound">
+				<view class="listInner" v-for="item in list3" :key="item.id" @click="handleClickSound(item)">
 					<view class="image">
-						<view class="innerTag viewtxt">免费</view>
-						<u-image width="100%" height="220rpx" :border-radius="12" :src="staticurl('/course/meditationlist_img1.jpg')" mode="aspectFit"></u-image>
+						<view class="innerTag viewtxt" v-if="item.isfree == 0">免费</view>
+						<view class="innerTag viewtxt" v-else-if="item.trialtime  > 0">试看</view>
+						<view class="innerTag viptxt" v-else>VIP</view>
+						<u-image width="100%" height="208rpx" :border-radius="12" :src="item.image" mode="widthFix"></u-image>
 					</view>
 					<view class="cardBox">
 						<view class="name">
-							财富丰盈冥想
+							{{ item.title }}
 						</view>
 						<view class="intro">
 							<view class="time">
 								<u-icon :name="staticurl('/course/audioplayer.svg')" size="28"></u-icon>
 							</view>
 							<view class="viewer">
-								<text>435</text>人听过
-							</view>
-						</view>
-					</view>
-				</view>
-				<view class="listInner" @click="handleClickSound">
-					<view class="image">
-						<view class="innerTag viewtxt">免费</view>
-						<u-image width="100%" height="220rpx" :border-radius="12" :src="staticurl('/course/meditationlist_img2.jpg')" mode="aspectFit"></u-image>
-					</view>
-					<view class="cardBox">
-						<view class="name">
-							缓解焦虑-减压放松
-						</view>
-						<view class="intro">
-							<view class="time">
-								<u-icon :name="staticurl('/course/audioplayer.svg')" size="28"></u-icon>
-							</view>
-							<view class="viewer">
-								<text>435</text>人听过
-							</view>
-						</view>
-					</view>
-				</view>
-				<view class="listInner" @click="handleClickSound">
-					<view class="image">
-						<view class="innerTag viptxt">VIP</view>
-						<u-image width="100%" height="220rpx" :border-radius="12" :src="staticurl('/course/meditationlist_img3.jpg')" mode="aspectFit"></u-image>
-					</view>
-					<view class="cardBox">
-						<view class="name">
-							晚安好眠冥想
-						</view>
-						<view class="intro">
-							<view class="time">
-								<u-icon :name="staticurl('/course/audioplayer.svg')" size="28"></u-icon>
-							</view>
-							<view class="viewer">
-								<text>384</text>人听过
-							</view>
-						</view>
-					</view>
-				</view>
-				<view class="listInner" @click="handleClickSound">
-					<view class="image">
-						<view class="innerTag viptxt">VIP</view>
-						<u-image width="100%" height="220rpx" :border-radius="12" :src="staticurl('/course/meditationlist_img4.jpg')" mode="aspectFit"></u-image>
-					</view>
-					<view class="cardBox">
-						<view class="name">
-							自然能量呼吸冥想
-						</view>
-						<view class="intro">
-							<view class="time">
-								<u-icon :name="staticurl('/course/audioplayer.svg')" size="28"></u-icon>
-							</view>
-							<view class="viewer">
-								<text>145</text>人听过
+								<text>{{ item.views }}</text>人听过
 							</view>
 						</view>
 					</view>
 				</view>
 			</view>
+		
 		</view>
 		
 		<view class="gapModular"></view>
@@ -190,19 +114,61 @@
 		data()  {
 			return {
 				showModal: false,
+				loading: true,
+				status: 'loadmore',
+				is_update: false,
+				has_more: false,
+				current: 0,
 				scrollTop: 0,
+				navigateList: [],
+				hots: [],
+				recommends: [],
+				list1: [],
+				list2: [],
+				list3: [],
 			};
 		},
 		onLoad(opt) {
 			this.initShare()
+			if(opt.recdkey){
+				this.$u.vuex('vuex_recdkey', opt.recdkey);
+			}
+			this.queryCategoryLists()
 		},
 		onShow() {
-			
+			if (this.vuex_token) {
+				this.getUserIndex();
+			}
 		},
 		computed: {
 			
 		},
 		methods: {
+			async queryCategoryLists() {
+				let req = await Promise.all([
+					this.$api.getCategoryList({
+						channel: 3,
+						page: 1,
+						limit: 2,
+						flag: 'hot',
+					}),
+					this.$api.getCategoryList({
+						channel: 2,
+						page: 1,
+						limit: 2,
+						flag: 'hot',
+					}),
+					this.$api.getCategoryList({
+						channel: 1,
+						page: 1,
+						limit: 2,
+						flag: 'hot',
+					}),
+				])
+				this.list1 = req[0].data.pageList.data
+				this.list2 = req[1].data.pageList.data
+				this.list3 = req[2].data.pageList.data
+			},
 			// 分享
 			initShare() {
 				// #ifdef MP-WEIXIN
@@ -214,58 +180,97 @@
 				// #endif
 			},
 			
+			handleClickVip() {
+				if(!this.vuex_token){
+					uni.navigateTo({
+						url: '/pages/login/login'
+					})
+					return
+				}
+				
+				uni.navigateTo({
+					url: '/pages/vip/activate'
+				})
+			},
 			handleClickColumn() {
 				uni.navigateTo({
 					url: '/pages/course/column'
 				})
 			},
-			handleClickMeditation() {
+			handleClickMeditation(channel) {
 				uni.navigateTo({
-					url: '/pages/course/meditation'
+					url: `/pages/course/meditation?channel=${channel}`
 				})
 			},
-			handleClickDetail() {
-				// if(!this.vuex_token){
-				// 	uni.navigateTo({
-				// 		url: '/pages/login/login'
-				// 	})
-				// 	return
-				// }
+			handleClickDetail(id) {
+				if(!this.vuex_token){
+					uni.navigateTo({
+						url: '/pages/login/login'
+					})
+					return
+				}
 				uni.navigateTo({
-					url: '/pages/course/detail'
+					url: `/pages/course/detail?id=${id}`
 				})
 			},
-			handleClickSound() {
+			handleClickSound(item) {
+				if(!this.vuex_token){
+					uni.navigateTo({
+						url: '/pages/login/login'
+					})
+					return
+				}
 				uni.navigateTo({
-					url: '/pages/course/sound-detail'
+					url: `/pages/course/sound-detail?id=${item.id}`
 				})
 			},
-			openPage(index) {
-				let path = this.bannerList[index].url;
+			//商城自带
+			change(e) {
+				this.current = e.detail.current;
+			},
+			grids(e) {
+				let path = e.path;
 				if (path == '/' || !path) {
 					return;
 				}
-				if (['p', 'i', 'o'].includes(path.substr(0, 1))) {
+				if (path.substr(0, 1) == 'p') {
 					path = '/' + path;
 				}
-				if (path.indexOf('http') != -1) {
+				if (path.includes('http')) {
 					this.$u.vuex('vuex_webs', {
-						title: this.bannerList[index].title,
-						path: this.bannerList[index].url + '?source=miniapp',
+						path: e.path,
+						title: e.name
 					});
-					path = '/pages/webview/webview';
+					this.$u.route('/pages/webview/webview');
+					return;
 				}
-				let data = {},
-					arr = path.split('?');
-				if (arr[1]) {
-					let q = arr[1].split('&');
-					for (let item of q) {
-						let param = item.split('=');
-						data[param[0]] = param[1];
+				this.$u.route(path);
+			},
+			openPage(index) {
+				this.grids({
+					path: this.vuex_config.swiper[index].url,
+					name: this.vuex_config.swiper[index].title
+				});
+			},
+			click(index) {
+				if (this.vuex_config.notice) {
+					let url = this.vuex_config.notice[index].path;
+					if (url) {
+						this.grids({
+							path: url,
+							name: this.vuex_config.notice[index].title
+						});
 					}
 				}
-				this.$u.route(arr[0], data);
 			},
+			getGoodsIndex() {
+				this.$api.getGoodsIndex().then(({code,data:res,msg}) => {
+					if (code) {
+						this.hots = res.hots;
+						this.recommends = res.recommends;
+					}
+				});
+			}
 		},
 		onPullDownRefresh() {
 			
@@ -331,8 +336,10 @@
 		
 	}
 	
+	
+	
 	.courseList{
-		padding:40rpx 36rpx;
+		padding:40rpx 36rpx 20rpx 36rpx;
 		.listWrap{
 			.itemCard{
 				display: flex;
@@ -346,13 +353,13 @@
 				}
 				.image{
 					width:220rpx;
-					height:240rpx;
+					height:230rpx;
 					position: relative;
 				}
 				.innerTag{
 					position: absolute;
 					right:0;
-					bottom:0;
+					bottom:-2px;
 					z-index: 10;
 					font-size:12px;
 					padding:6rpx 16rpx;
@@ -375,6 +382,7 @@
 						font-weight: bold;
 						line-height: 1.5;
 						width:90%;
+						
 					}
 				}
 				
@@ -384,6 +392,7 @@
 					gap:16rpx;
 					font-size:28rpx;
 					margin-top:30rpx;
+					
 					.time{
 						
 					}
@@ -413,9 +422,12 @@
 	
 	
 	
+	
+	
+	
 	//
 	.meditationList{
-		padding:40rpx 36rpx;
+		padding:60rpx 36rpx;
 		.listWrap{
 			display: flex;
 			gap:30rpx 24rpx;
@@ -428,7 +440,6 @@
 			position: relative;
 			.image{
 				width:100%;
-				height:214rpx;
 				position: relative;
 			}
 			.innerTag{
@@ -460,6 +471,7 @@
 					line-height: 1.5;
 					width:100%;
 					height:80rpx;
+					
 				}
 			}
 			

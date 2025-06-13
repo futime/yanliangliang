@@ -1,6 +1,6 @@
 <template>
 	<view class="page">
-		<fa-navbar title="" :background="{ color: '#fff' }" :border-bottom="false"></fa-navbar>
+		<fa-navbar title=" " :background="{ color: '#fff' }" :border-bottom="false"></fa-navbar>
 		<view class="titleWrap">
 			<view class="title">
 				扫描面部信息
@@ -110,7 +110,7 @@
 		
 		.titleWrap{
 			margin-bottom:100rpx;
-			margin-top:120rpx;
+			margin-top:80rpx;
 		}
 
 		.title {
@@ -133,7 +133,7 @@
 	.tipsWrap{
 		display: flex;
 		gap:80rpx;
-		margin:80rpx 0rpx 60rpx 0rpx;
+		margin:80rpx 0rpx 30rpx 0rpx;
 		.tipsInner{
 			display: flex;
 			flex-direction: column;

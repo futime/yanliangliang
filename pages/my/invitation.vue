@@ -147,14 +147,14 @@
 
 		.tipsBox {
 			background: #fff;
-			border: 2px solid #FFDFB7;
+			border: 2px solid #12A89D;
 			padding: 50rpx 40rpx;
 			border-radius: 16rpx;
 			text-align: center;
 
 			.textCon {
 				text {
-					color: #F3941E;
+					color: #12A89D;
 					font-weight: bold;
 					font-size: 32rpx;
 					margin:0px 4rpx;
@@ -171,7 +171,7 @@
 			color: #000;
 			font-weight: 500;
 			padding-bottom: 24rpx;
-			border-bottom: 1px solid #C7C7C7;
+			border-bottom: 1px solid #e3e3e3;
 		}
 
 		.listWrap {
@@ -197,7 +197,7 @@
 		width: 480rpx;
 		height: 120rpx;
 		border-radius: 300rpx;
-		background: rgb(243, 148, 30);
+		background: #12A89D;
 		display: flex;
 		justify-content: center;
 		align-items: center;
