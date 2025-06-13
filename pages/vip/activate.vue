@@ -23,7 +23,6 @@
 				</view>
 				<!-- <view class="select_vip_box_item_left">
 					<view class="radio">
-
 					</view>
 				</view> -->
 				<view class="select_vip_box_item_right">
@@ -32,16 +31,59 @@
 				</view>
 			</view>
 		</view>
+		
+		
+		<view class="memberbBenefits">
+			<view class="titleWrap">
+				<view class="title">
+					会员专属
+				</view>
+				<view class="subtitle">
+					VIP专属福利
+				</view>
+			</view>
+			
+			<view class="benefitsListWrap">
+				<view class="benefitsInner">
+					<view class="iconImg">
+						<u-icon :name="staticurl('/common/benefitsinner_img1.svg')"  size="56" color="#fff"></u-icon>
+					</view>
+					<view class="titleTxt">
+						中医大师亲授古法养生操课程
+					</view>
+				</view>
+				<view class="benefitsInner">
+					<view class="iconImg">
+						<u-icon :name="staticurl('/common/benefitsinner_img2.svg')" size="56" color="#fff"></u-icon>
+					</view>
+					<view class="titleTxt">
+						匠心打造的能量仓冥想空间
+					</view>
+				</view>
+				<view class="benefitsInner">
+					<view class="iconImg">
+						<u-icon :name="staticurl('/common/benefitsinner_img3.svg')" size="56" color="#fff"></u-icon>
+					</view>
+					<view class="titleTxt">
+						陪伴放松、专注与助眠的冥想音乐
+					</view>
+				</view>
+				<view class="benefitsInner">
+					<view class="iconImg">
+						<u-icon :name="staticurl('/common/benefitsinner_img4.svg')" size="56" color="#fff"></u-icon>
+					</view>
+					<view class="titleTxt">
+						好物商城会员享专属商品折扣
+					</view>
+				</view>
+			</view>
+		</view>
+		
 		<view class="tipsTxt">
 			特别提示：
 			<u-parse :html="vuex_config.vipPageTipsTxt"></u-parse>
 		</view>
 		
-		<view class="tiptxt">
-			<view>您的当前积分：{{ vuex_user.score }}</view>
-			<view></view>
-		</view>
-
 		<view class="bottom-fixed-bar">
 			<view class="groupbtns">
 				<view class="btn btn1" v-if="vuex_config.isVipPay == 1" @click="handleClickWxPay('wechat')">
@@ -51,7 +93,15 @@
 					积分兑换
 				</view>
 			</view>
+			
+			<view class="scoreTipsTxt">
+				<view>您当前的积分：{{ vuex_user.score }}</view>
+				<view></view>
+			</view>
+			
 		</view>
+		
+		<view class="gapModular"></view>
 		
 
 		<!-- 小程序在线客服 -->
@@ -307,16 +357,6 @@
 		}
 
 
-		.tipsTxt {
-			margin-top: 30rpx;
-			color: #999999;
-			font-size: 28rpx;
-			font-weight: 400;
-			line-height: 56rpx;
-			letter-spacing: 0px;
-			text-align: left;
-			padding: 16rpx 50rpx;
-		}
 
 		.select_vip_box {
 			display: grid;
@@ -432,22 +472,40 @@
 	
 
 	.bottom-fixed-bar {
-	  position: fixed;
-	  left: 0;
-	  right: 0;
-	  bottom: 0;
-	  z-index: 999;
-	  background: #fff;
-	  color: #fff;
-	  padding: 0rpx 32rpx 60rpx 32rpx;
-	  box-sizing: border-box;
-	  height: 210rpx;
-	  display: flex;
-	  align-items: center;
-	  justify-content: center;
-	  border-top: 1px solid #f5f5f5;
+		  position: fixed;
+		  left: 0;
+		  right: 0;
+		  bottom: 0;
+		  z-index: 999;
+		  background: #fff;
+		  color: #fff;
+		  padding: 0rpx 32rpx 80rpx 32rpx;
+		  box-sizing: border-box;
+		  height: 220rpx;
+		  display: flex;
+		  flex-direction: column;
+		  align-items: center;
+		  justify-content: center;
+		  border-top: 1px solid #f5f5f5;
 	}
 	
+	
+	.tipsTxt {
+		margin-top: 30rpx;
+		color: #999999;
+		font-size: 28rpx;
+		font-weight: 400;
+		line-height: 56rpx;
+		letter-spacing: 0px;
+		text-align: left;
+		padding: 16rpx 50rpx;
+	}
+	
+	
+	.gapModular{
+		height:360rpx;
+		width:100%;
+	}
 	
 	.groupbtns {
 		width: 100%;
@@ -459,7 +517,6 @@
 			width: 50%;
 			height: 100rpx;
 			border-radius: 300px;
-			margin-bottom: 32rpx;
 			display: flex;
 			justify-content: center;
 			align-items: center;
@@ -468,19 +525,65 @@
 			line-height: 50rpx;
 			letter-spacing: 0px;
 			text-align: center;
-	
 			&.btn1 {
-				background:#12A89D;
+				background:#24C88A;
 				color: rgb(255, 255, 255);
 			}
 	
 			&.btn2 {
-				border: 4rpx solid #12A89D;
-				color:#12A89D;
+				border: 4rpx solid #24C88A;
+				color:#24C88A;
 			}
 		}
 	}
 	
+	
+	.memberbBenefits{
+		margin:80rpx 36rpx;
+		.titleWrap{
+			display: flex;
+			justify-content: space-between;
+			width:100%;
+			margin-bottom:32rpx;
+			.title{
+				color:#000;
+				font-size:36rpx;
+				font-weight: 500;
+			}
+			.subtitle{
+				color:#D0A860;
+				font-size:30rpx;
+				font-weight: 500;
+			}
+		}
+	}
+	
+	
+	.benefitsListWrap{
+		background: #FBF8F3;
+		padding:40rpx 40rpx;
+		display: flex;
+		gap:12rpx 0rpx;
+		flex-direction: column;
+		.benefitsInner{
+			display:flex;
+			align-items: center;
+			gap:0rpx 24rpx;
+			.iconImg{
+				
+			}
+			.titleTxt{
+				color:#252524;
+				font-size:30rpx;
+			}
+		}
+	}
+	
+	
+	.scoreTipsTxt{
+		color:#999;
+		margin-top:16rpx;
+	}
 	
 
 	.wechatKfLink {

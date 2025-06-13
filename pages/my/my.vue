@@ -371,7 +371,7 @@
 				}
 			}
 			.rightBox  {
-				height: 82rpx;
+				height: 76rpx;
 				box-sizing: border-box;
 				border-radius: 60px;
 				padding:12rpx 60rpx;
@@ -380,7 +380,7 @@
 				align-items: center;
 				background: #E5B765;
 				color: #1F190E;
-				font-size:36rpx;
+				font-size:32rpx;
 				font-family: Dream Han Sans CN;
 				letter-spacing: 0px;
 			}

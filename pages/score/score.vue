@@ -156,6 +156,10 @@ export default {
 	font-size:32rpx!important;
 }
 
+/deep/ .u-size-default{
+	font-size:17px!important;
+}
+
 .wechatKfLink{
 	  border:none;
 	  outline:none;
