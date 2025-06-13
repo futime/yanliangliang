@@ -138,10 +138,10 @@
 			width: 100%;
 			top: -100rpx;
 			justify-content: center;
-
 			image {
 				width: 140rpx;
 				height: 140rpx;
+				background: #fff;
 			}
 		}
 

@@ -17,7 +17,12 @@
 			</view>
 		</view>
 		<!-- 加载更多 -->
-		<view class="u-p-t-30 u-p-b-30" v-if="list.length"><u-loadmore bg-color="#f4f6f8" :status="has_more ? status : 'nomore'" /></view>
+		
+		
+		<view class="u-p-t-30 u-p-b-30" v-if="list.length">
+			<u-loadmore bg-color="#f4f6f8" :status="has_more ? status : 'nomore'" />
+		</view>
+		
 		<!-- 空数据 -->
 		<view class="u-flex u-row-center fa-empty top-15" v-if="is_empty">
 			<image src="../../static/image/data.png" mode=""></image>

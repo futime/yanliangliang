@@ -183,6 +183,15 @@
 			}
 		},
 		{
+			"path": "pages/my/collect-course",
+			"style": {
+				"navigationBarTitleText": "我的文章收藏",
+				"navigationStyle": "custom",
+				"navigationBarTextStyle": "white",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
 			"path": "pages/goods/goods",
 			"style": {
 				"navigationBarTitleText": "商品列表",

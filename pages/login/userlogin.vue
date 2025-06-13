@@ -22,8 +22,8 @@
 				</u-button>
 			</view>
 
-			<view class="u-m-t-40" v-if="checkLogintype('mobile') || checkLogintype('wechatmobile')">
-				<u-button type="success" shape="circle" @click="goPage('/pages/login/mobilelogin')">
+			<view class="u-m-t-40 mobileLoginBtn" v-if="checkLogintype('mobile') || checkLogintype('wechatmobile')">
+				<u-button type="success" shape="circle"  :custom-style="{ background: 'none', width: '100%', height: '100%', color: '#12A89D'}" @click="goPage('/pages/login/mobilelogin')">
 					使用手机验证码登录
 				</u-button>
 			</view>
@@ -135,6 +135,11 @@
 
 	.login {
 		padding: 80rpx 100rpx 0 100rpx;
+	}
+	
+	.mobileLoginBtn{
+		border:2px solid #12A89D;
+		border-radius: 30px;
 	}
 
 	.other {

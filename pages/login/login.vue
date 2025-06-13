@@ -42,6 +42,19 @@
 				</view>
 				<!-- #endif -->
 			</view>
+			<!-- #ifdef H5 || APP-PLUS -->
+			<view class="userLoginBtn">
+				<view v-if="checkLogintype('account')">
+					<u-button type="primary" hover-class="none" :custom-style="{ background: 'none', width: '100%', height: '100%', color: '#fff'}" shape="circle" 
+					 @click="goPage('/pages/login/userlogin')">
+						使用账号密码登录
+					</u-button>
+				</view>
+			</view>
+			<view class="u-flex u-row-between u-tips-color u-m-t-40 u-p-20" v-if="checkLogintype('account')">
+				<view @click="goPage('/pages/login/register')">注册新账号</view>
+			</view>
+			<!-- #endif -->
 		</view>
 		
 	</view>
@@ -196,7 +209,20 @@
 		display: flex;
 		justify-content: center;
 		background: #12A89D;
-		padding:24rpx 30rpx;
+		padding:12rpx 30rpx;
+		border-radius: 60rpx;
+	}
+	
+	.userLoginBtn{
+		width: 70%;
+		margin-top: 40rpx;
+		color:#fff;
+		font-size:32rpx;
+		display: flex;
+		justify-content: center;
+		background: none;
+		border:1px solid #fff;
+		padding:12rpx 30rpx;
 		border-radius: 60rpx;
 	}
 	

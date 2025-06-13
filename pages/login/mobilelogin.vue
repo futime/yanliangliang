@@ -1,8 +1,8 @@
 <template>
 	<view class="page">
-		<view class="bg">
+		<!-- <view class="bg">
 			<image :src="staticurl('/common/spacebg.jpg')" mode=""></image>
-		</view>
+		</view> -->
 		<!-- 顶部导航 -->
 		<fa-navbar title="手机号验证登录"></fa-navbar>
 		<view class="login">
@@ -10,10 +10,10 @@
 				<view class="">
 					<u-form :model="form" :rules="rules" ref="uForm" :errorType="errorType">
 						<u-form-item :label-position="labelPosition" label="手机号码:" prop="mobile" label-width="120" :border-bottom="false">
-							<u-input :border="false" placeholder="请输入手机号码" v-model="form.mobile" type="number"></u-input>
+							<u-input :border="true" placeholder="请输入手机号码" v-model="form.mobile" type="number"></u-input>
 						</u-form-item>
 						<u-form-item :label-position="labelPosition" label="验证码:" prop="captcha" label-width="120" :border-bottom="false">
-							<u-input :border="false" placeholder="请输入验证码" v-model="form.captcha" type="text"></u-input>
+							<u-input :border="true" placeholder="请输入验证码" v-model="form.captcha" type="text"></u-input>
 							<u-button hover-class="none" type="primary" slot="right" :custom-style="{ backgroundColor: theme.bgColor, color: theme.color }" size="mini" @click="getCode">
 								{{ codeTips }}
 							</u-button>
@@ -186,7 +186,6 @@
 		overflow: hidden;
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
 		align-items: center;
 		
 		.bg {
@@ -202,7 +201,7 @@
 		}
 	}
 	.login {
-		padding: 0rpx 20rpx 0 20rpx;
+		padding: 360rpx 20rpx 0 20rpx;
 	}
 
 	.other {
@@ -213,7 +212,7 @@
 	}
 	
 	/deep/ .u-form-item--left {
-		color: #fff!important;
+		color: #999!important;
 	}
 	
 	/deep/ .u-size-mini{
@@ -253,6 +252,6 @@
 		font-weight: bold;
 	}
 	.uni-input-placeholder{
-		padding-left:8px;
+		padding-left:0px;
 	}
 </style>

@@ -37,7 +37,7 @@
 			<view class="memberRowWrap">
 				<u-row gutter="16">
 					<u-col span="6">
-						<view class="cardInner" @click="goPage('/pages/my/collect'),true">
+						<view class="cardInner" @click="goPage('/pages/my/collect-course'),true">
 							<u-icon :name="staticurl('/common/mycollects_icon.svg')" size="48"></u-icon>
 							<view class="txt">我的收藏</view>
 						</view>
@@ -216,6 +216,7 @@
 			},
 			gotoProfile(){
 				console.log(this.vuexi_token)
+				
 				if(this.vuex_token){
 					uni.navigateTo({
 						url: '/pages/my/profile-add'
@@ -225,6 +226,7 @@
 						url: '/pages/login/login'
 					})
 				}
+				
 			}
 		},
 		//下拉刷新

@@ -21,7 +21,7 @@
 				<view class="check">
 					<u-icon name="checkbox-mark" color="#fff"></u-icon>
 				</view>
-				<!-- <view class="select_vip_box_item_left">
+				<!--<view class="select_vip_box_item_left">
 					<view class="radio">
 					</view>
 				</view> -->
@@ -87,9 +87,11 @@
 		<view class="bottom-fixed-bar">
 			<view class="groupbtns">
 				<view class="btn btn1" v-if="vuex_config.isVipPay == 1" @click="handleClickWxPay('wechat')">
+					<u-icon :name="staticurl('/common/wechatpay.svg')" size="48" color="#fff"></u-icon>
 					微信支付
 				</view>
 				<view class="btn btn2" @click="handleClickWxPay('score')">
+					<u-icon :name="staticurl('/common/scorepay.svg')" size="36" color="#fff"></u-icon>
 					积分兑换
 				</view>
 			</view>
@@ -525,6 +527,7 @@
 			line-height: 50rpx;
 			letter-spacing: 0px;
 			text-align: center;
+			gap:12rpx;
 			&.btn1 {
 				background:#24C88A;
 				color: rgb(255, 255, 255);
