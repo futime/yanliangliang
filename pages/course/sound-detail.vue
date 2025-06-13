@@ -129,7 +129,7 @@ export default {
 	handleCollect(){
 		if(this.isCollect){
 			this.$api.deleteCollection({
-				id: this.id
+				aid : this.id
 			})
 		}else {
 			this.$api.createCollection({
@@ -138,16 +138,24 @@ export default {
 			})
 		}
 		setTimeout(() => {
-			this.checkCollection()
+			this.checkCollection(true)
 		}, 400)
 	},
-	async checkCollection(){
+	async checkCollection(showToast = false){
 		let res = await this.$api.checkCollection({
 			id: this.id
 		})
 		if(res.data.check == 1){
 			this.isCollect = true
-		}
+			if(showToast){
+				this.$u.toast('收藏成功')
+			}
+		}else {
+      this.isCollect = false
+			if(showToast){
+				this.$u.toast('取消收藏成功')
+			}
+    }
 	},
     async getArchiveDetail() {
       let res = await this.$api.getArchiveDetail({

@@ -250,7 +250,7 @@ const install = (Vue, vm) => {
 
 	vm.$api.checkCollection 		  = async (params = {}) => await vm.$u.get('/addons/cms/api.collection/check',params);
 	vm.$api.createCollection 		  = async (params = {}) => await vm.$u.post('/addons/cms/api.collection/create',params);
-	vm.$api.deleteCollection 		  = async (params = {}) => await vm.$u.post('/addons/cms/api.collection/delete',params);
+	vm.$api.deleteCollection 		  = async (params = {}) => await vm.$u.post('/addons/cms/api.collection/deleteCollection',params);
 	vm.$api.articleCollectList 		  = async (params = {}) => await vm.$u.get('/addons/cms/api.collection/index',params);
 
 }
