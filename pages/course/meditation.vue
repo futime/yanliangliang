@@ -20,7 +20,7 @@
           class="listInner"
           v-for="item in categoryData"
           :key="item.id"
-          @click="handleClickSound"
+          @click="handleClickSound(item)"
         >
           <view class="image">
             <view class="innerTag viewtxt" v-if="item.isfree == 0">免费</view>
@@ -33,7 +33,7 @@
               height="214rpx"
               :border-radius="12"
               :src="item.image"
-              mode="widthFix"
+              mode="aspectFill"
             ></u-image>
           </view>
           <view class="cardBox">
@@ -117,7 +117,7 @@ export default {
       }
       this.loading = false;
     },
-    handleClickSound() {
+    handleClickSound(item) {
       // if(!this.vuex_token){
       // 	uni.navigateTo({
       // 		url: '/pages/login/login'
@@ -125,7 +125,7 @@ export default {
       // 	return
       // }
       uni.navigateTo({
-        url: "/pages/course/sound-detail",
+        url: "/pages/course/sound-detail?id=" + item.id,
       });
     },
     onReachBottom() {

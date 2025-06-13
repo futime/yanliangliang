@@ -8,7 +8,7 @@
 		<view class="topBanner" @click="handleClickNengliang">
 			<view class="bannerWrap">
 				<view class="welcomeSlogan">
-					<text>hi,早上好</text>
+					<text>hi,{{ greeting }}</text>
 				</view>
 				<view class="conIntro">
 					<view class="titleBox">
@@ -46,10 +46,10 @@
 			<view class="courseTitle" @click="handleClickMeditation(3)">
 				<view class="titleBox">
 					<view class="title">
-						助眠音乐
+						{{channel1.channel.name || ''}}
 					</view>
 					<view class="subtitle">
-						舒缓身心，改善睡眠质量
+						{{channel1.channel.description || ''}}
 					</view>
 				</view>
 				<view class="arrowMore">
@@ -58,27 +58,29 @@
 			</view>
 			
 			<view class="listWrap">
-				<view class="listInner" v-for="item in list1" :key="item.id" @click="handleClickSound(item)">
-					<view class="image">
-						<view class="innerTag viewtxt" v-if="item.isfree == 0">免费</view>
-						<view class="innerTag viewtxt" v-else-if="item.trialtime  > 0">试看</view>
-						<view class="innerTag viptxt" v-else>VIP</view>
-						<u-image width="100%" height="215rpx" :border-radius="12" :src="item.image" mode="widthFix"></u-image>
-					</view>
-					<view class="cardBox">
-						<view class="name">
-							{{  item.title }}
+				<scroll-view scroll-x style="width: 100%; white-space: nowrap;">
+					<view class="listInner" style="display: inline-block; margin-right: 20rpx;" v-for="item in channel1.list" :key="item.id" @click="handleClickSound(item)">
+						<view class="image">
+							<view class="innerTag viewtxt" v-if="item.isfree == 0">免费</view>
+							<view class="innerTag viewtxt" v-else-if="item.trialtime  > 0">试看</view>
+							<view class="innerTag viptxt" v-else>VIP</view>
+							<u-image width="100%" height="215rpx" :border-radius="12" :src="item.image" mode="aspectFill"></u-image>
 						</view>
-						<view class="intro">
-							<view class="time">
-								<u-icon :name="staticurl('/course/audioplayer.svg')" size="28"></u-icon>
+						<view class="cardBox">
+							<view class="name">
+								{{  item.title }}
 							</view>
-							<view class="viewer">
-								<text>{{ item.views }}</text>人听过
+							<view class="intro">
+								<view class="time">
+									<u-icon :name="staticurl('/course/audioplayer.svg')" size="28"></u-icon>
+								</view>
+								<view class="viewer">
+									<text>{{ item.views }}</text>人听过
+								</view>
 							</view>
 						</view>
 					</view>
-				</view>
+				</scroll-view>
 			</view>
 		
 		</view>
@@ -87,10 +89,10 @@
 			<view class="courseTitle" @click="handleClickColumn">
 				<view class="titleBox">
 					<view class="title">
-						大师养生课
+						{{channel2.channel.name || ''}}
 					</view>
 					<view class="subtitle">
-						中医大师亲授
+						{{channel2.channel.description || ''}}
 					</view>
 				</view>
 				<view class="arrowMore">
@@ -99,12 +101,12 @@
 			</view>
 			
 			<view class="listWrap">
-				<view class="itemCard" v-for="item in list2" :key="item.id" @click="handleClickDetail(item.id)">
+				<view class="itemCard" v-for="item in channel2.list" :key="item.id" @click="handleClickDetail(item.id)">
 					<view class="image">
 						<view class="innerTag viewtxt" v-if="item.isfree == 0">免费</view>
 						<view class="innerTag viewtxt" v-else-if="item.trialtime  > 0">试看</view>
 						<view class="innerTag viptxt" v-else>VIP</view>
-						<u-image width="100%" height="232rpx" :border-radius="12" :src="item.image" mode="widthFix"></u-image>
+						<u-image width="100%" height="232rpx" :border-radius="12" :src="item.image" mode="aspectFill"></u-image>
 					</view>
 					<view class="cardBox">
 						<view class="name">
@@ -133,10 +135,10 @@
 			<view class="courseTitle" @click="handleClickMeditation(1)">
 				<view class="titleBox">
 					<view class="title">
-						冥想疗愈
+							{{channel3.channel.name || ''}}
 					</view>
 					<view class="subtitle">
-						能量吸引，补炁养神
+						{{channel3.channel.description || ''}}
 					</view>
 				</view>
 				<view class="arrowMore">
@@ -145,12 +147,12 @@
 			</view>
 			
 			<view class="listWrap">
-				<view class="listInner" v-for="item in list3" :key="item.id" @click="handleClickSound(item)">
+				<view class="listInner" v-for="item in channel3.list" :key="item.id" @click="handleClickSound(item)">
 					<view class="image">
 						<view class="innerTag viewtxt" v-if="item.isfree == 0">免费</view>
 						<view class="innerTag viewtxt" v-else-if="item.trialtime  > 0">试看</view>
 						<view class="innerTag viptxt" v-else>VIP</view>
-						<u-image width="100%" height="208rpx" :border-radius="12" :src="item.image" mode="widthFix"></u-image>
+						<u-image width="100%" height="208rpx" :border-radius="12" :src="item.image" mode="aspectFill"></u-image>
 					</view>
 					<view class="cardBox">
 						<view class="name">
@@ -194,6 +196,18 @@
 				navigateList: [],
 				hots: [],
 				recommends: [],
+				channel1: {
+					channel: {},
+					list: []
+				},
+				channel2: {
+					channel: {},
+					list: []
+				},
+				channel3: {
+					channel: {},
+					list: []
+				},
 				list1: [],
 				list2: [],
 				list3: [],
@@ -239,7 +253,19 @@
 					this.navigateList = arr1;
 				}
 				return 1;
-			}
+			},
+			greeting() {
+				const hour = new Date().getHours();
+				if (hour < 9) {
+					return '早上好';
+				} else if (hour < 13) {
+					return '中午好';
+				} else if (hour < 19) {
+					return '下午好';
+				} else {
+					return '晚上好';
+				}
+			},
 		},
 		methods: {
 			async queryCategoryLists() {
@@ -263,9 +289,12 @@
 						flag: 'hot',
 					}),
 				])
-				this.list1 = req[0].data.pageList.data
-				this.list2 = req[1].data.pageList.data
-				this.list3 = req[2].data.pageList.data
+				this.channel1.channel = req[0].data.channel
+				this.channel1.list = req[0].data.pageList.data
+				this.channel2.channel = req[1].data.channel
+				this.channel2.list = req[1].data.pageList.data
+				this.channel3.channel = req[2].data.channel
+				this.channel3.list = req[2].data.pageList.data
 			},
 			getRemainingTime(targetTime, level) {
 				// 将目标时间转换为 Date 对象，假设传入的时间格式是 "yyyy-MM-dd HH:mm:ss"
@@ -737,7 +766,12 @@
 				line-height: 1.5;
 				width:100%;
 				height:80rpx;
-				
+				white-space: pre-wrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				display: -webkit-box;
+				-webkit-line-clamp: 2;
+				-webkit-box-orient: vertical;
 			}
 		}
 		
