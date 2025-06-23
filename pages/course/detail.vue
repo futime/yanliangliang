@@ -14,16 +14,16 @@
 		<view class="detailWrap">
 			<view class="titleWrap">
 				<view class="title">
-					{{ archivesInfo.title }}
+					{{ archivesInfo.title || ''}}
 				</view>
 				<view class="desc">
-					<text>主讲人：{{ archivesInfo.column_speaker }}</text>
-					<text>{{ archivesInfo.views }}人看过</text>
+					<text>主讲人：{{ archivesInfo.column_speaker || ''}}</text>
+					<text>{{ archivesInfo.views || ''}}人看过</text>
 				</view>
 			</view>
 
 			<view class="introTxt">
-				{{ archivesInfo.description }}
+				{{ archivesInfo.description || ''}}
 			</view>
 		</view>
 
@@ -40,13 +40,13 @@
 				</view>
 				<view class="intro-box">
 					<view class="title">
-						{{ archivesInfo.column_speaker }}
+						{{ archivesInfo.column_speaker || ''}}
 					</view>
 					<view class="subtitle">
-						{{ archivesInfo.speaker_subtitle }}
+						{{ archivesInfo.speaker_subtitle || ''}}
 					</view>
 					<view class="intro">
-						{{ archivesInfo.speaker_desc }}
+						{{ archivesInfo.speaker_desc || ''}}
 					</view>
 				</view>
 			</view>

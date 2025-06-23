@@ -148,6 +148,12 @@
 		}
 	}
 	
+	
+	/deep/ u-parse{
+		overflow: hidden!important;
+	}
+	
+	
 	.page {
 		position: relative;
 		width: 100vw;
@@ -181,6 +187,7 @@
 		position: relative;
 		margin-bottom:140rpx;
 		text-align: center;
+		overflow: hidden;
 	}
 	
 	.pageSubTitle{
@@ -190,6 +197,7 @@
 		font-weight: 500;
 		letter-spacing: 1px;
 		text-align: center;
+		overflow: hidden;
 	}
 	
 	.btnGroup {

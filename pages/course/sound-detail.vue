@@ -14,18 +14,18 @@
 		<view class="detailWrap">
 			<view class="titleWrap">
 				<view class="title">
-					{{ archivesInfo.title }}
+					{{ archivesInfo.title || ''}}
 				</view>
 				<view class="desc">
 					<view class="time">
 						<u-icon :name="staticurl('/course/audioplayer.svg')" size="36"></u-icon>
 					</view>
-					<text>{{ archivesInfo.views }}人看过</text>
+					<text>{{ archivesInfo.views || ''}}人看过</text>
 				</view>
 			</view>
 
 			<view class="introTxt">
-				{{ archivesInfo.description }}
+				{{ archivesInfo.description || ''}}
 			</view>
 		</view>
 

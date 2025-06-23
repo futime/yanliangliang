@@ -527,17 +527,20 @@
 			.titleBox{
 				display: flex;
 				flex-direction: column;
+				overflow: hidden;
 				.title{
 					color:#fff;
 					margin-bottom:24rpx;
 					font-size:64rpx;
-					line-height: 76rpx;
+					line-height: 1.2;
 					font-weight: bold;
+					overflow: hidden;
 				}
 				.subtitle{
 					color:rgba(255,255,255,.8);
 					font-size:34rpx;
 					line-height: 56rpx;
+					overflow: hidden;
 				}
 			}
 		}
@@ -564,6 +567,10 @@
 	margin-top:-60px;
 	background: #fff;
 	padding-top:60rpx;
+}
+
+/deep/ u-parse{
+	overflow: hidden!important;
 }
 
 .gapline{

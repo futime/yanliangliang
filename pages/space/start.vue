@@ -196,6 +196,11 @@
 </script>
 
 <style lang="scss" scoped>
+	
+	/deep/ u-parse{
+		overflow: hidden!important;
+	}
+	
 	.selectuser {
 		width: 600rpx;
 		// height: 961rpx;
@@ -373,13 +378,13 @@
 
 		.pageTitle {
 			color: rgb(255, 255, 255);
-			font-family: 思源黑体 CN;
 			font-size: 64rpx;
 			font-weight: 500;
 			line-height: 80rpx;
 			letter-spacing: 2rpx;
 			position: relative;
 			margin-bottom:140rpx;
+			overflow: hidden;
 		}
 		
 		.pageSubTitle{
@@ -388,6 +393,7 @@
 			line-height: 64rpx;
 			font-weight: 500;
 			letter-spacing: 1px;
+			overflow: hidden;
 		}
 		
 		
