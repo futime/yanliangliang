@@ -16,10 +16,10 @@
 		
 		<view class="wrapTitleBox">
 			<view class="pageTitle">
-				<u-parse html="欢迎登录疼点典"></u-parse>
+				{{ vuex_config.loginPageTitle || '欢迎登录疼点典'}}
 			</view>
 			<view class="pageSubTitle">
-				<u-parse html="感受自然能量 每日放松冥想<br>专注呼吸感知身心元炁，补炁养神"></u-parse>
+				<u-parse :html="vuex_config.loginPageSubTitle || '感受自然能量 每日放松冥想<br>专注呼吸感知身心元炁，补炁养神'"></u-parse>
 			</view>
 		</view>
 			
@@ -51,7 +51,7 @@
 					</u-button>
 				</view>
 			</view>
-			<view class="u-flex u-row-between u-tips-color u-m-t-40 u-p-20" v-if="checkLogintype('account')">
+			<view class="u-flex u-row-between u-tips-color u-m-t-40 u-p-20 u-font-xl" v-if="checkLogintype('account')">
 				<view @click="goPage('/pages/login/register')">注册新账号</view>
 			</view>
 			<!-- #endif -->
@@ -87,6 +87,7 @@
 				border: false,
 				errorType: ['message'],
 				isThreeLogin: false,
+				scrollTop: 0,
 				redirectUrl: ''
 			};
 		},
@@ -184,8 +185,8 @@
 	
 	.pageSubTitle{
 		color:#fff;
-		font-size: 32rpx;
-		line-height: 56rpx;
+		font-size: 36rpx;
+		line-height: 64rpx;
 		font-weight: 500;
 		letter-spacing: 1px;
 		text-align: center;
@@ -205,11 +206,11 @@
 		width: 70%;
 		margin-top: 100rpx;
 		color:#fff;
-		font-size:32rpx;
+		font-size:42rpx;
 		display: flex;
 		justify-content: center;
 		background: #12A89D;
-		padding:12rpx 30rpx;
+		padding:16rpx 30rpx;
 		border-radius: 60rpx;
 	}
 	
@@ -217,13 +218,17 @@
 		width: 70%;
 		margin-top: 40rpx;
 		color:#fff;
-		font-size:32rpx;
+		font-size:36rpx;
 		display: flex;
 		justify-content: center;
 		background: none;
 		border:1px solid #fff;
 		padding:12rpx 30rpx;
 		border-radius: 60rpx;
+	}
+	
+	/deep/ .u-size-default{
+		font-size: 18px;
 	}
 	
 	

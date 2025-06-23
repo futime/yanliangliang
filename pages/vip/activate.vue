@@ -12,7 +12,7 @@
 		</view>
 		
 		<view class="selectTipsBox">
-			选择会员计划
+			{{ vuex_config.VipPagePlanTitle || '会员套餐选择'}}
 		</view>
 
 		<view class="select_vip_box">
@@ -27,19 +27,19 @@
 				</view> -->
 				<view class="select_vip_box_item_right">
 					<view class="label">{{ item.pricedata[0].days }}天{{ item.name }}</view>
-					<view class="price">{{ item.pricedata[0].price }}{{ vuex_config.payCurrencyTxt }}</view>
+					<view class="price">{{ item.pricedata[0].price }} {{ vuex_config.payCurrencyTxt }}</view>
 				</view>
 			</view>
 		</view>
 		
 		
-		<view class="memberbBenefits">
+		<view class="memberbBenefits" v-if="vuex_config.isVipPageBenefit == 1">
 			<view class="titleWrap">
 				<view class="title">
 					会员专属
 				</view>
 				<view class="subtitle">
-					VIP专属福利
+					{{vuex_config.vipPageBenefitSubtitle || 'VIP专属福利'}}
 				</view>
 			</view>
 			
@@ -49,7 +49,7 @@
 						<u-icon :name="staticurl('/common/benefitsinner_img1.svg')"  size="56" color="#fff"></u-icon>
 					</view>
 					<view class="titleTxt">
-						中医大师亲授古法养生操课程
+						{{vuex_config.vipPageBenefitIntro1 || '中医大师亲授古法养生操课程'}}
 					</view>
 				</view>
 				<view class="benefitsInner">
@@ -57,7 +57,7 @@
 						<u-icon :name="staticurl('/common/benefitsinner_img2.svg')" size="56" color="#fff"></u-icon>
 					</view>
 					<view class="titleTxt">
-						匠心打造的能量仓冥想空间
+						{{vuex_config.vipPageBenefitIntro2 || '匠心打造的能量仓冥想空间'}}
 					</view>
 				</view>
 				<view class="benefitsInner">
@@ -65,7 +65,7 @@
 						<u-icon :name="staticurl('/common/benefitsinner_img3.svg')" size="56" color="#fff"></u-icon>
 					</view>
 					<view class="titleTxt">
-						陪伴放松、专注与助眠的冥想音乐
+						{{vuex_config.vipPageBenefitIntro3 || '陪伴放松、专注与助眠的冥想音乐'}}
 					</view>
 				</view>
 				<view class="benefitsInner">
@@ -73,13 +73,15 @@
 						<u-icon :name="staticurl('/common/benefitsinner_img4.svg')" size="56" color="#fff"></u-icon>
 					</view>
 					<view class="titleTxt">
-						好物商城会员享专属商品折扣
+						{{vuex_config.vipPageBenefitIntro4 || '好物商城会员享专属商品折扣'}}
 					</view>
 				</view>
+				
 			</view>
 		</view>
 		
-		<view class="tipsTxt">
+		
+		<view class="tipsTxt" v-if="vuex_config.vipPageTipsTxt">
 			特别提示：
 			<u-parse :html="vuex_config.vipPageTipsTxt"></u-parse>
 		</view>
@@ -514,6 +516,7 @@
 		display: flex;
 		align-items: center;
 		margin-top: 60rpx;
+		justify-content: center;
 		gap:12rpx;
 		.btn {
 			width: 50%;

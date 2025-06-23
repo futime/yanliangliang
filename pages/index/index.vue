@@ -12,8 +12,12 @@
 				</view>
 				<view class="conIntro">
 					<view class="titleBox">
-						<view class="title">每日放松<br>冥想</view>
-						<view class="subtitle">告别僵硬酸痛<br>重塑健康体态</view>
+						<view class="title">
+							<u-parse :html="vuex_config.homekvTitle"></u-parse>
+						</view>
+						<view class="subtitle">
+							<u-parse :html="vuex_config.homekvSubTitle"></u-parse>
+						</view>
 					</view>
 				</view>
 				<view class="imgBg">
@@ -27,11 +31,13 @@
 			<view class="spaceLinkBox">
 				<view class="spaceDesc">
 					<view class="titleBox">
-						<text class="title">能量炁疗 解压放松</text>
-						<text class="subtitle">感受自然能量 舒缓身体疼痛</text>
+						<view class="title">
+							<u-parse :html="vuex_config.energyTitleHome"></u-parse>
+						</view>
+						<view class="subtitle"><u-parse :html="vuex_config.energySubTitleHome"></u-parse></view>
 					</view>
 					<view class="spaceBtn">
-						<text>进入能量仓</text>
+						<view>{{vuex_config.energyButtonTitleHome}}</view>
 					</view>
 				</view>
 				<view class="spaceImg">
@@ -42,7 +48,7 @@
 		
 		
 		<!---->
-		<view class="meditationList">
+		<view class="meditationList sheepingList" v-if="channel1.channel.isnav == 1">
 			<view class="courseTitle" @click="handleClickMeditation(3)">
 				<view class="titleBox">
 					<view class="title">
@@ -60,10 +66,13 @@
 			<view class="listWrap">
 				<scroll-view scroll-x style="width: 100%; white-space: nowrap;">
 					<view class="listInner" style="display: inline-block; margin-right: 20rpx;" v-for="item in channel1.list" :key="item.id" @click="handleClickSound(item)">
-						<view class="image">
+						<view class="image" v-if="channel1.channel.istag == 1">
 							<view class="innerTag viewtxt" v-if="item.isfree == 0">免费</view>
 							<view class="innerTag viewtxt" v-else-if="item.trialtime  > 0">试看</view>
 							<view class="innerTag viptxt" v-else>VIP</view>
+							<u-image width="100%" height="215rpx" :border-radius="12" :src="item.image" mode="aspectFill"></u-image>
+						</view>
+						<view class="image" v-else>
 							<u-image width="100%" height="215rpx" :border-radius="12" :src="item.image" mode="aspectFill"></u-image>
 						</view>
 						<view class="cardBox">
@@ -71,11 +80,11 @@
 								{{  item.title }}
 							</view>
 							<view class="intro">
-								<view class="time">
+								<view class="time" v-if="channel1.channel.isAudioShow == 1">
 									<u-icon :name="staticurl('/course/audioplayer.svg')" size="28"></u-icon>
 								</view>
 								<view class="viewer">
-									<text>{{ item.views }}</text>人听过
+									<text>{{ item.views }}</text>人{{channel1.channel.viewstips}}
 								</view>
 							</view>
 						</view>
@@ -85,7 +94,7 @@
 		
 		</view>
 		
-		<view class="courseList">
+		<view class="courseList" v-if="channel2.channel.isnav == 1">
 			<view class="courseTitle" @click="handleClickColumn">
 				<view class="titleBox">
 					<view class="title">
@@ -102,11 +111,14 @@
 			
 			<view class="listWrap">
 				<view class="itemCard" v-for="item in channel2.list" :key="item.id" @click="handleClickDetail(item.id)">
-					<view class="image">
+					<view class="image" v-if="channel2.channel.istag == 1">
 						<view class="innerTag viewtxt" v-if="item.isfree == 0">免费</view>
 						<view class="innerTag viewtxt" v-else-if="item.trialtime  > 0">试看</view>
 						<view class="innerTag viptxt" v-else>VIP</view>
-						<u-image width="100%" height="232rpx" :border-radius="12" :src="item.image" mode="aspectFill"></u-image>
+						<u-image width="100%" height="232rpx" :border-radius="12" :src="item.image" mode="widthFix"></u-image>
+					</view>
+					<view class="image" v-else>
+						<u-image width="100%" height="232rpx" :border-radius="12" :src="item.image" mode="widthFix"></u-image>
 					</view>
 					<view class="cardBox">
 						<view class="name">
@@ -117,7 +129,7 @@
 								<text>{{ item.videoduration }}</text>
 							</view>
 							<view class="viewer">
-								<text>{{ item.views }}</text>人看过
+								<text>{{ item.views }}</text>人{{channel2.channel.viewstips}}
 							</view>
 						</view>
 						<view class="playBtn">
@@ -131,11 +143,11 @@
 		<view class="gapline"></view>
 		
 		<!---->
-		<view class="meditationList">
+		<view class="meditationList" v-if="channel3.channel.isnav == 1">
 			<view class="courseTitle" @click="handleClickMeditation(1)">
 				<view class="titleBox">
 					<view class="title">
-							{{channel3.channel.name || ''}}
+						{{channel3.channel.name || ''}}
 					</view>
 					<view class="subtitle">
 						{{channel3.channel.description || ''}}
@@ -148,10 +160,13 @@
 			
 			<view class="listWrap">
 				<view class="listInner" v-for="item in channel3.list" :key="item.id" @click="handleClickSound(item)">
-					<view class="image">
+					<view class="image" v-if="channel3.channel.istag == 1">
 						<view class="innerTag viewtxt" v-if="item.isfree == 0">免费</view>
 						<view class="innerTag viewtxt" v-else-if="item.trialtime  > 0">试看</view>
 						<view class="innerTag viptxt" v-else>VIP</view>
+						<u-image width="100%" height="208rpx" :border-radius="12" :src="item.image" mode="aspectFill"></u-image>
+					</view>
+					<view class="image" v-else>
 						<u-image width="100%" height="208rpx" :border-radius="12" :src="item.image" mode="aspectFill"></u-image>
 					</view>
 					<view class="cardBox">
@@ -159,11 +174,11 @@
 							{{ item.title }}
 						</view>
 						<view class="intro">
-							<view class="time">
+							<view class="time" v-if="channel3.channel.isAudioShow == 1">
 								<u-icon :name="staticurl('/course/audioplayer.svg')" size="28"></u-icon>
 							</view>
 							<view class="viewer">
-								<text>{{ item.views }}</text>人听过
+								<text>{{ item.views }}</text>人{{channel3.channel.viewstips}}
 							</view>
 						</view>
 					</view>
@@ -374,7 +389,7 @@
 				this.$u.mpShare = {
 					title: '每日放松冥想-疼点典',
 					imageUrl: 'https://yanliangliang.com/static/images/mpshare.jpg',
-					path: '/pages/course/index'
+					path: '/pages/index/index'
 				};
 				// #endif
 			},
@@ -765,7 +780,7 @@
 				font-weight: bold;
 				line-height: 1.5;
 				width:100%;
-				height:80rpx;
+				height:100rpx;
 				white-space: pre-wrap;
 				overflow: hidden;
 				text-overflow: ellipsis;
@@ -785,6 +800,16 @@
 				margin-top:4rpx;
 			}
 		}
+	}
+}
+
+.sheepingList{
+	padding-right:0px;
+	.courseTitle{
+		padding-right:36rpx;
+	}
+	.listInner{
+		width:calc(50% - 60rpx);
 	}
 }
 

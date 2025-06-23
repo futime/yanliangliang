@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<!-- 顶部导航 -->
-		<fa-navbar title="商品列表" :border-bottom="false"></fa-navbar>
+		<fa-navbar title="好物商城" :border-bottom="false"></fa-navbar>
 		<view class="u-p-20 bg-white">
 			<fa-orderby-select :category-id="category_id" @change="change"></fa-orderby-select>				
 		</view>

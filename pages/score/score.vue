@@ -95,9 +95,17 @@
 </template>
 
 <script>
+import {
+	avatar
+} from '@/common/fa.mixin.js';
 export default {
+	onLoad() {
+		this.getScoreLogs();
+	},
 	data() {
-		return {};
+		return {
+			
+		};
 	},
 	onPullDownRefresh() {
 		if (this.vuex_token) {
@@ -105,6 +113,25 @@ export default {
 		}
 	},
 	methods: {
+		getScoreLogs: async function() {
+			let res = await this.$api.scoreLogs({ page: this.page });
+			this.status = 'loadmore';
+			if (!res.code) {
+				this.$u.toast(res.msg);
+				return;
+			}
+			let data = res.data.data;
+			if (!data || !data.length) {
+				return;
+			}
+			data.forEach(item => {
+				item.titleColor = { fontSize: '40rpx', color: item.score < 0 ? '#fb8080' : this.theme ? this.theme.bgColor : '#2979ff' };
+				item.valueColor = { color: item.score < 0 ? '#fb8080' : '#999999' };
+			});
+			this.list = this.list.concat(data);
+			this.has_more = res.data.last_page > res.data.current_page;
+			this.is_empty = !this.list.length;
+		},
 		invite(){
 			if(!this.vuex_token){
 				this.$u.toast('请先登录');

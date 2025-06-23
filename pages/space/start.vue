@@ -2,30 +2,32 @@
 	<view class="page">
 	<!-- 	<fa-navbar :title="' '" :background="{ color: 'transparent' }" :borderBottom="false"
 			:styleBack="true"></fa-navbar> -->
-		<view class="bg">
+		<view class="bg" v-if="vuex_config.energySpaceBg.length > 56">
+			<image :src="vuex_config.energySpaceBg" mode=""></image>
+		</view> 
+		<view class="bg" v-else>
 			<image :src="staticurl('/common/spacebg.jpg')" mode=""></image>
 		</view>
 		
 		
 		<view class="wrapTitleBox">
 			<view class="pageTitle">
-				<u-parse html="欢迎进入能量空间"></u-parse>
+				{{ vuex_config.energySpaceTitle || '欢迎进入能量空间'}}
 			</view>
 			<view class="pageSubTitle">
-				<u-parse html="感受自然能量 每日放松冥想<br>专注呼吸感知身心元炁，补炁养神<br>舒缓身体疼痛 重塑健康体态"></u-parse>
+				<u-parse :html="vuex_config.energySpaceSubTitle || '感受自然能量 每日放松冥想<br>专注呼吸感知身心元炁，补炁养神<br>舒缓身体疼痛 重塑健康体态'"></u-parse>
 			</view>
 		</view>
 		
 		
 		<view class="btnGroup">
 			<view class="startbtn" @click="handleClickStart">
-				<!-- <image :src="staticurl('startpage_btn.svg')" mode=""></image> -->
 				<view class="btntxt">
-					开始注入能量
+					{{ vuex_config.energySpaceBtnTxt || '开始注入能量'}}
 				</view>
 			</view>
 			
-			<view class="tipsbtn" @click="goPage('/pages/page/page?diyname=aboutus')">
+			<view class="tipsbtn" @click="goPage('/pages/page/page?diyname=aboutus')" v-if="vuex_config.isEnergySpaceShowTips == 1">
 				使用说明
 			</view>
 		</view>
@@ -33,10 +35,10 @@
 		<u-popup v-model="show" mode="center" :custom-style="popupStyle" :border-radius="24">
 			<view class="selectuser">
 				<view class="selectuser-title">
-					请选择体验者角色
+					{{ vuex_config.energySpaceSelectTitle || '请选择体验者角色'}}
 				</view>
 				<view class="poptips">
-					便于我们为您提供最佳服务
+					{{ vuex_config.energySpaceSelectSubTitle || '便于我们为您提供最佳服务'}}
 				</view>
 				<view class="selectuserBox">
 					<view class="selectuserBoxItem" :class="selectType == 1 ? 'active' : ''"
@@ -344,7 +346,7 @@
 			margin-top: 100rpx;
 			.btntxt{
 				color:#fff;
-				font-size:32rpx;
+				font-size:42rpx;
 				display: flex;
 				justify-content: center;
 				background: #12A89D;
@@ -360,8 +362,8 @@
 		
 		.tipsbtn{
 			color:rgba(255, 255, 255,0.7);
-			margin-top:40rpx;
-			font-size:28rpx;
+			margin-top:60rpx;
+			font-size:36rpx;
 		}
 
 		
@@ -382,8 +384,8 @@
 		
 		.pageSubTitle{
 			color:#fff;
-			font-size: 32rpx;
-			line-height: 56rpx;
+			font-size: 36rpx;
+			line-height: 64rpx;
 			font-weight: 500;
 			letter-spacing: 1px;
 		}

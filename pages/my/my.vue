@@ -5,7 +5,7 @@
 		<view class="userInfo">
 			<view class="leftWrap">
 				<view class="nickname" @click="gotoProfile">{{ vuex_user.nickname || '点击登录' }}</view>
-				<view class="vipstatus" v-if="vuex_token && vuex_vipinfo" @click="handleClickBuyVip">{{ 'VIP有效期至' || 'VIP截止'}}：{{ checkVipExpiry() || '已过期'}}</view>
+				<view class="vipstatus" v-if="vuex_token && vuex_vipinfo" @click="handleClickBuyVip">{{ 'VIP有效期至' || 'VIP截止'}}:{{ checkVipExpiry() || '已过期'}}</view>
 			</view>
 			<view class="avatar" @click="gotoProfile">
 				<image :src="staticurl('shuoming_icon.png')" mode=""></image>
@@ -16,19 +16,19 @@
 			<view class="topcard" v-if="vuex_config.isVipCenter == 1">
 				<view class="leftBox">
 					<view class="titile">
-						<view class="">疼点典会员</view>
+						<view class="">{{ vuex_config.vipPromptTitle || '疼点典会员'}}</view>
 					</view>
 					<view class="tips">
-						<view v-if="!vuex_token">新用户 9 天免费试用</view>
+						<view v-if="!vuex_token">{{ vuex_config.vipPromptSubtitle || '新用户注册免费试用'}}</view>
 						<view v-else>
-							<text v-if="vuex_token && vuex_vipinfo">会员享专属商品折扣</text>
-							<text v-else>{{ vuex_config.vipPrompt || '新用户 9 天免费试用'}}</text>
+							<text v-if="vuex_token && vuex_vipinfo">{{ vuex_config.vipPromptSubtitleLogin || '会员享专属商品折扣'}}</text>
+							<text v-else>{{ vuex_config.vipPromptSubtitle || '新用户注册免费试用'}}</text>
 						</view>
 						
 					</view>
 				</view>
 				<view class="rightBox" @click="handleClickBuyVip">
-					<text v-if="vuex_token && vuex_vipinfo">续费会员</text>
+					<text v-if="vuex_token && vuex_vipinfo">{{ vuex_config.vipButtonVipTxt || '续费会员'}}</text>
 					<text v-else>{{ vuex_config.vipButtonTxt || '开通会员'}}</text>
 				</view>
 			</view>
@@ -37,7 +37,7 @@
 			<view class="memberRowWrap">
 				<u-row gutter="16">
 					<u-col span="6">
-						<view class="cardInner" @click="goPage('/pages/my/collect-course'),true">
+						<view class="cardInner" @click="handleClickMyCollects">
 							<u-icon :name="staticurl('/common/mycollects_icon.svg')" size="48"></u-icon>
 							<view class="txt">我的收藏</view>
 						</view>
@@ -51,21 +51,21 @@
 				</u-row>
 			</view>
 			
-			<view class="memberMenu">
+			<view class="memberMenu" v-if="vuex_config.isVipExperiencers == 1">
 				<u-cell-group :border="false">
-					<u-cell-item :icon="staticurl('/common/myexperiencers_icon.svg')" icon-size="48" title="体验者管理" :border-bottom="false" @click="handleClickExperien"></u-cell-item>
+					<u-cell-item :icon="staticurl('/common/myexperiencers_icon.svg')" icon-size="48" title="体验者管理" :border-bottom="false" @click="goPage('/pages/experiencer/list'),true"></u-cell-item>
 				</u-cell-group>
 			</view>
 			
 			<view class="memberMenu">
-				<u-cell-group :border="false">
-					<u-cell-item :icon="staticurl('/common/myorder_icon.svg')" icon-size="48" title="VIP充值订单" :border-bottom="false" v-if="vuex_config.isVipOrderMenu == 1" @click="handleClickVipOrder"></u-cell-item>
-					
+				<u-cell-group :border="false"><u-cell-item :icon="staticurl('/common/myordershop_icon.svg')" icon-size="48" title="我的订单" :border-bottom="false" v-if="vuex_config.isOrderMenu == 1" @click="handleClickOrder"></u-cell-item>
+					<u-cell-item :icon="staticurl('/common/myorder_icon.svg')" icon-size="48" :title="vuex_config.vipPromptMenuTxt || 'VIP订单记录'" :border-bottom="false" v-if="vuex_config.isVipOrderMenu == 1" @click="handleClickVipOrder"></u-cell-item>
+					<u-cell-item :icon="staticurl('/common/pointsmall_icon.svg')" icon-size="48" title="积分商城" :border-bottom="false" v-if="vuex_config.isVipExchangeMenu == 1" @click="handleClickExchange"></u-cell-item>
 					<u-cell-item :icon="item.img" icon-size="48" :title="item.label" :border-bottom="false" v-for="item in list" :key="item.id" 
 					@click="handleClickItem(item)">
 					</u-cell-item>
 					
-					<u-cell-item :icon="staticurl('/common/document_icon.svg')" icon-size="48" title="退出登录" :border-bottom="false" v-if="vuex_token" @click="goPage('out')"></u-cell-item>
+					<u-cell-item :icon="staticurl('/common/loginout_icon.svg')" icon-size="48" title="退出登录" :border-bottom="false" v-if="vuex_token" @click="goPage('out')"></u-cell-item>
 				</u-cell-group>
 			</view>
 			
@@ -90,27 +90,22 @@
 		data() {
 			return {
 				list: [
-					{
-						img: this.staticurl('/common/pointsmall_icon.svg'),
-						label: '积分商城',
-						id: 0
-					},
 					// #ifdef MP-WEIXIN || H5
 					{
 						img: this.staticurl('/common/myinvite_icon.svg'),
 						label: '我的邀请',
-						id: 1
+						id: 0
 					},
 					// #endif
 					{
 						img: this.staticurl('/common/document_icon.svg'),
 						label: '隐私条款政策',
-						id: 2
+						id: 1
 					},
 					{
 						img: this.staticurl('/common/address_icon.svg'),
 						label: '收货地址',
-						id: 3
+						id: 2
 					}
 				],
 				scrollTop: 0
@@ -137,27 +132,16 @@
 							return
 						}
 						uni.navigateTo({
-							url: '/pages/score/exchange'
-						})
-						break;
-					case 1:
-						if(!this.vuex_token) {
-							uni.navigateTo({
-								url: '/pages/login/login'
-							})
-							return
-						}
-						uni.navigateTo({
 							url: '/pages/my/invitation'
 						})
 						break;
 					
-					case 2:
+					case 1:
 						uni.navigateTo({
 							url: '/pages/page/page?diyname=privacypolicy'
 						})
 						break;
-					case 3:
+					case 2:
 						if(!this.vuex_token) {
 							uni.navigateTo({
 								url: '/pages/login/login'
@@ -181,7 +165,7 @@
 					url: '/pages/vip/activate'
 				})
 			},
-			handleClickExperien() {
+			handleClickMyCollects() {
 				if(!this.vuex_token) {
 					uni.navigateTo({
 						url: '/pages/login/login'
@@ -189,7 +173,18 @@
 					return
 				}
 				uni.navigateTo({
-					url: '/pages/experiencer/list'
+					url: '/pages/my/collect-course'
+				})
+			},	
+			handleClickExchange() {
+				if(!this.vuex_token) {
+					uni.navigateTo({
+						url: '/pages/login/login'
+					})
+					return
+				}
+				uni.navigateTo({
+					url: '/pages/score/exchange'
 				})
 			},
 			handleClickMyScroe() {
@@ -201,6 +196,17 @@
 				}
 				uni.navigateTo({
 					url: '/pages/score/score'
+				})
+			},
+			handleClickOrder() {
+				if(!this.vuex_token) {
+					uni.navigateTo({
+						url: '/pages/login/login'
+					})
+					return
+				}
+				uni.navigateTo({
+					url: '/pages/order/list'
 				})
 			},
 			handleClickVipOrder() {
@@ -291,17 +297,17 @@
 
 				.nickname {
 					color: rgb(0, 0, 0);
-					font-size: 56rpx;
+					font-size: 52rpx;
 					font-weight: 400;
 					line-height: 50rpx;
-					letter-spacing: 2px;
+					letter-spacing: 1px;
 					text-align: left;
 					margin-bottom: 16rpx;
 				}
 
 				.vipstatus {
 					color: #787D7C;
-					font-size: 32rpx;
+					font-size: 30rpx;
 					font-weight: 500;
 					line-height: 50rpx;
 					letter-spacing: 0px;
@@ -403,7 +409,7 @@
 			gap:8px;
 			padding:0rpx 30rpx;
 			.txt{
-				font-size:18px;
+				font-size:19px;
 				color: #000000;
 			}
 		}
@@ -417,7 +423,7 @@
 			border-radius: 12px;
 		}
 		/deep/ .u-cell_title{
-		    font-size: 18px;
+		    font-size: 19px;
 		    margin-left: 8px;
 			color: #000000;
 		}

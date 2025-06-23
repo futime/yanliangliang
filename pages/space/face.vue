@@ -3,10 +3,10 @@
 		<fa-navbar title=" " :background="{ color: '#fff' }" :border-bottom="false"></fa-navbar>
 		<view class="titleWrap">
 			<view class="title">
-				扫描面部信息
+				{{ vuex_config.scanFaceSpaceTitle || '扫描面部信息'}}
 			</view>
 			<view class="subtitle">
-				提取面部图像特征,检测您的能量频率
+				{{ vuex_config.scanFaceSubTitle || '提取面部图像特征,检测您的能量频率'}}
 			</view>
 		</view>
 		<view class="icon">
