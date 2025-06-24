@@ -63,10 +63,12 @@
 			};
 		},
 		onLoad(opt) {
-			this.getUserIndex();
 			this.id = opt.id;
 			this.getArchiveDetail();
-			this.checkCollection()
+			if (this.vuex_token) {
+				this.getUserIndex();
+				this.checkCollection();
+			}
 		},
 		onShow() {},
 		computed: {
@@ -101,6 +103,18 @@
 		},
 		methods: {
 			handleCollect() {
+				if (!this.vuex_token) {
+					uni.showToast({
+						title: '请登录',
+						icon: 'none',
+						success() {
+							uni.navigateTo({
+								url: '/pages/login/login'
+							})
+						}
+					})
+					return
+				}
 				if (this.isCollect) {
 					this.$api.deleteCollection({
 						aid: this.id
