@@ -27,7 +27,7 @@
 		</view>
 		
 		
-		<view class="pageContent" @click="handleClickNengliang">
+		<view class="pageContent" @click="handleClickNengliang" v-if="vuex_config.isEnergyKvHome == 1">
 			<view class="spaceLinkBox">
 				<view class="spaceDesc">
 					<view class="titleBox">
@@ -416,12 +416,14 @@
 				})
 			},
 			handleClickDetail(id) {
+				
 				if(!this.vuex_token){
 					uni.navigateTo({
 						url: '/pages/login/login'
 					})
 					return
 				}
+				
 				uni.navigateTo({
 					url: `/pages/course/detail?id=${id}`
 				})
