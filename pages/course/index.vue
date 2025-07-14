@@ -273,23 +273,23 @@
 				})
 			},
 			handleClickDetail(id) {
-				if(!this.vuex_token){
-					uni.navigateTo({
-						url: '/pages/login/login'
-					})
-					return
-				}
+				// if(!this.vuex_token){
+				// 	uni.navigateTo({
+				// 		url: '/pages/login/login'
+				// 	})
+				// 	return
+				// }
 				uni.navigateTo({
 					url: `/pages/course/detail?id=${id}`
 				})
 			},
 			handleClickSound(item) {
-				if(!this.vuex_token){
-					uni.navigateTo({
-						url: '/pages/login/login'
-					})
-					return
-				}
+				// if(!this.vuex_token){
+				// 	uni.navigateTo({
+				// 		url: '/pages/login/login'
+				// 	})
+				// 	return
+				// }
 				uni.navigateTo({
 					url: `/pages/course/sound-detail?id=${item.id}`
 				})
