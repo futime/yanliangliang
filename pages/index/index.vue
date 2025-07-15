@@ -1,10 +1,11 @@
 <template>
 	<view class="page">
 		<view class="notice bg-white" v-if="notice.length">
-			<u-notice-bar mode="horizontal" type="warning" :duration="5000" :is-circular="false" :autoplay="true" :list="notice" @click="click"></u-notice-bar>
+			<u-notice-bar mode="horizontal" type="warning" :duration="5000" :is-circular="false" :autoplay="true"
+				:list="notice" @click="click"></u-notice-bar>
 		</view>
-		
-		
+
+
 		<view class="topBanner" @click="handleClickNengliang">
 			<view class="bannerWrap">
 				<view class="welcomeSlogan">
@@ -25,7 +26,33 @@
 				</view>
 			</view>
 		</view>
-		
+
+		<view class="menus">
+			<view class="menus-item">
+				<view class="icon">
+					<image :src="staticurl('/columns_icon1.svg')" mode="widthFix"></image>
+				</view>
+				<view class="label">助眠声音</view>
+			</view>
+			<view class="menus-item">
+				<view class="icon">
+					<image :src="staticurl('/columns_icon2.svg')" mode="widthFix"></image>
+				</view>
+				<view class="label">情绪放松</view>
+			</view>
+			<view class="menus-item">
+				<view class="icon">
+					<image :src="staticurl('/columns_icon3.svg')" mode="widthFix"></image>
+				</view>
+				<view class="label">冥想入门</view>
+			</view>
+			<view class="menus-item" @click="handleClickBreathing">
+				<view class="icon">
+					<image :src="staticurl('/columns_icon4.svg')" mode="widthFix"></image>
+				</view>
+				<view class="label">呼吸练习</view>
+			</view>
+		</view>
 		
 		<view class="pageContent" @click="handleClickNengliang" v-if="vuex_config.isEnergyKvHome == 1">
 			<view class="spaceLinkBox">
@@ -41,12 +68,13 @@
 					</view>
 				</view>
 				<view class="spaceImg">
-					<u-image width="100%" height="260rpx" :src="staticurl('/common/spacerecom_body.png')" mode="aspectFit"></u-image>
+					<u-image width="100%" height="260rpx" :src="staticurl('/common/spacerecom_body.png')"
+						mode="aspectFit"></u-image>
 				</view>
 			</view>
-		</view>	
-		
-		
+		</view>
+
+
 		<!---->
 		<view class="meditationList sheepingList" v-if="channel1.channel.isnav == 1">
 			<view class="courseTitle" @click="handleClickMeditation(3)">
@@ -62,22 +90,25 @@
 					<u-icon :name="staticurl('/course/morearrow.svg')" size="28"></u-icon>
 				</view>
 			</view>
-			
+
 			<view class="listWrap">
 				<scroll-view scroll-x style="width: 100%; white-space: nowrap;">
-					<view class="listInner" style="display: inline-block; margin-right: 20rpx;" v-for="item in channel1.list" :key="item.id" @click="handleClickSound(item)">
+					<view class="listInner" style="display: inline-block; margin-right: 20rpx;"
+						v-for="item in channel1.list" :key="item.id" @click="handleClickSound(item)">
 						<view class="image" v-if="channel1.channel.istag == 1">
 							<view class="innerTag viewtxt" v-if="item.isfree == 0">免费</view>
 							<view class="innerTag viewtxt" v-else-if="item.trialtime  > 0">试看</view>
 							<view class="innerTag viptxt" v-else>VIP</view>
-							<u-image width="100%" height="215rpx" :border-radius="12" :src="item.image" mode="aspectFill"></u-image>
+							<u-image width="100%" height="215rpx" :border-radius="12" :src="item.image"
+								mode="aspectFill"></u-image>
 						</view>
 						<view class="image" v-else>
-							<u-image width="100%" height="215rpx" :border-radius="12" :src="item.image" mode="aspectFill"></u-image>
+							<u-image width="100%" height="215rpx" :border-radius="12" :src="item.image"
+								mode="aspectFill"></u-image>
 						</view>
 						<view class="cardBox">
 							<view class="name">
-								{{  item.title }}
+								{{ item.title }}
 							</view>
 							<view class="intro">
 								<view class="time" v-if="channel1.channel.isAudioShow == 1">
@@ -91,9 +122,9 @@
 					</view>
 				</scroll-view>
 			</view>
-		
+
 		</view>
-		
+
 		<view class="courseList" v-if="channel2.channel.isnav == 1">
 			<view class="courseTitle" @click="handleClickColumn">
 				<view class="titleBox">
@@ -108,17 +139,19 @@
 					<u-icon :name="staticurl('/course/morearrow.svg')" size="28"></u-icon>
 				</view>
 			</view>
-			
+
 			<view class="listWrap">
 				<view class="itemCard" v-for="item in channel2.list" :key="item.id" @click="handleClickDetail(item.id)">
 					<view class="image" v-if="channel2.channel.istag == 1">
 						<view class="innerTag viewtxt" v-if="item.isfree == 0">免费</view>
 						<view class="innerTag viewtxt" v-else-if="item.trialtime  > 0">试看</view>
 						<view class="innerTag viptxt" v-else>VIP</view>
-						<u-image width="100%" height="232rpx" :border-radius="12" :src="item.image" mode="widthFix"></u-image>
+						<u-image width="100%" height="232rpx" :border-radius="12" :src="item.image"
+							mode="widthFix"></u-image>
 					</view>
 					<view class="image" v-else>
-						<u-image width="100%" height="232rpx" :border-radius="12" :src="item.image" mode="widthFix"></u-image>
+						<u-image width="100%" height="232rpx" :border-radius="12" :src="item.image"
+							mode="widthFix"></u-image>
 					</view>
 					<view class="cardBox">
 						<view class="name">
@@ -139,9 +172,9 @@
 				</view>
 			</view>
 		</view>
-			
+
 		<view class="gapline"></view>
-		
+
 		<!---->
 		<view class="meditationList" v-if="channel3.channel.isnav == 1">
 			<view class="courseTitle" @click="handleClickMeditation(1)">
@@ -157,17 +190,19 @@
 					<u-icon :name="staticurl('/course/morearrow.svg')" size="28"></u-icon>
 				</view>
 			</view>
-			
+
 			<view class="listWrap">
 				<view class="listInner" v-for="item in channel3.list" :key="item.id" @click="handleClickSound(item)">
 					<view class="image" v-if="channel3.channel.istag == 1">
 						<view class="innerTag viewtxt" v-if="item.isfree == 0">免费</view>
 						<view class="innerTag viewtxt" v-else-if="item.trialtime  > 0">试看</view>
 						<view class="innerTag viptxt" v-else>VIP</view>
-						<u-image width="100%" height="208rpx" :border-radius="12" :src="item.image" mode="aspectFill"></u-image>
+						<u-image width="100%" height="208rpx" :border-radius="12" :src="item.image"
+							mode="aspectFill"></u-image>
 					</view>
 					<view class="image" v-else>
-						<u-image width="100%" height="208rpx" :border-radius="12" :src="item.image" mode="aspectFill"></u-image>
+						<u-image width="100%" height="208rpx" :border-radius="12" :src="item.image"
+							mode="aspectFill"></u-image>
 					</view>
 					<view class="cardBox">
 						<view class="name">
@@ -184,11 +219,11 @@
 					</view>
 				</view>
 			</view>
-		
+
 		</view>
-		
+
 		<view class="gapModular"></view>
-		
+
 		<fa-tabbar></fa-tabbar>
 		<!-- <faTabbarVue></faTabbarVue> -->
 	</view>
@@ -200,7 +235,7 @@
 		// components: {
 		// 	faTabbarVue
 		// },
-		data()  {
+		data() {
 			return {
 				loading: true,
 				status: 'loadmore',
@@ -230,14 +265,14 @@
 		},
 		onLoad(opt) {
 			this.initShare()
-			if(opt.recdkey){
+			if (opt.recdkey) {
 				this.$u.vuex('vuex_recdkey', opt.recdkey);
 			}
 			this.queryCategoryLists()
 		},
 		onShow() {
 			// this.getGoodsIndex();
-			
+
 			if (this.vuex_token) {
 				this.getUserIndex();
 			}
@@ -257,7 +292,8 @@
 					let arr1 = [],
 						arr2 = [];
 					this.vuex_config.navigate.forEach((item, index) => {
-						if (((index + 1) % 9 == 0 && index != 0) || index + 1 == this.vuex_config.navigate.length) {
+						if (((index + 1) % 9 == 0 && index != 0) || index + 1 == this.vuex_config.navigate
+							.length) {
 							arr2.push(item);
 							arr1.push(arr2);
 							arr2 = [];
@@ -283,6 +319,11 @@
 			},
 		},
 		methods: {
+			handleClickBreathing() {
+				uni.navigateTo({
+					url: '/pages/course/practice'
+				})
+			},
 			async queryCategoryLists() {
 				let req = await Promise.all([
 					this.$api.getCategoryList({
@@ -325,20 +366,20 @@
 				// 计算剩余的小时
 				const hoursRemaining = Math.floor(timeDifference / (1000 * 60 * 60)); // 转换为小时
 				// 返回剩余的小时，如果为 0 则不显示
-				if(hoursRemaining > 0){
+				if (hoursRemaining > 0) {
 					return true
-				}else{
+				} else {
 					return false
-				} 
+				}
 			},
 			handleClickNengliang() {
-				if(!this.vuex_token){
+				if (!this.vuex_token) {
 					uni.navigateTo({
 						url: '/pages/login/login?redirect=/pages/space/start'
 					})
 					return
 				}
-				if(!this.vuex_user.nickname || !this.vuex_user.age) {
+				if (!this.vuex_user.nickname || !this.vuex_user.age) {
 					uni.reLaunch({
 						url: '/pages/my/profile-add?isnew=true'
 					})
@@ -346,11 +387,11 @@
 				}
 				try {
 					const flag = this.getRemainingTime(this.vuex_vipinfo.expiredate, this.vuex_vipinfo.level)
-					if(flag) {
+					if (flag) {
 						uni.navigateTo({
 							url: '/pages/space/start'
 						})
-					}else{
+					} else {
 						uni.showModal({
 							title: '提示',
 							content: `您的体验时间已到期，请开通VIP`,
@@ -365,7 +406,7 @@
 							},
 						});
 					}
-				}catch {
+				} catch {
 					uni.showModal({
 						title: '提示',
 						content: `您的体验时间已到期，请开通VIP`,
@@ -380,9 +421,9 @@
 						},
 					});
 				}
-				
+
 			},
-			
+
 			// 分享
 			initShare() {
 				// #ifdef MP-WEIXIN
@@ -394,13 +435,13 @@
 				// #endif
 			},
 			handleClickVip() {
-				if(!this.vuex_token){
+				if (!this.vuex_token) {
 					uni.navigateTo({
 						url: '/pages/login/login'
 					})
 					return
 				}
-				
+
 				uni.navigateTo({
 					url: '/pages/vip/activate'
 				})
@@ -416,14 +457,14 @@
 				})
 			},
 			handleClickDetail(id) {
-				
+
 				// if(!this.vuex_token){
 				// 	uni.navigateTo({
 				// 		url: '/pages/login/login'
 				// 	})
 				// 	return
 				// }
-				
+
 				uni.navigateTo({
 					url: `/pages/course/detail?id=${id}`
 				})
@@ -479,15 +520,19 @@
 				}
 			},
 			getGoodsIndex() {
-				this.$api.getGoodsIndex().then(({code,data:res,msg}) => {
+				this.$api.getGoodsIndex().then(({
+					code,
+					data: res,
+					msg
+				}) => {
 					if (code) {
 						this.hots = res.hots;
 						this.recommends = res.recommends;
 					}
 				});
 			}
-			
-			
+
+
 		},
 		onPullDownRefresh() {
 			if (this.vuex_token) {
@@ -499,375 +544,433 @@
 </script>
 
 <style lang="scss" scoped>
-	
-.page {
-	
-}
+	.page {}
 
-.topBanner {
-	width: 100%;
-	position: relative;
-	z-index: 5;
-	.bannerWrap{
+	.topBanner {
+		width: 100%;
 		position: relative;
-		.welcomeSlogan{
-			position: absolute;
-			z-index: 120;
-			top:120rpx;
-			left:36rpx;
-			// #ifdef H5
-			top:2vh;
-			// #endif
-			color:#fff;
-			font-size: 30rpx;
-		}
-		.conIntro{
-			position: absolute;
-			z-index: 100;
-			padding:0rpx 80rpx 0rpx 80rpx;
-			top:240rpx;
-			.titleBox{
-				display: flex;
-				flex-direction: column;
-				overflow: hidden;
-				.title{
-					color:#fff;
-					margin-bottom:24rpx;
-					font-size:64rpx;
-					line-height: 1.2;
-					font-weight: bold;
-					overflow: hidden;
-				}
-				.subtitle{
-					color:rgba(255,255,255,.8);
-					font-size:34rpx;
-					line-height: 56rpx;
-					overflow: hidden;
-				}
-			}
-		}
-		.imgBg{
-			width:100%;
+		z-index: 5;
+
+		.bannerWrap {
 			position: relative;
-			z-index: 10;
-			image{
-				width:100%;
-				height:100%;
+
+			.welcomeSlogan {
+				position: absolute;
+				z-index: 120;
+				top: 120rpx;
+				left: 36rpx;
+				// #ifdef H5
+				top: 2vh;
+				// #endif
+				color: #fff;
+				font-size: 30rpx;
+			}
+
+			.conIntro {
+				position: absolute;
+				z-index: 100;
+				padding: 0rpx 80rpx 0rpx 80rpx;
+				top: 240rpx;
+
+				.titleBox {
+					display: flex;
+					flex-direction: column;
+					overflow: hidden;
+
+					.title {
+						color: #fff;
+						margin-bottom: 24rpx;
+						font-size: 64rpx;
+						line-height: 1.2;
+						font-weight: bold;
+						overflow: hidden;
+					}
+
+					.subtitle {
+						color: rgba(255, 255, 255, .8);
+						font-size: 34rpx;
+						line-height: 56rpx;
+						overflow: hidden;
+					}
+				}
+			}
+
+			.imgBg {
+				width: 100%;
+				position: relative;
+				z-index: 10;
+
+				image {
+					width: 100%;
+					height: 100%;
+				}
 			}
 		}
+
+
 	}
-	
-	
-}
 
-.pageContent {
-	position: relative;
-	padding: 0 36rpx;
-	border-top-left-radius: 24rpx;
-	border-top-right-radius: 24rpx;
-	z-index: 10;
-	margin-top:-60px;
-	background: #fff;
-	padding-top:60rpx;
-}
+	.pageContent {
+		padding: 0 36rpx;
+	}
 
-/deep/ u-parse{
-	overflow: hidden!important;
-}
+	/deep/ u-parse {
+		overflow: hidden !important;
+	}
 
-.gapline{
-	height:30rpx;
-	width:100%;
-}
+	.gapline {
+		height: 30rpx;
+		width: 100%;
+	}
 
-.gapModular{
-	height:40rpx;
-	width:100%;
-}
+	.gapModular {
+		height: 40rpx;
+		width: 100%;
+	}
 
-//
-.courseTitle{
-	display: flex;
-	gap:16rpx;
-	margin-bottom:16rpx;
-	.titleBox{
+	//
+	.courseTitle {
 		display: flex;
-		width:100%;
-		.title{
-			color:#000000;
-			font-size:40rpx;
-			font-weight: bold;
-			margin-right:16rpx;
-		}
-		.subtitle{
-			font-size:28rpx;
-			color:#808080;
+		gap: 16rpx;
+		margin-bottom: 16rpx;
+
+		.titleBox {
 			display: flex;
-			align-items: flex-end;
-			margin-bottom:4rpx;
-		}
-	}
-	.arrowMore{
-		display: flex;
-		align-items: center;
-	}
+			width: 100%;
 
-}
-
-
-.spaceLinkBox{
-	display: flex;
-	justify-content: space-between;
-	background: #E5F3F5;
-	border-radius: 24rpx;
-	padding:30rpx 20rpx 0rpx 40rpx;
-	padding-top:60rpx;
-	.spaceDesc{
-		padding-bottom:40rpx;
-		.titleBox{
-			display: flex;
-			flex-direction: column;
-			.title{
-				color:rgba(0,0,0,.8);
-				font-size:42rpx;
-				font-weight: 600;
-				margin-bottom:16rpx;
-				
+			.title {
+				color: #000000;
+				font-size: 40rpx;
+				font-weight: bold;
+				margin-right: 16rpx;
 			}
-			.subtitle{
-				color:rgba(0,0,0,.4);
-				font-size:26rpx;
-				
+
+			.subtitle {
+				font-size: 28rpx;
+				color: #808080;
+				display: flex;
+				align-items: flex-end;
+				margin-bottom: 4rpx;
 			}
 		}
-		.spaceBtn{
-			font-size:28rpx;
-			color:#fff;
-			background: #12A89D;
-			width:220rpx;
-			height:68rpx;
+
+		.arrowMore {
 			display: flex;
 			align-items: center;
-			justify-content: center;
-			border-radius: 60px;
-			margin-top:40rpx;
-			
 		}
+
 	}
-	.spaceImg{
-		width:40%;
-	}
-}
 
 
-.courseList{
-	padding:40rpx 36rpx 20rpx 36rpx;
-	.listWrap{
-		.itemCard{
-			display: flex;
-			gap:40rpx;
-			position: relative;
-			padding:30rpx 0rpx 40rpx 0rpx;
-			margin-bottom:10rpx;
-			border-bottom:1px solid #F3F3F3;
-			&:nth-last-of-type(1){
-				border:none;
-			}
-			.image{
-				width:220rpx;
-				height:230rpx;
-				position: relative;
-			}
-			.innerTag{
-				position: absolute;
-				right:0;
-				bottom:-2px;
-				z-index: 10;
-				font-size:12px;
-				padding:6rpx 16rpx;
-				background: #000000;
-				color:#fff;
-				border-top-left-radius: 16rpx;
-			}
-			.viewtxt{
-				
-			}
-			.viptxt{
-				background: #FE8825;
-			}
-			
-			.cardBox{
-				margin-top:20rpx;
-				.name{
-					font-size: 32rpx;
-					color:#333333;
-					font-weight: bold;
-					line-height: 1.5;
-					width:90%;
-					
-				}
-			}
-			
-			.intro{
-				color:#b7b7ba;
+	.spaceLinkBox {
+		display: flex;
+		justify-content: space-between;
+		background: #E5F3F5;
+		border-radius: 24rpx;
+		padding: 30rpx 20rpx 0rpx 40rpx;
+		padding-top: 60rpx;
+
+		.spaceDesc {
+			padding-bottom: 40rpx;
+
+			.titleBox {
 				display: flex;
-				gap:16rpx;
-				font-size:28rpx;
-				margin-top:30rpx;
-				
-				.time{
-					
+				flex-direction: column;
+
+				.title {
+					color: rgba(0, 0, 0, .8);
+					font-size: 42rpx;
+					font-weight: 600;
+					margin-bottom: 16rpx;
+
 				}
-				.viewer{
-					
+
+				.subtitle {
+					color: rgba(0, 0, 0, .4);
+					font-size: 26rpx;
+
 				}
 			}
-			.playBtn{
-				position: absolute;
-				right:12rpx;
-				bottom:40rpx;
-				background: #F5F7FA;
-				border-radius: 50%;
-				width:64rpx;
-				height:64rpx;
+
+			.spaceBtn {
+				font-size: 28rpx;
+				color: #fff;
+				background: #12A89D;
+				width: 220rpx;
+				height: 68rpx;
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				image{
-					
+				border-radius: 60px;
+				margin-top: 40rpx;
+
+			}
+		}
+
+		.spaceImg {
+			width: 40%;
+		}
+	}
+
+
+	.courseList {
+		padding: 40rpx 36rpx 20rpx 36rpx;
+
+		.listWrap {
+			.itemCard {
+				display: flex;
+				gap: 40rpx;
+				position: relative;
+				padding: 30rpx 0rpx 40rpx 0rpx;
+				margin-bottom: 10rpx;
+				border-bottom: 1px solid #F3F3F3;
+
+				&:nth-last-of-type(1) {
+					border: none;
+				}
+
+				.image {
+					width: 220rpx;
+					height: 230rpx;
+					position: relative;
+				}
+
+				.innerTag {
+					position: absolute;
+					right: 0;
+					bottom: -2px;
+					z-index: 10;
+					font-size: 12px;
+					padding: 6rpx 16rpx;
+					background: #000000;
+					color: #fff;
+					border-top-left-radius: 16rpx;
+				}
+
+				.viewtxt {}
+
+				.viptxt {
+					background: #FE8825;
+				}
+
+				.cardBox {
+					margin-top: 20rpx;
+
+					.name {
+						font-size: 32rpx;
+						color: #333333;
+						font-weight: bold;
+						line-height: 1.5;
+						width: 90%;
+
+					}
+				}
+
+				.intro {
+					color: #b7b7ba;
+					display: flex;
+					gap: 16rpx;
+					font-size: 28rpx;
+					margin-top: 30rpx;
+
+					.time {}
+
+					.viewer {}
+				}
+
+				.playBtn {
+					position: absolute;
+					right: 12rpx;
+					bottom: 40rpx;
+					background: #F5F7FA;
+					border-radius: 50%;
+					width: 64rpx;
+					height: 64rpx;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+
+					image {}
 				}
 			}
 		}
 	}
-}
 
 
 
 
-//
-.meditationList{
-	padding:60rpx 36rpx;
-	.listWrap{
-		display: flex;
-		gap:30rpx 24rpx;
-		flex-wrap: wrap;
-		justify-content: space-between;
-		margin-top:40rpx;
-	}
-	.listInner{
-		width:calc(50% - 20rpx);
-		position: relative;
-		.image{
-			width:100%;
-			position: relative;
-		}
-		.innerTag{
-			position: absolute;
-			right:0;
-			bottom:0;
-			z-index: 10;
-			font-size:12px;
-			padding:6rpx 16rpx;
-			background: #000000;
-			color:#fff;
-			border-top-left-radius: 16rpx;
-		}
-		.viewtxt{
-			
-		}
-		.viptxt{
-			background: #FE8825;
-		}
-		.cardBox{
-			padding:16rpx 24rpx 20rpx 24rpx;
-			border:1px solid #EDF1F7;
-			border-bottom-left-radius: 12rpx;
-			border-bottom-right-radius: 12rpx;
-			.name{
-				font-size: 32rpx;
-				color:#333333;
-				font-weight: bold;
-				line-height: 1.5;
-				width:100%;
-				height:100rpx;
-				white-space: pre-wrap;
-				overflow: hidden;
-				text-overflow: ellipsis;
-				display: -webkit-box;
-				-webkit-line-clamp: 2;
-				-webkit-box-orient: vertical;
-			}
-		}
-		
-		.intro{
-			color:#b7b7ba;
+	//
+	.meditationList {
+		padding: 60rpx 36rpx;
+
+		.listWrap {
 			display: flex;
-			gap:16rpx;
-			font-size:28rpx;
-			margin-top:30rpx;
-			.time{
-				margin-top:4rpx;
+			gap: 30rpx 24rpx;
+			flex-wrap: wrap;
+			justify-content: space-between;
+			margin-top: 40rpx;
+		}
+
+		.listInner {
+			width: calc(50% - 20rpx);
+			position: relative;
+
+			.image {
+				width: 100%;
+				position: relative;
+			}
+
+			.innerTag {
+				position: absolute;
+				right: 0;
+				bottom: 0;
+				z-index: 10;
+				font-size: 12px;
+				padding: 6rpx 16rpx;
+				background: #000000;
+				color: #fff;
+				border-top-left-radius: 16rpx;
+			}
+
+			.viewtxt {}
+
+			.viptxt {
+				background: #FE8825;
+			}
+
+			.cardBox {
+				padding: 16rpx 24rpx 20rpx 24rpx;
+				border: 1px solid #EDF1F7;
+				border-bottom-left-radius: 12rpx;
+				border-bottom-right-radius: 12rpx;
+
+				.name {
+					font-size: 32rpx;
+					color: #333333;
+					font-weight: bold;
+					line-height: 1.5;
+					width: 100%;
+					height: 100rpx;
+					white-space: pre-wrap;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					display: -webkit-box;
+					-webkit-line-clamp: 2;
+					-webkit-box-orient: vertical;
+				}
+			}
+
+			.intro {
+				color: #b7b7ba;
+				display: flex;
+				gap: 16rpx;
+				font-size: 28rpx;
+				margin-top: 30rpx;
+
+				.time {
+					margin-top: 4rpx;
+				}
 			}
 		}
 	}
-}
 
-.sheepingList{
-	padding-right:0px;
-	.courseTitle{
-		padding-right:36rpx;
+	.sheepingList {
+		padding-right: 0px;
+
+		.courseTitle {
+			padding-right: 36rpx;
+		}
+
+		.listInner {
+			width: calc(50% - 60rpx);
+		}
 	}
-	.listInner{
-		width:calc(50% - 60rpx);
+
+
+	//
+	/deep/ uni-swiper,
+	/deep/ swiper {
+		height: 125px !important;
+		margin-top: 22px;
 	}
-}
+
+	/deep/ .u-grid-item {
+		padding: 0rpx 8rpx;
+	}
+
+	/deep/ .u-grid-item-box {
+		background: #16D1B4 !important;
+		border-radius: 12rpx;
+		color: #fff !important;
+		font-size: 46rpx !important;
+		font-family: 思源黑体 CN;
+		font-weight: 400 !important;
+		line-height: 27px;
+		letter-spacing: 0px;
+		text-align: center;
+		margin-top: 8px;
+	}
+
+	/deep/ .u-grid-item:nth-of-type(2) .u-grid-item-box {
+		background: #FCB358 !important;
+	}
 
 
-//
-/deep/ uni-swiper,/deep/ swiper{
-	height:125px!important;
-	margin-top:22px;
-}
-/deep/ .u-grid-item{
-	padding:0rpx 8rpx;
-}
-/deep/ .u-grid-item-box{
-	background: #16D1B4!important;
-	border-radius: 12rpx;
-	color:#fff!important;
-	font-size:46rpx!important;
-	font-family: 思源黑体 CN;
-	font-weight: 400!important;
-	line-height: 27px;
-	letter-spacing: 0px;
-	text-align: center;
-	margin-top: 8px;
-}
-/deep/ .u-grid-item:nth-of-type(2) .u-grid-item-box{
-	background: #FCB358!important;
-}
 
+	//框架自带
+	.indicator-dots {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
 
-	
-//框架自带
-.indicator-dots {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
+	.indicator-dots-item {
+		background-color: $u-tips-color;
+		height: 6px;
+		width: 6px;
+		border-radius: 10px;
+		margin: 0 3px;
+	}
 
-.indicator-dots-item {
-	background-color: $u-tips-color;
-	height: 6px;
-	width: 6px;
-	border-radius: 10px;
-	margin: 0 3px;
-}
+	.indicator-dots-active {
+		background-color: $u-type-primary;
+	}
 
-.indicator-dots-active {
-	background-color: $u-type-primary;
-}
-.notice {
-	
-}
+	.notice {}
+
+	.menus {
+		display: flex;
+		margin-bottom: 40rpx;
+		position: relative;
+		padding: 0 36rpx;
+		border-top-left-radius: 24rpx;
+		border-top-right-radius: 24rpx;
+		z-index: 10;
+		margin-top: -60px;
+		background: #fff;
+		padding-top: 60rpx;
+		
+		.menus-item {
+			flex: 1;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+
+			.icon {
+				width: 72rpx;
+				height: 72rpx;
+
+				image {
+					width: 100%;
+					height: 100%;
+				}
+			}
+
+			.label {
+				margin-top: 20rpx;
+				font-size: 30rpx;
+			}
+		}
+	}
 </style>
