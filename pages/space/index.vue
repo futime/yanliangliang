@@ -7,8 +7,7 @@
 			<image :src="showBgVideo" mode=""></image>
 			<!-- #endif -->
 			<!-- #ifndef APP -->
-			<video id="myVideo" :src="showBgVideo" :controls="false" loop muted autoplay
-				@ended="handleVideoEnd"></video>				
+			<video id="myVideo" :src="showBgVideo" :controls="false" loop muted autoplay ></video>
 			<!-- #endif -->
 		</view>
 		<view class="guanghuanBox">
@@ -87,20 +86,21 @@
 				<image :src="staticurl('energy_icon_remove.png')" mode=""></image>
 			</view> -->
 		</view>
-		<view class="rightbtns" v-if="!zhuruStatus">
-			<!-- <view class="btnitem" @click="handleClickShowIcons('headCoord')">
-				<image :src="staticurl('energy_icon_head.png')" mode=""></image>
-			</view> -->
-			<view class="btnitem" @click="handleClickShowIcons('limbCoord')">
+		<view class="rightbtns">
+			<view class="btnitem" @click="handleClickReset" v-if="zhuruStatus">
+				<image :src="staticurl('energy_icon_restart.svg')" mode=""></image>
+			</view>
+			<view class="btnitem" @click="handleClickShowIcons('limbCoord')" v-if="!zhuruStatus">
 				<image :src="staticurl('energy_icon_limbs.png')" mode=""></image>
 			</view>
-			<view class="btnitem" @click="handleClickShowIcons('trunkCoord')">
+			<view class="btnitem" @click="handleClickShowIcons('trunkCoord')" v-if="!zhuruStatus">
 				<image :src="staticurl('energy_icon_torso.png')" mode=""></image>
 			</view>
-			<view class="btnitem" @tap="handleClickTurnaround">
+			<view class="btnitem" @tap="handleClickTurnaround" v-if="!zhuruStatus">
 				<image :src="staticurl('energy_icon_turnaround.png')" mode=""></image>
 			</view>
 		</view>
+		<InjectModal ref="InjectModal" @reInject="handleClickReset"></InjectModal>
 	</view>
 </template>
 
@@ -110,8 +110,11 @@
 		loginfunc
 	} from '@/common/fa.mixin.js';
 
-							  
+	import InjectModal from './components/InjectModal.vue'
 	export default {
+		components: {
+			InjectModal
+		},
 		mixins: [loginfunc],
 		data() {
 			return {
@@ -294,7 +297,7 @@
 					}
 				},
 				userid: null,
-				videoContext: null	  
+				videoContext: null
 			};
 		},
 		computed: {
@@ -326,7 +329,7 @@
 			}
 		},
 		onLoad(opt) {
-   
+
 			if (opt.userid) {
 				this.userid = opt.userid
 			}
@@ -340,10 +343,9 @@
 			this.initClickSound()
 			this.initBackgroundAudioSound()
 			this.startSlowIncrease();
-   
+
 		},
 		methods: {
-   
 			async getinject(id) {
 				let reqForm = {}
 
@@ -465,8 +467,9 @@
 						form.p_id = this.userid
 					}
 					this.$api.clickrecord(form)
-							 
-							
+					setTimeout(() => {
+						this.$refs.InjectModal.open()
+					}, 2000)
 				} else {
 					setTimeout(() => {
 						if (!this.muteFlag) {
@@ -485,6 +488,25 @@
 				this.selectBodyPoints[this.positive].other = []
 				this.$forceUpdate()
 			},
+			handleClickReset() {
+				// 重置所有数据（正面和背面）
+				this.selectBodyPoints.front.headCoord = []
+				this.selectBodyPoints.front.limbCoord = []
+				this.selectBodyPoints.front.trunkCoord = []
+				this.selectBodyPoints.front.other = []
+				
+				this.selectBodyPoints.back.headCoord = []
+				this.selectBodyPoints.back.limbCoord = []
+				this.selectBodyPoints.back.trunkCoord = []
+				this.selectBodyPoints.back.other = []
+				
+				this.zhuruStatus = false
+				this.showIcon = true
+
+				this.positive = 'front'
+				this.initCanvasNew()
+				this.$forceUpdate()
+			}, 
 			// 点击躯干 头部这些
 			handleClickShowIcons(type) {
 				let points = this.bodys[this.active][this.positive][type]
@@ -529,7 +551,7 @@
 				const randomIndex = Math.floor(Math.random() * this.backgroundTracks.length);
 				const selectedTrack = this.backgroundTracks[randomIndex];
 				// 创建背景音乐音频对象
-	
+
 				this.backgroundMusic = uni.createInnerAudioContext();
 				this.backgroundMusic.src = selectedTrack; // 替换为背景音乐文件路径
 				this.backgroundMusic.autoplay = true; // 自动播放
