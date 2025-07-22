@@ -6,41 +6,16 @@
                 <view class="tip"> 现在你已连接能量场 </view>
             </view>
             <view class="content">
-                <swiper class="swiper-container" :current="currentIndex" @change="handleSwiperChange" :autoplay="false"
-                    :circular="false" :duration="500">
-                    <!-- 第一段文案 - 有动画 -->
-                    <swiper-item class="swiper-item">
-                        <view class="text-container">
-                            <view :class="[
-                                'text-line',
-                                { animate: showLine1[index] },
-                                { 'space-line': line === 'SPACE' },
-                            ]" v-for="(line, index) in textLines1" :key="index"
-                                :style="{ 'animation-delay': index * 0.8 + 's' }">
-                                {{ line === "SPACE" ? "" : line }}
-                            </view>
+                <scroll-view class="scroll-container" scroll-y="true" :scroll-top="scrollTop"
+                    :scroll-with-animation="false" @scrolltolower="onScrollToLower"  :show-scrollbar="false"
+                    :style="{ height: '80%' }" :lower-threshold="100">
+                    <view class="scroll-text-container" v-for="(item, index) in textLines1" :key="index">
+                        <view class="text-line" v-for="(line, childIndex) in item"
+                            :key="'line-' + index + '-' + childIndex" :class="{ 'space-line': line === 'SPACE' }">
+                            {{ line === "SPACE" ? "" : line }}
                         </view>
-                    </swiper-item>
-
-                    <!-- 第二段文案 - 无动画 -->
-                    <swiper-item class="swiper-item">
-                        <view class="text-container">
-                            <view :class="[
-                                'text-line',
-                                'no-animate',
-                                { 'space-line': line === 'SPACE' },
-                            ]" v-for="(line, index) in textLines2" :key="index">
-                                {{ line === "SPACE" ? "" : line }}
-                            </view>
-                        </view>
-                    </swiper-item>
-                </swiper>
-
-                <!-- 指示器小圆点 -->
-                <view class="dots-indicator">
-                    <view class="dot" :class="{ active: currentIndex === index }" v-for="(item, index) in 2"
-                        :key="index" @click="switchToPage(index)"></view>
-                </view>
+                    </view>
+                </scroll-view>
             </view>
             <view class="footer">
                 <view class="btn" @click="finishPractice"> 退出 </view>
@@ -83,22 +58,41 @@ export default {
             currentIndex: 0,
             autoSwitchTimer: null,
             textLines1: [
-                "此刻想象一股能量",
-                "正缓缓流入刚点击的身体部位",
-                "感受身体产生的温热感",
-                "SPACE", // 间距标识
-                "让身体进入冥想状态",
-                "保持10至30分钟",
-                "感知体内湿寒驱散",
-                "身体疼痛变化",
-            ],
-            textLines2: [
-                "如身体温热变化感知不明显",
-                "可点击重新注入按钮",
-                "再次点击需要注入能量的身体部位",
-                "SPACE", // 间距标识
-                "坚持每天能量冥想一次或多次",
-                "身体疼痛变化越明显",
+                [
+                    "此刻想象一股能量",
+                    "正缓缓流入刚点击的身体部位",
+                    "感受身体产生的温热感",
+                    "SPACE", // 间距标识
+                    "让身体进入冥想状态",
+                    "保持10至30分钟",
+                    "感知体内湿寒驱散",
+                    "身体疼痛变化",
+                    "SPACE", // 间距标识
+                    "如身体温热变化感知不明显",
+                    "可点击重新注入按钮",
+                    "再次点击需要注入能量的身体部位",
+                    "SPACE", // 间距标识
+                    "坚持每天能量冥想一次或多次",
+                    "身体疼痛变化越明显",
+                ],
+                [
+                    "此刻想象一股能量",
+                    "正缓缓流入刚点击的身体部位",
+                    "感受身体产生的温热感",
+                    "SPACE", // 间距标识
+                    "让身体进入冥想状态",
+                    "保持10至30分钟",
+                    "感知体内湿寒驱散",
+                    "身体疼痛变化",
+                    "SPACE", // 间距标识
+                    "如身体温热变化感知不明显",
+                    "可点击重新注入按钮",
+                    "再次点击需要注入能量的身体部位",
+                    "SPACE", // 间距标识
+                    "坚持每天能量冥想一次或多次",
+                    "身体疼痛变化越明显",
+                ]
+
             ],
             showLine1: [],
             currentStage: 'page1',
@@ -111,6 +105,13 @@ export default {
             practiceTimer: null,
             practiceSeconds: 0,
             visible: false,
+            // 滚动相关
+            scrollTop: 0,
+            scrollTimer: null,
+            displayTextLines: [], // 动态显示的文本行
+            isScrolling: false, // 是否正在滚动
+            loadedGroups: 0, // 已加载的组数
+            isLoadingMore: false, // 是否正在加载更多
         };
     },
     mounted() {
@@ -122,30 +123,130 @@ export default {
     methods: {
         open() {
             this.visible = true
-            this.startAnimation();
-            this.startAutoSwitch();
+            // 重置滚动位置
+            this.scrollTop = 0
+            this.displayTextLines = []
+            this.loadedGroups = 0
+            this.isScrolling = false
             this.startPracticeTimer();
+            this.$nextTick(() => {
+                this.startScrollAnimation();
+            })
         },
         close() {
             this.visible = false
+            this.stopPracticeTimer()
+            this.stopScrollAnimation()
+
+            // 重置所有数据到初始状态
+            this.currentStage = 'page1'
+            this.currentIndex = 0
+            this.practiceSeconds = 0
+            this.startTime = null
+            this.endTime = null
+            this.practiceTimer = null
+            this.scrollTop = 0 // 重置滚动位置
+            this.displayTextLines = [] // 重置显示文本
+            this.loadedGroups = 0
+            this.isScrolling = false
+            this.isLoadingMore = false
+
+            // 重置动画状态
+            this.showLine1 = new Array(this.textLines1.length).fill(false)
+
+            // 清除自动切换定时器
+            this.clearAutoSwitch()
         },
         reInject() {
             this.close();
             this.stopPracticeTimer();
             this.$emit('reInject')
         },
-        // 开始第一段文案的逐句动画
-        startAnimation() {
-            this.showLine1 = new Array(this.textLines1.length).fill(false);
+        // 开始滚动动画
+        startScrollAnimation() {
+            // 延迟启动，确保DOM已渲染
+            this.$nextTick(() => {
 
-            // 延迟启动第一段动画
-            setTimeout(() => {
-                this.textLines1.forEach((_, index) => {
-                    setTimeout(() => {
-                        this.$set(this.showLine1, index, true);
-                    }, index * 800);
-                });
-            }, 500);
+                // 开始自动滚动
+                this.startAutoScroll();
+            });
+        },
+
+        // 加载更多数据
+        loadMoreData() {
+            console.log(this.textLines1.length)
+            // 添加新的一组数据
+            this.textLines1.push([
+                "此刻想象一股能量",
+                "正缓缓流入刚点击的身体部位",
+                "感受身体产生的温热感",
+                "SPACE", // 间距标识
+                "让身体进入冥想状态",
+                "保持10至30分钟",
+                "感知体内湿寒驱散",
+                "身体疼痛变化",
+                "SPACE", // 间距标识
+                "如身体温热变化感知不明显",
+                "可点击重新注入按钮",
+                "再次点击需要注入能量的身体部位",
+                "SPACE", // 间距标识
+                "坚持每天能量冥想一次或多次",
+                "身体疼痛变化越明显",
+            ]);
+        },
+
+        // 开始自动滚动
+        startAutoScroll() {
+            this.isScrolling = true;
+            this.scrollTimer = setInterval(() => {
+                if (this.isScrolling) {
+                    this.scrollTop += 0.5; // 慢速向下滚动
+                }
+            }, 30);
+        },
+
+        // 停止滚动动画
+        stopScrollAnimation() {
+            this.isScrolling = false;
+            if (this.scrollTimer) {
+                clearInterval(this.scrollTimer);
+                this.scrollTimer = null;
+            }
+        },
+        onScrollToLower() {
+            this.loadMoreData();
+        },
+        // 滚动事件处理
+        onScroll(e) {
+            const { scrollTop, scrollHeight } = e.detail;
+            const query = uni.createSelectorQuery().in(this);
+
+            query.select('.scroll-container').boundingClientRect((rect) => {
+                if (rect) {
+                    const containerHeight = rect.height;
+                    const threshold = scrollHeight - containerHeight - 100; // 距离底部100px时触发
+
+                    if (scrollTop >= threshold && !this.isLoadingMore) {
+                        console.log('接近底部，加载更多数据');
+                        this.isLoadingMore = true;
+                        this.loadMoreData();
+                        this.isLoadingMore = false;
+                    }
+                }
+            }).exec();
+        },
+
+        // 停止滚动动画
+        stopScrollAnimation() {
+            if (this.scrollTimer) {
+                clearInterval(this.scrollTimer);
+                this.scrollTimer = null;
+            }
+        },
+
+        // 动态更新显示文本
+        updateDisplayText() {
+            // 暂时移除动态追加逻辑，使用静态重复 + 位置重置
         },
 
         // 处理 swiper 切换
@@ -220,7 +321,6 @@ export default {
         }
     },
     computed: {
-        // 实时显示的练习时长
         displayTime() {
             return this.formatTime(this.practiceSeconds);
         }
@@ -236,8 +336,9 @@ export default {
     width: 100%;
     height: 100%;
     z-index: 10000000;
-    background: linear-gradient(180deg, #6e7b68 0%, #4e5650 100%);
     overflow: hidden;
+    background: linear-gradient(180deg, #6e7b68 0%, #4e5650 100%);
+
 
     .page1 {
         padding-top: 30%;
@@ -249,6 +350,7 @@ export default {
         justify-content: center;
         align-items: center;
         flex-direction: column;
+        background: rgba(109, 122, 103, 1);
 
         .headerbox {
             display: flex;
@@ -275,88 +377,67 @@ export default {
             padding: 0 60rpx;
             width: 100%;
             position: relative;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
 
-            .swiper-container {
+            .scroll-container {
                 width: 100%;
-                height: 100%;
-
-                .swiper-item {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-
-                    .text-container {
-                        width: 100%;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: center;
-                        justify-content: center;
-
-                        .text-line {
-                            font-size: 28rpx;
-                            color: #fff;
-                            font-weight: 300;
-                            line-height: 48rpx;
-                            margin-bottom: 10rpx;
-                            text-align: center;
-                            opacity: 0;
-                            transform: translateY(60rpx);
-                            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-
-                            &.animate {
-                                opacity: 1;
-                                transform: translateY(0);
-                            }
-
-                            &.no-animate {
-                                opacity: 1;
-                                transform: translateY(0);
-                                transition: none;
-                            }
-
-                            &.space-line {
-                                height: 60rpx;
-                                margin-bottom: 30rpx;
-
-                                &.animate {
-                                    opacity: 0; // 间距行始终保持透明
-                                }
-
-                                &.no-animate {
-                                    opacity: 0; // 间距行始终保持透明
-                                }
-                            }
-
-                            &:last-child {
-                                margin-bottom: 0;
-                            }
-                        }
-                    }
+                position: relative;
+                overflow: hidden;
+                // 添加渐变遮罩层
+                &::before,
+                &::after {
+                    content: '';
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    height: 120rpx;
+                    z-index: 10;
+                    pointer-events: none;
                 }
-            }
 
-            .dots-indicator {
-                position: absolute;
-                bottom: 15%;
-                left: 50%;
-                transform: translateX(-50%);
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                gap: 16rpx;
+                &::before {
+                    top: 0;
+                    background: linear-gradient(to bottom,
+                            rgba(109, 122, 103, 1) 0%,
+                            rgba(109, 122, 103, 0.8) 30%,
+                            rgba(109, 122, 103, 0.3) 60%,
+                            rgba(109, 122, 103, 0) 100%);
+                }
 
-                .dot {
-                    width: 6rpx;
-                    height: 6rpx;
-                    border-radius: 50%;
-                    background-color: rgba(255, 255, 255, 0.4);
-                    transition: all 0.3s ease;
-                    cursor: pointer;
+                &::after {
+                    bottom: 0;
+                    background: linear-gradient(to top,
+                            rgba(109, 122, 103, 1) 0%,
+                            rgba(109, 122, 103, 0.8) 30%,
+                            rgba(109, 122, 103, 0.3) 60%,
+                            rgba(109, 122, 103, 0) 100%);
+                }
+                
+                .scroll-text-container {
+                    &:first-child {
+                        margin-top: 50%;
+                    }
+                    .text-line {
+                        font-size: 28rpx;
+                        color: #fff;
+                        font-weight: 300;
+                        line-height: 48rpx;
+                        margin-bottom: 12rpx;
+                        text-align: center;
+                        opacity: 1;
 
-                    &.active {
-                        background-color: rgba(255, 255, 255, 1);
-                        width: 20rpx;
-                        border-radius: 8rpx;
+                        &.space-line {
+                            height: 40rpx;
+                        }
+
+                        &:last-child {
+                            margin-bottom: 0;
+                        }
                     }
                 }
             }
@@ -367,6 +448,7 @@ export default {
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            flex-shrink: 0;
 
             .btn {
                 width: 450rpx;
