@@ -355,7 +355,30 @@ export default {
     },
     exitPractice() {
       this.clearAllTimers();
-      uni.navigateBack();
+      // 彻底停止所有音频
+      if (this.innerAudioContext) {
+        this.innerAudioContext.stop();
+        this.innerAudioContext.destroy();
+        this.innerAudioContext = null;
+      }
+      if (this.innerAudioContext2) {
+        this.innerAudioContext2.stop();
+        this.innerAudioContext2.destroy();
+        this.innerAudioContext2 = null;
+      }
+      if (this.phaseAudioContext) {
+        this.phaseAudioContext.stop();
+        this.phaseAudioContext.destroy();
+        this.phaseAudioContext = null;
+      }
+      if (this.endAudioContext) {
+        this.endAudioContext.stop();
+        this.endAudioContext.destroy();
+        this.endAudioContext = null;
+      }
+      this.currentStage = "complete";
+      this.playEndAudio();
+      // uni.navigateBack();
     },
 
     finishPractice() {

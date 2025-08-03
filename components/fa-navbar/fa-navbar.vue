@@ -14,6 +14,7 @@
 			:title-width="400"
 			z-index="10907"
 			:styleBack="styleBack"
+			:placeholder="placeholder"
 		>
 		</u-navbar>
 	</view>
@@ -56,6 +57,10 @@ export default {
 		isBackFlag: {
 			type: [Boolean, null],
 			default: null
+		},
+		placeholder: {
+			type: Boolean,
+			default: false
 		}
 	},
 	computed: {

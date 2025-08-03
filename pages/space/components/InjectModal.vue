@@ -7,7 +7,7 @@
             </view>
             <view class="content">
                 <scroll-view class="scroll-container" scroll-y="true" :scroll-top="scrollTop"
-                    :scroll-with-animation="false" @scrolltolower="onScrollToLower"  :show-scrollbar="false"
+                    :scroll-with-animation="false" @scrolltolower="onScrollToLower" :show-scrollbar="false"
                     :style="{ height: '80%' }" :lower-threshold="100">
                     <view class="scroll-text-container" v-for="(item, index) in textLines1" :key="index">
                         <view class="text-line" v-for="(line, childIndex) in item"
@@ -112,15 +112,36 @@ export default {
             isScrolling: false, // 是否正在滚动
             loadedGroups: 0, // 已加载的组数
             isLoadingMore: false, // 是否正在加载更多
+            clickSound: null,
+            promptSound: null,
         };
     },
     mounted() {
+        this.initClickSound();
+        this.initPromptSound();
     },
     beforeDestroy() {
         this.clearAutoSwitch();
         this.stopPracticeTimer();
+        this.clickSound.destroy();
+        this.promptSound.destroy();
     },
     methods: {
+        initClickSound() {
+            this.clickSound = uni.createInnerAudioContext();
+            this.clickSound.src = this.audiourl('energy_click.mp3'); // 请替换为你的音效文件路径
+            this.clickSound.autoplay = false; // 不自动播放
+            this.clickSound.loop = false; // 不循环播放
+            this.clickSound.volume = 0.8; // 设置音量为 80%
+        },
+
+        initPromptSound() {
+            this.promptSound = uni.createInnerAudioContext();
+            this.promptSound.src = this.audiourl('prompt_text.mp3'); // 请替换为你的音效文件路径
+            this.promptSound.autoplay = false; // 不自动播放
+            this.promptSound.loop = false; // 不循环播放
+            this.promptSound.volume = 0.8; // 设置音量为 80%
+        },
         open() {
             this.visible = true
             // 重置滚动位置
@@ -131,6 +152,7 @@ export default {
             this.startPracticeTimer();
             this.$nextTick(() => {
                 this.startScrollAnimation();
+                this.promptSound.play();
             })
         },
         close() {
@@ -314,6 +336,8 @@ export default {
         finishPractice() {
             this.stopPracticeTimer();
             this.currentStage = 'complete';
+            this.promptSound.stop();
+            this.clickSound.play();
         },
         handleClickOk() {
             this.close();
@@ -388,6 +412,7 @@ export default {
                 width: 100%;
                 position: relative;
                 overflow: hidden;
+
                 // 添加渐变遮罩层
                 &::before,
                 &::after {
@@ -417,11 +442,12 @@ export default {
                             rgba(109, 122, 103, 0.3) 60%,
                             rgba(109, 122, 103, 0) 100%);
                 }
-                
+
                 .scroll-text-container {
                     &:first-child {
                         margin-top: 50%;
                     }
+
                     .text-line {
                         font-size: 28rpx;
                         color: #fff;

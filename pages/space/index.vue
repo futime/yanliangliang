@@ -335,11 +335,20 @@
 			}
 
 		},
+		onHide() {
+			console.log('onHide')
+			this.backgroundMusic && this.backgroundMusic.destroy()
+		},
 		onUnload() {
+			console.log('onUnload')
+			this.backgroundMusic && this.backgroundMusic.destroy()
+		},
+		beforeDestroy() {
+			console.log('beforeDestroy')
 			this.backgroundMusic && this.backgroundMusic.destroy()
 		},
 		onReady() {
-			this.getinject(this.userid || '')
+			this.getinject(this.userid || this.vuex_user.id)
 			this.initClickSound()
 			this.initBackgroundAudioSound()
 			this.startSlowIncrease();
@@ -356,7 +365,6 @@
 					})
 
 					this.active = 'man'
-
 					// if (res1.data.sex == 0) {
 					// 	this.active = 'madem'
 					// } else {
