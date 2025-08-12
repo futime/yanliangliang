@@ -18,7 +18,7 @@
 					</view>
 				</view>
 				<view class="btnBox">
-					<!-- <u-icon :name="staticurl('/course/playerbtn.svg')" size="56"></u-icon> -->
+					<!-- <u-icon :name="staticurl('course/playerbtn.svg')" size="56"></u-icon> -->
 				</view>
 			</view>
 		</view>
@@ -75,7 +75,7 @@
 							</view>
 						</view>
 						<view class="playBtn">
-							<u-icon :name="staticurl('/course/player_gray.svg')" size="32"></u-icon>
+							<u-icon :name="staticurl('course/player_gray.svg')" size="32"></u-icon>
 						</view>
 					</view>
 				</view>

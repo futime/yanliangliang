@@ -31,7 +31,7 @@
 						</view>
 						<view class="intro">
 							<view class="time" v-if="channel.isAudioShow == 1">
-								<u-icon :name="staticurl('/course/audioplayer.svg')" size="28"></u-icon>
+								<u-icon :name="staticurl('course/audioplayer.svg')" size="28"></u-icon>
 							</view>
 							<view class="viewer">
 								<text>{{ item.views }}</text>人{{channel.viewstips}}

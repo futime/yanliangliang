@@ -46,7 +46,7 @@
 			<view class="benefitsListWrap">
 				<view class="benefitsInner">
 					<view class="iconImg">
-						<u-icon :name="staticurl('/common/benefitsinner_img1.svg')"  size="56" color="#fff"></u-icon>
+						<u-icon :name="staticurl('common/benefitsinner_img1.svg')"  size="56" color="#fff"></u-icon>
 					</view>
 					<view class="titleTxt">
 						{{vuex_config.vipPageBenefitIntro1 || '中医大师亲授古法养生操课程'}}
@@ -54,7 +54,7 @@
 				</view>
 				<view class="benefitsInner">
 					<view class="iconImg">
-						<u-icon :name="staticurl('/common/benefitsinner_img2.svg')" size="56" color="#fff"></u-icon>
+						<u-icon :name="staticurl('common/benefitsinner_img2.svg')" size="56" color="#fff"></u-icon>
 					</view>
 					<view class="titleTxt">
 						{{vuex_config.vipPageBenefitIntro2 || '匠心打造的能量仓冥想空间'}}
@@ -62,7 +62,7 @@
 				</view>
 				<view class="benefitsInner">
 					<view class="iconImg">
-						<u-icon :name="staticurl('/common/benefitsinner_img3.svg')" size="56" color="#fff"></u-icon>
+						<u-icon :name="staticurl('common/benefitsinner_img3.svg')" size="56" color="#fff"></u-icon>
 					</view>
 					<view class="titleTxt">
 						{{vuex_config.vipPageBenefitIntro3 || '陪伴放松、专注与助眠的冥想音乐'}}
@@ -70,7 +70,7 @@
 				</view>
 				<view class="benefitsInner">
 					<view class="iconImg">
-						<u-icon :name="staticurl('/common/benefitsinner_img4.svg')" size="56" color="#fff"></u-icon>
+						<u-icon :name="staticurl('common/benefitsinner_img4.svg')" size="56" color="#fff"></u-icon>
 					</view>
 					<view class="titleTxt">
 						{{vuex_config.vipPageBenefitIntro4 || '好物商城会员享专属商品折扣'}}
@@ -89,11 +89,11 @@
 		<view class="bottom-fixed-bar">
 			<view class="groupbtns">
 				<view class="btn btn1" v-if="vuex_config.isVipPay == 1" @click="handleClickWxPay('wechat')">
-					<u-icon :name="staticurl('/common/wechatpay.svg')" size="48" color="#fff"></u-icon>
+					<u-icon :name="staticurl('common/wechatpay.svg')" size="48" color="#fff"></u-icon>
 					微信支付
 				</view>
 				<view class="btn btn2" @click="handleClickWxPay('score')">
-					<u-icon :name="staticurl('/common/scorepay.svg')" size="36" color="#fff"></u-icon>
+					<u-icon :name="staticurl('common/scorepay.svg')" size="36" color="#fff"></u-icon>
 					积分兑换
 				</view>
 			</view>

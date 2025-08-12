@@ -24,12 +24,12 @@
         },
         /* 模块配置 */
         "modules" : {
-            "Maps" : {},
-            "Geolocation" : {},
             "Camera" : {},
             "Barcode" : {},
             "LivePusher" : {},
-            "VideoPlayer" : {}
+            "VideoPlayer" : {},
+            "OAuth" : {},
+            "Share" : {}
         },
         /* 应用发布信息 */
         "distribute" : {
@@ -68,12 +68,17 @@
             },
             /* SDK配置 */
             "sdkConfigs" : {
-                "oauth" : {},
+                "oauth" : {
+                    "weixin" : {
+                        "appid" : "wxbc4b3b8d748cdbe4",
+                        "UniversalLinks" : ""
+                    }
+                },
                 "push" : {},
                 "payment" : {},
                 "share" : {
                     "weixin" : {
-                        "appid" : "",
+                        "appid" : "wxbc4b3b8d748cdbe4",
                         "UniversalLinks" : ""
                     }
                 },

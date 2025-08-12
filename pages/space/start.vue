@@ -6,7 +6,7 @@
 			<image :src="vuex_config.energySpaceBg" mode=""></image>
 		</view> 
 		<view class="bg" v-else>
-			<image :src="staticurl('/common/spacebg.jpg')" mode=""></image>
+			<image :src="staticurl('common/spacebg.jpg')" mode=""></image>
 		</view>
 		
 		

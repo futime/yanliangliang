@@ -467,6 +467,7 @@
 					// const selectedTrack = this.backgroundTracks[randomIndex];
 					// this.backgroundMusic.src = selectedTrack
 					this.backgroundMusic.play()
+					this.backgroundMusic.volume = 0.2;
 					let form = {
 						map: this.selectBodyPoints,
 						body_image: this.positive == 'front' ? 1 : 2
@@ -476,7 +477,8 @@
 					}
 					this.$api.clickrecord(form)
 					setTimeout(() => {
-						this.$refs.InjectModal.open()
+						this.$refs.InjectModal.open();
+						this.backgroundMusic.volume = 0.2;
 					}, 2000)
 				} else {
 					setTimeout(() => {
@@ -564,7 +566,7 @@
 				this.backgroundMusic.src = selectedTrack; // 替换为背景音乐文件路径
 				this.backgroundMusic.autoplay = true; // 自动播放
 				this.backgroundMusic.loop = true; // 循环播放
-				this.backgroundMusic.volume = 0.8;
+				this.backgroundMusic.volume = 0.5;
 			},
 			initClickSound() {
 				this.clickSound = uni.createInnerAudioContext();

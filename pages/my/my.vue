@@ -38,13 +38,13 @@
 				<u-row gutter="16">
 					<u-col span="6">
 						<view class="cardInner" @click="handleClickMyCollects">
-							<u-icon :name="staticurl('/common/mycollects_icon.svg')" size="48"></u-icon>
+							<u-icon :name="staticurl('common/mycollects_icon.svg')" size="48"></u-icon>
 							<view class="txt">我的收藏</view>
 						</view>
 					</u-col>
 					<u-col span="6">
 						<view class="cardInner" @click="handleClickMyScroe">
-							<u-icon :name="staticurl('/common/myscore_icon.svg')" size="48"></u-icon>
+							<u-icon :name="staticurl('common/myscore_icon.svg')" size="48"></u-icon>
 							<view class="txt">我的积分</view>
 						</view>
 					</u-col>
@@ -53,19 +53,19 @@
 			
 			<view class="memberMenu" v-if="vuex_config.isVipExperiencers == 1">
 				<u-cell-group :border="false">
-					<u-cell-item :icon="staticurl('/common/myexperiencers_icon.svg')" icon-size="48" title="体验者管理" :border-bottom="false" @click="goPage('/pages/experiencer/list'),true"></u-cell-item>
+					<u-cell-item :icon="staticurl('common/myexperiencers_icon.svg')" icon-size="48" title="体验者管理" :border-bottom="false" @click="goPage('/pages/experiencer/list'),true"></u-cell-item>
 				</u-cell-group>
 			</view>
 			
 			<view class="memberMenu">
-				<u-cell-group :border="false"><u-cell-item :icon="staticurl('/common/myordershop_icon.svg')" icon-size="48" title="我的订单" :border-bottom="false" v-if="vuex_config.isOrderMenu == 1" @click="handleClickOrder"></u-cell-item>
-					<u-cell-item :icon="staticurl('/common/myorder_icon.svg')" icon-size="48" :title="vuex_config.vipPromptMenuTxt || 'VIP订单记录'" :border-bottom="false" v-if="vuex_config.isVipOrderMenu == 1" @click="handleClickVipOrder"></u-cell-item>
-					<u-cell-item :icon="staticurl('/common/pointsmall_icon.svg')" icon-size="48" title="积分商城" :border-bottom="false" v-if="vuex_config.isVipExchangeMenu == 1" @click="handleClickExchange"></u-cell-item>
+				<u-cell-group :border="false"><u-cell-item :icon="staticurl('common/myordershop_icon.svg')" icon-size="48" title="我的订单" :border-bottom="false" v-if="vuex_config.isOrderMenu == 1" @click="handleClickOrder"></u-cell-item>
+					<u-cell-item :icon="staticurl('common/myorder_icon.svg')" icon-size="48" :title="vuex_config.vipPromptMenuTxt || 'VIP订单记录'" :border-bottom="false" v-if="vuex_config.isVipOrderMenu == 1" @click="handleClickVipOrder"></u-cell-item>
+					<u-cell-item :icon="staticurl('common/pointsmall_icon.svg')" icon-size="48" title="积分商城" :border-bottom="false" v-if="vuex_config.isVipExchangeMenu == 1" @click="handleClickExchange"></u-cell-item>
 					<u-cell-item :icon="item.img" icon-size="48" :title="item.label" :border-bottom="false" v-for="item in list" :key="item.id" 
 					@click="handleClickItem(item)">
 					</u-cell-item>
 					
-					<u-cell-item :icon="staticurl('/common/loginout_icon.svg')" icon-size="48" title="退出登录" :border-bottom="false" v-if="vuex_token" @click="goPage('out')"></u-cell-item>
+					<u-cell-item :icon="staticurl('common/loginout_icon.svg')" icon-size="48" title="退出登录" :border-bottom="false" v-if="vuex_token" @click="goPage('out')"></u-cell-item>
 				</u-cell-group>
 			</view>
 			
@@ -92,18 +92,18 @@
 				list: [
 					// #ifdef MP-WEIXIN || H5
 					{
-						img: this.staticurl('/common/myinvite_icon.svg'),
+						img: this.staticurl('common/myinvite_icon.svg'),
 						label: '我的邀请',
 						id: 0
 					},
 					// #endif
 					{
-						img: this.staticurl('/common/document_icon.svg'),
+						img: this.staticurl('common/document_icon.svg'),
 						label: '隐私条款政策',
 						id: 1
 					},
 					{
-						img: this.staticurl('/common/address_icon.svg'),
+						img: this.staticurl('common/address_icon.svg'),
 						label: '收货地址',
 						id: 2
 					}

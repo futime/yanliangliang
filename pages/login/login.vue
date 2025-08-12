@@ -6,11 +6,11 @@
 		
 		
 		<view class="bg" v-if="vuex_config.loginPageBg.length > 56">
-			<image :src="staticurl('/common/spacebg.jpg')" mode=""></image>
+			<image :src="staticurl('common/spacebg.jpg')" mode=""></image>
 		</view>
 		
 		<view class="bg" v-else>
-			<image :src="staticurl('/common/spacebg.jpg')" mode=""></image>
+			<image :src="staticurl('common/spacebg.jpg')" mode=""></image>
 		</view>
 		
 		

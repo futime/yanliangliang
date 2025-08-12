@@ -10,21 +10,21 @@
 			</view>
 		</view>
 		<view class="icon">
-			<image :src="staticurl('/common/facescan_con.png')" mode=""></image>
+			<image :src="staticurl('common/facescan_con.png')" mode=""></image>
 		</view>
 		
 		
 		<view class="tipsWrap">
 			<view class="tipsInner">
-				<u-icon :name="staticurl('/common/facescan_ico1.svg')" size="80"></u-icon>
+				<u-icon :name="staticurl('common/facescan_ico1.svg')" size="80"></u-icon>
 				<text>正对手机</text>
 			</view>
 			<view class="tipsInner">
-				<u-icon :name="staticurl('/common/facescan_ico2.svg')" size="80"></u-icon>
+				<u-icon :name="staticurl('common/facescan_ico2.svg')" size="80"></u-icon>
 				<text>光线充足</text>
 			</view>
 			<view class="tipsInner">
-				<u-icon :name="staticurl('/common/facescan_ico3.svg')" size="80"></u-icon>
+				<u-icon :name="staticurl('common/facescan_ico3.svg')" size="80"></u-icon>
 				<text>脸无遮挡</text>
 			</view>
 		</view>

@@ -1,7 +1,7 @@
 <template>
 	<view class="page">
 		<!-- <view class="bg">
-			<image :src="staticurl('/common/spacebg.jpg')" mode=""></image>
+			<image :src="staticurl('common/spacebg.jpg')" mode=""></image>
 		</view> -->
 		<!-- 顶部导航 -->
 		<fa-navbar title="手机号验证登录"></fa-navbar>

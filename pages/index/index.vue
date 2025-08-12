@@ -22,33 +22,33 @@
 					</view>
 				</view>
 				<view class="imgBg">
-					<image :src="staticurl('/common/indexbanng_bg.jpg')" mode="widthFix"></image>
+					<image :src="staticurl('common/indexbanng_bg.jpg')" mode="widthFix"></image>
 				</view>
 			</view>
 		</view>
 
 		<view class="menus">
-			<view class="menus-item">
+			<view class="menus-item" @click="handleClickMeditation(3)">
 				<view class="icon">
-					<image :src="staticurl('/columns_icon1.svg')" mode="widthFix"></image>
+					<image :src="staticurl('columns_icon1.svg')" mode="widthFix"></image>
 				</view>
-				<view class="label">助眠声音</view>
+				<view class="label">{{channel1.channel.name || ''}}</view>
 			</view>
-			<view class="menus-item">
+			<view class="menus-item" @click="handleClickMeditation(1)">
 				<view class="icon">
-					<image :src="staticurl('/columns_icon2.svg')" mode="widthFix"></image>
+					<image :src="staticurl('columns_icon2.svg')" mode="widthFix"></image>
 				</view>
-				<view class="label">情绪放松</view>
+				<view class="label">{{channel3.channel.name || ''}}</view>
 			</view>
-			<view class="menus-item">
+			<view class="menus-item" @click="handleClickMeditation(24)">
 				<view class="icon">
-					<image :src="staticurl('/columns_icon3.svg')" mode="widthFix"></image>
+					<image :src="staticurl('columns_icon3.svg')" mode="widthFix"></image>
 				</view>
-				<view class="label">冥想入门</view>
+				<view class="label">{{channel4.channel.name || ''}}</view>
 			</view>
 			<view class="menus-item" @click="handleClickBreathing">
 				<view class="icon">
-					<image :src="staticurl('/columns_icon4.svg')" mode="widthFix"></image>
+					<image :src="staticurl('columns_icon4.svg')" mode="widthFix"></image>
 				</view>
 				<view class="label">呼吸练习</view>
 			</view>
@@ -68,7 +68,7 @@
 					</view>
 				</view>
 				<view class="spaceImg">
-					<u-image width="100%" height="260rpx" :src="staticurl('/common/spacerecom_body.png')"
+					<u-image width="100%" height="260rpx" :src="staticurl('common/spacerecom_body.png')"
 						mode="aspectFit"></u-image>
 				</view>
 			</view>
@@ -87,7 +87,7 @@
 					</view>
 				</view>
 				<view class="arrowMore">
-					<u-icon :name="staticurl('/course/morearrow.svg')" size="28"></u-icon>
+					<u-icon :name="staticurl('course/morearrow.svg')" size="28"></u-icon>
 				</view>
 			</view>
 
@@ -112,7 +112,7 @@
 							</view>
 							<view class="intro">
 								<view class="time" v-if="channel1.channel.isAudioShow == 1">
-									<u-icon :name="staticurl('/course/audioplayer.svg')" size="28"></u-icon>
+									<u-icon :name="staticurl('course/audioplayer.svg')" size="28"></u-icon>
 								</view>
 								<view class="viewer">
 									<text>{{ item.views }}</text>人{{channel1.channel.viewstips}}
@@ -136,7 +136,7 @@
 					</view>
 				</view>
 				<view class="arrowMore">
-					<u-icon :name="staticurl('/course/morearrow.svg')" size="28"></u-icon>
+					<u-icon :name="staticurl('course/morearrow.svg')" size="28"></u-icon>
 				</view>
 			</view>
 
@@ -166,7 +166,7 @@
 							</view>
 						</view>
 						<view class="playBtn">
-							<u-icon :name="staticurl('/course/player_gray.svg')" size="32"></u-icon>
+							<u-icon :name="staticurl('course/player_gray.svg')" size="32"></u-icon>
 						</view>
 					</view>
 				</view>
@@ -187,7 +187,7 @@
 					</view>
 				</view>
 				<view class="arrowMore">
-					<u-icon :name="staticurl('/course/morearrow.svg')" size="28"></u-icon>
+					<u-icon :name="staticurl('course/morearrow.svg')" size="28"></u-icon>
 				</view>
 			</view>
 
@@ -210,7 +210,7 @@
 						</view>
 						<view class="intro">
 							<view class="time" v-if="channel3.channel.isAudioShow == 1">
-								<u-icon :name="staticurl('/course/audioplayer.svg')" size="28"></u-icon>
+								<u-icon :name="staticurl('course/audioplayer.svg')" size="28"></u-icon>
 							</view>
 							<view class="viewer">
 								<text>{{ item.views }}</text>人{{channel3.channel.viewstips}}
@@ -220,6 +220,56 @@
 				</view>
 			</view>
 
+		</view>
+		
+		
+		<view class="gapline"></view>
+		
+		<!---->
+		<view class="meditationList" v-if="channel4.channel.isnav == 1">
+			<view class="courseTitle" @click="handleClickMeditation(24)">
+				<view class="titleBox">
+					<view class="title">
+						{{channel4.channel.name || ''}}
+					</view>
+					<view class="subtitle">
+						{{channel4.channel.description || ''}}
+					</view>
+				</view>
+				<view class="arrowMore">
+					<u-icon :name="staticurl('course/morearrow.svg')" size="28"></u-icon>
+				</view>
+			</view>
+		
+			<view class="listWrap">
+				<view class="listInner" v-for="item in channel4.list" :key="item.id" @click="handleClickVideo(item)">
+					<view class="image" v-if="channel4.channel.istag == 1">
+						<view class="innerTag viewtxt" v-if="item.isfree == 0">免费</view>
+						<view class="innerTag viewtxt" v-else-if="item.trialtime  > 0">试看</view>
+						<view class="innerTag viptxt" v-else>VIP</view>
+						<u-image width="100%" height="208rpx" :border-radius="12" :src="item.image"
+							mode="aspectFill"></u-image>
+					</view>
+					<view class="image" v-else>
+						<u-image width="100%" height="208rpx" :border-radius="12" :src="item.image"
+							mode="aspectFill"></u-image>
+					</view>
+					<view class="cardBox">
+						<view class="name">
+							{{ item.title }}
+						</view>
+						<view class="intro">
+							<view class="time" v-if="channel4.channel.isAudioShow == 1">
+								<u-icon :name="staticurl('course/audioplayer.svg')" size="28"></u-icon>
+							</view>
+							<view class="viewer">
+								<text>{{ item.views }}</text>人{{channel4.channel.viewstips}}
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+		
 		</view>
 
 		<view class="gapModular"></view>
@@ -258,9 +308,14 @@
 					channel: {},
 					list: []
 				},
+				channel4: {
+					channel: {},
+					list: []
+				},
 				list1: [],
 				list2: [],
 				list3: [],
+				list4: [],
 			};
 		},
 		onLoad(opt) {
@@ -344,6 +399,12 @@
 						limit: 2,
 						flag: 'hot',
 					}),
+					this.$api.getCategoryList({
+						channel: 24,
+						page: 1,
+						limit: 2,
+						flag: 'hot',
+					}),
 				])
 				this.channel1.channel = req[0].data.channel
 				this.channel1.list = req[0].data.pageList.data
@@ -351,6 +412,8 @@
 				this.channel2.list = req[1].data.pageList.data
 				this.channel3.channel = req[2].data.channel
 				this.channel3.list = req[2].data.pageList.data
+				this.channel4.channel = req[3].data.channel
+				this.channel4.list = req[3].data.pageList.data
 			},
 			getRemainingTime(targetTime, level) {
 				// 将目标时间转换为 Date 对象，假设传入的时间格式是 "yyyy-MM-dd HH:mm:ss"
@@ -478,6 +541,17 @@
 				// }
 				uni.navigateTo({
 					url: `/pages/course/sound-detail?id=${item.id}`
+				})
+			},
+			handleClickVideo(item) {
+				// if(!this.vuex_token){
+				// 	uni.navigateTo({
+				// 		url: '/pages/login/login'
+				// 	})
+				// 	return
+				// }
+				uni.navigateTo({
+					url: `/pages/course/detail?id=${item.id}`
 				})
 			},
 			//商城自带
@@ -669,7 +743,7 @@
 		border-radius: 24rpx;
 		padding: 30rpx 20rpx 0rpx 40rpx;
 		padding-top: 60rpx;
-
+		margin-bottom:20rpx;
 		.spaceDesc {
 			padding-bottom: 40rpx;
 
@@ -714,7 +788,7 @@
 
 
 	.courseList {
-		padding: 40rpx 36rpx 20rpx 36rpx;
+		padding: 60rpx 36rpx 20rpx 36rpx;
 
 		.listWrap {
 			.itemCard {
@@ -801,7 +875,7 @@
 
 	//
 	.meditationList {
-		padding: 60rpx 36rpx;
+		padding: 40rpx 36rpx;
 
 		.listWrap {
 			display: flex;

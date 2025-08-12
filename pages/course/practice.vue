@@ -81,9 +81,8 @@
     <view v-if="currentStage === 'complete'" class="complete-box">
       <view class="complete-container">
         <text class="complete-title">非常好</text>
-        <text class="complete-subtitle"
-          >第{{ practiceCount }}次呼吸练习完成</text
-        >
+        <text class="complete-subtitle">本次呼吸练习完成</text>
+        <!-- <text class="complete-subtitle">第{{ practiceCount }}次呼吸练习完成</text> -->
 
         <view class="complete-content">
           <text class="complete-text"
@@ -131,7 +130,7 @@ export default {
       showCountdown: false,
       countdownNumber: 3,
       remainingTime: 60, // 60秒
-      practiceCount: 1000,
+      practiceCount: 1,
       practiceMinutes: 1,
       isBreathing: true,
       currentBreathAction: "吸气",
