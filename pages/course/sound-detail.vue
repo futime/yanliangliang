@@ -31,7 +31,7 @@
 						<!-- 进度条 -->
 						<view class="progress-section">
 							<text class="current-time">{{ formatTime(currentTime) }}</text>
-							<view class="progress-bar">
+			<view class="progress-bar" @touchstart="onTouchStart" @touchmove="onTouchMove" @touchend="onTouchEnd">
 								<view class="progress-bg"></view>
 								<view class="progress-fill" :style="{ width: progressPercent + '%' }"></view>
 								<view class="progress-thumb" :style="{ left: progressPercent + '%' }"></view>
@@ -81,6 +81,7 @@ export default {
 			progressPercent: 0,
 			audioId: 'audio_' + Date.now(),
 			isDragging: false,
+			progressBarRect: null,
 			volume: 1,
 			playbackRate: 1,
 			audioContext: null,
@@ -109,25 +110,9 @@ export default {
 		}
 	},
 	onUnload() {
-		// 停止播放
+		// 停止并销毁音频
 		this.isPlaying = false;
-
-		// 销毁音频
-		// #ifdef H5
-		const audio = this.$refs.audioRef;
-		if (audio) {
-			audio.pause();
-			audio.src = '';
-			audio.load();
-		}
-		// #endif
-
-		// #ifdef MP-WEIXIN
-		if (this.audioContext) {
-			this.audioContext.stop();
-		}
-		// #endif
-
+		this.destroyAudio();
 		// 重置状态
 		this.currentTime = 0;
 		this.duration = 0;
@@ -135,6 +120,11 @@ export default {
 		this.isDragging = false;
 	},
 	onShow() { },
+	onReady() {
+		this.$nextTick(() => {
+			this.updateProgressBarRect();
+		});
+	},
 	computed: {},
 	methods: {
 		// 播放控制
@@ -172,43 +162,28 @@ export default {
 				this.volume = 1;
 			}
 
-			// #ifdef H5
-			const audio = this.$refs.audioRef;
-			if (audio) {
-				audio.volume = this.volume;
+			if (this.audioContext) {
+				this.audioContext.volume = this.volume;
 			}
-			// #endif
-
-			// #ifdef MP-WEIXIN
-			const audioContext = wx.createAudioContext(this.audioId, this);
-			this.audioContext = audioContext
-			if (audioContext) {
-				audioContext.volume = this.volume;
-			}
-			// #endif
 		},
 
 		// 进度条控制
 		onTouchStart(e) {
 			this.isDragging = true;
+			if (!this.progressBarRect) {
+				this.updateProgressBarRect();
+			}
 		},
 
-		onTouchMove(e) {
+			onTouchMove(e) {
 			if (!this.isDragging) return;
 
-			const touch = e.touches[0];
-			let percent = 0;
-
-			// #ifdef H5
-			const progressBar = e.currentTarget.parentElement;
-			const rect = progressBar.getBoundingClientRect();
-			percent = Math.max(0, Math.min(100, (touch.clientX - rect.left) / rect.width * 100));
-			// #endif
-
-			// #ifdef MP-WEIXIN
-			percent = Math.max(0, Math.min(100, (touch.clientX / uni.getSystemInfoSync().windowWidth) * 100));
-			// #endif
-
+				const touch = e.touches[0];
+				let percent = 0;
+				const rect = this.progressBarRect;
+				if (rect) {
+					percent = Math.max(0, Math.min(100, ((touch.clientX - rect.left) / rect.width) * 100));
+				}
 			this.progressPercent = percent;
 			this.currentTime = (this.duration * percent) / 100;
 		},
@@ -219,8 +194,15 @@ export default {
 			this.isDragging = false;
 			// 设置音频播放位置
 			const targetTime = (this.duration * this.progressPercent) / 100;
-
-			this.audioContext.seek(targetTime);
+			this.audioContext && this.audioContext.seek(targetTime);
+		},
+		updateProgressBarRect() {
+			try {
+				const query = uni.createSelectorQuery().in(this);
+				query.select('.progress-bar').boundingClientRect((rect) => {
+					if (rect) this.progressBarRect = rect;
+				}).exec();
+			} catch (e) {}
 		},
 		// 时间格式化
 		formatTime(seconds) {
@@ -282,31 +264,14 @@ export default {
 			// this.videoPoster = res.data.archivesInfo.image;
 			this.initAudio()
 		},
-		play(e) {
-			this.videoStarted = true;
-			// 自动暂停音频，兼容 H5 和小程序
-			const audio = this.$refs.audioRef;
-			if (audio) {
-				// H5 原生 audio
-				if (audio.pause) {
-					audio.pause();
-				}
-				// 微信小程序 audio context
-				if (audio.context && audio.context.pause) {
-					audio.context.pause();
-				}
-				// #ifdef MP-WEIXIN
-				if (typeof wx !== "undefined" && wx.createAudioContext) {
-					const ctx = wx.createAudioContext(audio.id, this);
-					this.audioContext = ctx
-					ctx && ctx.pause && ctx.pause();
-				}
-				// #endif
-			}
-		},
 		initAudio() {
+			// 先销毁旧实例，避免多实例叠加
+			this.destroyAudio();
 			this.audioContext = uni.createInnerAudioContext();
 			this.audioContext.src = this.archivesInfo.mp3url;
+			this.audioContext.autoplay = false;
+			this.audioContext.loop = this.isLoop;
+			this.audioContext.volume = this.volume;
 
 			this.audioContext.onCanplay(() => {
 				console.log('onCanplay')
@@ -335,6 +300,20 @@ export default {
 			this.audioContext.onPause(() => {
 				this.isPlaying = false;
 			})
+		},
+		// 停止并销毁当前音频实例
+		destroyAudio() {
+			if (this.audioContext) {
+				try { this.audioContext.stop && this.audioContext.stop(); } catch (e) {}
+				try { this.audioContext.offCanplay && this.audioContext.offCanplay(); } catch (e) {}
+				try { this.audioContext.offTimeUpdate && this.audioContext.offTimeUpdate(); } catch (e) {}
+				try { this.audioContext.offEnded && this.audioContext.offEnded(); } catch (e) {}
+				try { this.audioContext.offError && this.audioContext.offError(); } catch (e) {}
+				try { this.audioContext.offPlay && this.audioContext.offPlay(); } catch (e) {}
+				try { this.audioContext.offPause && this.audioContext.offPause(); } catch (e) {}
+				try { this.audioContext.destroy && this.audioContext.destroy(); } catch (e) {}
+				this.audioContext = null;
+			}
 		}
 	},
 	onPullDownRefresh() { },
