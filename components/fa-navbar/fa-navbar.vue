@@ -15,6 +15,7 @@
 			z-index="10907"
 			:styleBack="styleBack"
 			:placeholder="placeholder"
+			:backIconColor="backIconColor"
 		>
 		</u-navbar>
 	</view>
@@ -61,6 +62,10 @@ export default {
 		placeholder: {
 			type: Boolean,
 			default: false
+		},
+		backIconColor: {
+			type: String,
+			default: '#606266'
 		}
 	},
 	computed: {

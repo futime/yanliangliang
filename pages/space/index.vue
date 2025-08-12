@@ -467,7 +467,7 @@
 					// const selectedTrack = this.backgroundTracks[randomIndex];
 					// this.backgroundMusic.src = selectedTrack
 					this.backgroundMusic.play()
-					this.backgroundMusic.volume = 0.2;
+					this.backgroundMusic.volume = 0.08;
 					let form = {
 						map: this.selectBodyPoints,
 						body_image: this.positive == 'front' ? 1 : 2
@@ -478,7 +478,7 @@
 					this.$api.clickrecord(form)
 					setTimeout(() => {
 						this.$refs.InjectModal.open();
-						this.backgroundMusic.volume = 0.2;
+						this.backgroundMusic.volume = 0.08;
 					}, 2000)
 				} else {
 					setTimeout(() => {

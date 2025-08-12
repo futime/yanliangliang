@@ -136,14 +136,12 @@ export default {
         },
 
         initPromptSound() {
-			this.scrollTimer = setInterval(() => {
-				this.promptSound = uni.createInnerAudioContext();
-				this.promptSound.src = this.audiourl('prompt_text.mp3'); // 请替换为你的音效文件路径
-				this.promptSound.autoplay = false; // 不自动播放
-				this.promptSound.loop = false; // 不循环播放
-				this.promptSound.volume = 1; // 设置音量为 80%
-				this.backgroundMusic.volume = 0.2;
-			}, 50);
+            this.promptSound = uni.createInnerAudioContext();
+            this.promptSound.src = this.audiourl('prompt_text.mp3'); // 请替换为你的音效文件路径
+            this.promptSound.autoplay = false; // 不自动播放
+            this.promptSound.loop = false; // 不循环播放
+            this.promptSound.volume = 1; // 设置音量为 80%
+            this.backgroundMusic.volume = 0.2;
         },
         open() {
             this.visible = true

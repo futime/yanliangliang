@@ -1,7 +1,7 @@
 <template>
 	<view class="page" v-if="Object.keys(archivesInfo).length > 0">
-		<fa-navbar :title="' '" :borderBottom="false" :background="{ color: '#fff' }" :autoBack="true"
-			:is-back="true"></fa-navbar>
+		<fa-navbar :title="' '" backIconColor="#fff" :borderBottom="false" :background="{ color: '#fff' }"
+			:autoBack="true" :is-back="true"></fa-navbar>
 		<!-- 背景图片 -->
 		<view class="bg-image">
 			<view v-if="archivesInfo.bgvertical" class="bg-img" :class="{ 'bg-animate': isPlaying }"
@@ -94,6 +94,20 @@ export default {
 			this.checkCollection();
 		}
 	},
+	onShareAppMessage() {
+		return {
+			title: this.archivesInfo.title,
+			imageUrl: this.archivesInfo.image,
+			path: `/pages/course/sound-detail?id=${this.id}`
+		}
+	},
+	onShareTimeline() {
+		return {
+			title: this.archivesInfo.title,
+			imageUrl: this.archivesInfo.image,
+			path: `/pages/course/sound-detail?id=${this.id}`
+		}
+	},
 	onUnload() {
 		// 停止播放
 		this.isPlaying = false;
@@ -109,11 +123,8 @@ export default {
 		// #endif
 
 		// #ifdef MP-WEIXIN
-		if (typeof wx !== "undefined" && wx.createAudioContext) {
-			const audioContext = wx.createAudioContext(this.audioId, this);
-			if (audioContext) {
-				audioContext.stop();
-			}
+		if (this.audioContext) {
+			this.audioContext.stop();
 		}
 		// #endif
 
@@ -124,8 +135,7 @@ export default {
 		this.isDragging = false;
 	},
 	onShow() { },
-	computed: {
-	},
+	computed: {},
 	methods: {
 		// 播放控制
 		togglePlay() {
@@ -147,6 +157,11 @@ export default {
 		// 循环播放切换
 		toggleLoop() {
 			this.isLoop = !this.isLoop;
+			if (this.isLoop) {
+				this.audioContext.loop = true;
+			} else {
+				this.audioContext.loop = false;
+			}
 		},
 
 		// 静音切换
@@ -166,6 +181,7 @@ export default {
 
 			// #ifdef MP-WEIXIN
 			const audioContext = wx.createAudioContext(this.audioId, this);
+			this.audioContext = audioContext
 			if (audioContext) {
 				audioContext.volume = this.volume;
 			}
@@ -282,6 +298,7 @@ export default {
 				// #ifdef MP-WEIXIN
 				if (typeof wx !== "undefined" && wx.createAudioContext) {
 					const ctx = wx.createAudioContext(audio.id, this);
+					this.audioContext = ctx
 					ctx && ctx.pause && ctx.pause();
 				}
 				// #endif

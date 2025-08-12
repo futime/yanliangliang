@@ -93,6 +93,20 @@
 				this.checkCollection();
 			}
 		},
+		onShareAppMessage() {
+			return {
+				title: this.archivesInfo.title,
+				imageUrl: this.archivesInfo.image,
+				path: `/pages/course/detail?id=${this.id}`
+			}
+		},
+		onShareTimeline() {
+			return {
+				title: this.archivesInfo.title,
+				imageUrl: this.archivesInfo.image,
+				path: `/pages/course/detail?id=${this.id}`
+			}
+		},
 		onShow() {},
 		computed: {
 			trialtime() {
