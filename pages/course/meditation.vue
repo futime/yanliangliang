@@ -109,9 +109,15 @@
 				// 	})
 				// 	return
 				// }
+				if(item.videourl) {
+					uni.navigateTo({
+						url: `/pages/course/detail?id=${item.id}`
+					})
+					return
+				}
 				uni.navigateTo({
-					url: "/pages/course/sound-detail?id=" + item.id,
-				});
+					url: `/pages/course/sound-detail?id=${item.id}`
+				})
 			},
 			onReachBottom() {
 				if (!this.hasMore || this.loading) return;

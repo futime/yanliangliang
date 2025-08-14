@@ -3,11 +3,12 @@
 		<fa-navbar :title="archivesInfo.title" :borderBottom="false" :autoBack="true" title-color="#333" :is-back="true"
 			:placeholder="true"></fa-navbar>
 		<view class="detail-top">
-			<view class="detailImg">
+			<view class="detailImg" :style="{ height: isvertical == '1' ? '1080rpx' : '640rpx' }">
 				<!-- <image :src="staticurl('course/coursedetail_img.jpg')" mode="aspectFill"></image> -->
-				<sunny-video ref="VideoRef" title="" videoHeight="1080rpx" playImgHeight="120rpx" videoId="30"
-					:loop="true" :autoplay="false" :src="videoSrc" :tipText="tipText" btnText="成为会员免费观看"
-					:showMuteBtn="true" :poster="videoPoster" :trialTime="trialtime" :seekTime="0"></sunny-video>
+				<sunny-video ref="VideoRef" title="" :videoHeight="isvertical == '1' ? '1080rpx' : '640rpx'"
+					playImgHeight="120rpx" videoId="30" :loop="true" :autoplay="false" :src="videoSrc"
+					:tipText="tipText" btnText="成为会员免费观看" :showMuteBtn="true" :poster="videoPoster"
+					:trialTime="trialtime" :seekTime="0"></sunny-video>
 			</view>
 		</view>
 
@@ -83,6 +84,7 @@
 				archivesInfo: {},
 				isCollect: false,
 				id: null,
+				isvertical: 0
 			};
 		},
 		onLoad(opt) {
@@ -196,6 +198,7 @@
 				this.archivesInfo = res.data.archivesInfo;
 				this.videoSrc = res.data.archivesInfo.videourl;
 				this.videoPoster = res.data.archivesInfo.image;
+				this.isvertical = res.data.archivesInfo.isvertical
 			},
 
 
@@ -285,7 +288,6 @@
 
 	.detail-top {
 		.detailImg {
-			height: 1080rpx;
 
 			image {
 				width: 100%;

@@ -53,7 +53,7 @@
 				<view class="label">呼吸练习</view>
 			</view>
 		</view>
-		
+
 		<view class="pageContent" @click="handleClickNengliang" v-if="vuex_config.isEnergyKvHome == 1">
 			<view class="spaceLinkBox">
 				<view class="spaceDesc">
@@ -221,10 +221,10 @@
 			</view>
 
 		</view>
-		
-		
+
+
 		<view class="gapline"></view>
-		
+
 		<!---->
 		<view class="meditationList" v-if="channel4.channel.isnav == 1">
 			<view class="courseTitle" @click="handleClickMeditation(24)">
@@ -240,9 +240,9 @@
 					<u-icon :name="staticurl('course/morearrow.svg')" size="28"></u-icon>
 				</view>
 			</view>
-		
+
 			<view class="listWrap">
-				<view class="listInner" v-for="item in channel4.list" :key="item.id" @click="handleClickVideo(item)">
+				<view class="listInner" v-for="item in channel4.list" :key="item.id" @click="handleClickSound(item)">
 					<view class="image" v-if="channel4.channel.istag == 1">
 						<view class="innerTag viewtxt" v-if="item.isfree == 0">免费</view>
 						<view class="innerTag viewtxt" v-else-if="item.trialtime  > 0">试看</view>
@@ -269,7 +269,7 @@
 					</view>
 				</view>
 			</view>
-		
+
 		</view>
 
 		<view class="gapModular"></view>
@@ -520,29 +520,21 @@
 				})
 			},
 			handleClickDetail(id) {
-
-				// if(!this.vuex_token){
-				// 	uni.navigateTo({
-				// 		url: '/pages/login/login'
-				// 	})
-				// 	return
-				// }
-
 				uni.navigateTo({
 					url: `/pages/course/detail?id=${id}`
 				})
 			},
 			handleClickSound(item) {
-				// if(!this.vuex_token){
-				// 	uni.navigateTo({
-				// 		url: '/pages/login/login'
-				// 	})
-				// 	return
-				// }
-				if(item.videourl) {
-					uni.navigateTo({
-						url: `/pages/course/detail?id=${item.id}`
-					})
+				if (item.videourl) {
+					if (item.isvertical) {
+						uni.navigateTo({
+							url: `/pages/course/detail?id=${item.id}`
+						})
+					} else {
+						uni.navigateTo({
+							url: `/pages/course/detail?id=${item.id}`
+						})
+					}
 					return
 				}
 				uni.navigateTo({
@@ -550,14 +542,14 @@
 				})
 			},
 			handleClickVideo(item) {
-				// if(!this.vuex_token){
-				// 	uni.navigateTo({
-				// 		url: '/pages/login/login'
-				// 	})
-				// 	return
-				// }
+				if (item.videourl) {
+					uni.navigateTo({
+						url: `/pages/course/detail?id=${item.id}`
+					})
+					return
+				}
 				uni.navigateTo({
-					url: `/pages/course/detail?id=${item.id}`
+					url: `/pages/course/sound-detail?id=${item.id}`
 				})
 			},
 			//商城自带
@@ -749,7 +741,8 @@
 		border-radius: 24rpx;
 		padding: 30rpx 20rpx 0rpx 40rpx;
 		padding-top: 60rpx;
-		margin-bottom:20rpx;
+		margin-bottom: 20rpx;
+
 		.spaceDesc {
 			padding-bottom: 40rpx;
 
@@ -1029,7 +1022,7 @@
 		margin-top: -60px;
 		background: #fff;
 		padding-top: 60rpx;
-		
+
 		.menus-item {
 			flex: 1;
 			display: flex;
