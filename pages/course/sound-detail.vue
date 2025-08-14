@@ -290,6 +290,7 @@ export default {
 				console.log('onEnded')
 				this.currentTime = 0;
 				this.progressPercent = 0;
+				this.isPlaying = false;
 			})
 			this.audioContext.onError(() => {
 				console.log('onError')

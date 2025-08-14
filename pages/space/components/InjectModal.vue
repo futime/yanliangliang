@@ -133,6 +133,7 @@ export default {
             this.clickSound.autoplay = false; // 不自动播放
             this.clickSound.loop = false; // 不循环播放
             this.clickSound.volume = 0.8; // 设置音量为 80%
+			this.clickSound.sessionCategory = 'ambient'
         },
 
         initPromptSound() {
@@ -141,7 +142,7 @@ export default {
             this.promptSound.autoplay = false; // 不自动播放
             this.promptSound.loop = false; // 不循环播放
             this.promptSound.volume = 1; // 设置音量为 80%
-            this.backgroundMusic.volume = 0.2;
+			this.promptSound.sessionCategory = 'ambient'
         },
         open() {
             this.visible = true

@@ -5,7 +5,7 @@
 		<view class="detail-top">
 			<view class="detailImg">
 				<!-- <image :src="staticurl('course/coursedetail_img.jpg')" mode="aspectFill"></image> -->
-				<sunny-video ref="VideoRef" title="" videoHeight="1080rpx" playImgHeight="120rpx" :videoId="30"
+				<sunny-video ref="VideoRef" title="" videoHeight="1080rpx" playImgHeight="120rpx" videoId="30"
 					:loop="true" :autoplay="false" :src="videoSrc" :tipText="tipText" btnText="成为会员免费观看"
 					:showMuteBtn="true" :poster="videoPoster" :trialTime="trialtime" :seekTime="0"></sunny-video>
 			</view>
@@ -92,6 +92,12 @@
 				this.getUserIndex();
 				this.checkCollection();
 			}
+		},
+		onUnload() {
+			this.$refs.VideoRef && this.$refs.VideoRef.handelStop()
+		},
+		onHide() {
+			this.$refs.VideoRef && this.$refs.VideoRef.handelStop()
 		},
 		onShareAppMessage() {
 			return {

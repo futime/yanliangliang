@@ -467,7 +467,7 @@
 					// const selectedTrack = this.backgroundTracks[randomIndex];
 					// this.backgroundMusic.src = selectedTrack
 					this.backgroundMusic.play()
-					this.backgroundMusic.volume = 0.08;
+					this.backgroundMusic.volume = 0.05;
 					let form = {
 						map: this.selectBodyPoints,
 						body_image: this.positive == 'front' ? 1 : 2
@@ -478,7 +478,7 @@
 					this.$api.clickrecord(form)
 					setTimeout(() => {
 						this.$refs.InjectModal.open();
-						this.backgroundMusic.volume = 0.08;
+						this.backgroundMusic.volume = 0.05;
 					}, 2000)
 				} else {
 					setTimeout(() => {
@@ -514,6 +514,8 @@
 				this.showIcon = true
 
 				this.positive = 'front'
+				
+				this.backgroundMusic.volume = 1
 				this.initCanvasNew()
 				this.$forceUpdate()
 			}, 
@@ -567,6 +569,7 @@
 				this.backgroundMusic.autoplay = true; // 自动播放
 				this.backgroundMusic.loop = true; // 循环播放
 				this.backgroundMusic.volume = 0.5;
+				this.backgroundMusic.sessionCategory = 'ambient'
 			},
 			initClickSound() {
 				this.clickSound = uni.createInnerAudioContext();
@@ -574,6 +577,7 @@
 				this.clickSound.autoplay = false; // 不自动播放
 				this.clickSound.loop = false; // 不循环播放
 				this.clickSound.volume = 0.8; // 设置音量为 80%
+				this.clickSound.sessionCategory = 'ambient'
 			},
 			// 播放点击音效
 			playClickSound() {
