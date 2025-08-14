@@ -1,13 +1,7 @@
 <template>
   <view class="page">
-    <fa-navbar
-      title="呼吸练习"
-      :borderBottom="false"
-      :autoBack="true"
-      title-color="#fff"
-      :is-back="true"
-      :placeholder="true"
-    ></fa-navbar>
+	<fa-navbar title=" " fontSize="4px"  :autoBack="true" :background="{ color: 'transparent' }" title-color=""
+		:borderBottom="false" :placeholder="true" backIconColor="#fff" :is-back="true"></fa-navbar>
 
     <!-- 初始设置页面 -->
     <view v-if="currentStage === 'initial'" class="stage-container">

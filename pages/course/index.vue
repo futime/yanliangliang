@@ -347,25 +347,31 @@
 				})
 			},
 			handleClickSound(item) {
-				// if(!this.vuex_token){
-				// 	uni.navigateTo({
-				// 		url: '/pages/login/login'
-				// 	})
-				// 	return
-				// }
+				if (item.videourl) {
+					if (item.isvertical) {
+						uni.navigateTo({
+							url: `/pages/course/detail?id=${item.id}`
+						})
+					} else {
+						uni.navigateTo({
+							url: `/pages/course/detail?id=${item.id}`
+						})
+					}
+					return
+				}
 				uni.navigateTo({
 					url: `/pages/course/sound-detail?id=${item.id}`
 				})
 			},
-			handleClickVideo(id) {
-				// if(!this.vuex_token){
-				// 	uni.navigateTo({
-				// 		url: '/pages/login/login'
-				// 	})
-				// 	return
-				// }
+			handleClickVideo(item) {
+				if (item.videourl) {
+					uni.navigateTo({
+						url: `/pages/course/detail?id=${item.id}`
+					})
+					return
+				}
 				uni.navigateTo({
-					url: `/pages/course/detail?id=${id}`
+					url: `/pages/course/sound-detail?id=${item.id}`
 				})
 			},
 			//商城自带

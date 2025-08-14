@@ -103,16 +103,16 @@
 				this.loading = false;
 			},
 			handleClickSound(item) {
-				// if(!this.vuex_token){
-				// 	uni.navigateTo({
-				// 		url: '/pages/login/login'
-				// 	})
-				// 	return
-				// }
-				if(item.videourl) {
-					uni.navigateTo({
-						url: `/pages/course/detail?id=${item.id}`
-					})
+				if (item.videourl) {
+					if (item.isvertical) {
+						uni.navigateTo({
+							url: `/pages/course/detail?id=${item.id}`
+						})
+					} else {
+						uni.navigateTo({
+							url: `/pages/course/detail?id=${item.id}`
+						})
+					}
 					return
 				}
 				uni.navigateTo({
