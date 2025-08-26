@@ -401,6 +401,7 @@
 			}
 
 		}
+		
 	],
 	"subPackages": [{
 			"root": "pages/space",

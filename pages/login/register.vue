@@ -36,8 +36,9 @@
 			<view v-if="is_wx_phone && is_bind" class="" style="height: 150rpx;"></view>
 
 			<view class="u-p-t-30 u-text-center u-flex">
-				<u-checkbox :active-color="theme.bgColor" v-model="agreeChecked" name="agree">阅读并同意</u-checkbox>
-				<text class="u-font-30 agree" @click="goPage('/pages/my/agreement')" :style="[{ color: theme.bgColor }]">《用户协议》</text>
+				<u-checkbox :active-color="theme.bgColor" v-model="agreeChecked" name="agree"><text class="u-font-28">阅读并同意</text></u-checkbox>
+				<text class="u-font-28 agree" @click="goPage('/pages/page/page?diyname=agreement')" :style="[{ color: theme.bgColor }]">《用户协议》</text>
+				和<text class="u-font-28 privacypolicy" @click="goPage('/pages/page/page?diyname=privacypolicy')" :style="[{ color: theme.bgColor }]">《隐私政策协议》</text>
 			</view>
 
 			<view class="u-m-t-80" v-if="!is_wx_phone || !is_bind">
@@ -235,5 +236,8 @@ page {
 }
 .agree {
 	margin-left: -25rpx;
+}
+.privacypolicy {
+	margin-left: 0rpx;
 }
 </style>

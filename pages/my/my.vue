@@ -58,9 +58,11 @@
 			</view>
 			
 			<view class="memberMenu">
-				<u-cell-group :border="false"><u-cell-item :icon="staticurl('common/myordershop_icon.svg')" icon-size="48" title="我的订单" :border-bottom="false" v-if="vuex_config.isOrderMenu == 1" @click="handleClickOrder"></u-cell-item>
+				<u-cell-group :border="false"><u-cell-item :icon="staticurl('common/myordershop_icon.svg')" icon-size="48" title="我的商品订单" :border-bottom="false" v-if="vuex_config.isOrderMenu == 1" @click="handleClickOrder"></u-cell-item>
 					<u-cell-item :icon="staticurl('common/myorder_icon.svg')" icon-size="48" :title="vuex_config.vipPromptMenuTxt || 'VIP订单记录'" :border-bottom="false" v-if="vuex_config.isVipOrderMenu == 1" @click="handleClickVipOrder"></u-cell-item>
+					<!-- #ifdef MP-WEIXIN -->
 					<u-cell-item :icon="staticurl('common/pointsmall_icon.svg')" icon-size="48" title="积分商城" :border-bottom="false" v-if="vuex_config.isVipExchangeMenu == 1" @click="handleClickExchange"></u-cell-item>
+					<!-- #endif -->
 					<u-cell-item :icon="item.img" icon-size="48" :title="item.label" :border-bottom="false" v-for="item in list" :key="item.id" 
 					@click="handleClickItem(item)">
 					</u-cell-item>
@@ -72,7 +74,9 @@
 		</view>
 		
 		<!-- 小程序在线客服 -->
+		<!-- #ifdef MP-WEIXIN -->
 		<button class="wechatKfLink" open-type="contact"></button>
+		<!-- #endif -->
 		<fa-tabbar></fa-tabbar>
 		<!-- <faTabbarVue :active="'my'"></faTabbarVue> -->
 	</view>
