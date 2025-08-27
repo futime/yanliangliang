@@ -348,7 +348,7 @@
 			this.backgroundMusic && this.backgroundMusic.destroy()
 		},
 		onReady() {
-			this.getinject(this.userid || this.vuex_user.id)
+			this.getinject(this.userid || '')
 			this.initClickSound()
 			this.initBackgroundAudioSound()
 			this.startSlowIncrease();
