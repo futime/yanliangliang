@@ -67,6 +67,7 @@
 					@click="handleClickItem(item)">
 					</u-cell-item>
 					
+					
 					<u-cell-item :icon="staticurl('common/loginout_icon.svg')" icon-size="48" title="退出登录" :border-bottom="false" v-if="vuex_token" @click="goPage('out')"></u-cell-item>
 				</u-cell-group>
 			</view>
@@ -102,14 +103,24 @@
 					},
 					// #endif
 					{
-						img: this.staticurl('common/document_icon.svg'),
-						label: '隐私条款政策',
+						img: this.staticurl('common/address_icon.svg'),
+						label: '收货地址',
 						id: 1
 					},
 					{
-						img: this.staticurl('common/address_icon.svg'),
-						label: '收货地址',
+						img: this.staticurl('common/faq_icon.svg'),
+						label: '常见问题',
 						id: 2
+					},
+					{
+						img: this.staticurl('common/document_icon.svg'),
+						label: '隐私条款政策',
+						id: 3
+					},
+					{
+						img: this.staticurl('common/customerservice.svg'),
+						label: '平台客服',
+						id: 4
 					}
 				],
 				scrollTop: 0
@@ -141,11 +152,6 @@
 						break;
 					
 					case 1:
-						uni.navigateTo({
-							url: '/pages/page/page?diyname=privacypolicy'
-						})
-						break;
-					case 2:
 						if(!this.vuex_token) {
 							uni.navigateTo({
 								url: '/pages/login/login'
@@ -156,6 +162,21 @@
 							url: '/pages/address/address'
 						})
 						break;	
+					case 2:
+						uni.navigateTo({
+							url: '/pages/page/page?diyname=faq'
+						})
+						break;
+					case 3:
+						uni.navigateTo({
+							url: '/pages/page/page?diyname=privacypolicy'
+						})
+						break;
+					case 4:
+						uni.navigateTo({
+							url: '/pages/page/page?diyname=customerservice'
+						})
+						break;
 				}
 			},
 			handleClickBuyVip() {
