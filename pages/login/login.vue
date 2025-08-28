@@ -14,12 +14,14 @@
 		</view>
 		
 		
-		<view class="wrapTitleBox">
-			<view class="pageTitle">
-				{{ vuex_config.loginPageTitle || '欢迎登录疼点典'}}
-			</view>
-			<view class="pageSubTitle">
-				<u-parse :html="vuex_config.loginPageSubTitle || '感受自然能量 每日放松冥想<br>专注呼吸感知身心元炁，补炁养神'"></u-parse>
+		<view class="content-wrapper">
+			<view class="wrapTitleBox">
+				<view class="pageTitle">
+					{{ vuex_config.loginPageTitle || '欢迎登录疼点典'}}
+				</view>
+				<view class="pageSubTitle">
+					<u-parse :html="vuex_config.loginPageSubTitle || '感受自然能量 每日放松冥想<br>专注呼吸感知身心元炁，补炁养神'"></u-parse>
+				</view>
 			</view>
 		</view>
 			
@@ -174,45 +176,71 @@
 		}
 	}
 	
+	.content-wrapper {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding: 0 60rpx;
+		padding-top: 120rpx;
+		padding-bottom: 200rpx;
+	}
+
 	.wrapTitleBox{
-		padding:240rpx 80rpx 160rpx 80rpx;
+		text-align: center;
+		padding: 40rpx 0;
+		background: rgba(255, 255, 255, 0.05);
+		border-radius: 32rpx;
+		backdrop-filter: blur(20rpx);
+		border: 1rpx solid rgba(255, 255, 255, 0.1);
+		box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.1);
+		width: 100%;
+		max-width: 600rpx;
 	}
 	
 	.pageTitle {
 		color: rgb(255, 255, 255);
-		font-size: 64rpx;
-		font-weight: 500;
-		line-height: 80rpx;
+		font-size: 48rpx;
+		font-weight: 600;
+		line-height: 64rpx;
 		letter-spacing: 2rpx;
 		position: relative;
-		margin-bottom:140rpx;
+		margin-bottom: 32rpx;
 		text-align: center;
 		overflow: hidden;
+		text-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.3);
+		padding: 0 40rpx;
 	}
 	
 	.pageSubTitle{
-		color:#fff;
-		font-size: 36rpx;
-		line-height: 64rpx;
-		font-weight: 500;
-		letter-spacing: 1px;
+		color: rgba(255, 255, 255, 0.9);
+		font-size: 28rpx;
+		line-height: 44rpx;
+		font-weight: 400;
+		letter-spacing: 1rpx;
 		text-align: center;
 		overflow: hidden;
+		padding: 0 40rpx;
+		text-shadow: 0 1rpx 4rpx rgba(0, 0, 0, 0.2);
 	}
 	
 	.btnGroup {
 	    width: 100%;
-	    position: absolute;
-	    bottom: 20vh;
+	    position: fixed;
+	    bottom: 8vh;
+	    left: 0;
+	    right: 0;
 	    display: flex;
 	    justify-content: center;
 	    flex-direction: column;
 	    align-items: center;
+		padding: 0 60rpx;
+		z-index: 10;
 	}
 	
 	.loginBtn {
 		width: 70%;
-		margin-top: 100rpx;
+		margin-top: 0rpx;
 		color:#fff;
 		font-size:42rpx;
 		display: flex;

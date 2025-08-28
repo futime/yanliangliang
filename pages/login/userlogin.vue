@@ -15,7 +15,14 @@
 					</u-form>
 				</view>
 			</view>
-
+			<view class="u-p-t-30 u-text-center u-flex u-flex-wrap">
+				<u-checkbox :active-color="theme.bgColor" v-model="agreeChecked" name="agree"><text
+						class="u-font-28">阅读并同意</text></u-checkbox>
+				<text class="u-font-28 agree" @click="goPage('/pages/page/page?diyname=agreement')"
+					:style="[{ color: theme.bgColor }]">《用户协议》</text>
+				和<text class="u-font-28 privacypolicy" @click="goPage('/pages/page/page?diyname=privacypolicy')"
+					:style="[{ color: theme.bgColor }]">《隐私政策协议》</text>
+			</view>
 			<view class="u-m-t-80">
 				<u-button type="primary" hover-class="none" :custom-style="{ backgroundColor: theme.bgColor, color: theme.color }" shape="circle" @click="goLogin">
 					登录
@@ -43,13 +50,19 @@
 			</view>
 
 		</view>
+		<AgreementModal ref="AgreementModal" @confirm="onAgreementConfirm"></AgreementModal>
 	</view>
 </template>
 
 <script>
+	import AgreementModal from '@/components/AgreementModal.vue'
+	
 	import { loginfunc } from '@/common/fa.mixin.js';
 	export default {
 		mixins: [loginfunc],
+		components: {
+			AgreementModal
+		},
 		onLoad() {
 			// #ifdef MP-WEIXIN || APP-PLUS
 			this.isThreeLogin = true;
@@ -69,6 +82,7 @@
 		},
 		data() {
 			return {
+				agreeChecked: false,
 				labelPosition: 'top',
 				border: false,
 				errorType: ['message'],
@@ -89,11 +103,26 @@
 						trigger: 'change'
 					}]
 				},
-				isThreeLogin: false
+				isThreeLogin: false,
+				type: 2
 			};
 		},
 		methods: {
+			// 用户同意协议后的处理
+			onAgreementConfirm() {
+				this.agreeChecked = true
+				if(this.type == 1) {
+					this.goThreeLogin()
+				}else {
+					this.goLogin()
+				}
+			},
 			goThreeLogin: async function() {
+				if(!this.agreeChecked) {
+					this.$refs.AgreementModal.open()
+					this.type = 1
+					return
+				}
 				// #ifdef MP-WEIXIN
 				this.goMpLogin();
 				// #endif
@@ -109,6 +138,13 @@
 			goLogin: function() {
 				this.$refs.uForm.validate(async valid => {
 					if (valid) {
+						
+						if(!this.agreeChecked) {
+							this.$refs.AgreementModal.open()
+							this.type = 2
+							return
+						}
+						
 						if (this.vuex_wx_uid) {
 							this.form.wx_user_id = this.vuex_wx_uid;
 						}
@@ -134,7 +170,7 @@
 	}
 
 	.login {
-		padding: 80rpx 100rpx 0 100rpx;
+		padding: 80rpx 60rpx 0 60rpx;
 	}
 	
 	.mobileLoginBtn{
