@@ -33,26 +33,13 @@
 					:style="[{ color: theme.bgColor }]">《隐私政策》</text>
 			</view>
 			<view class="u-m-t-80">
-<<<<<<< HEAD
-				<u-button type="primary" hover-class="none"
-					:custom-style="{ backgroundColor: theme.bgColor, color: theme.color }" shape="circle"
-					@click="goLogin">
-=======
 				<u-button type="primary" hover-class="none" :custom-style="{ backgroundColor: theme.bgColor, color: theme.color }" @click="goLogin">
->>>>>>> f32f63843e44b7bd9ad9802ce484549d89d88d4d
 					登录
 				</u-button>
 			</view>
 
-<<<<<<< HEAD
-			<view class="u-m-t-40 mobileLoginBtn" v-if="checkLogintype('mobile') || checkLogintype('wechatmobile')">
-				<u-button type="success" shape="circle"
-					:custom-style="{ background: 'none', width: '100%', height: '100%', color: '#12A89D'}"
-					@click="goPage('/pages/login/mobilelogin')">
-=======
 			<!-- <view class="u-m-t-40 mobileLoginBtn" v-if="checkLogintype('mobile') || checkLogintype('wechatmobile')">
 				<u-button type="success" :custom-style="{ background: 'none', width: '100%', height: '100%', color: '#12A89D'}" @click="goPage('/pages/login/mobilelogin')">
->>>>>>> f32f63843e44b7bd9ad9802ce484549d89d88d4d
 					使用手机验证码登录
 				</u-button>
 			</view> -->
@@ -188,12 +175,6 @@
 	.login {
 		padding: 80rpx 60rpx 0 60rpx;
 	}
-<<<<<<< HEAD
-
-	.mobileLoginBtn {
-		border: 2px solid #12A89D;
-		border-radius: 30px;
-=======
 	
 	.mobileLoginBtn{
 		border:2px solid #12A89D;
@@ -224,7 +205,6 @@
 	
 	.regisiter-agreement .color-base-text{
 		color:#000;
->>>>>>> f32f63843e44b7bd9ad9802ce484549d89d88d4d
 	}
 
 	.other {

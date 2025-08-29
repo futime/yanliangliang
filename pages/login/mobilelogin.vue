@@ -95,7 +95,6 @@
 				});
 			}
 		},
-<<<<<<< HEAD
 		// 必须要在onReady生命周期，因为onLoad生命周期组件可能尚未创建完毕
 		onReady() {
 			if (this.checkLogintype('mobile')) {
@@ -147,18 +146,6 @@
 				if (!this.$u.test.mobile(this.form.mobile)) {
 					this.$u.toast('手机号码格式不正确！');
 					return;
-=======
-		goLogin: function () {
-			this.$refs.uForm.validate(async valid => {
-				if (valid) {
-					if(!this.agreeChecked) {
-						this.$refs.AgreementModal.open()
-						return
-					}
-					this.doLogin()
-				} else {
-					this.$u.toast('请输入登录手机号信息');
->>>>>>> f32f63843e44b7bd9ad9802ce484549d89d88d4d
 				}
 				if (this.$refs.uCode.canGetCode) {
 					let res = await this.$api.getSmsSend({
@@ -189,7 +176,6 @@
 				// #endif
 			},
 			goLogin: function() {
-
 				if (!this.agreeChecked) {
 					this.$refs.AgreementModal.open()
 					return
@@ -313,15 +299,6 @@
 		font-weight: bold;
 	}
 
-<<<<<<< HEAD
-	.uni-input-placeholder {
-		padding-left: 0px;
-	}
-
-	/deep/ .u-checkbox__label {
-		margin-right: 0px;
-	}
-=======
 .uni-input-placeholder {
 	padding-left: 0px;
 }
@@ -329,5 +306,4 @@
 /deep/ .u-checkbox__label{
 	margin-right:0px;
 }
->>>>>>> f32f63843e44b7bd9ad9802ce484549d89d88d4d
 </style>
