@@ -37,7 +37,7 @@
 				<!-- #ifdef H5 || APP-PLUS -->
 				<view v-if="checkLogintype('mobile') || checkLogintype('wechatmobile')">
 					<u-button hover-class="none" open-type="getPhoneNumber" text="立即登录" type="primary" 
-					:custom-style="{ backgroundColor: '#12A89D', width: '100%', height: '100%', color: '#fff'}" shape="circle" 
+					:custom-style="{ backgroundColor: '#12A89D', width: '100%', height: '100%', color: '#fff'}" 
 					@click="goPage('/pages/login/mobilelogin')">
 						手机号验证登录
 					</u-button>
@@ -47,7 +47,7 @@
 			<!-- #ifdef H5 || APP-PLUS -->
 			<view class="userLoginBtn">
 				<view v-if="checkLogintype('account')">
-					<u-button type="primary" hover-class="none" :custom-style="{ background: 'none', width: '100%', height: '100%', color: '#fff'}" shape="circle" 
+					<u-button type="primary" hover-class="none" :custom-style="{ background: 'none', width: '100%', height: '100%', color: '#fff'}" 
 					 @click="goPage('/pages/login/userlogin')">
 						使用账号密码登录
 					</u-button>
@@ -229,7 +229,7 @@
 	}
 	
 	.loginBtn {
-		width: 70%;
+		width: 80%;
 		margin-top: 0rpx;
 		color:#fff;
 		font-size:42rpx;
@@ -237,11 +237,11 @@
 		justify-content: center;
 		background: #12A89D;
 		padding:16rpx 30rpx;
-		border-radius: 60rpx;
+		border-radius:12rpx;
 	}
 	
 	.userLoginBtn{
-		width: 70%;
+		width: 80%;
 		margin-top: 40rpx;
 		color:#fff;
 		font-size:36rpx;
@@ -250,7 +250,7 @@
 		background: none;
 		border:1px solid #fff;
 		padding:12rpx 30rpx;
-		border-radius: 60rpx;
+		border-radius: 12rpx;
 	}
 	
 	/deep/ .u-size-default{

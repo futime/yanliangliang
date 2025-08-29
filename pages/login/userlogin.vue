@@ -217,4 +217,12 @@
 	/deep/ .u-checkbox__label{
 		margin-right:0px;
 	}
+	
+	/deep/ .u-size-default {
+		font-size: 18px;
+		height: 56px;
+		line-height: 56px;
+	}
+	
+	
 </style>

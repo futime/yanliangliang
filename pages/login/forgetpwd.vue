@@ -155,6 +155,6 @@ page {
 	background-color: #ffffff;
 }
 .login {
-	padding: 20% 15%;
+	padding: 20% 8%;
 }
 </style>

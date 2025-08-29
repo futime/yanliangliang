@@ -6,6 +6,15 @@
 		<!-- 顶部导航 -->
 		<fa-navbar title="手机号验证登录"></fa-navbar>
 		<view class="login">
+			
+			
+			<view class="header-wrap">
+				<view class="title">手机号验证登录</view>
+				<view class="regisiter-agreement">
+					<text class="color-tip">还没有账号,</text>
+					<text class="color-base-text" @click="goPage('/pages/login/register')">立即注册</text>
+				</view>
+			</view>
 			<view v-if="checkLogintype('mobile')">
 				<view class="">
 					<u-form :model="form" :rules="rules" ref="uForm" :errorType="errorType">
@@ -34,7 +43,7 @@
 				</view>
 				<view class="u-m-t-80 loginBtn">
 					<u-button hover-class="none" type="primary"
-						:custom-style="{ backgroundColor: theme.bgColor, color: theme.color }" shape="circle"
+						:custom-style="{ backgroundColor: theme.bgColor, color: theme.color }" 
 						@click="goLogin">登录</u-button>
 				</view>
 			</view>
@@ -47,18 +56,20 @@
 			</view> -->
 			<!-- #endif -->
 
-			<!-- <view class="u-text-center u-m-t-40" v-if="checkLogintype('account')">
-				<u-button hover-class="none" type="warning" shape="circle" @click="goPage('/pages/login/login')">用户名登录</u-button>
-			</view> -->
+			<view class="u-flex u-row-between u-tips-color u-m-t-10 u-p-20" v-if="checkLogintype('account')">
+				<view></view>
+				<view @click="goPage('/pages/login/userlogin')">用户名密码登录</view>
+			</view>
 
-			<!-- <view class="u-text-center other" v-if="isThreeLogin && checkLogintype('wechat')">
+			<view class="u-text-center other" v-if="isThreeLogin && checkLogintype('wechat')">
 				<u-grid :col="1" :border="false">
 					<u-grid-item @click="goThreeLogin">
 						<u-icon name="weixin-fill" color="#53c240" :size="50"></u-icon>
 						<view class="grid-text">微信登录</view>
 					</u-grid-item>
 				</u-grid>
-			</view> -->
+			</view>
+			
 		</view>
 		<u-verification-code seconds="60" ref="uCode" @change="codeChange"></u-verification-code>
 		<u-toast ref="uToast" />
@@ -242,7 +253,33 @@
 	}
 
 	.login {
-		padding: 360rpx 60rpx 0 60rpx;
+		padding: 80rpx 60rpx 0 60rpx;
+	}
+	
+	
+	/*大标题*/
+	.header-wrap {
+		width: 80%;
+		margin-top:40px;
+		background-repeat: no-repeat;
+		background-size: contain;
+		background-position: bottom;
+		position: relative;
+	
+	}
+	.header-wrap .title {
+		font-size: 60rpx;
+		font-weight: bold;
+	}
+	
+	.regisiter-agreement {
+		margin-top: 20rpx;
+		color: #838383;
+		line-height: 40rpx;
+	}
+	
+	.regisiter-agreement .color-base-text{
+		color:#000;
 	}
 
 	.other {
@@ -265,7 +302,7 @@
 	}
 
 	.u-form {
-		margin-top: -10vh;
+		margin-top: 5vh;
 	}
 
 	.u-form-item--left__content__label {
@@ -299,11 +336,21 @@
 		font-weight: bold;
 	}
 
-.uni-input-placeholder {
-	padding-left: 0px;
-}
+	.uni-input-placeholder {
+		padding-left: 0px;
+	}
 
-/deep/ .u-checkbox__label{
-	margin-right:0px;
-}
+	/deep/ .u-checkbox__label{
+		margin-right:0px;
+	}
+	
+	/deep/ .u-btn--primary{
+	    background: #ff8100 !important;
+	}
+
+	/deep/ .u-size-default {
+		font-size: 18px;
+		height: 56px;
+		line-height: 56px;
+	}
 </style>

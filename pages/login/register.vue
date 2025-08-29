@@ -1,8 +1,16 @@
 <template>
 	<view class="">
 		<!-- 顶部导航 -->
-		<fa-navbar :title="is_bind ? '创建或绑定账号' : '注册疼点典账号'"></fa-navbar>
+		<fa-navbar :title="is_bind ? '创建或绑定账号' : '注册账号'"></fa-navbar>
 		<view class="login">
+			<view class="header-wrap" v-if="!is_wx_phone || !is_bind">
+				<view class="title">注册疼点典账号</view>
+				<view class="regisiter-agreement">
+					<text class="color-tip">已有账号,</text>
+					<text class="color-base-text" @click="goPage('/pages/login/login')">立即登录</text>
+				</view>
+			</view>
+			
 			<view class="u-text-center" v-if="is_bind"><u-avatar :size="150" :src="vuex_third.avatar"></u-avatar></view>
 			<view class="u-text-center u-p-t-20" v-if="is_bind">{{ vuex_third.nickname }}</view>
 			<view class="u-m-t-30" v-if="!is_wx_phone || !is_bind">
@@ -42,8 +50,7 @@
 
 			<view class="u-m-t-80" v-if="!is_wx_phone || !is_bind">
 				<u-button hover-class="none" type="primary"
-					:custom-style="{ backgroundColor: theme.bgColor, color: theme.color }" shape="circle"
-					@click="register">
+					:custom-style="{ backgroundColor: theme.bgColor, color: theme.color }" @click="register">
 					{{ is_bind ? '立即绑定' : '注册' }}
 				</u-button>
 			</view>
@@ -51,7 +58,7 @@
 			<!-- #ifdef MP-WEIXIN -->
 			<view class="u-m-t-60" v-if="is_bind && is_wx_phone">
 				<u-button hover-class="none" open-type="getPhoneNumber" type="primary"
-					:custom-style="{ backgroundColor: theme.bgColor, color: theme.color }" shape="circle"
+					:custom-style="{ backgroundColor: theme.bgColor, color: theme.color }"
 					@getphonenumber="getPhoneNumber">
 					手机号快捷绑定
 				</u-button>
@@ -232,8 +239,41 @@
 	}
 
 	.login {
-		padding: 20% 20px;
+		padding: 80rpx 60rpx;
 	}
+	
+	/*大标题*/
+	.header-wrap {
+		width: 80%;
+		margin-top:40px;
+		background-repeat: no-repeat;
+		background-size: contain;
+		background-position: bottom;
+		position: relative;
+	
+	}
+	.header-wrap .title {
+		font-size: 60rpx;
+		font-weight: bold;
+	}
+	
+	.regisiter-agreement {
+		margin-top: 20rpx;
+		color: #838383;
+		line-height: 40rpx;
+	}
+	
+	.regisiter-agreement .color-base-text{
+		color:#000;
+	}
+	
+	
+	/deep/ .u-size-default {
+		font-size: 18px;
+		height: 56px;
+		line-height: 56px;
+	}
+
 
 	.agree {
 		margin-left: -25rpx;
