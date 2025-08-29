@@ -26,11 +26,11 @@
 				</view>
 				<view class="u-p-t-30 u-text-center u-flex">
 					<u-checkbox :active-color="theme.bgColor" v-model="agreeChecked" name="agree"><text
-							class="u-font-28">阅读并同意</text></u-checkbox>
+							class="u-font-28">我已阅读并同意</text></u-checkbox>
 					<text class="u-font-28 agree" @click="goPage('/pages/page/page?diyname=agreement')"
 						:style="[{ color: theme.bgColor }]">《用户协议》</text>
 					和<text class="u-font-28 privacypolicy" @click="goPage('/pages/page/page?diyname=privacypolicy')"
-						:style="[{ color: theme.bgColor }]">《隐私政策协议》</text>
+						:style="[{ color: theme.bgColor }]">《隐私政策》</text>
 				</view>
 				<view class="u-m-t-80 loginBtn">
 					<u-button hover-class="none" type="primary"
@@ -179,7 +179,7 @@ export default {
 					}
 					this.doLogin()
 				} else {
-					this.$u.toast('验证失败');
+					this.$u.toast('请输入登录手机号信息');
 				}
 			});
 		},
@@ -296,5 +296,9 @@ page {
 
 .uni-input-placeholder {
 	padding-left: 0px;
+}
+
+/deep/ .u-checkbox__label{
+	margin-right:0px;
 }
 </style>

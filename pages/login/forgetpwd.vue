@@ -1,7 +1,7 @@
 <template>
 	<view class="">
 		<!-- 顶部导航 -->
-		<fa-navbar title="忘记密码"></fa-navbar>
+		<fa-navbar title="忘记登录密码"></fa-navbar>
 		<view class="login">
 			<view class="u-text-center"><u-avatar :size="150"></u-avatar></view>
 			<view class="u-m-t-50">

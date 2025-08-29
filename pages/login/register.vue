@@ -1,7 +1,7 @@
 <template>
 	<view class="">
 		<!-- 顶部导航 -->
-		<fa-navbar :title="is_bind ? '创建或绑定账号' : '注册'"></fa-navbar>
+		<fa-navbar :title="is_bind ? '创建或绑定账号' : '注册疼点典账号'"></fa-navbar>
 		<view class="login">
 			<view class="u-text-center" v-if="is_bind"><u-avatar :size="150" :src="vuex_third.avatar"></u-avatar></view>
 			<view class="u-text-center u-p-t-20" v-if="is_bind">{{ vuex_third.nickname }}</view>
@@ -194,7 +194,7 @@
 						}
 						this.is_bind ? this.goBind() : this.goReg();
 					} else {
-						this.$u.toast('验证失败');
+						this.$u.toast('请输入注册信息');
 					}
 				});
 			},
