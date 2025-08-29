@@ -159,7 +159,6 @@
 			// 用户同意协议后的处理
 			onAgreementConfirm() {
 				this.agreeChecked = true
-				this.register()
 			},
 			codeChange(text) {
 				this.codeTips = text;
@@ -186,12 +185,12 @@
 				}
 			},
 			register() {
+				if (!this.agreeChecked) {
+					this.$refs.AgreementModal.open()
+					return;
+				}
 				this.$refs.uForm.validate(valid => {
 					if (valid) {
-						if (!this.agreeChecked) {
-							this.$refs.AgreementModal.open()
-							return;
-						}
 						this.is_bind ? this.goBind() : this.goReg();
 					} else {
 						this.$u.toast('验证失败');

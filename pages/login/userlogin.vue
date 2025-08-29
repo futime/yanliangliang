@@ -6,11 +6,14 @@
 			<view v-if="checkLogintype('account')">
 				<view class="u-m-t-50">
 					<u-form :model="form" :rules="rules" ref="uForm" :errorType="errorType">
-						<u-form-item :label-position="labelPosition" label="账号:" prop="account" left-icon="account" label-width="120">
+						<u-form-item :label-position="labelPosition" label="账号:" prop="account" left-icon="account"
+							label-width="120">
 							<u-input :border="border" placeholder="邮箱/手机/用户名" v-model="form.account" />
 						</u-form-item>
-						<u-form-item :label-position="labelPosition" label="密码:" prop="password" left-icon="lock" label-width="120" v-if="!border">
-							<u-input :password-icon="true" :border="border" type="password" v-model="form.password" placeholder="请输入密码"></u-input>
+						<u-form-item :label-position="labelPosition" label="密码:" prop="password" left-icon="lock"
+							label-width="120" v-if="!border">
+							<u-input :password-icon="true" :border="border" type="password" v-model="form.password"
+								placeholder="请输入密码"></u-input>
 						</u-form-item>
 					</u-form>
 				</view>
@@ -24,13 +27,17 @@
 					:style="[{ color: theme.bgColor }]">《隐私政策协议》</text>
 			</view>
 			<view class="u-m-t-80">
-				<u-button type="primary" hover-class="none" :custom-style="{ backgroundColor: theme.bgColor, color: theme.color }" shape="circle" @click="goLogin">
+				<u-button type="primary" hover-class="none"
+					:custom-style="{ backgroundColor: theme.bgColor, color: theme.color }" shape="circle"
+					@click="goLogin">
 					登录
 				</u-button>
 			</view>
 
 			<view class="u-m-t-40 mobileLoginBtn" v-if="checkLogintype('mobile') || checkLogintype('wechatmobile')">
-				<u-button type="success" shape="circle"  :custom-style="{ background: 'none', width: '100%', height: '100%', color: '#12A89D'}" @click="goPage('/pages/login/mobilelogin')">
+				<u-button type="success" shape="circle"
+					:custom-style="{ background: 'none', width: '100%', height: '100%', color: '#12A89D'}"
+					@click="goPage('/pages/login/mobilelogin')">
 					使用手机验证码登录
 				</u-button>
 			</view>
@@ -56,8 +63,10 @@
 
 <script>
 	import AgreementModal from '@/components/AgreementModal.vue'
-	
-	import { loginfunc } from '@/common/fa.mixin.js';
+
+	import {
+		loginfunc
+	} from '@/common/fa.mixin.js';
 	export default {
 		mixins: [loginfunc],
 		components: {
@@ -111,16 +120,10 @@
 			// 用户同意协议后的处理
 			onAgreementConfirm() {
 				this.agreeChecked = true
-				if(this.type == 1) {
-					this.goThreeLogin()
-				}else {
-					this.goLogin()
-				}
 			},
 			goThreeLogin: async function() {
-				if(!this.agreeChecked) {
+				if (!this.agreeChecked) {
 					this.$refs.AgreementModal.open()
-					this.type = 1
 					return
 				}
 				// #ifdef MP-WEIXIN
@@ -136,15 +139,13 @@
 				// #endif
 			},
 			goLogin: function() {
+				if (!this.agreeChecked) {
+					this.$refs.AgreementModal.open()
+					return
+				}
 				this.$refs.uForm.validate(async valid => {
 					if (valid) {
-						
-						if(!this.agreeChecked) {
-							this.$refs.AgreementModal.open()
-							this.type = 2
-							return
-						}
-						
+
 						if (this.vuex_wx_uid) {
 							this.form.wx_user_id = this.vuex_wx_uid;
 						}
@@ -172,9 +173,9 @@
 	.login {
 		padding: 80rpx 60rpx 0 60rpx;
 	}
-	
-	.mobileLoginBtn{
-		border:2px solid #12A89D;
+
+	.mobileLoginBtn {
+		border: 2px solid #12A89D;
 		border-radius: 30px;
 	}
 
