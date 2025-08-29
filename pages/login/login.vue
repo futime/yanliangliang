@@ -53,8 +53,8 @@
 					</u-button>
 				</view>
 			</view>
-			<view class="u-flex u-row-between u-tips-color u-m-t-40 u-p-20 u-font-xl" v-if="checkLogintype('account')">
-				<view @click="goPage('/pages/login/register')">注册新账号</view>
+			<view class="u-flex u-row-between u-tips-color u-m-t-40 u-p-20 u-font-lg" v-if="checkLogintype('account')">
+				<view @click="goPage('/pages/login/register')">我还没有账号，立即注册</view>
 			</view>
 			<!-- #endif -->
 		</view>
@@ -177,50 +177,40 @@
 	}
 	
 	.content-wrapper {
-		flex: 1;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		padding: 0 60rpx;
-		padding-top: 120rpx;
-		padding-bottom: 200rpx;
+		// flex: 1;
+		// display: flex;
+		// flex-direction: column;
+		// align-items: center;
+		// padding: 0 60rpx;
+		// padding-top: 120rpx;
+		// padding-bottom: 200rpx;
 	}
 
 	.wrapTitleBox{
-		text-align: center;
-		padding: 40rpx 0;
-		background: rgba(255, 255, 255, 0.05);
-		border-radius: 32rpx;
-		backdrop-filter: blur(20rpx);
-		border: 1rpx solid rgba(255, 255, 255, 0.1);
-		box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.1);
-		width: 100%;
-		max-width: 600rpx;
+		padding:240rpx 80rpx 160rpx 80rpx;
 	}
 	
 	.pageTitle {
 		color: rgb(255, 255, 255);
-		font-size: 48rpx;
-		font-weight: 600;
-		line-height: 64rpx;
+		font-size: 64rpx;
+		font-weight: 500;
+		line-height: 80rpx;
 		letter-spacing: 2rpx;
 		position: relative;
 		margin-bottom: 32rpx;
 		text-align: center;
 		overflow: hidden;
 		text-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.3);
-		padding: 0 40rpx;
 	}
 	
 	.pageSubTitle{
-		color: rgba(255, 255, 255, 0.9);
-		font-size: 28rpx;
-		line-height: 44rpx;
-		font-weight: 400;
-		letter-spacing: 1rpx;
+		color:#fff;
+		font-size: 36rpx;
+		line-height: 64rpx;
+		font-weight: 500;
+		letter-spacing: 1px;
 		text-align: center;
 		overflow: hidden;
-		padding: 0 40rpx;
 		text-shadow: 0 1rpx 4rpx rgba(0, 0, 0, 0.2);
 	}
 	

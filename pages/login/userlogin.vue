@@ -1,8 +1,15 @@
 <template>
 	<view class="">
 		<!-- 顶部导航 -->
-		<fa-navbar title="登录"></fa-navbar>
+		<fa-navbar title="疼点典用户登录"></fa-navbar>
 		<view class="login">
+			<view class="header-wrap">
+				<view class="title">账号</view>
+				<view class="regisiter-agreement">
+					<text class="color-tip">还没有账号,</text>
+					<text class="color-base-text" @click="goPage('/pages/login/register')">立即注册</text>
+				</view>
+			</view>
 			<view v-if="checkLogintype('account')">
 				<view class="u-m-t-50">
 					<u-form :model="form" :rules="rules" ref="uForm" :errorType="errorType">
@@ -19,32 +26,40 @@
 				</view>
 			</view>
 			<view class="u-p-t-30 u-text-center u-flex u-flex-wrap">
-				<u-checkbox :active-color="theme.bgColor" v-model="agreeChecked" name="agree"><text
-						class="u-font-28">阅读并同意</text></u-checkbox>
-				<text class="u-font-28 agree" @click="goPage('/pages/page/page?diyname=agreement')"
-					:style="[{ color: theme.bgColor }]">《用户协议》</text>
+				<u-checkbox :active-color="theme.bgColor" v-model="agreeChecked" name="agree">
+					<text class="u-font-28">我已阅读并同意</text></u-checkbox>
+						<text class="u-font-28 agree" @click="goPage('/pages/page/page?diyname=agreement')" :style="[{ color: theme.bgColor }]">《用户协议》</text>
 				和<text class="u-font-28 privacypolicy" @click="goPage('/pages/page/page?diyname=privacypolicy')"
-					:style="[{ color: theme.bgColor }]">《隐私政策协议》</text>
+					:style="[{ color: theme.bgColor }]">《隐私政策》</text>
 			</view>
 			<view class="u-m-t-80">
+<<<<<<< HEAD
 				<u-button type="primary" hover-class="none"
 					:custom-style="{ backgroundColor: theme.bgColor, color: theme.color }" shape="circle"
 					@click="goLogin">
+=======
+				<u-button type="primary" hover-class="none" :custom-style="{ backgroundColor: theme.bgColor, color: theme.color }" @click="goLogin">
+>>>>>>> f32f63843e44b7bd9ad9802ce484549d89d88d4d
 					登录
 				</u-button>
 			</view>
 
+<<<<<<< HEAD
 			<view class="u-m-t-40 mobileLoginBtn" v-if="checkLogintype('mobile') || checkLogintype('wechatmobile')">
 				<u-button type="success" shape="circle"
 					:custom-style="{ background: 'none', width: '100%', height: '100%', color: '#12A89D'}"
 					@click="goPage('/pages/login/mobilelogin')">
+=======
+			<!-- <view class="u-m-t-40 mobileLoginBtn" v-if="checkLogintype('mobile') || checkLogintype('wechatmobile')">
+				<u-button type="success" :custom-style="{ background: 'none', width: '100%', height: '100%', color: '#12A89D'}" @click="goPage('/pages/login/mobilelogin')">
+>>>>>>> f32f63843e44b7bd9ad9802ce484549d89d88d4d
 					使用手机验证码登录
 				</u-button>
-			</view>
+			</view> -->
 
 			<view class="u-flex u-row-between u-tips-color u-m-t-10 u-p-20" v-if="checkLogintype('account')">
-				<view @click="goPage('/pages/login/forgetpwd')">忘记密码</view>
-				<view @click="goPage('/pages/login/register')">注册账号</view>
+				<view @click="goPage('/pages/login/forgetpwd')">忘记密码？</view>
+				<view @click="goPage('/pages/login/mobilelogin')">使用手机验码号登录</view>
 			</view>
 
 			<view class="u-text-center other" v-if="isThreeLogin && checkLogintype('wechat')">
@@ -157,7 +172,7 @@
 						this.$u.vuex('vuex_token', res.data.token);
 						this.success();
 					} else {
-						this.$u.toast('验证失败');
+						this.$u.toast('请输入登录账号信息');
 					}
 				});
 			}
@@ -173,10 +188,43 @@
 	.login {
 		padding: 80rpx 60rpx 0 60rpx;
 	}
+<<<<<<< HEAD
 
 	.mobileLoginBtn {
 		border: 2px solid #12A89D;
 		border-radius: 30px;
+=======
+	
+	.mobileLoginBtn{
+		border:2px solid #12A89D;
+		border-radius: 6px;
+	}
+	
+	
+	/*大标题*/
+	.header-wrap {
+		width: 80%;
+		margin-top:40px;
+		background-repeat: no-repeat;
+		background-size: contain;
+		background-position: bottom;
+		position: relative;
+	
+	}
+	.header-wrap .title {
+		font-size: 60rpx;
+		font-weight: bold;
+	}
+	
+	.regisiter-agreement {
+		margin-top: 20rpx;
+		color: #838383;
+		line-height: 40rpx;
+	}
+	
+	.regisiter-agreement .color-base-text{
+		color:#000;
+>>>>>>> f32f63843e44b7bd9ad9802ce484549d89d88d4d
 	}
 
 	.other {
@@ -184,5 +232,9 @@
 		width: 100%;
 		left: 0;
 		bottom: 40rpx;
+	}
+	
+	/deep/ .u-checkbox__label{
+		margin-right:0px;
 	}
 </style>
