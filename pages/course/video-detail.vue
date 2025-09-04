@@ -34,10 +34,12 @@
 		<view class="bottom-fixed-bar">
 			<view class="detail-action-bar">
 				<view class="action-buttons">
+					<!-- #ifdef MP-WEIXIN -->	
 					<button class="btn-share" open-type="share">
 						<u-icon :name="staticurl('course/shareico.svg')" size="56"></u-icon>
 						分享
 					</button>
+					<!-- #endif -->
 					<button class="btn-collect" @click="handleCollect">
 						<u-icon
 							:name="isCollect ? staticurl('course/collectico_on.svg') : staticurl('course/collectico.svg')"

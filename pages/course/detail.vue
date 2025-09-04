@@ -18,7 +18,9 @@
 					{{ archivesInfo.title || ''}}
 				</view>
 				<view class="desc">
+					
 					<text>主讲人：{{ archivesInfo.column_speaker || ''}}</text>
+					
 					<text>{{ archivesInfo.views || ''}}人看过</text>
 				</view>
 			</view>

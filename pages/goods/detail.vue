@@ -18,10 +18,10 @@
 						<u-icon size="35" name="share" :color="theme.bgColor"></u-icon>
 						<view class="u-font-22">分享</view>
 					</view>
-					<!-- <view class="u-text-center u-m-l-30" @click="optionCollect" :style="{ color: info.is_collect ? theme.bgColor : '#333' }">
+					<view class="u-text-center u-m-l-30" @click="optionCollect" :style="{ color: info.is_collect ? theme.bgColor : '#333' }">
 						<u-icon size="35" :name="info.is_collect ? 'star-fill' : 'star'" :color="theme.bgColor"></u-icon>
 						<view class="u-font-22">{{ info.is_collect ? '已收藏' : '收藏' }}</view>
-					</view> -->
+					</view>
 				</view>
 			</view>
 		</view>

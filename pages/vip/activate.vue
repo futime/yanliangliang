@@ -39,7 +39,7 @@
 					会员专属
 				</view>
 				<view class="subtitle">
-					{{vuex_config.vipPageBenefitSubtitle || 'VIP专属福利'}}
+					{{vuex_config.vipPageBenefitSubtitle || ''}}
 				</view>
 			</view>
 			
@@ -49,7 +49,7 @@
 						<u-icon :name="staticurl('common/benefitsinner_img1.svg')"  size="56" color="#fff"></u-icon>
 					</view>
 					<view class="titleTxt">
-						{{vuex_config.vipPageBenefitIntro1 || '中医大师亲授古法养生操课程'}}
+						{{vuex_config.vipPageBenefitIntro1 || ''}}
 					</view>
 				</view>
 				<view class="benefitsInner">
@@ -57,7 +57,7 @@
 						<u-icon :name="staticurl('common/benefitsinner_img2.svg')" size="56" color="#fff"></u-icon>
 					</view>
 					<view class="titleTxt">
-						{{vuex_config.vipPageBenefitIntro2 || '匠心打造的能量仓冥想空间'}}
+						{{vuex_config.vipPageBenefitIntro2 || ''}}
 					</view>
 				</view>
 				<view class="benefitsInner">
@@ -65,7 +65,7 @@
 						<u-icon :name="staticurl('common/benefitsinner_img3.svg')" size="56" color="#fff"></u-icon>
 					</view>
 					<view class="titleTxt">
-						{{vuex_config.vipPageBenefitIntro3 || '陪伴放松、专注与助眠的冥想音乐'}}
+						{{vuex_config.vipPageBenefitIntro3 || ''}}
 					</view>
 				</view>
 				<view class="benefitsInner">
@@ -73,7 +73,7 @@
 						<u-icon :name="staticurl('common/benefitsinner_img4.svg')" size="56" color="#fff"></u-icon>
 					</view>
 					<view class="titleTxt">
-						{{vuex_config.vipPageBenefitIntro4 || '好物商城会员享专属商品折扣'}}
+						{{vuex_config.vipPageBenefitIntro4 || ''}}
 					</view>
 				</view>
 				

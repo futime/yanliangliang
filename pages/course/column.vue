@@ -14,7 +14,7 @@
 					</view>
 					<view class="introDesc">
 						<text>主讲人：{{ channel.column_speaker }}</text>
-						<text>播放量：3578</text>
+						<!-- <text>播放量：3578</text> -->
 					</view>
 				</view>
 				<view class="btnBox">
