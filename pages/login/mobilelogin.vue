@@ -6,8 +6,8 @@
 		<!-- 顶部导航 -->
 		<fa-navbar title="手机号验证登录"></fa-navbar>
 		<view class="login">
-			
-			
+
+
 			<view class="header-wrap">
 				<view class="title">手机号验证登录</view>
 				<view class="regisiter-agreement">
@@ -43,7 +43,7 @@
 				</view>
 				<view class="u-m-t-80 loginBtn">
 					<u-button hover-class="none" type="primary"
-						:custom-style="{ backgroundColor: theme.bgColor, color: theme.color }" 
+						:custom-style="{ backgroundColor: theme.bgColor, color: theme.color }"
 						@click="goLogin">登录</u-button>
 				</view>
 			</view>
@@ -69,7 +69,7 @@
 					</u-grid-item>
 				</u-grid>
 			</view>
-			
+
 		</view>
 		<u-verification-code seconds="60" ref="uCode" @change="codeChange"></u-verification-code>
 		<u-toast ref="uToast" />
@@ -145,7 +145,8 @@
 					}]
 				},
 				isThreeLogin: false,
-				codeTips: ''
+				codeTips: '',
+				confirm: false
 			};
 		},
 		methods: {
@@ -154,6 +155,10 @@
 			},
 			// 获取验证码
 			getCode: async function() {
+				if (!this.form.mobile) {
+					this.$u.toast('请输入登录手机号信息！');
+					return;
+				}
 				if (!this.$u.test.mobile(this.form.mobile)) {
 					this.$u.toast('手机号码格式不正确！');
 					return;
@@ -183,12 +188,32 @@
 				// #endif
 
 				// #ifdef APP-PLUS
+				if (!this.agreeChecked) {
+					if (!this.confirm) {
+						this.$refs.AgreementModal.open()
+					} else {
+						this.$u.toast('请勾选同意并阅读用户协议及隐私政策');
+					}
+					return
+				}
 				this.goAppLogin();
 				// #endif
 			},
 			goLogin: function() {
+				if (!this.$u.test.mobile(this.form.mobile)) {
+					this.$u.toast('手机号码格式不正确！');
+					return;
+				}
+				if (!this.form.captcha) {
+					this.$u.toast('请输入验证码！');
+					return
+				}
 				if (!this.agreeChecked) {
-					this.$refs.AgreementModal.open()
+					if (!this.confirm) {
+						this.$refs.AgreementModal.open()
+					} else {
+						this.$u.toast('请勾选同意并阅读用户协议及隐私政策');
+					}
 					return
 				}
 				this.$refs.uForm.validate(async valid => {
@@ -202,7 +227,8 @@
 			},
 			// 用户同意协议后的处理
 			onAgreementConfirm() {
-				this.agreeChecked = true
+				this.confirm = true
+				// this.agreeChecked = true
 			},
 			// 实际登录逻辑
 			async doLogin() {
@@ -255,31 +281,32 @@
 	.login {
 		padding: 80rpx 60rpx 0 60rpx;
 	}
-	
-	
+
+
 	/*大标题*/
 	.header-wrap {
 		width: 80%;
-		margin-top:40px;
+		margin-top: 40px;
 		background-repeat: no-repeat;
 		background-size: contain;
 		background-position: bottom;
 		position: relative;
-	
+
 	}
+
 	.header-wrap .title {
 		font-size: 60rpx;
 		font-weight: bold;
 	}
-	
+
 	.regisiter-agreement {
 		margin-top: 20rpx;
 		color: #838383;
 		line-height: 40rpx;
 	}
-	
-	.regisiter-agreement .color-base-text{
-		color:#000;
+
+	.regisiter-agreement .color-base-text {
+		color: #000;
 	}
 
 	.other {
@@ -340,12 +367,12 @@
 		padding-left: 0px;
 	}
 
-	/deep/ .u-checkbox__label{
-		margin-right:0px;
+	/deep/ .u-checkbox__label {
+		margin-right: 0px;
 	}
-	
-	/deep/ .u-btn--primary{
-	    background: #ff8100 !important;
+
+	/deep/ .u-btn--primary {
+		background: #ff8100 !important;
 	}
 
 	/deep/ .u-size-default {

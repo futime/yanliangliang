@@ -400,6 +400,14 @@
 				"navigationBarTextStyle": "black"
 			}
 
+		},
+		{
+			"path": "pages/setting/setting",
+			"style": {
+				"navigationBarTitleText": "设置",
+				"navigationStyle": "custom",
+				"navigationBarTextStyle": "white"
+			}
 		}
 		
 	],
@@ -494,6 +502,15 @@
 						"path": "practice",
 						"style": {
 							"navigationBarTitleText": "呼吸练习",
+							"navigationStyle": "custom",
+							"navigationBarTextStyle": "white",
+							"enablePullDownRefresh": false
+						}
+					},
+					{
+						"path": "video-detail",
+						"style": {
+							"navigationBarTitleText": "详情",
 							"navigationStyle": "custom",
 							"navigationBarTextStyle": "white",
 							"enablePullDownRefresh": false

@@ -805,10 +805,15 @@ export const loginfunc = {
 					});
 					Service.authorize(
 						async function(e) {
+							console.log({
+								code: e.code,
+								scope: e.scope
+							})
 								let res = await that.$api.goAppLogin({
 									code: e.code,
 									scope: e.scope
 								});
+								console.log(res)
 								if (!res.code) {
 									that.$u.toast(res.msg);
 									return;

@@ -6,7 +6,7 @@
 			<view class="detailImg" :style="{ height: isvertical == '1' ? '1080rpx' : '640rpx' }">
 				<!-- <image :src="staticurl('course/coursedetail_img.jpg')" mode="aspectFill"></image> -->
 				<sunny-video ref="VideoRef" title="" :videoHeight="isvertical == '1' ? '1080rpx' : '640rpx'"
-					playImgHeight="120rpx" videoId="30" :loop="true" :autoplay="false" :src="videoSrc"
+					playImgHeight="120rpx" :videoId="id" :loop="true" :autoplay="false" :src="videoSrc"
 					:tipText="tipText" btnText="成为会员免费观看" :showMuteBtn="true" :poster="videoPoster"
 					:trialTime="trialtime" :seekTime="0"></sunny-video>
 			</view>
@@ -60,7 +60,7 @@
 		<view class="bottom-fixed-bar">
 			<view class="detail-action-bar">
 				<view class="action-buttons">
-					<button class="btn-share" open-type="share">
+					<button class="btn-share" @click="showShare = true">
 						<u-icon :name="staticurl('course/shareico.svg')" size="56"></u-icon>
 						分享
 					</button>
@@ -73,11 +73,26 @@
 				</view>
 			</view>
 		</view>
+		
+		<view class="" v-if="archivesInfo.id">
+			<fa-share
+				:goods-id="archivesInfo.id"
+				v-model="showShare"
+			></fa-share>
+		</view>
 	</view>
 </template>
 
 <script>
+	// #ifdef H5
+	import { weixinShare } from '@/common/fa.weixin.mixin.js';
+	// #endif
 	export default {
+		mixins: [
+			// #ifdef H5
+			weixinShare
+			// #endif
+		],
 		data() {
 			return {
 				videoStarted: false,
@@ -86,7 +101,8 @@
 				archivesInfo: {},
 				isCollect: false,
 				id: null,
-				isvertical: 0
+				isvertical: 0,
+				showShare: false,
 			};
 		},
 		onLoad(opt) {
@@ -197,6 +213,13 @@
 				let res = await this.$api.getArchiveDetail({
 					id: this.id,
 				});
+				// #ifdef MP-WEIXIN
+				this.$u.mpShare = {
+					title: res.data.title,
+					imageUrl: res.data.image,
+					path: '/pages/course/detail?id=' + this.id + '&invite_id=' + (this.vuex_user.id || '')
+				};
+				// #endif
 				this.archivesInfo = res.data.archivesInfo;
 				this.videoSrc = res.data.archivesInfo.videourl;
 				this.videoPoster = res.data.archivesInfo.image;

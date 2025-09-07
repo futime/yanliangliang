@@ -245,9 +245,6 @@
 		<view class="" v-if="info.id">
 			<fa-share
 				:goods-id="info.id"
-				:title="info.name"
-				:summary="info.intro"
-				:imageUrl="info.image_text"
 				v-model="showShare"
 				@shares="showPoster = true"
 			></fa-share>
@@ -319,7 +316,12 @@ export default {
 	},
 	data() {
 		return {
-			info: {},
+			info: {
+				title: '',
+				summary: '',
+				href: '',
+				imageUrl: ''
+			},
 			id: '',
 			cart_nums: 0,
 			show: false,
@@ -346,6 +348,7 @@ export default {
 			this.$api.getGoodsInfo({ id: this.id }).then(res => {
 				if (res.code == 1) {
 					this.info = res.data;
+					this
 					// #ifdef MP-WEIXIN
 					this.$u.mpShare = {
 						title: res.data.title,

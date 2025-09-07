@@ -276,30 +276,51 @@
 			},
 			// #endif
 			// #ifdef APP
-			async handleClickWxPay() {
+			async handleClickWxPay(paytype) {
 				let appid = plus.runtime.appid;
-				
-				let res = await this.$api.payment({
-					order_sn: this.order_sn,
-					paytype: this.paytype,
+				let res = await this.$api.submitOrder({
+					// order_sn: this.order_sn,
+					// paytype: this.paytype,
+					// method: 'app',
+					// appid: appid
+					level: this.selectVipObj.level,
+					days: this.selectVipObj.pricedata[0].days,
+					paytype: paytype,
 					method: 'app',
-					appid: appid
+					openid: this.vuex_openid || "",
+					// #ifdef MP-WEIXIN
+					logincode: await this.getMpCode(),
+					// #endif
 				});
 				if (!res.code) {
 					this.$u.toast(res.msg);
 					return;
 				}
-				uni.requestPayment({
-					provider: this.paytype == 'alipay' ? 'alipay' : 'wxpay',
-					orderInfo: res.data, //微信、支付宝订单数据
-					success: function(rest) {
-						this.$u.toast('支付成功！');
-						this.$u.route('/pages/order/list');
-					},
-					fail: function(err) {
-						console.log('fail:' + JSON.stringify(err));
-					}
-				});
+				
+				if (paytype == 'wechat') {
+					uni.requestPayment({
+						provider: this.paytype == 'alipay' ? 'alipay' : 'wxpay',
+						orderInfo: res.data, //微信、支付宝订单数据
+						success: function(rest) {
+							this.$u.toast('支付成功！');
+							this.$api.subscribe({
+								tpl_ids: res,
+								order_sn: this.order.order_sn,
+								openid: this.vuex_openid
+							}).then(res => {
+								console.log(res)
+							})
+							this.$u.route('/pages/vip/orderlist');
+						},
+						fail: function(err) {
+							console.log('fail:' + JSON.stringify(err));
+						}
+					});
+				} else {
+					this.$u.toast('兑换成功！')
+					this.$u.route('/pages/vip/orderlist');
+				}
+				
 			},
 			// #endif
 			handleClickSelectVip(item) {

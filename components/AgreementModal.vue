@@ -1,6 +1,6 @@
 <template>
 	<u-modal v-model="show" :show-cancel-button="true" :show-confirm-button="true" 
-		title="提示" confirm-text="同意并登录" cancel-text="取消"
+		title="提示" confirm-text="我已阅读并知悉" cancel-text="取消"
 		@confirm="onConfirm" @cancel="onCancel">
 		<view class="slot-content">
 			<view class="agreement-text">

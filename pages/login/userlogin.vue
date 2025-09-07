@@ -115,17 +115,23 @@
 					}]
 				},
 				isThreeLogin: false,
-				type: 2
+				type: 2,
+				confirm: false
 			};
 		},
 		methods: {
 			// 用户同意协议后的处理
 			onAgreementConfirm() {
-				this.agreeChecked = true
+				// this.agreeChecked = true
+				this.confirm = true
 			},
 			goThreeLogin: async function() {
 				if (!this.agreeChecked) {
-					this.$refs.AgreementModal.open()
+					if(!this.confirm) {
+						this.$refs.AgreementModal.open()
+					}else {
+						this.$u.toast('请勾选同意并阅读用户协议及隐私政策');
+					}
 					return
 				}
 				// #ifdef MP-WEIXIN
@@ -142,8 +148,11 @@
 			},
 			goLogin: function() {
 				if (!this.agreeChecked) {
-					this.$refs.AgreementModal.open()
-					return
+					if(!this.confirm) {
+						this.$refs.AgreementModal.open()
+					}else {
+						this.$u.toast('请勾选同意并阅读用户协议及隐私政策');
+					}
 				}
 				this.$refs.uForm.validate(async valid => {
 					if (valid) {

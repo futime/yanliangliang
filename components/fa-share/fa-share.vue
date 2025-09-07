@@ -39,19 +39,19 @@ export default {
 		},
 		title: {
 			type: String,
-			default: ''
+			default: '每日放松冥想-疼点典'
 		},
 		summary: {
 			type: String,
-			default: ''
+			default: '感受一呼一吸 每日放松冥想'
 		},
 		href: {
 			type: String,
-			default: ''
+			default: 'https://yanliangliang.com/h5/'
 		},
 		imageUrl: {
 			type: String,
-			default: ''
+			default: 'https://yanliangliang.com/static/images/mpshare.jpg'
 		}
 	},
 	data() {
@@ -114,30 +114,30 @@ export default {
 					type: 0, //图文
 					provider: 'weixin'
 				},
-				{
-					name: '微信收藏',
-					icon: 'star-fill',
-					size: 60,
-					color: '#ff9100',
-					type: 0, //图文
-					provider: 'weixin'
-				},
-				{
-					name: 'QQ好友',
-					icon: 'qq-circle-fill',
-					size: 60,
-					color: '#388BFF',
-					type: 2, //图
-					provider: 'qq'
-				},
-				{
-					name: '新浪微博',
-					icon: 'weibo-circle-fill',
-					size: 60,
-					color: '#BE3E3F',
-					type: 0, //图文
-					provider: 'sinaweibo	'
-				}
+				// {
+				// 	name: '微信收藏',
+				// 	icon: 'star-fill',
+				// 	size: 60,
+				// 	color: '#ff9100',
+				// 	type: 0, //图文
+				// 	provider: 'weixin'
+				// },
+				// {
+				// 	name: 'QQ好友',
+				// 	icon: 'qq-circle-fill',
+				// 	size: 60,
+				// 	color: '#388BFF',
+				// 	type: 2, //图
+				// 	provider: 'qq'
+				// },
+				// {
+				// 	name: '新浪微博',
+				// 	icon: 'weibo-circle-fill',
+				// 	size: 60,
+				// 	color: '#BE3E3F',
+				// 	type: 0, //图文
+				// 	provider: 'sinaweibo	'
+				// }
 			]
 			// #endif
 		};

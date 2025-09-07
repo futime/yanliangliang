@@ -5,7 +5,7 @@
 		<view class="detail-top">
 			<view class="detailContent">
 				<!-- <image :src="staticurl('course/meditationlist_img1.jpg')" mode="aspectFill"></image> -->
-				<sunny-video ref="VideoRef" title="" videoHeight="320px" playImgHeight="120rpx" :videoId="30"
+				<sunny-video ref="VideoRef" title="" videoHeight="320px" playImgHeight="120rpx" :videoId="id"
 					:loop="true" :autoplay="false" :src="videoSrc" :tipText="tipText" btnText="成为会员免费观看"
 					:showMuteBtn="true" :poster="videoPoster" :trialTime="trialtime" :seekTime="0"></sunny-video>
 			</view>
@@ -34,12 +34,10 @@
 		<view class="bottom-fixed-bar">
 			<view class="detail-action-bar">
 				<view class="action-buttons">
-					<!-- #ifdef MP-WEIXIN -->	
-					<button class="btn-share" open-type="share">
+					<button class="btn-share" @click="showShare = true">
 						<u-icon :name="staticurl('course/shareico.svg')" size="56"></u-icon>
 						分享
 					</button>
-					<!-- #endif -->
 					<button class="btn-collect" @click="handleCollect">
 						<u-icon
 							:name="isCollect ? staticurl('course/collectico_on.svg') : staticurl('course/collectico.svg')"
@@ -48,6 +46,12 @@
 					</button>
 				</view>
 			</view>
+		</view>
+		<view class="" v-if="archivesInfo.id">
+			<fa-share
+				:goods-id="archivesInfo.id"
+				v-model="showShare"
+			></fa-share>
 		</view>
 	</view>
 </template>
@@ -62,6 +66,7 @@
 				archivesInfo: {},
 				isCollect: false,
 				id: null,
+				showShare: false,
 			};
 		},
 		onLoad(opt) {
@@ -151,9 +156,17 @@
 				let res = await this.$api.getArchiveDetail({
 					id: this.id,
 				});
+				// #ifdef MP-WEIXIN
+				this.$u.mpShare = {
+					title: res.data.title,
+					imageUrl: res.data.image,
+					path: '/pages/course/detail?id=' + this.id + '&invite_id=' + (this.vuex_user.id || '')
+				};
+				// #endif
 				this.archivesInfo = res.data.archivesInfo;
 				this.videoSrc = res.data.archivesInfo.videourl;
 				this.videoPoster = res.data.archivesInfo.image;
+				this.isvertical = res.data.archivesInfo.isvertical
 			},
 			play(e) {
 				this.videoStarted = true;

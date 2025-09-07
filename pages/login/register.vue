@@ -159,13 +159,15 @@
 				},
 				codeTips: '',
 				errorType: ['message'],
-				index: 2
+				index: 2,
+				confirm: false
 			};
 		},
 		methods: {
 			// 用户同意协议后的处理
 			onAgreementConfirm() {
-				this.agreeChecked = true
+				// this.agreeChecked = true
+				this.confirm = true
 			},
 			codeChange(text) {
 				this.codeTips = text;
@@ -193,8 +195,12 @@
 			},
 			register() {
 				if (!this.agreeChecked) {
-					this.$refs.AgreementModal.open()
-					return;
+					if(!this.confirm) {
+						this.$refs.AgreementModal.open()
+					}else {
+						this.$u.toast('请勾选同意并阅读用户协议及隐私政策');
+					}
+					return
 				}
 				this.$refs.uForm.validate(valid => {
 					if (valid) {

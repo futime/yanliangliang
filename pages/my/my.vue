@@ -69,8 +69,8 @@
 					<u-cell-item :icon="item.img" icon-size="48" :title="item.label" :border-bottom="false" v-for="item in list" :key="item.id" 
 					@click="handleClickItem(item)">
 					</u-cell-item>
-					
-					<u-cell-item :icon="staticurl('common/loginout_icon.svg')" icon-size="48" title="退出登录" :border-bottom="false" v-if="vuex_token" @click="goPage('out')"></u-cell-item>
+					<u-cell-item :icon="staticurl('common/loginout_icon.svg')" icon-size="48" title="设置" :border-bottom="false"  @click="goPage('/pages/setting/setting')"></u-cell-item>
+					<!-- <u-cell-item :icon="staticurl('common/loginout_icon.svg')" icon-size="48" title="退出登录" :border-bottom="false" v-if="vuex_token" @click="goPage('out')"></u-cell-item> -->
 				</u-cell-group>
 			</view>
 			

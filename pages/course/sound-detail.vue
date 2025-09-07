@@ -48,6 +48,14 @@
 							</view>
 							<text class="action-text" :class="{ active: isLoop }">{{ isLoop ? '已循环本集' : '循环播放' }}</text>
 						</view>
+						
+						<view class="action-btn" @click="showShare = true">
+							<view class="action-icon">
+								<u-icon size="45" name="share" color="#fff"></u-icon>
+							</view>
+							<text class="action-text">分享</text>
+						</view>
+						
 						<view class="action-btn" @click="handleCollect">
 							<view class="action-icon">
 								<image :src="staticurl('collect.svg')" mode="" v-if="!isCollect"></image>
@@ -59,6 +67,12 @@
 					</view>
 				</view>
 			</view>
+		</view>
+		<view class="" v-if="archivesInfo.id">
+			<fa-share
+				:goods-id="archivesInfo.id"
+				v-model="showShare"
+			></fa-share>
 		</view>
 	</view>
 </template>
@@ -85,6 +99,7 @@ export default {
 			volume: 1,
 			playbackRate: 1,
 			audioContext: null,
+			showShare: false
 		};
 	},
 	onLoad(opt) {
@@ -260,6 +275,13 @@ export default {
 				id: this.id,
 			});
 			this.archivesInfo = res.data.archivesInfo;
+			// #ifdef MP-WEIXIN
+			this.$u.mpShare = {
+				title: res.data.archivesInfo.title,
+				imageUrl: res.data.archivesInfo.image,
+				path: '/pages/course/detail?id=' + this.id + '&invite_id=' + (this.vuex_user.id || '')
+			};
+			// #endif
 			// this.videoSrc = res.data.archivesInfo.videourl;
 			// this.videoPoster = res.data.archivesInfo.image;
 			this.initAudio()

@@ -528,7 +528,7 @@
 				if (item.videourl) {
 					if (item.isvertical) {
 						uni.navigateTo({
-							url: `/pages/course/detail?id=${item.id}`
+							url: `/pages/course/video-detail?id=${item.id}`
 						})
 					} else {
 						uni.navigateTo({
