@@ -253,6 +253,16 @@ const install = (Vue, vm) => {
 	vm.$api.deleteCollection 		  = async (params = {}) => await vm.$u.post('/addons/cms/api.collection/deleteCollection',params);
 	vm.$api.articleCollectList 		  = async (params = {}) => await vm.$u.get('/addons/cms/api.collection/index',params);
 
+
+	// 推荐开关
+	vm.$api.switchRecommend 		  = async (params = {}) => await vm.$u.post('/addons/shop/api.user/recommend',params);
+
+	// 注销账号
+	vm.$api.deleteAccount 		  = async (params = {}) => await vm.$u.post('/addons/shop/api.user/logoff',params);
+	// 取消注销账号
+	vm.$api.cancelDeleteAccount 		  = async (params = {}) => await vm.$u.post('/addons/shop/api.user/cancel_logoff',params);
+	// 注销倒计时 （天）
+	vm.$api.deleteAccountDay 		  = async (params = {}) => await vm.$u.get('/addons/shop/api.user/logofftime',params);
 }
 
 export default {

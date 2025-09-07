@@ -71,8 +71,7 @@ const install = (Vue, vm) => {
 	// 请求拦截，配置Token等参数
 	Vue.prototype.$u.http.interceptor.request = (config) => {		
 		//在需要登录的接口，请求前判断token 是否存在,不存在则到登录
-		let url = config.url.split('?').shift();		
-		console.log(noLoginUrl.includes(url),url)
+		let url = config.url.split('?').shift();	
 		if (!noLoginUrl.includes(url) && !vm.vuex_token) {
 			vm.$u.route('/pages/login/login');
 			return false;

@@ -15,7 +15,7 @@
 			</view>
 			
 			<!-- 清除缓存 -->
-			<view class="setting-item" @click="clearCache">
+			<view class="setting-item" @click="clearCache"> 
 				<view class="item-left">
 					<text class="item-title">清除缓存</text> 
 				</view>
@@ -58,7 +58,10 @@
 			<!-- 注销账号 -->
 			<view class="setting-item" @click="deleteAccount">
 				<view class="item-left">
-					<text class="item-title">注销账号</text>
+					<text class="item-title" v-if="vuex_user.logoff == 0">注销账号</text>
+					<text class="item-title" v-else>
+						注销账号（申请审核中）
+					</text>
 				</view>
 				<view class="item-right">
 					<u-icon name="arrow-right" color="#c0c4cc" size="16"></u-icon>
@@ -66,24 +69,24 @@
 			</view>
 			
 			<!-- 关闭推荐 -->
-			<view class="setting-item">
+			<view class="setting-item" v-if="vuex_token">
 				<view class="item-left">
 					<text class="item-title">关闭推荐</text>
 				</view>
 				<view class="item-right">
-					<u-switch v-model="recommendSwitch" :active-color="switchActiveColor" @change="onRecommendChange"></u-switch>
+					<u-switch :value="vuex_user.switch_recommend == 1" :active-color="switchActiveColor" @change="onRecommendChange"></u-switch>
 				</view>
 			</view>
 			
 			<!-- 关闭定向推送 -->
-			<view class="setting-item">
+			<!-- <view class="setting-item" v-if="vuex_token">
 				<view class="item-left">
 					<text class="item-title">关闭定向推送</text>
 				</view>
 				<view class="item-right">
-					<u-switch v-model="pushSwitch" :active-color="switchActiveColor" @change="onPushChange"></u-switch>
+					<u-switch :value="pushSwitch" :active-color="switchActiveColor" @change="onPushChange"></u-switch>
 				</view>
-			</view>
+			</view> -->
 		</view>
 		
 		<!-- 退出登录按钮 -->
@@ -184,10 +187,18 @@
 			},
 			
 			// 推荐开关改变
-			onRecommendChange(value) {
-				this.recommendSwitch = value
-				uni.setStorageSync('recommend_switch', value)
-				// 可以调用接口保存到服务器
+			onRecommendChange() {
+				let value = this.vuex_user.switch_recommend == 1 ? 0 : 1
+				this.$api.switchRecommend({ recommend: value }).then(res => {
+					if (res.code === 1) {
+						this.getUserIndex() // 刷新用户信息
+						this.$u.toast('设置成功')
+					} else {
+						this.$u.toast(res.msg || '设置失败')
+					}
+				}).catch(() => {
+					this.$u.toast('设置失败，请稍后重试')
+				})
 			},
 			
 			// 推送开关改变
@@ -198,28 +209,63 @@
 			},
 			
 			// 注销账号
-			deleteAccount() {
-				uni.showModal({
-					title: '注销账号',
-					content: '注销后将无法恢复账号数据，确定要注销吗？',
-					confirmColor: '#f56c6c',
-					success: (res) => {
-						if (res.confirm) {
-							// 调用注销接口
-							this.doDeleteAccount()
+			async deleteAccount() {
+				if(this.vuex_user.logoff == 0) {
+					uni.showModal({
+						title: '注销账号',
+						content: '注销后将无法恢复账号数据，确定要注销吗？',
+						confirmColor: '#f56c6c',
+						success: (res) => {
+							if (res.confirm) {
+								// 调用注销接口
+								this.doDeleteAccount()
+							}
 						}
-					}
-				})
+					})
+					return
+				}else {
+					const res = await this.$api.deleteAccountDay()
+					uni.showModal({
+						title: '提示',
+						content: `账号已提交注销申请，请耐心等待平台客服处理，${res.data}天后将完成您账号注销任务！`,
+						confirmColor: '#f56c6c',
+						confirmText: '取消注销申请',
+						cancelText: '关闭',
+						success: (res) => {
+							if (res.confirm) {
+								// 调用注销接口
+								this.cancelDeleteAccount()
+							}
+						}
+					})
+					return
+				}
+				
 			},
-			
+			// 执行取消注销
+			async cancelDeleteAccount() {
+				try {
+					const res = await this.$api.cancelDeleteAccount()
+					if (res.code === 1) {
+						this.$u.toast(res.msg || '已取消账号注销')
+						this.getUserIndex() // 刷新用户信息
+					} else {
+						this.$u.toast(res.msg || '取消失败')
+					}
+				} catch (e) {
+					this.$u.toast('取消失败，请稍后重试')
+				}
+			},
 			// 执行注销
 			async doDeleteAccount() {
 				try {
-					// const res = await this.$api.deleteAccount()
-					// if (res.code === 1) {
-					//   this.logout()
-					// }
-					this.$u.toast('注销功能暂未开放')
+					const res = await this.$api.deleteAccount()
+					if (res.code === 1) {
+						this.$u.toast(res.msg || '账号已进入注销流程')
+						this.getUserIndex() // 刷新用户信息
+					} else {
+						this.$u.toast(res.msg || '注销失败')
+					}
 				} catch (e) {
 					this.$u.toast('注销失败，请稍后重试')
 				}
@@ -256,6 +302,7 @@
 	.page {
 		background-color: #f5f5f5;
 		min-height: 100vh;
+		padding-bottom: 100rpx;
 	}
 	
 	.setting-content {
