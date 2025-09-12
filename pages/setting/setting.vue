@@ -31,14 +31,14 @@
 					<text class="item-title">版本信息</text>
 				</view>
 				<view class="item-right">
-					<text class="version-text">V {{ version }}</text>
+					<text class="version-text">V {{ vuex_config.appVersionNum }}</text>
 				</view>
 			</view>
 			
 			<!-- 用户协议 -->
 			<view class="setting-item" @click="goPage('/pages/page/page?diyname=agreement')">
 				<view class="item-left">
-					<text class="item-title">用户协议</text>
+					<text class="item-title">用户服务协议</text>
 				</view>
 				<view class="item-right">
 					<u-icon name="arrow-right" color="#c0c4cc" size="16"></u-icon>
@@ -48,7 +48,17 @@
 			<!-- 隐私政策 -->
 			<view class="setting-item" @click="goPage('/pages/page/page?diyname=privacypolicy')">
 				<view class="item-left">
-					<text class="item-title">隐私政策</text>
+					<text class="item-title">用户隐私政策</text>
+				</view>
+				<view class="item-right">
+					<u-icon name="arrow-right" color="#c0c4cc" size="16"></u-icon>
+				</view>
+			</view>
+			
+			<!-- 隐私政策 -->
+			<view class="setting-item" @click="goPage('/pages/page/page?diyname=personalinfo')">
+				<view class="item-left">
+					<text class="item-title">个人信息收集清单</text>
 				</view>
 				<view class="item-right">
 					<u-icon name="arrow-right" color="#c0c4cc" size="16"></u-icon>
@@ -74,7 +84,7 @@
 			</view>
 			
 			<!-- 关闭个性化推荐 -->
-			<view class="setting-item" v-if="vuex_token">
+			<view class="setting-item">
 				<view class="item-left">
 					<text class="item-title">关闭个性化推荐</text>
 				</view>
@@ -86,9 +96,9 @@
 		</view>
 		
 		<!-- 退出登录按钮 -->
-		<view class="logout-wrapper" v-if="vuex_token">
-			<!-- <u-button type="default" :custom-style="logoutBtnStyle" @click="logout">退出登录</u-button> -->
-		</view>
+		<!-- <view class="logout-wrapper" v-if="vuex_token">
+			<u-button type="default" :custom-style="logoutBtnStyle" @click="logout">退出登录</u-button>
+		</view> -->
 	</view>
 </template>
 
@@ -98,7 +108,7 @@
 		data() {
 			return {
 				cacheSize: '8 M',
-				version: '2.6.6',
+				version: '',
 				recommendSwitch: true,
 				pushSwitch: true,
 				logoutBtnStyle: {
@@ -113,7 +123,7 @@
 		computed: {
 			...mapState(['theme']),
 			switchActiveColor() {
-				return this.theme?.bgColor || '#007aff'
+				return this.theme?.bgColor || '#12A89D'
 			}
 		},
 		onLoad() {
@@ -184,6 +194,12 @@
 			
 			// 推荐开关改变
 			onRecommendChange() {
+				if(!this.vuex_token) {
+					uni.navigateTo({
+						url: '/pages/login/login'
+					})
+					return
+				}
 				let value = this.vuex_user.switch_recommend == 1 ? 0 : 1
 				this.$api.switchRecommend({ recommend: value }).then(res => {
 					if (res.code === 1) {
@@ -195,6 +211,7 @@
 				}).catch(() => {
 					this.$u.toast('设置失败，请稍后重试')
 				})
+				
 			},
 			
 			// 推送开关改变

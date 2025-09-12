@@ -67,6 +67,16 @@
 				<text v-text="is_wx_phone ? '使用其他手机号' : '手机号快速验证'" @click="is_wx_phone = !is_wx_phone"></text>
 			</view>
 			<!-- #endif -->
+			
+			
+			<view class="u-text-center other" v-if="isThreeLogin && checkLogintype('wechat')">
+				<u-grid :col="1" :border="false">
+					<u-grid-item @click="goThreeLogin">
+						<u-icon name="weixin-fill" color="#53c240" :size="50"></u-icon>
+						<view class="grid-text">微信登录</view>
+					</u-grid-item>
+				</u-grid>
+			</view>
 		</view>
 		<u-verification-code seconds="60" ref="uCode" @change="codeChange"></u-verification-code>
 		<u-toast ref="uToast" />
@@ -192,6 +202,27 @@
 				} else {
 					this.$u.toast('倒计时结束后再发送');
 				}
+			},
+			goThreeLogin: async function() {
+				if (!this.agreeChecked) {
+					if(!this.confirm) {
+						this.$refs.AgreementModal.open()
+					}else {
+						this.$u.toast('请勾选同意并阅读用户协议及隐私政策');
+					}
+					return
+				}
+				// #ifdef MP-WEIXIN
+				this.goMpLogin();
+				// #endif
+			
+				// #ifdef H5
+				this.goAuth();
+				// #endif
+			
+				// #ifdef APP-PLUS
+				this.goAppLogin();
+				// #endif
 			},
 			register() {
 				if (!this.agreeChecked) {

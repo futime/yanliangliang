@@ -4,7 +4,7 @@
 		@confirm="onConfirm" @cancel="onCancel">
 		<view class="slot-content">
 			<view class="agreement-text">
-				请先阅读并同意疼点典
+				请先点击阅读并同意疼点典
 				<text class="agreement-link" @click="openAgreement('agreement')">《用户服务协议》</text>和
 				<text class="agreement-link" @click="openAgreement('privacy')">《隐私政策》</text>
 			</view>

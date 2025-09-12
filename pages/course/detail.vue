@@ -19,7 +19,7 @@
 				</view>
 				<view class="desc">
 					
-					<text>主讲人：{{ archivesInfo.column_speaker || ''}}</text>
+					<text>{{ vuex_config.detailColumnTitleName || ''}}：{{ archivesInfo.column_speaker || ''}}</text>
 					
 					<text>{{ archivesInfo.views || ''}}人看过</text>
 				</view>
@@ -34,7 +34,7 @@
 
 		<view class="anchorContent">
 			<view class="wrapTitle">
-				<view class="boxTitle"> 主讲人介绍 </view>
+				<view class="boxTitle"> {{ vuex_config.detailColumnTitle || ''}} </view>
 			</view>
 
 			<view class="anchor-view" @click="handleClickColumn">

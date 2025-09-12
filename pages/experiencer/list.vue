@@ -8,7 +8,7 @@
 				<u-icon name="edit-pen" color="#F3941E" size="45"></u-icon>
 			</view>
 			<view class="text">
-				请先点击添加按钮，完成后进入能量空间
+				{{ vuex_config.experiencerNoAddTips || '请先点击添加按钮，完成后进入能量空间'}}
 			</view>
 		</view>
 		
@@ -17,7 +17,7 @@
 				<u-icon name="bookmark" color="#F3941E" size="55"></u-icon>
 			</view>
 			<view class="text">
-				添加完资料后，点击选择按钮进入能量空间
+				{{ vuex_config.experiencerAddTips || '添加完资料后，点击选择按钮进入能量空间'}}
 			</view>
 		</view>
 		
@@ -54,8 +54,8 @@
 					温馨提示:
 				</view>
 				<view class="desc">
-					<text>1. 体验者信息仅用于平台能量空间体验服务，<br>不会外传，请您填写真实个人资料。<br> </text>
-					<text>2. 为确保数据准确性，建议上传体验者照片，<br>添加体验者时，请确认信息无误后再提交。 </text>
+					<text>{{ vuex_config.experiencerTipsTxt1 || ''}}<br> </text>
+					<text>{{ vuex_config.experiencerTipsTxt2 || ''}}</text>
 				</view>
 			</view>
 		</view>

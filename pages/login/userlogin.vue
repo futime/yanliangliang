@@ -15,7 +15,7 @@
 					<u-form :model="form" :rules="rules" ref="uForm" :errorType="errorType">
 						<u-form-item :label-position="labelPosition" label="账号:" prop="account" left-icon="account"
 							label-width="120">
-							<u-input :border="border" placeholder="邮箱/手机/用户名" v-model="form.account" />
+							<u-input :border="border" placeholder="手机号/用户名" v-model="form.account" />
 						</u-form-item>
 						<u-form-item :label-position="labelPosition" label="密码:" prop="password" left-icon="lock"
 							label-width="120" v-if="!border">
@@ -27,8 +27,7 @@
 			</view>
 			<view class="u-p-t-30 u-text-center u-flex u-flex-wrap">
 				<u-checkbox :active-color="theme.bgColor" v-model="agreeChecked" name="agree">
-					<text class="u-font-28">我已阅读并同意</text></u-checkbox>
-						<text class="u-font-28 agree" @click="goPage('/pages/page/page?diyname=agreement')" :style="[{ color: theme.bgColor }]">《用户协议》</text>
+					<text class="u-font-28">我已阅读并同意</text></u-checkbox><text class="u-font-28 agree" @click="goPage('/pages/page/page?diyname=agreement')" :style="[{ color: theme.bgColor }]">《用户协议》</text>
 				和<text class="u-font-28 privacypolicy" @click="goPage('/pages/page/page?diyname=privacypolicy')"
 					:style="[{ color: theme.bgColor }]">《隐私政策》</text>
 			</view>
@@ -53,7 +52,7 @@
 				<u-grid :col="1" :border="false">
 					<u-grid-item @click="goThreeLogin">
 						<u-icon name="weixin-fill" color="#53c240" :size="50"></u-icon>
-						<view class="grid-text">微信登录</view>
+						<view class="grid-text">微信快捷登录</view>
 					</u-grid-item>
 				</u-grid>
 			</view>

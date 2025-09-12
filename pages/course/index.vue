@@ -28,9 +28,9 @@
 			<view class="listWrap">
 				<view class="itemCard" v-for="item in channel2.list" :key="item.id" @click="handleClickDetail(item.id)">
 					<view class="image" v-if="channel2.channel.istag == 1">
-						<view class="innerTag viewtxt" v-if="item.isfree == 0">免费</view>
-						<view class="innerTag viewtxt" v-else-if="item.trialtime  > 0">试看</view>
-						<view class="innerTag viptxt" v-else>VIP</view>
+						<view class="innerTag viewtxt" v-if="item.isfree == 0">{{ vuex_config.videoFreeTips }}</view>
+						<view class="innerTag viewtxt" v-else-if="item.trialtime  > 0">{{ vuex_config.videoTryTips }}</view>
+						<view class="innerTag viptxt" v-else>{{ vuex_config.videoVipTips }}</view>
 						<u-image width="100%" height="230rpx" :border-radius="12" :src="item.image" mode="widthFix"></u-image>
 					</view>
 					<view class="image" v-else="">
@@ -79,9 +79,9 @@
 				<scroll-view scroll-x style="width: 100%; white-space: nowrap;">
 					<view class="listInner" style="display: inline-block; margin-right: 20rpx;" v-for="item in channel1.list" :key="item.id" @click="handleClickSound(item)">
 						<view class="image" v-if="channel1.channel.istag == 1">
-							<view class="innerTag viewtxt" v-if="item.isfree == 0">免费</view>
-							<view class="innerTag viewtxt" v-else-if="item.trialtime  > 0">试看</view>
-							<view class="innerTag viptxt" v-else>VIP</view>
+							<view class="innerTag viewtxt" v-if="item.isfree == 0">{{ vuex_config.videoFreeTips }}</view>
+							<view class="innerTag viewtxt" v-else-if="item.trialtime  > 0">{{ vuex_config.videoTryTips }}</view>
+							<view class="innerTag viptxt" v-else>{{ vuex_config.videoVipTips }}</view>
 							<u-image width="100%" height="215rpx" :border-radius="12" :src="item.image" mode="aspectFill"></u-image>
 						</view>
 						<view class="image" v-else>
@@ -126,9 +126,9 @@
 			<view class="listWrap">
 				<view class="listInner" v-for="item in channel3.list" :key="item.id" @click="handleClickSound(item)">
 					<view class="image" v-if="channel3.channel.istag == 1">
-						<view class="innerTag viewtxt" v-if="item.isfree == 0">免费</view>
-						<view class="innerTag viewtxt" v-else-if="item.trialtime  > 0">试看</view>
-						<view class="innerTag viptxt" v-else>VIP</view>
+						<view class="innerTag viewtxt" v-if="item.isfree == 0">{{ vuex_config.videoFreeTips }}</view>
+						<view class="innerTag viewtxt" v-else-if="item.trialtime  > 0">{{ vuex_config.videoTryTips }}</view>
+						<view class="innerTag viptxt" v-else>{{ vuex_config.videoVipTips }}</view>
 						<u-image width="100%" height="208rpx" :border-radius="12" :src="item.image" mode="widthFix"></u-image>
 					</view>
 					<view class="image" v-else>
@@ -174,9 +174,9 @@
 			<view class="listWrap">
 				<view class="listInner" v-for="item in channel4.list" :key="item.id" @click="handleClickVideo(item)">
 					<view class="image" v-if="channel4.channel.istag == 1">
-						<view class="innerTag viewtxt" v-if="item.isfree == 0">免费</view>
-						<view class="innerTag viewtxt" v-else-if="item.trialtime  > 0">试看</view>
-						<view class="innerTag viptxt" v-else>VIP</view>
+						<view class="innerTag viewtxt" v-if="item.isfree == 0">{{ vuex_config.videoFreeTips }}</view>
+						<view class="innerTag viewtxt" v-else-if="item.trialtime  > 0">{{ vuex_config.videoTryTips }}</view>
+						<view class="innerTag viptxt" v-else>{{ vuex_config.videoVipTips }}</view>
 						<u-image width="100%" height="208rpx" :border-radius="12" :src="item.image"
 							mode="aspectFill"></u-image>
 					</view>

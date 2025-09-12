@@ -50,7 +50,7 @@
 				<view class="icon">
 					<image :src="staticurl('columns_icon4.svg')" mode="widthFix"></image>
 				</view>
-				<view class="label">呼吸练习</view>
+				<view class="label">{{ vuex_config.homePracticeTitle }}</view>
 			</view>
 		</view>
 
@@ -194,8 +194,8 @@
 			<view class="listWrap">
 				<view class="listInner" v-for="item in channel3.list" :key="item.id" @click="handleClickSound(item)">
 					<view class="image" v-if="channel3.channel.istag == 1">
-						<view class="innerTag viewtxt" v-if="item.isfree == 0">免费</view>
-						<view class="innerTag viewtxt" v-else-if="item.trialtime  > 0">试看</view>
+						<view class="innerTag viewtxt" v-if="item.isfree == 0">{{ vuex_config.videoFreeTips }}</view>
+						<view class="innerTag viewtxt" v-else-if="item.trialtime  > 0">{{ vuex_config.videoTryTips }}</view>
 						<view class="innerTag viptxt" v-else>VIP</view>
 						<u-image width="100%" height="208rpx" :border-radius="12" :src="item.image"
 							mode="aspectFill"></u-image>
@@ -244,8 +244,8 @@
 			<view class="listWrap">
 				<view class="listInner" v-for="item in channel4.list" :key="item.id" @click="handleClickSound(item)">
 					<view class="image" v-if="channel4.channel.istag == 1">
-						<view class="innerTag viewtxt" v-if="item.isfree == 0">免费</view>
-						<view class="innerTag viewtxt" v-else-if="item.trialtime  > 0">试看</view>
+						<view class="innerTag viewtxt" v-if="item.isfree == 0">{{ vuex_config.videoFreeTips }}</view>
+						<view class="innerTag viewtxt" v-else-if="item.trialtime  > 0">{{ vuex_config.videoTryTips }}</view>
 						<view class="innerTag viptxt" v-else>VIP</view>
 						<u-image width="100%" height="208rpx" :border-radius="12" :src="item.image"
 							mode="aspectFill"></u-image>

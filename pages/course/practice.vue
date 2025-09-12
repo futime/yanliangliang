@@ -80,7 +80,7 @@
 
         <view class="complete-content">
           <text class="complete-text"
-            >在专注呼吸的时光，我寻真实的自己，所有简单的事务里，都有巨大的奇观。</text
+            >在专注呼吸的时光，找寻真实的自己，所有简单的事务里，都有巨大的奇观。</text
           >
         </view>
 

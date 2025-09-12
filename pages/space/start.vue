@@ -56,7 +56,7 @@
 						<view class="icon">
 							<image :src="staticurl('others_icon.png')" mode=""></image>
 						</view>
-						<view class="text">亲友</view>
+						<view class="text">其他</view>
 						<view class="check">
 							<u-icon name="checkbox-mark" color="#fff"></u-icon>
 						</view>

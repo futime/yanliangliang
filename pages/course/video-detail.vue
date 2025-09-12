@@ -6,7 +6,7 @@
 			<view class="detailContent">
 				<!-- <image :src="staticurl('course/meditationlist_img1.jpg')" mode="aspectFill"></image> -->
 				<sunny-video ref="VideoRef" title="" videoHeight="320px" playImgHeight="120rpx" :videoId="id"
-					:loop="true" :autoplay="false" :src="videoSrc" :tipText="tipText" btnText="成为会员免费观看"
+					:loop="true" :autoplay="false" :src="videoSrc" :tipText="tipText" :btnText="vuex_config.videoPlayerVipTips" 
 					:showMuteBtn="true" :poster="videoPoster" :trialTime="trialtime" :seekTime="0"></sunny-video>
 			</view>
 		</view>

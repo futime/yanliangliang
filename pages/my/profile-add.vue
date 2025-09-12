@@ -63,7 +63,7 @@
 			</view>
 			<!-- #ifdef APP -->
 			<view class="form-item">
-				<view class="form-item-label">人脸信息</view>
+				<view class="form-item-label">照片</view>
 				<view class="form-item-content face">
 					<view class="faceimage" v-if="form.face_image">
 						<image :src="cdnurl(form.face_image)" mode="widthFix"></image>
@@ -79,7 +79,7 @@
 			<!-- #endif -->
 			<!-- #ifdef MP-WEIXIN -->
 			<view class="form-item" v-if="form.face_image">
-				<view class="form-item-label">人脸信息</view>
+				<view class="form-item-label">照片</view>
 				<view class="form-item-content face">
 					<view class="faceimage" v-if="form.face_image">
 						<image :src="cdnurl(form.face_image)" mode="widthFix"></image>
