@@ -31,6 +31,15 @@
 						</view>
 					</view>
 				</u-form-item>
+				
+				<view class="u-p-t-30 u-text-center u-flex">
+					<u-checkbox :active-color="theme.bgColor" v-model="agreeChecked" name="agree"><text
+							class="u-font-28">阅读并同意</text></u-checkbox>
+					<text class="u-font-28 agree" @click="goPage('/pages/page/page?diyname=agreement')"
+						:style="[{ color: theme.bgColor }]">《用户协议》</text>
+					和<text class="u-font-28 privacypolicy" @click="goPage('/pages/page/page?diyname=privacypolicy')"
+						:style="[{ color: theme.bgColor }]">《隐私政策协议》</text>
+				</view>
 			</u-form>
 		</view>
 
@@ -43,10 +52,14 @@
 			@confirm="selectYear"></u-picker>
 		<u-picker ref="picker2" :range="weights" :default-selector="[50]" mode="selector" v-model="showWeight"
 			@confirm="selectKg"></u-picker>
+		<AgreementModal ref="AgreementModal" @confirm="onAgreementConfirm"></AgreementModal>
+			
 	</view>
 </template>
 
 <script>
+	import AgreementModal from '@/components/AgreementModal.vue'
+	
 	// 生成体重数组的函数
 	function generateWeights(min, max) {
 		const weights = [];
@@ -56,9 +69,13 @@
 		return weights;
 	}
 	export default {
+		components: {
+			AgreementModal
+		},
 		data() {
 			return {
 				title: '新增体验者信息',
+				agreeChecked: false,
 				form: {
 					name: '',
 					phone: '',
@@ -137,7 +154,8 @@
 				},
 				weights: [],
 				showWeight: false,
-				userid: null
+				userid: null,
+				confirmFlag: false	
 			}
 		},
 		computed: {},
@@ -160,7 +178,18 @@
 			this.$refs.uForm.setRules(this.rules);
 		},
 		methods: {
+			onAgreementConfirm() {
+				this.confirmFlag = true
+			},
 			submit() {
+				if (!this.agreeChecked) {
+					if (!this.confirmFlag) {
+						this.$refs.AgreementModal.open()
+					} else {
+						this.$u.toast('请勾选同意并阅读用户协议及隐私政策');
+					}
+					return
+				}
 				this.$refs.uForm.validate(async valid => {
 					if (valid) {
 						const res = await this.$api.addpatient({
@@ -248,7 +277,7 @@
 </style>
 <style lang="scss" scoped>
 	.page {
-		padding: 50rpx;
+		padding: 30rpx;
 		display: flex;
 		flex-direction: column;
 		align-items: center;

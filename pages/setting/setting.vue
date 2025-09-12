@@ -126,6 +126,9 @@
 				return this.theme?.bgColor || '#12A89D'
 			}
 		},
+		onShow() {
+			this.getUserIndex() // 刷新用户信息
+		},
 		onLoad() {
 			this.getCacheSize()
 			this.getSettings()
@@ -224,16 +227,19 @@
 			// 注销账号
 			async deleteAccount() {
 				if(this.vuex_user.logoff == 0) {
-					uni.showModal({
-						title: '注销账号',
-						content: '注销后将无法恢复账号数据，确定要注销吗？',
-						confirmColor: '#f56c6c',
-						success: (res) => {
-							if (res.confirm) {
-								// 调用注销接口
-								this.doDeleteAccount()
-							}
-						}
+					// uni.showModal({
+					// 	title: '注销账号',
+					// 	content: '注销后将无法恢复账号数据，确定要注销吗？',
+					// 	confirmColor: '#f56c6c',
+					// 	success: (res) => {
+					// 		if (res.confirm) {
+					// 			// 调用注销接口
+					// 			this.doDeleteAccount()
+					// 		}
+					// 	}
+					// })
+					uni.navigateTo({
+						url: '/pages/setting/deregistration'
 					})
 					return
 				}else {

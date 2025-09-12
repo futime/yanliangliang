@@ -408,6 +408,14 @@
 				"navigationStyle": "custom",
 				"navigationBarTextStyle": "white"
 			}
+		},
+		{
+			"path": "pages/setting/deregistration",
+			"style": {
+				"navigationBarTitleText": "注销协议",
+				"navigationStyle": "custom",
+				"navigationBarTextStyle": "white"
+			}
 		}
 		
 	],
