@@ -246,7 +246,7 @@
 					const res = await this.$api.deleteAccountDay()
 					uni.showModal({
 						title: '提示',
-						content: `账号已提交注销申请，请耐心等待平台客服处理，${res.data}天后将完成您账号注销任务！`,
+						content: `您的账号已提交注销申请，请耐心等待平台客服处理，${res.data}天后将完成您账号注销流程！`,
 						confirmColor: '#f56c6c',
 						confirmText: '取消注销申请',
 						cancelText: '关闭',
