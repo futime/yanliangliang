@@ -7,7 +7,7 @@
 				<!-- <image :src="staticurl('course/coursedetail_img.jpg')" mode="aspectFill"></image> -->
 				<sunny-video ref="VideoRef" title="" :videoHeight="isvertical == '1' ? '1080rpx' : '640rpx'"
 					playImgHeight="120rpx" :videoId="id" :loop="true" :autoplay="false" :src="videoSrc"
-					:tipText="tipText" btnText="成为会员免费观看" :showMuteBtn="true" :poster="videoPoster"
+					:tipText="tipText" :btnText="vuex_config.videoPlayerVipTips" :showMuteBtn="true" :poster="videoPoster"
 					:trialTime="trialtime" :seekTime="0"></sunny-video>
 			</view>
 		</view>

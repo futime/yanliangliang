@@ -133,21 +133,21 @@ export const tools = {
 		// staticurl
 		staticurl(url) {
 			if (!/^((?:[a-z]+:)?\/\/|data:image\/)(.*)/.test(url)) {
-				return (this.vuex_config?.upload?.cdnurl || 'https://yanliangliang.com') + '/static/images/' + url;
+				return (this.vuex_config?.upload?.cdnurl || 'https://cdn.yanliangliang.com') + '/static/images/' + url;
 			}
 			return url;
 		},
 		// stlticurl
 		audiourl(url) {
 			if (!/^((?:[a-z]+:)?\/\/|data:image\/)(.*)/.test(url)) {
-				return (this.vuex_config?.upload?.cdnurl || 'https://yanliangliang.com') + '/static/mp3/' + url;
+				return (this.vuex_config?.upload?.cdnurl || 'https://cdn.yanliangliang.com') + '/static/mp3/' + url;
 			}
 			return url;
 		},
 		// stlticurl
 		videourl(url) {
 			if (!/^((?:[a-z]+:)?\/\/|data:image\/)(.*)/.test(url)) {
-				return (this.vuex_config?.upload?.cdnurl || 'https://yanliangliang.com') + '/static/video/' + url;
+				return (this.vuex_config?.upload?.cdnurl || 'https://cdn.yanliangliang.com') + '/static/video/' + url;
 			}
 			return url;
 		},

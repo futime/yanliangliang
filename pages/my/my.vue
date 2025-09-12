@@ -5,7 +5,18 @@
 		<view class="userInfo">
 			<view class="leftWrap">
 				<view class="nickname" @click="gotoProfile">{{ vuex_user.nickname || '点击登录' }}</view>
-				<view class="vipstatus" v-if="vuex_token && vuex_vipinfo" @click="handleClickBuyVip">{{ 'VIP有效期至' || 'VIP截止'}}:{{ checkVipExpiry() || '已过期'}}</view>
+				
+				<view v-if="vuex_config.isMyProfileTipsTxt== 1">
+					<view class="vipstatus" v-if="vuex_token && vuex_vipinfo" @click="handleClickBuyVip">
+						{{ 'VIP有效期至' || 'VIP截止'}}:{{ checkVipExpiry() || '已过期'}}
+					</view>
+				</view>
+				<view v-else>
+					<view class="vipstatus" @click="gotoProfile">
+						{{ vuex_config.MyProfileNoVipTips || '每日放松冥想' }}
+					</view>
+				</view>
+				
 			</view>
 			<view class="avatar" @click="gotoProfile">
 				<image :src="staticurl('shuoming_icon.png')" mode=""></image>
@@ -16,26 +27,26 @@
 			<view class="topcard" v-if="vuex_config.isVipCenter == 1">
 				<view class="leftBox">
 					<view class="titile">
-						<view class="">{{ vuex_config.vipPromptTitle || '疼点典会员'}}</view>
+						<view class="">{{ vuex_config.vipPromptTitle || ''}}</view>
 					</view>
 					<view class="tips">
-						<view v-if="!vuex_token">{{ vuex_config.vipPromptSubtitle || '新用户注册免费试用'}}</view>
+						<view v-if="!vuex_token">{{ vuex_config.vipPromptSubtitle || ''}}</view>
 						<view v-else>
-							<text v-if="vuex_token && vuex_vipinfo">{{ vuex_config.vipPromptSubtitleLogin || '会员享专属商品折扣'}}</text>
-							<text v-else>{{ vuex_config.vipPromptSubtitle || '新用户注册免费试用'}}</text>
+							<text v-if="vuex_token && vuex_vipinfo">{{ vuex_config.vipPromptSubtitleLogin || ''}}</text>
+							<text v-else>{{ vuex_config.vipPromptSubtitle || ''}}</text>
 						</view>
 						
 					</view>
 				</view>
 				<view class="rightBox" @click="handleClickBuyVip">
-					<text v-if="vuex_token && vuex_vipinfo">{{ vuex_config.vipButtonVipTxt || '续费会员'}}</text>
-					<text v-else>{{ vuex_config.vipButtonTxt || '开通会员'}}</text>
+					<text v-if="vuex_token && vuex_vipinfo">{{ vuex_config.vipButtonVipTxt || ''}}</text>
+					<text v-else>{{ vuex_config.vipButtonTxt || ''}}</text>
 				</view>
 			</view>
 			
 			
 			<view class="memberRowWrap">
-				<u-row gutter="16">
+				<u-row gutter="16" v-if="vuex_config.isMyScoreShow == 1">
 					<u-col span="6">
 						<view class="cardInner" @click="handleClickMyCollects">
 							<u-icon :name="staticurl('common/mycollects_icon.svg')" size="48"></u-icon>
@@ -45,7 +56,15 @@
 					<u-col span="6">
 						<view class="cardInner" @click="handleClickMyScroe">
 							<u-icon :name="staticurl('common/myscore_icon.svg')" size="48"></u-icon>
-							<view class="txt">我的积分</view>
+							<view class="txt">{{ vuex_config.myScoreMenuTitle || ''}}</view>
+						</view>
+					</u-col>
+				</u-row>
+				<u-row gutter="16" v-else>
+					<u-col span="12">
+						<view class="cardInner" @click="handleClickMyCollects">
+							<u-icon :name="staticurl('common/mycollects_icon.svg')" size="48"></u-icon>
+							<view class="txt">我的收藏</view>
 						</view>
 					</u-col>
 				</u-row>
@@ -66,11 +85,13 @@
 					<!-- #ifdef MP-WEIXIN -->	
 					<u-cell-item :icon="staticurl('common/pointsmall_icon.svg')" icon-size="48" title="积分商城" :border-bottom="false" v-if="vuex_config.isVipExchangeMenu == 1" @click="handleClickExchange"></u-cell-item>
 					<!-- #endif -->
+					
+					<u-cell-item :icon="staticurl('common/faq_icon.svg')" icon-size="48" title="常见问题" :border-bottom="false" v-if="vuex_config.isMyFaqMenu == 1" @click="handleClickFaq"></u-cell-item>
 					<u-cell-item :icon="item.img" icon-size="48" :title="item.label" :border-bottom="false" v-for="item in list" :key="item.id" 
 					@click="handleClickItem(item)">
 					</u-cell-item>
-					<u-cell-item :icon="staticurl('common/loginout_icon.svg')" icon-size="48" title="设置" :border-bottom="false"  @click="goPage('/pages/setting/setting')"></u-cell-item>
-					<!-- <u-cell-item :icon="staticurl('common/loginout_icon.svg')" icon-size="48" title="退出登录" :border-bottom="false" v-if="vuex_token" @click="goPage('out')"></u-cell-item> -->
+					<u-cell-item :icon="staticurl('common/setup_icon.svg')" icon-size="48" title="设置" :border-bottom="false"  @click="goPage('/pages/setting/setting')"></u-cell-item>
+					<u-cell-item :icon="staticurl('common/loginout_icon.svg')" icon-size="48" title="退出登录" :border-bottom="false" v-if="vuex_token" @click="goPage('out')"></u-cell-item>
 				</u-cell-group>
 			</view>
 			
@@ -110,19 +131,14 @@
 					},
 					// #endif
 					{
-						img: this.staticurl('common/faq_icon.svg'),
-						label: '常见问题',
-						id: 2
-					},
-					{
 						img: this.staticurl('common/document_icon.svg'),
 						label: '隐私条款政策',
-						id: 3
+						id: 2
 					},
 					{
 						img: this.staticurl('common/customerservice.svg'),
 						label: '平台客服',
-						id: 4
+						id: 3
 					}
 				],
 				scrollTop: 0
@@ -166,15 +182,10 @@
 						break;	
 					case 2:
 						uni.navigateTo({
-							url: '/pages/page/page?diyname=faq'
-						})
-						break;
-					case 3:
-						uni.navigateTo({
 							url: '/pages/page/page?diyname=privacypolicy'
 						})
 						break;
-					case 4:
+					case 3:
 						uni.navigateTo({
 							url: '/pages/page/page?diyname=customerservice'
 						})
@@ -190,6 +201,11 @@
 				}
 				uni.navigateTo({
 					url: '/pages/vip/activate'
+				})
+			},
+			handleClickFaq() {
+				uni.navigateTo({
+					url: '/pages/page/page?diyname=faq'
 				})
 			},
 			handleClickMyCollects() {

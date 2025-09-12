@@ -33,7 +33,8 @@
             "Camera" : {},
             "Barcode" : {},
             "VideoPlayer" : {},
-            "Share" : {}
+            "Share" : {},
+            "OAuth" : {}
         },
         /* 应用发布信息 */
         "distribute" : {
@@ -198,5 +199,10 @@
             }
         }
     },
-    "locale" : "zh-Hans"
+    "locale" : "zh-Hans",
+    "app-harmony" : {
+        "distribute" : {
+            "modules" : {}
+        }
+    }
 }

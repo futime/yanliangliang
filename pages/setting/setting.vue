@@ -57,41 +57,37 @@
 			
 			<!-- 注销账号 -->
 			<view class="setting-item" @click="deleteAccount">
-				<view class="item-left">
-					<text class="item-title" v-if="vuex_user.logoff == 0">注销账号</text>
-					<text class="item-title" v-else>
+				<view class="item-left" v-if="vuex_token && vuex_vipinfo">
+					<view class="item-title" v-if="vuex_user.logoff == 0">注销账号</view>
+					<view class="item-title" v-else>
 						注销账号（申请审核中）
-					</text>
+					</view>
+				</view>
+				<view class="item-left" v-else>
+					<view class="item-title" @click="gotoLogin">
+						注销账号
+					</view>
 				</view>
 				<view class="item-right">
 					<u-icon name="arrow-right" color="#c0c4cc" size="16"></u-icon>
 				</view>
 			</view>
 			
-			<!-- 关闭推荐 -->
+			<!-- 关闭个性化推荐 -->
 			<view class="setting-item" v-if="vuex_token">
 				<view class="item-left">
-					<text class="item-title">关闭推荐</text>
+					<text class="item-title">关闭个性化推荐</text>
 				</view>
 				<view class="item-right">
 					<u-switch :value="vuex_user.switch_recommend == 1" :active-color="switchActiveColor" @change="onRecommendChange"></u-switch>
 				</view>
 			</view>
-			
-			<!-- 关闭定向推送 -->
-			<!-- <view class="setting-item" v-if="vuex_token">
-				<view class="item-left">
-					<text class="item-title">关闭定向推送</text>
-				</view>
-				<view class="item-right">
-					<u-switch :value="pushSwitch" :active-color="switchActiveColor" @change="onPushChange"></u-switch>
-				</view>
-			</view> -->
+		
 		</view>
 		
 		<!-- 退出登录按钮 -->
 		<view class="logout-wrapper" v-if="vuex_token">
-			<u-button type="default" :custom-style="logoutBtnStyle" @click="logout">退出登录</u-button>
+			<!-- <u-button type="default" :custom-style="logoutBtnStyle" @click="logout">退出登录</u-button> -->
 		</view>
 	</view>
 </template>
@@ -269,6 +265,17 @@
 				} catch (e) {
 					this.$u.toast('注销失败，请稍后重试')
 				}
+			},
+			gotoLogin() {
+				if(!this.vuex_token) {
+					uni.navigateTo({
+						url: '/pages/login/login'
+					})
+					return
+				}
+				uni.navigateTo({
+					url: '/pages/setting/setting'
+				})
 			},
 			
 			// 退出登录 

@@ -14,8 +14,8 @@
 			<view class="content">
 				<!-- 标题和副标题 -->
 				<view class="title-section">
-					<text class="main-title">{{ archivesInfo.title || '山雨已来' }}</text>
-					<text class="sub-title">{{ archivesInfo.subtitle || '缓解失眠问题' }}</text>
+					<text class="main-title">{{ archivesInfo.title || '' }}</text>
+					<text class="sub-title">{{ archivesInfo.subtitle || '' }}</text>
 				</view>
 
 				<view class="footer">
@@ -51,7 +51,7 @@
 						
 						<view class="action-btn" @click="showShare = true">
 							<view class="action-icon">
-								<u-icon size="45" name="share" color="#fff"></u-icon>
+								<image :src="staticurl('share.svg')" mode=""></image>
 							</view>
 							<text class="action-text">分享</text>
 						</view>
