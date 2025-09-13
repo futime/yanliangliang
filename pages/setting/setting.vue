@@ -74,7 +74,7 @@
 					</view>
 				</view>
 				<view class="item-left" v-else>
-					<view class="item-title" @click="gotoLogin">
+					<view class="item-title">
 						注销账号
 					</view>
 				</view>
@@ -130,7 +130,9 @@
 			}
 		},
 		onShow() {
-			this.getUserIndex() // 刷新用户信息
+			if (this.vuex_token) {
+				this.getUserIndex() // 刷新用户信息
+			}
 		},
 		onLoad() {
 			this.getCacheSize()
@@ -219,7 +221,6 @@
 				}).catch(() => {
 					this.$u.toast('设置失败，请稍后重试')
 				})
-
 			},
 
 			// 推送开关改变
@@ -231,27 +232,33 @@
 
 			// 注销账号
 			async deleteAccount() {
-				if (this.vuex_user.logoff == 0) {
-					uni.showModal({
-						title: '注销账号',
-						content: '注销后将无法恢复账号数据，确定要注销吗？',
-						confirmColor: '#f56c6c',
-						success: (res) => {
-							if (res.confirm) {
-								// 调用注销接口
-								uni.navigateTo({
-									url: '/pages/setting/deregistration'
-								})
-							}
-						}
+				if (!this.vuex_token) {
+					uni.navigateTo({
+						url: '/pages/login/login'
 					})
-
+					return
+				}
+				if (this.vuex_user.logoff == 0) {
+					// uni.showModal({
+					// 	title: '注销账号',
+					// 	content: '注销后将无法恢复账号数据，确定要注销吗？',
+					// 	confirmColor: '#f56c6c',
+					// 	success: (res) => {
+					// 		if (res.confirm) {
+					// 			// 调用注销接口
+					// 			this.doDeleteAccount()
+					// 		}
+					// 	}
+					// })
+					uni.navigateTo({
+						url: '/pages/setting/deregistration'
+					})
 					return
 				} else {
 					const res = await this.$api.deleteAccountDay()
 					uni.showModal({
 						title: '提示',
-						content: `您的账号已提交注销申请，请耐心等待平台客服处理，${res.data}天后将完成您账号注销流程！`,
+						content: `账号注销申请已提交，请耐心等待平台客服处理，将在${res.data}天后将完成您账号注销流程！`,
 						confirmColor: '#f56c6c',
 						confirmText: '取消注销申请',
 						cancelText: '关闭',
@@ -301,9 +308,7 @@
 					})
 					return
 				}
-				uni.navigateTo({
-					url: '/pages/setting/setting'
-				})
+				uni.navigateBack()
 			},
 
 			// 退出登录 

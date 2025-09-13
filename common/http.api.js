@@ -259,6 +259,12 @@ const install = (Vue, vm) => {
 
 	// 注销账号
 	vm.$api.deleteAccount 		  = async (params = {}) => await vm.$u.post('/addons/shop/api.user/logoff',params);
+	
+	//注销注意事项文本
+	vm.$api.logoffContent 	  = async (params = {}) => await vm.$u.post('/addons/shop/api.user/logoffconsequence',params);
+	//账号注销协议文本
+	vm.$api.logoffAreement 	  = async (params = {}) => await vm.$u.post('/addons/shop/api.user/logoffAreement',params);
+	
 	// 取消注销账号
 	vm.$api.cancelDeleteAccount 		  = async (params = {}) => await vm.$u.post('/addons/shop/api.user/cancel_logoff',params);
 	// 注销倒计时 （天）
