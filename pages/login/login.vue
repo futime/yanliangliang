@@ -44,19 +44,48 @@
 				</view>
 				<!-- #endif -->
 			</view>
-			<!-- #ifdef H5 || APP-PLUS -->
-			<view class="userLoginBtn">
+			<!-- #ifdef H5 -->
+		<!-- 	<view class="userLoginBtn">
 				<view v-if="checkLogintype('account')">
 					<u-button type="primary" hover-class="none" :custom-style="{ background: 'none', width: '100%', height: '100%', color: '#fff'}" 
 					 @click="goPage('/pages/login/userlogin')">
 						使用账号密码登录
 					</u-button>
 				</view>
-			</view>
-			<view class="u-flex u-row-between u-tips-color u-m-t-40 u-p-20 u-font-lg" v-if="checkLogintype('account')">
-				<view @click="goPage('/pages/login/register')">我还没有账号，立即注册</view>
+			</view> -->
+			<!-- #endif -->
+			<!-- #ifdef H5 -->
+			<view class="userLoginBtn">
+				<view >
+					<u-button type="primary" hover-class="none" :custom-style="{ background: 'none', width: '100%', height: '100%', color: '#fff'}" 
+					 @click="goThreeLogin">
+						<image :src="staticurl('common/wechatlogin.svg')" mode="" class="wechatIcon"></image>
+						<text>微信登录</text>
+					</u-button>
+				</view>
 			</view>
 			<!-- #endif -->
+			
+			<!-- #ifdef H5 -->
+			<view class="u-p-t-30 u-text-center tiplabel u-flex">
+				<u-checkbox :active-color="theme.bgColor" v-model="agreeChecked" name="agree"><text
+						class="u-font-28 tiplabel">我已阅读并同意</text></u-checkbox>
+				<text class="u-font-28 agree" @click="goPage('/pages/page/page?diyname=agreement')"
+					:style="[{ color: theme.bgColor }]">《用户协议》</text>
+				和<text class="u-font-28 privacypolicy" @click="goPage('/pages/page/page?diyname=privacypolicy')"
+					:style="[{ color: theme.bgColor }]">《隐私政策》</text>
+			</view>
+			<!-- #endif -->
+			
+			<!-- #ifdef H5 -->
+			<view class="u-flex u-row-between u-tips-color u-m-t-40 u-p-20 u-font-lg" v-if="checkLogintype('account')">
+				<view @click="goPage('/pages/login/register')" class="titleLight">使用账号密码登录</view>
+			</view>
+			<!-- #endif -->
+			
+			<u-toast ref="uToast" />
+			<AgreementModal ref="AgreementModal" @confirm="onAgreementConfirm"></AgreementModal>
+			
 		</view>
 		
 	</view>
@@ -64,18 +93,23 @@
 
 <script>
 	import { loginfunc } from '@/common/fa.mixin.js';
+	import AgreementModal from '@/components/AgreementModal.vue'
 	export default {
 		mixins: [loginfunc],
+		components: {
+			AgreementModal
+		},
 		onLoad(opt) {
 			// #ifdef MP-WEIXIN || APP-PLUS
 			this.isThreeLogin = true;
 			// #endif
-
+			
 			// #ifdef H5
 			if (this.$util.isWeiXinBrowser()) {
 				this.isThreeLogin = true;
 			}
 			// #endif
+			
 			if(opt.redirect){
 				this.$u.vuex('vuex_lasturl', opt.redirect);
 			}
@@ -89,6 +123,7 @@
 				border: false,
 				errorType: ['message'],
 				isThreeLogin: false,
+				agreeChecked: false,
 				scrollTop: 0,
 				redirectUrl: ''
 			};
@@ -98,14 +133,27 @@
 				// #ifdef MP-WEIXIN
 				this.goMpLogin();
 				// #endif
-
+			
 				// #ifdef H5
 				this.goAuth();
 				// #endif
-
-				// #ifdef APP-PLUS
+			
+				// #ifdef H5
+				if (!this.agreeChecked) {
+					if (!this.confirm) {
+						this.$refs.AgreementModal.open()
+					} else {
+						this.$u.toast('请勾选同意并阅读用户协议及隐私政策');
+					}
+					return
+				}
 				this.goAppLogin();
 				// #endif
+			},
+			// 用户同意协议后的处理
+			onAgreementConfirm() {
+				this.confirm = true
+				this.agreeChecked = true
 			},
 			goLogin: function() {
 				this.$refs.uForm.validate(async valid => {
@@ -217,7 +265,7 @@
 	.btnGroup {
 	    width: 100%;
 	    position: fixed;
-	    bottom: 8vh;
+	    bottom: 9vh;
 	    left: 0;
 	    right: 0;
 	    display: flex;
@@ -253,9 +301,28 @@
 		border-radius: 12rpx;
 	}
 	
+	.tiplabel{
+		color:rgba(255,255,255,.5);
+	}
+	
+	.titleLight{
+		color:#fff;
+	}
+	
+	.wechatIcon{
+		width:48rpx;
+		height:48rpx!important;
+		margin-right:16rpx;
+	}
+	
 	/deep/ .u-size-default{
 		font-size: 18px;
 	}
+	
+	/deep/ .u-checkbox__label {
+		margin-right: 0px;
+	}
+	
 	
 	
 </style>

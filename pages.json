@@ -215,7 +215,8 @@
 				"navigationBarTitleText": "商品详情",
 				"navigationStyle": "custom",
 				"navigationBarTextStyle": "black",
-				"enablePullDownRefresh": false
+				"enablePullDownRefresh": false,
+				"navigationBarTextStyle": "black"
 			}
 
 		},
@@ -254,6 +255,7 @@
 				"navigationStyle": "custom",
 				"navigationBarTextStyle": "black",
 				"enablePullDownRefresh": true
+				
 			}
 		}, {
 			"path": "pages/order/apply",
@@ -493,7 +495,7 @@
 						"style": {
 							"navigationBarTitleText": "详情",
 							"navigationStyle": "custom",
-							"navigationBarTextStyle": "white",
+							"navigationBarTextStyle": "black",
 							"enablePullDownRefresh": false
 						}
 					},
@@ -504,6 +506,7 @@
 							"navigationStyle": "custom",
 							"navigationBarTextStyle": "white",
 							"enablePullDownRefresh": false
+							
 						}
 					},
 					{
@@ -520,7 +523,7 @@
 						"style": {
 							"navigationBarTitleText": "详情",
 							"navigationStyle": "custom",
-							"navigationBarTextStyle": "white",
+							"navigationBarTextStyle": "black",
 							"enablePullDownRefresh": false
 						}
 					}

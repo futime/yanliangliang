@@ -61,14 +61,14 @@
 				<view @click="goPage('/pages/login/userlogin')">用户名密码登录</view>
 			</view>
 
-			<view class="u-text-center other" v-if="isThreeLogin && checkLogintype('wechat')">
+			<!-- <view class="u-text-center other" v-if="isThreeLogin && checkLogintype('wechat')">
 				<u-grid :col="1" :border="false">
 					<u-grid-item @click="goThreeLogin">
 						<u-icon name="weixin-fill" color="#53c240" :size="50"></u-icon>
 						<view class="grid-text">微信登录</view>
 					</u-grid-item>
 				</u-grid>
-			</view>
+			</view> -->
 
 		</view>
 		<u-verification-code seconds="60" ref="uCode" @change="codeChange"></u-verification-code>
