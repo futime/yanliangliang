@@ -69,9 +69,14 @@
 			};
 		},
 		onLoad(opt) {
+			this.initShare()
+			if(opt.recdkey){
+				this.$u.vuex('vuex_recdkey', opt.recdkey);
+			}
 			this.channel = opt.channel;
 			this.page = 1;
 			this.getCategoryLists();
+			
 		},
 		onShow() {},
 		computed: {},
@@ -102,6 +107,15 @@
 				}
 				this.loading = false;
 			},
+			initShare() {
+				// #ifdef MP-WEIXIN
+				this.$u.mpShare = {
+					title: '助眠冥想-疼点典',
+					imageUrl: 'https://yanliangliang.com/static/images/mpshare.jpg',
+					path: '/pages/course/meditation'
+				};
+				// #endif
+			},
 			handleClickSound(item) {
 				if (item.videourl) {
 					if (item.isvertical) {
@@ -125,7 +139,12 @@
 				this.getCategoryLists(true);
 			},
 		},
-		onPullDownRefresh() {},
+		onPullDownRefresh() {
+			if (this.vuex_token) {
+				this.getUserIndex();
+			}
+			this.getCategoryLists();
+		},
 		onReachBottom() {},
 	};
 </script>

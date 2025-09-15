@@ -105,12 +105,22 @@
 			};
 		},
 		onLoad() {
+			this.initShare()
 			this.page = 1;
 			this.getCategoryLists();
 		},
 		onShow() {},
 		computed: {},
 		methods: {
+			initShare() {
+				// #ifdef MP-WEIXIN
+				this.$u.mpShare = {
+					title: '每日冥想-疼点典',
+					imageUrl: 'https://yanliangliang.com/static/images/mpshare.jpg',
+					path: '/pages/course/meditation'
+				};
+				// #endif
+			},
 			async getCategoryLists(isLoadMore = false) {
 				if (this.loading || this.status === "nomore") return;
 				this.loading = true;

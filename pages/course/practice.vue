@@ -198,9 +198,22 @@ export default {
 
   mounted() {
     this.initAudio();
+	this.initShare();
+	if(opt.recdkey){
+		this.$u.vuex('vuex_recdkey', opt.recdkey);
+	}
   },
 
   methods: {
+	  initShare() {
+	  	// #ifdef MP-WEIXIN
+	  	this.$u.mpShare = {
+	  		title: '呼吸练习-疼点典',
+	  		imageUrl: 'https://yanliangliang.com/static/images/mpshare.jpg',
+	  		path: '/pages/course/practice'
+	  	};
+	  	// #endif
+	  },
     startCountdown() {
       this.currentStage = "practice";
       this.showCountdown = true;

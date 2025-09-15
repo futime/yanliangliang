@@ -423,7 +423,10 @@
 			}
 		},
 		onPullDownRefresh() {
-			
+			if (this.vuex_token) {
+				this.getUserIndex();
+			}
+			this.queryCategoryLists()
 		},
 		onReachBottom() {}
 	}

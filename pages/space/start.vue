@@ -86,6 +86,9 @@
 				videoContext: null
 			}
 		},
+		onLoad(opt) {
+			this.initShare()
+		},
 		onReady() {
 			//#ifndef APP 
 			this.videoContext = uni.createVideoContext('myVideo')
@@ -97,6 +100,16 @@
 			}
 		},
 		methods: {
+			// 分享
+			initShare() {
+				// #ifdef MP-WEIXIN
+				this.$u.mpShare = {
+					title: '每日冥想',
+					imageUrl: 'https://yanliangliang.com/static/images/mpshare.jpg',
+					path: '/pages/course/index'
+				};
+				// #endif
+			},
 			getUserIndex: async function() {
 				let res = await this.$api.getUserIndex();
 				uni.stopPullDownRefresh();
