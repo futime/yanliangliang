@@ -5,7 +5,6 @@
 		<view class="userInfo">
 			<view class="leftWrap">
 				<view class="nickname" @click="gotoProfile">{{ vuex_user.nickname || '点击登录' }}</view>
-				
 				<view v-if="vuex_config.isMyProfileTipsTxt== 1">
 					<view class="vipstatus" v-if="vuex_token && vuex_vipinfo" @click="handleClickBuyVip">
 						{{ 'VIP有效期至' || 'VIP截止'}}:{{ checkVipExpiry() || '已过期'}}
@@ -16,7 +15,6 @@
 						{{ vuex_config.MyProfileNoVipTips || '每日放松冥想' }}
 					</view>
 				</view>
-				
 			</view>
 			<view class="avatar" @click="gotoProfile">
 				<image :src="staticurl('shuoming_icon.png')" mode=""></image>
@@ -70,21 +68,26 @@
 				</u-row>
 			</view>
 			
-			<!-- #ifdef MP-WEIXIN -->	
+			
 			<view class="memberMenu" v-if="vuex_config.isVipExperiencers == 1">
 				<u-cell-group :border="false">
 					<u-cell-item :icon="staticurl('common/myexperiencers_icon.svg')" icon-size="48" title="体验者管理" :border-bottom="false" @click="goPage('/pages/experiencer/list'),true"></u-cell-item>
 				</u-cell-group>
 			</view>
-			<!-- #endif -->
 			
 			<view class="memberMenu">
 					<u-cell-group :border="false">
 					<u-cell-item :icon="staticurl('common/myordershop_icon.svg')" icon-size="48" title="我的商品订单" :border-bottom="false" v-if="vuex_config.isOrderMenu == 1" @click="handleClickOrder"></u-cell-item>
 					<u-cell-item :icon="staticurl('common/myorder_icon.svg')" icon-size="48" :title="vuex_config.vipPromptMenuTxt || 'VIP订单记录'" :border-bottom="false" v-if="vuex_config.isVipOrderMenu == 1" @click="handleClickVipOrder"></u-cell-item>
-				
+					
+					<u-cell-item :icon="staticurl('common/address_icon.svg')" icon-size="48" title="收货地址" :border-bottom="false" v-if="vuex_config.isAddressMenu == 1" @click="handleClickAddress"></u-cell-item>
+					
+					<!-- #ifdef MP-WEIXIN -->	
+					<u-cell-item :icon="staticurl('common/myinvite_icon.svg')" icon-size="48" title="我的邀请" :border-bottom="false" v-if="vuex_config.isInvitationMenu == 1" @click="handleClickInvitation"></u-cell-item>
+					<!-- #endif -->
+					
 					<u-cell-item :icon="staticurl('common/pointsmall_icon.svg')" icon-size="48" title="积分商城" :border-bottom="false" v-if="vuex_config.isVipExchangeMenu == 1" @click="handleClickExchange"></u-cell-item>
-				
+					
 					<u-cell-item :icon="staticurl('common/faq_icon.svg')" icon-size="48" title="常见问题" :border-bottom="false" v-if="vuex_config.isMyFaqMenu == 1" @click="handleClickFaq"></u-cell-item>
 					<u-cell-item :icon="item.img" icon-size="48" :title="item.label" :border-bottom="false" v-for="item in list" :key="item.id"  @click="handleClickItem(item)"></u-cell-item>
 					<u-cell-item :icon="staticurl('common/setup_icon.svg')" icon-size="48" title="设置" :border-bottom="false"  @click="goPage('/pages/setting/setting')"></u-cell-item>
@@ -115,27 +118,15 @@
 		data() {
 			return {
 				list: [
-					// #ifdef MP-WEIXIN 
-					{
-						img: this.staticurl('common/myinvite_icon.svg'),
-						label: '我的邀请',
-						id: 0
-					},
-					{
-						img: this.staticurl('common/address_icon.svg'),
-						label: '收货地址',
-						id: 1
-					},
-					// #endif
 					{
 						img: this.staticurl('common/document_icon.svg'),
 						label: '隐私条款政策',
-						id: 2
+						id: 0
 					},
 					{
 						img: this.staticurl('common/customerservice.svg'),
 						label: '平台客服',
-						id: 3
+						id: 1
 					}
 				],
 				scrollTop: 0
@@ -155,34 +146,11 @@
 			handleClickItem(item) {
 				switch(item.id) {
 					case 0:
-						if(!this.vuex_token) {
-							uni.navigateTo({
-								url: '/pages/login/login'
-							})
-							return
-						}
-						uni.navigateTo({
-							url: '/pages/my/invitation'
-						})
-						break;
-					
-					case 1:
-						if(!this.vuex_token) {
-							uni.navigateTo({
-								url: '/pages/login/login'
-							})
-							return
-						}
-						uni.navigateTo({
-							url: '/pages/address/address'
-						})
-						break;	
-					case 2:
 						uni.navigateTo({
 							url: '/pages/page/page?diyname=privacypolicy'
 						})
 						break;
-					case 3:
+					case 1:
 						uni.navigateTo({
 							url: '/pages/page/page?diyname=customerservice'
 						})
@@ -198,6 +166,28 @@
 				}
 				uni.navigateTo({
 					url: '/pages/vip/activate'
+				})
+			},
+			handleClickInvitation() {
+				if(!this.vuex_token) {
+					uni.navigateTo({
+						url: '/pages/login/login'
+					})
+					return
+				}
+				uni.navigateTo({
+					url: '/pages/my/invitation'
+				})
+			},
+			handleClickAddress() {
+				if(!this.vuex_token) {
+					uni.navigateTo({
+						url: '/pages/login/login'
+					})
+					return
+				}
+				uni.navigateTo({
+					url: '/pages/address/address'
 				})
 			},
 			handleClickFaq() {

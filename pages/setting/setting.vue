@@ -15,6 +15,7 @@
 			</view>
 
 			<!-- 清除缓存 -->
+			<!-- #ifdef H5 || APP-PLUS -->
 			<view class="setting-item" @click="clearCache">
 				<view class="item-left">
 					<text class="item-title">清除缓存</text>
@@ -24,6 +25,7 @@
 					<u-icon name="arrow-right" color="#c0c4cc" size="16"></u-icon>
 				</view>
 			</view>
+			<!-- #endif -->
 
 			<!-- 版本信息 -->
 			<view class="setting-item">
@@ -34,6 +36,7 @@
 					<text class="version-text">V {{ vuex_config.appVersionNum }}</text>
 				</view>
 			</view>
+			
 
 			<!-- 用户协议 -->
 			<view class="setting-item" @click="goPage('/pages/page/page?diyname=agreement')">

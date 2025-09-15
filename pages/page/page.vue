@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<!-- 顶部导航 -->
-		<fa-navbar :title="info.title || '单页'" :border-bottom="false"></fa-navbar>
+		<fa-navbar :title="info.title || '单页面'" :border-bottom="false"></fa-navbar>
 		<image class="page-imgae" v-if="info.image" :src="info.image" mode="aspectFill"></image>
 
 		<!-- <view class="text-weight u-font-30 u-border-bottom u-p-30"><text v-text="info.title"></text></view> -->

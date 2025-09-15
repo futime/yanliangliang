@@ -34,11 +34,11 @@
 				
 				<view class="u-p-t-30 u-text-center u-flex">
 					<u-checkbox :active-color="theme.bgColor" v-model="agreeChecked" name="agree"><text
-							class="u-font-28">阅读并同意</text></u-checkbox>
+							class="u-font-28">我已阅读并同意</text></u-checkbox>
 					<text class="u-font-28 agree" @click="goPage('/pages/page/page?diyname=agreement')"
 						:style="[{ color: theme.bgColor }]">《用户协议》</text>
 					和<text class="u-font-28 privacypolicy" @click="goPage('/pages/page/page?diyname=privacypolicy')"
-						:style="[{ color: theme.bgColor }]">《隐私政策协议》</text>
+						:style="[{ color: theme.bgColor }]">《隐私政策》</text>
 				</view>
 			</u-form>
 		</view>
@@ -288,14 +288,16 @@
 		width: 100%;
 		padding: 30rpx 36rpx;
 		border-radius: 20rpx;
-
 		background: rgb(255, 255, 255);
+	}
+	
+	/deep/ .u-checkbox__label{
+		margin-right:2px;
 	}
 
 	.uploadBox {
 		display: flex;
 		align-items: center;
-
 		.uploadImage {
 			width: 210rpx;
 			height: 210rpx;
