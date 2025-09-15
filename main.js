@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App'
 
+
 Vue.config.productionTip = false
 
 App.mpType = 'app'
@@ -62,6 +63,12 @@ Vue.use(httpInterceptor, app)
 // http接口API抽离，免于写url或者一些固定的参数
 import httpApi from '@/common/http.api.js'
 Vue.use(httpApi, app)
+
+import watchPermis from '@/common/watchPermision.js';
+Vue.use(watchPermis)
+
+import watchPermision from '@/components/permisonPopup.vue';
+Vue.component('watchPermision', watchPermision);
 
 //路由拦截
 import route from '@/common/fa.route.js'

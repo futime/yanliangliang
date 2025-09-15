@@ -14,15 +14,15 @@
 				</u-form-item>
 				<u-form-item label="手机号" prop="phone" required :border-bottom="false"><u-input v-model="form.phone"
 						placeholder="请输入体验者手机号" /></u-form-item>
-				<u-form-item label="出生年月日" prop="age" required :border-bottom="false"><u-input v-model="form.age" type="select"
-						placeholder="选择出生年月日" @click="handleClickShowAge" /></u-form-item>
+				<u-form-item label="出生年月日" prop="age" required :border-bottom="false"><u-input v-model="form.age"
+						type="select" placeholder="选择出生年月日" @click="handleClickShowAge" /></u-form-item>
 				<!-- <u-form-item label="体重"  prop="body_weight" required><u-input v-model="form.body_weight" type="select"
 						placeholder="请选择体重（单位kg）" @click="handleClickShowWeight" /></u-form-item> -->
 				<u-form-item label="点击上传体验者照片" prop="image" :border-bottom="false" label-position="top" required>
 					<view class="uploadBox">
 						<view class="uploadImage" v-if="form.image">
 							<image :src="cdnurl(form.image)" mode=""></image>
-							<view class="mask"  @click="selectImageUpload">
+							<view class="mask" @click="selectImageUpload">
 								修改
 							</view>
 						</view>
@@ -31,7 +31,7 @@
 						</view>
 					</view>
 				</u-form-item>
-				
+
 				<view class="u-p-t-30 u-text-center u-flex">
 					<u-checkbox :active-color="theme.bgColor" v-model="agreeChecked" name="agree"><text
 							class="u-font-28">我已阅读并同意</text></u-checkbox>
@@ -53,13 +53,13 @@
 		<u-picker ref="picker2" :range="weights" :default-selector="[50]" mode="selector" v-model="showWeight"
 			@confirm="selectKg"></u-picker>
 		<AgreementModal ref="AgreementModal" @confirm="onAgreementConfirm"></AgreementModal>
-			
+		<watchPermision v-if="permissionsStatus" :permisionName="permisionName" :purpose="purpose" />
 	</view>
 </template>
 
 <script>
 	import AgreementModal from '@/components/AgreementModal.vue'
-	
+
 	// 生成体重数组的函数
 	function generateWeights(min, max) {
 		const weights = [];
@@ -155,7 +155,10 @@
 				weights: [],
 				showWeight: false,
 				userid: null,
-				confirmFlag: false	
+				confirmFlag: false,
+				permissionsStatus: false, //控制弹窗是否展示
+				permisionName: '', //权限名字
+				purpose: '', //授权目的
 			}
 		},
 		computed: {},
@@ -178,6 +181,17 @@
 			this.$refs.uForm.setRules(this.rules);
 		},
 		methods: {
+			watchPermission(name, use) {
+				this.$watchPermission((status, e) => {
+					if (status === 'confirmed') {
+						this.permissionsStatus = true;
+						this.permisionName = name;
+						this.purpose = use;
+					} else if (status === 'complete') {
+						this.permissionsStatus = false;
+					}
+				});
+			},
 			onAgreementConfirm() {
 				this.confirmFlag = true
 			},
@@ -246,6 +260,7 @@
 				})
 				// #endif
 				// #ifdef APP
+				this.watchPermission('相册/相机权限使用说明', '用于实现上传个人头像功能');
 				uni.chooseImage({
 					count: 1, //默认9
 					sizeType: ['original'], //可以指定是原图还是压缩图，默认二者都有
@@ -258,7 +273,7 @@
 						if (!res2.code) {
 							_this.$u.toast(res2.msg);
 						}
-						
+
 						_this.form.image = res2.data.url
 					}
 				});
@@ -290,14 +305,15 @@
 		border-radius: 20rpx;
 		background: rgb(255, 255, 255);
 	}
-	
-	/deep/ .u-checkbox__label{
-		margin-right:2px;
+
+	/deep/ .u-checkbox__label {
+		margin-right: 2px;
 	}
 
 	.uploadBox {
 		display: flex;
 		align-items: center;
+
 		.uploadImage {
 			width: 210rpx;
 			height: 210rpx;
@@ -310,14 +326,14 @@
 				height: 100%;
 				border-radius: 16rpx;
 			}
-			
+
 			.mask {
 				height: 60rpx;
 				width: 100%;
 				position: absolute;
 				bottom: 0;
 				left: 0;
-				background-color: rgba(0,0,0,0.2);
+				background-color: rgba(0, 0, 0, 0.2);
 				display: flex;
 				justify-content: center;
 				align-items: center;
@@ -337,24 +353,24 @@
 			}
 		}
 	}
-	
+
 	.bottom-fixed-bar {
-	  position: fixed;
-	  left: 0;
-	  right: 0;
-	  bottom: 0;
-	  z-index: 999;
-	  background: #fff;
-	  color: #fff;
-	  padding: 0rpx 32rpx 60rpx 32rpx;
-	  box-sizing: border-box;
-	  height: 210rpx;
-	  display: flex;
-	  align-items: center;
-	  justify-content: center;
-	  border-top: 1px solid #f5f5f5;
+		position: fixed;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 999;
+		background: #fff;
+		color: #fff;
+		padding: 0rpx 32rpx 60rpx 32rpx;
+		box-sizing: border-box;
+		height: 210rpx;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-top: 1px solid #f5f5f5;
 	}
-	
+
 
 	.submitBtn {
 		width: 598rpx;

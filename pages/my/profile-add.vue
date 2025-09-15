@@ -1,6 +1,7 @@
 <template>
 	<view class="page">
-		<fa-navbar :title="isnew ? '资料补充': '用户资料'" :isBackFlag="isnew ? false : true" :background="{ color: '#fff' }"></fa-navbar>
+		<fa-navbar :title="isnew ? '资料补充': '用户资料'" :isBackFlag="isnew ? false : true"
+			:background="{ color: '#fff' }"></fa-navbar>
 		<view class="form">
 			<view class="form-item">
 				<view class="form-item-label">姓名</view>
@@ -11,7 +12,7 @@
 			<view class="form-item">
 				<view class="form-item-label">出生年月</view>
 				<!-- <view class="form-item-content" @click="handleClickShowPicker"> -->
-					<!-- <input class="input" v-model="form.age" disabled placeholder="请您输入出生年月" type="text"> -->
+				<!-- <input class="input" v-model="form.age" disabled placeholder="请您输入出生年月" type="text"> -->
 				<!-- </view>	 -->
 				<view class="form-item-group">
 					<view class="item-box">
@@ -93,10 +94,11 @@
 				</view>
 			</view>
 		</view>
-		<u-picker ref="picker" default-time="1950-01-01 00:00:00" start-year="1910" v-model="showPickerYear" :params="params" mode="time"
-			@confirm="selectYear"></u-picker>
+		<u-picker ref="picker" default-time="1950-01-01 00:00:00" start-year="1910" v-model="showPickerYear"
+			:params="params" mode="time" @confirm="selectYear"></u-picker>
 		<u-picker ref="picker2" :range="weights" :default-selector="[50]" mode="selector" v-model="showPickerKg"
 			@confirm="selectKg"></u-picker>
+		<watchPermision v-if="permissionsStatus" :permisionName="permisionName" :purpose="purpose" />
 	</view>
 </template>
 
@@ -132,7 +134,10 @@
 					body_weight: '',
 					face_image: ''
 				},
-				isnew: false
+				isnew: false,
+				permissionsStatus: false, //控制弹窗是否展示
+				permisionName: '', //权限名字
+				purpose: '', //授权目的
 			}
 		},
 		onLoad(opt) {
@@ -144,6 +149,17 @@
 			}
 		},
 		methods: {
+			watchPermission(name, use) {
+				this.$watchPermission((status, e) => {
+					if (status === 'confirmed') {
+						this.permissionsStatus = true;
+						this.permisionName = name;
+						this.purpose = use;
+					} else if (status === 'complete') {
+						this.permissionsStatus = false;
+					}
+				});
+			},
 			selectImageUpload() {
 				const _this = this
 				// #ifdef MP-WEIXIN
@@ -166,6 +182,7 @@
 				})
 				// #endif
 				// #ifdef APP
+				this.watchPermission('相册/相机权限使用说明', '用于实现上传个人头像功能');
 				uni.chooseImage({
 					count: 1, //默认9
 					sizeType: ['original'], //可以指定是原图还是压缩图，默认二者都有
@@ -219,7 +236,7 @@
 					})
 					return
 				}
-				
+
 				if (!this.form.age2) {
 					uni.showToast({
 						title: '请输入出生月份',
@@ -316,13 +333,14 @@
 
 	.form {
 		background: #fff;
-		padding:40rpx 48rpx;
+		padding: 40rpx 48rpx;
 		border-radius: 24rpx;
+
 		&-item {
 			margin-bottom: 36rpx;
 
 			&-label {
-				color: rgba(0, 0, 0,.6);
+				color: rgba(0, 0, 0, .6);
 				font-size: 32rpx;
 				font-weight: 500;
 				line-height: 1.2;
@@ -330,11 +348,12 @@
 				text-align: left;
 				margin-bottom: 24rpx;
 			}
-			
+
 			&-group {
 				display: flex;
-				gap:20rpx;
-				.item-box{
+				gap: 20rpx;
+
+				.item-box {
 					width: 50%;
 					height: 110rpx;
 					box-sizing: border-box;
@@ -344,14 +363,16 @@
 					position: relative;
 					display: flex;
 					align-items: center;
+
 					.rightIcon {
 						position: absolute;
 						right: 20rpx;
 						top: 50%;
 						transform: translateY(-50%);
-						font-size:32rpx;
+						font-size: 32rpx;
 						color: #303133;
 					}
+
 					.input {
 						width: 100%;
 						height: 100%;
@@ -489,22 +510,22 @@
 	}
 
 	.bottom-fixed-bar {
-	  position: fixed;
-	  left: 0;
-	  right: 0;
-	  bottom: 0;
-	  z-index: 999;
-	  background: #fff;
-	  color: #fff;
-	  padding: 0rpx 32rpx 60rpx 32rpx;
-	  box-sizing: border-box;
-	  height: 210rpx;
-	  display: flex;
-	  align-items: center;
-	  justify-content: center;
-	  border-top: 1px solid #f5f5f5;
+		position: fixed;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 999;
+		background: #fff;
+		color: #fff;
+		padding: 0rpx 32rpx 60rpx 32rpx;
+		box-sizing: border-box;
+		height: 210rpx;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-top: 1px solid #f5f5f5;
 	}
-	
+
 
 	.loginBtn {
 		width: 598rpx;

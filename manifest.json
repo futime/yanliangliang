@@ -1,6 +1,6 @@
 {
     "name" : "疼点典",
-    "appid" : "__UNI__85A0594",
+    "appid" : "__UNI__A6481B5",
     "description" : "疼点典",
     "versionName" : "1.2.0",
     "versionCode" : 2,
@@ -71,7 +71,11 @@
             },
             /* ios打包配置 */
             "ios" : {
-                "dSYMs" : false
+                "dSYMs" : false,
+                "privacyDescription" : {
+                    "NSPhotoLibraryUsageDescription" : "相册/相机权限使用说明：用于实现上传个人头像功能",
+                    "NSPhotoLibraryAddUsageDescription" : "相册/相机权限使用说明：用于实现上传个人头像功能"
+                }
             },
             /* SDK配置 */
             "sdkConfigs" : {

@@ -414,6 +414,7 @@
 				this.channel3.list = req[2].data.pageList.data
 				this.channel4.channel = req[3].data.channel
 				this.channel4.list = req[3].data.pageList.data
+				uni.stopPullDownRefresh();
 			},
 			getRemainingTime(targetTime, level) {
 				// 将目标时间转换为 Date 对象，假设传入的时间格式是 "yyyy-MM-dd HH:mm:ss"
@@ -610,6 +611,7 @@
 			if (this.vuex_token) {
 				this.getUserIndex();
 			}
+			this.queryCategoryLists()
 		},
 		onReachBottom() {}
 	}

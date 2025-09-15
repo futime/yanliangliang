@@ -152,6 +152,7 @@
 					}else {
 						this.$u.toast('请勾选同意并阅读用户协议及隐私政策');
 					}
+					return
 				}
 				this.$refs.uForm.validate(async valid => {
 					if (valid) {

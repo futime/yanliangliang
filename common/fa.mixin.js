@@ -133,7 +133,8 @@ export const tools = {
 		// staticurl
 		staticurl(url) {
 			if (!/^((?:[a-z]+:)?\/\/|data:image\/)(.*)/.test(url)) {
-				return (this.vuex_config?.upload?.cdnurl || 'https://cdn.yanliangliang.com') + '/static/images/' + url;
+				return (this.vuex_config?.upload?.cdnurl || 'https://cdn.yanliangliang.com') + '/static/images/' +
+					url;
 			}
 			return url;
 		},
@@ -147,7 +148,8 @@ export const tools = {
 		// stlticurl
 		videourl(url) {
 			if (!/^((?:[a-z]+:)?\/\/|data:image\/)(.*)/.test(url)) {
-				return (this.vuex_config?.upload?.cdnurl || 'https://cdn.yanliangliang.com') + '/static/video/' + url;
+				return (this.vuex_config?.upload?.cdnurl || 'https://cdn.yanliangliang.com') + '/static/video/' +
+					url;
 			}
 			return url;
 		},
@@ -356,7 +358,8 @@ export const formRule = {
 								if (!rule.required && this.$u.test.empty(value)) {
 									callback();
 								}
-								return /^(0[1-7]|1[0-356]|2[0-7]|3[0-6]|4[0-7]|5[1-7]|6[1-7]|7[0-5]|8[013-6])\d{4}$/.test(value);
+								return /^(0[1-7]|1[0-356]|2[0-7]|3[0-6]|4[0-7]|5[1-7]|6[1-7]|7[0-5]|8[013-6])\d{4}$/
+									.test(value);
 							},
 							message: '请填写正确邮编',
 							trigger: ['change', 'blur']
@@ -368,7 +371,8 @@ export const formRule = {
 								if (!rule.required && this.$u.test.empty(value)) {
 									callback();
 								}
-								return /^(?:[\u3400-\u4DB5\u4E00-\u9FEA\uFA0E\uFA0F\uFA11\uFA13\uFA14\uFA1F\uFA21\uFA23\uFA24\uFA27-\uFA29]|[\uD840-\uD868\uD86A-\uD86C\uD86F-\uD872\uD874-\uD879][\uDC00-\uDFFF]|\uD869[\uDC00-\uDED6\uDF00-\uDFFF]|\uD86D[\uDC00-\uDF34\uDF40-\uDFFF]|\uD86E[\uDC00-\uDC1D\uDC20-\uDFFF]|\uD873[\uDC00-\uDEA1\uDEB0-\uDFFF]|\uD87A[\uDC00-\uDFE0])+$/.test(value);
+								return /^(?:[\u3400-\u4DB5\u4E00-\u9FEA\uFA0E\uFA0F\uFA11\uFA13\uFA14\uFA1F\uFA21\uFA23\uFA24\uFA27-\uFA29]|[\uD840-\uD868\uD86A-\uD86C\uD86F-\uD872\uD874-\uD879][\uDC00-\uDFFF]|\uD869[\uDC00-\uDED6\uDF00-\uDFFF]|\uD86D[\uDC00-\uDF34\uDF40-\uDFFF]|\uD86E[\uDC00-\uDC1D\uDC20-\uDFFF]|\uD873[\uDC00-\uDEA1\uDEB0-\uDFFF]|\uD87A[\uDC00-\uDFE0])+$/
+									.test(value);
 							},
 							message: '请填写中文',
 							trigger: ['change', 'blur']
@@ -805,10 +809,10 @@ export const loginfunc = {
 					});
 					Service.authorize(
 						async function(e) {
-							console.log({
-								code: e.code,
-								scope: e.scope
-							})
+								console.log({
+									code: e.code,
+									scope: e.scope
+								})
 								let res = await that.$api.goAppLogin({
 									code: e.code,
 									scope: e.scope
@@ -916,7 +920,12 @@ export const archives = {
 				return;
 			}
 
-			let { filterList, orderList, pageList, channel } = res.data;
+			let {
+				filterList,
+				orderList,
+				pageList,
+				channel
+			} = res.data;
 			this.filterList = filterList;
 			this.orderList = orderList;
 			this.channel = channel;
