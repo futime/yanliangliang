@@ -3,7 +3,7 @@
 	<view>
 		<view class="popup-container">
 			<view class="permission-alert" id="permission-alert">
-				<text style="font-size: 40rpx; margin-bottom: 20rpx; display: block">{{ permisionName }}权限申请说明：</text>
+				<text style="font-size: 40rpx; margin-bottom: 20rpx; display: block">{{ permisionName }}: </text>
 				<text>{{ purpose }}</text>
 			</view>
 		</view>
