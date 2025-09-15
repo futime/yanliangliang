@@ -45,18 +45,19 @@
 				<!-- #endif -->
 			</view>
 			<!-- #ifdef H5 -->
-		<!-- 	<view class="userLoginBtn">
+			<view class="userLoginBtn">
 				<view v-if="checkLogintype('account')">
 					<u-button type="primary" hover-class="none" :custom-style="{ background: 'none', width: '100%', height: '100%', color: '#fff'}" 
 					 @click="goPage('/pages/login/userlogin')">
 						使用账号密码登录
 					</u-button>
 				</view>
-			</view> -->
+			</view>
 			<!-- #endif -->
-			<!-- #ifdef H5 -->
+			
+			<!-- #ifdef APP-PLUS -->
 			<view class="userLoginBtn">
-				<view >
+				<view v-if="isThreeLogin && checkLogintype('wechat')">
 					<u-button type="primary" hover-class="none" :custom-style="{ background: 'none', width: '100%', height: '100%', color: '#fff'}" 
 					 @click="goThreeLogin">
 						<image :src="staticurl('common/wechatlogin.svg')" mode="" class="wechatIcon"></image>
@@ -66,7 +67,7 @@
 			</view>
 			<!-- #endif -->
 			
-			<!-- #ifdef H5 -->
+			<!-- #ifdef APP-PLUS -->
 			<view class="u-p-t-30 u-text-center tiplabel u-flex">
 				<u-checkbox :active-color="theme.bgColor" v-model="agreeChecked" name="agree"><text
 						class="u-font-28 tiplabel">我已阅读并同意</text></u-checkbox>
@@ -77,9 +78,16 @@
 			</view>
 			<!-- #endif -->
 			
+			<!-- #ifdef APP-PLUS -->
+			<view class="u-flex u-row-between u-tips-color u-m-t-60 u-p-20 u-font-lg w-80" v-if="checkLogintype('account')">
+				<view @click="goPage('/pages/login/userlogin')" class="tiplabel">账号密码登录</view>
+				<view @click="goPage('/pages/login/register')" class="tiplabel">注册新账号</view>
+			</view>
+			<!-- #endif -->
+			
 			<!-- #ifdef H5 -->
-			<view class="u-flex u-row-between u-tips-color u-m-t-40 u-p-20 u-font-lg" v-if="checkLogintype('account')">
-				<view @click="goPage('/pages/login/register')" class="titleLight">使用账号密码登录</view>
+			<view class="u-flex u-row-between u-tips-color u-m-t-60 u-p-20 u-font-lg" v-if="checkLogintype('account')">
+				<view @click="goPage('/pages/login/register')" class="tiplabel">还没有账号，立即注册</view>
 			</view>
 			<!-- #endif -->
 			
@@ -138,7 +146,7 @@
 				this.goAuth();
 				// #endif
 			
-				// #ifdef H5
+				// #ifdef APP-PLUS
 				if (!this.agreeChecked) {
 					if (!this.confirm) {
 						this.$refs.AgreementModal.open()
@@ -299,6 +307,12 @@
 		border:1px solid #fff;
 		padding:12rpx 30rpx;
 		border-radius: 12rpx;
+	}
+	
+	.w-80{
+		width:80%;
+		padding-left:0px!important;
+		padding-right:0px!important;
 	}
 	
 	.tiplabel{
