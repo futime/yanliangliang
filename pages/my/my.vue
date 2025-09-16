@@ -17,7 +17,7 @@
 				</view>
 			</view>
 			<view class="avatar" @click="gotoProfile">
-				<image :src="staticurl('shuoming_icon.png')" mode=""></image>
+				<image :src=" vuex_user.avatar || staticurl('shuoming_icon.png')" mode=""></image>
 			</view>
 		</view>
 		

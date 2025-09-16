@@ -82,7 +82,7 @@
                 "oauth" : {
                     "weixin" : {
                         "appid" : "wxbc4b3b8d748cdbe4",
-                        "UniversalLinks" : ""
+                        "UniversalLinks" : "https://yanliangliang.com/h5"
                     }
                 },
                 "push" : {},
@@ -90,7 +90,7 @@
                 "share" : {
                     "weixin" : {
                         "appid" : "wxbc4b3b8d748cdbe4",
-                        "UniversalLinks" : ""
+                        "UniversalLinks" : "https://yanliangliang.com/h5"
                     }
                 },
                 "maps" : {},

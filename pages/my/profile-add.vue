@@ -64,6 +64,22 @@
 			</view>
 			<!-- #ifdef APP -->
 			<view class="form-item">
+				<view class="form-item-label">头像</view>
+				<view class="form-item-content face">
+					<view class="faceimage" v-if="form.avatar">
+						<image :src="cdnurl(form.avatar)" mode="widthFix"></image>
+						<view class="mask" @click="selectImageUploadAvatar">
+							修改
+						</view>
+					</view>
+					<view class="addImage" v-if="!form.avatar" @click="selectImageUpload">
+						<image :src="staticurl('uploadimg_icon.png')" mode=""></image>
+					</view>
+				</view>
+			</view>
+			<!-- #endif -->
+			<!-- #ifdef APP -->
+			<view class="form-item">
 				<view class="form-item-label">照片</view>
 				<view class="form-item-content face">
 					<view class="faceimage" v-if="form.face_image">
@@ -160,6 +176,47 @@
 					}
 				});
 			},
+			selectImageUploadAvatar() {
+				const _this = this
+				// #ifdef MP-WEIXIN
+				uni.chooseMedia({
+					count: 1,
+					mediaType: ['image'],
+					sourceType: ['album', 'camera'],
+					camera: 'front',
+					async success(res) {
+						console.log(res)
+						let res2 = await _this.$api.goUpload({
+							filePath: res.tempFiles[0].tempFilePath
+						});
+						if (!res2.code) {
+							_this.$u.toast(res2.msg);
+						}
+				
+						_this.form.avatar = res2.data.url
+					}
+				})
+				// #endif
+				// #ifdef APP
+				this.watchPermission('相册/相机权限使用说明', '用于实现上传个人头像功能');
+				uni.chooseImage({
+					count: 1, //默认9
+					sizeType: ['original'], //可以指定是原图还是压缩图，默认二者都有
+					sourceType: ['album', 'camera'], //从相册选择
+					async success(res) {
+						console.log(JSON.stringify(res.tempFilePaths));
+						let res2 = await _this.$api.goUpload({
+							filePath: res.tempFilePaths[0]
+						});
+						if (!res2.code) {
+							_this.$u.toast(res2.msg);
+						}
+				
+						_this.form.avatar = res2.data.url
+					}
+				});
+				// #endif
+			},
 			selectImageUpload() {
 				const _this = this
 				// #ifdef MP-WEIXIN
@@ -219,6 +276,7 @@
 				this.form.age2 = this.vuex_user.age.split('-')[1]
 				this.form.body_weight = this.vuex_user.body_weight
 				this.form.face_image = this.vuex_user.face_image
+				this.form.avatar = this.vuex_user.avatar
 			},
 			async handleClickSubmit() {
 				if (!this.form.nickname) {
