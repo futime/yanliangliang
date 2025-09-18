@@ -62,12 +62,12 @@
 					</view>
 				</view>
 			</view>
-			<!-- #ifdef APP -->
+			
 			<view class="form-item">
 				<view class="form-item-label">头像</view>
 				<view class="form-item-content face">
-					<view class="faceimage" v-if="form.avatar">
-						<image :src="cdnurl(form.avatar)" mode="widthFix"></image>
+					<view class="faceimage avatarImg" v-if="form.avatar">
+						<image :src="cdnurl(form.avatar)" mode="aspectFill"></image>
 						<view class="mask" @click="selectImageUploadAvatar">
 							修改
 						</view>
@@ -77,9 +77,8 @@
 					</view>
 				</view>
 			</view>
-			<!-- #endif -->
 			<!-- #ifdef APP -->
-			<view class="form-item">
+			<!-- <view class="form-item">
 				<view class="form-item-label">照片</view>
 				<view class="form-item-content face">
 					<view class="faceimage" v-if="form.face_image">
@@ -92,7 +91,7 @@
 						<image :src="staticurl('uploadimg_icon.png')" mode=""></image>
 					</view>
 				</view>
-			</view>
+			</view> -->
 			<!-- #endif -->
 			<!-- #ifdef MP-WEIXIN -->
 			<view class="form-item" v-if="form.face_image">
@@ -601,6 +600,16 @@
 		border-radius: 300rpx;
 		margin-top: 20rpx;
 		background: #12A89D;
+	}
+	
+	.avatarImg{
+		width:160px!important;
+		height:160px!important;
+		uni-image,img{
+			width: 100%;
+			height: 100%;
+			border-radius: 16rpx;
+		}
 	}
 
 	.addImage {
