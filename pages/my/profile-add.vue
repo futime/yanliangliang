@@ -147,7 +147,8 @@
 					age1: '',
 					age2: '',
 					body_weight: '',
-					face_image: ''
+					face_image: '',
+					avatar: ''
 				},
 				isnew: false,
 				permissionsStatus: false, //控制弹窗是否展示
@@ -184,7 +185,6 @@
 					sourceType: ['album', 'camera'],
 					camera: 'front',
 					async success(res) {
-						console.log(res)
 						let res2 = await _this.$api.goUpload({
 							filePath: res.tempFiles[0].tempFilePath
 						});
@@ -203,7 +203,6 @@
 					sizeType: ['original'], //可以指定是原图还是压缩图，默认二者都有
 					sourceType: ['album', 'camera'], //从相册选择
 					async success(res) {
-						console.log(JSON.stringify(res.tempFilePaths));
 						let res2 = await _this.$api.goUpload({
 							filePath: res.tempFilePaths[0]
 						});
@@ -223,7 +222,7 @@
 					count: 1,
 					mediaType: ['image'],
 					sourceType: ['album', 'camera'],
-					camera: 'front',
+					camera: 'front', 
 					async success(res) {
 						console.log(res)
 						let res2 = await _this.$api.goUpload({
@@ -232,7 +231,7 @@
 						if (!res2.code) {
 							_this.$u.toast(res2.msg);
 						}
-
+						console.log(res2)
 						_this.form.face_image = res2.data.url
 					}
 				})
@@ -248,10 +247,11 @@
 						let res2 = await _this.$api.goUpload({
 							filePath: res.tempFilePaths[0]
 						});
+						console.log(res2)
 						if (!res2.code) {
 							_this.$u.toast(res2.msg);
 						}
-
+						console.log(res2)
 						_this.form.face_image = res2.data.url
 					}
 				});

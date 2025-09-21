@@ -30,7 +30,7 @@ const upload = async function(vm, {
 			success: uploadFileRes => {
 				try {
 					var res = uploadFileRes.data;
-					if (vm.$u.test.jsonString(res)) {						
+					if (vm.$u.test.jsonString(res)) {	
 						resolve(JSON.parse(res))						
 					}
 					if (vm.$u.test.object(res)) {
