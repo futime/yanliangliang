@@ -657,13 +657,13 @@ export const loginfunc = {
 				});
 				return;
 			}
-			if (typeof this.agreeChecked !== 'undefined' && !this.agreeChecked) {
-				this.$refs.uToast.show({
-					title: '请阅读并同意遵守《用户协议》',
-					type: 'error'
-				});
-				return;
-			}
+			// if (typeof this.agreeChecked !== 'undefined' && !this.agreeChecked) {
+			// 	this.$refs.uToast.show({
+			// 		title: '请阅读并同意遵守《用户协议》',
+			// 		type: 'error'
+			// 	});
+			// 	return;
+			// }
 
 			let logincode = await this.getMpCode();
 			this.$api.goWechatMobileLogin({
